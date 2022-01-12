@@ -2,6 +2,7 @@
 baseURL = 'https://prasenjitmanna.com/'
 title = 'Technical Book'
 theme = 'hugo-book'
+languageCode = "en-us"
 
 # Book configuration
 disablePathToLower = true
