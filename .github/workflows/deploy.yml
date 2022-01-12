@@ -1,0 +1,32 @@
+name: CI
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Update theme
+        run: git submodule update --init --recursive
+
+      - name: Setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.79.0"
+
+      - name: Build
+        # run: hugo --minify
+        run: hugo
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          personal_token: ${{ secrets.TOKEN }}
+          external_repository: prmanna/tech-book
+          publish_dir: ./public
+          user_name: Prasenjit Manna
+          user_email: prasenjit.manna@gmail.com
+          publish_branch: main
+          cname: prasenjitmanna.com
