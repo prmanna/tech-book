@@ -1,6 +1,6 @@
 
 ---
-title: "test1--"
+title: "Algorithms"
 bookCollapseSection: true
 ---
 
