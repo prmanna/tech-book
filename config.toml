@@ -1,5 +1,5 @@
 
-baseURL = 'https://prasenjitmanna.com/'
+baseURL = 'https://prasenjitmanna.com/tech-book'
 title = 'Technical Book'
 theme = 'hugo-book'
 languageCode = "en-us"
