@@ -2,6 +2,7 @@
 title: "test2"
 bookFlatSection: false
 bookCollapseSection: true
+draft: true
 ---
 
 # Contribute to the gobacktest project
