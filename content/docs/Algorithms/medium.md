@@ -1,6 +1,7 @@
 ---
 title: "Medium Complexity"
 bookCollapseSection: true
+weight = 10;
 ---
 
 # Medium Complexity
