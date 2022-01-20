@@ -4,6 +4,14 @@ bookCollapseSection: true
 weight: 10
 ---
 
+# Hashing
+
+* Two Sum: Find a pair in array whose sum equals to the target
+  input: [10,4,1,3,2] Output: [4,3]
+
+* Logest consecutive sequence: find length of longest consecutive sequence from given array
+  input: [10, 4, 20, 1,3,2] Output: [1,2,3,4]
+
 # Medium Complexity
 ---
 
