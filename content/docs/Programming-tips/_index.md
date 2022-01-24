@@ -8,11 +8,11 @@ draft: false
 # Programming Tips
 ---
 
-#### Bit Manipulation
+### Bit Manipulation
 
 * XORing a bit with 1 always flips the bit, whereas XO Ring with O will never change it.
 
-#### Miscellaneous
+### Miscellaneous
 
 * Passing a 2D array to a C++ function
 
