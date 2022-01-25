@@ -1,0 +1,209 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Programming Tips #   Bit Manipulation #   XORing a bit with 1 always flips the bit, whereas XO Ring with O will never change it.  Miscellaneous #    Passing a 2D array to a C++ function
+There are three ways to pass a 2D array to a function:
+  The parameter is a 2D array
+int array[10][10]; void passFunc(int a[][10]) { // ... } passFunc(array);   The parameter is an array containing pointers">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Programming Tips">
+<meta property="og:description" content>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/programming-tips/">
+<title>Programming Tips | Technical Book</title>
+<link rel=manifest href=/tech-book/manifest.json>
+<link rel=icon href=/tech-book/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/tech-book/flexsearch.min.js></script>
+<script defer src=/tech-book/en.search.min.1cd19a3f584f80038f6bb7ec73d9e0d24a63e961e0863f0d2163973adeb7624f.js integrity="sha256-HNGaP1hPgAOPa7fsc9ng0kpj6WHghj8NIWOXOt63Yk8=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=https://prasenjitmanna.com/tech-book/docs/programming-tips/index.xml title="Technical Book">
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/tech-book/><img src=/tech-book/logo.png alt=Logo><span>Technical Book</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li>
+<input type=checkbox id=section-374f93193c235d5a59a63115829f835e class=toggle>
+<label for=section-374f93193c235d5a59a63115829f835e class="flex justify-between">
+<a href=https://prasenjitmanna.com/tech-book/docs/algorithms/>Algorithms</a>
+</label>
+<ul>
+<li>
+<input type=checkbox id=section-8729b110b30a06da65be45e52f9e3fb7 class=toggle>
+<label for=section-8729b110b30a06da65be45e52f9e3fb7 class="flex justify-between">
+<a href=https://prasenjitmanna.com/tech-book/docs/algorithms/easy/>Easy Complexity</a>
+</label>
+</li>
+<li>
+<input type=checkbox id=section-df4c4c540e3dcef48dcd2d00c3965057 class=toggle>
+<label for=section-df4c4c540e3dcef48dcd2d00c3965057 class="flex justify-between">
+<a href=https://prasenjitmanna.com/tech-book/docs/algorithms/medium/>Medium Complexity</a>
+</label>
+</li>
+</ul>
+</li>
+<li>
+<input type=checkbox id=section-ea5c43baf485397e13cba9de36dde795 class=toggle checked>
+<label for=section-ea5c43baf485397e13cba9de36dde795 class="flex justify-between">
+<a href=https://prasenjitmanna.com/tech-book/docs/programming-tips/ class=active>Programming Tips</a>
+</label>
+<ul>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/tech-book/posts/>
+Blog
+</a>
+</li>
+<li>
+<a href=https://prasenjitmanna.com/tech-book/ target=_blank rel=noopener>
+Technical Book
+</a>
+</li>
+<li>
+<a href=https://prasenjitmanna.com/ target=_blank rel=noopener>
+Prasenjit's blog
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/tech-book/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Programming Tips</strong>
+<label for=toc-control>
+<img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#programming-tips>Programming Tips</a>
+<ul>
+<li>
+<ul>
+<li><a href=#bit-manipulation>Bit Manipulation</a></li>
+<li><a href=#miscellaneous>Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=programming-tips>
+Programming Tips
+<a class=anchor href=#programming-tips>#</a>
+</h1>
+<hr>
+<h3 id=bit-manipulation>
+Bit Manipulation
+<a class=anchor href=#bit-manipulation>#</a>
+</h3>
+<ul>
+<li>XORing a bit with 1 always flips the bit, whereas XO Ring with O will never change it.</li>
+</ul>
+<h3 id=miscellaneous>
+Miscellaneous
+<a class=anchor href=#miscellaneous>#</a>
+</h3>
+<ul>
+<li>
+<p>Passing a 2D array to a C++ function</p>
+<p>There are three ways to pass a 2D array to a function:</p>
+<ol>
+<li>
+<p>The parameter is a 2D array</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#66d9ef>int</span> array[<span style=color:#ae81ff>10</span>][<span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>passFunc</span>(<span style=color:#66d9ef>int</span> a[][<span style=color:#ae81ff>10</span>])
+{
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+passFunc(array);
+</code></pre></div></li>
+<li>
+<p>The parameter is an array containing pointers</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>array[<span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10</span>; i<span style=color:#f92672>++</span>)
+    array[i] <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>10</span>];
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>passFunc</span>(<span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>a[<span style=color:#ae81ff>10</span>]) <span style=color:#75715e>//Array containing pointers
+</span><span style=color:#75715e></span>{
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+passFunc(array);
+</code></pre></div></li>
+<li>
+<p>The parameter is a pointer to a pointer</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#66d9ef>int</span> <span style=color:#f92672>**</span>array;
+array <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>[<span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span><span style=color:#ae81ff>10</span>; i<span style=color:#f92672>++</span>)
+    array[i] <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>passFunc</span>(<span style=color:#66d9ef>int</span> <span style=color:#f92672>**</span>a)
+{
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+passFunc(array);
+</code></pre></div></li>
+</ol>
+</li>
+</ul>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/197f5cefc57b1ff81ff236d61cf6a50a4a5f49f6 title="Last modified by Prasenjit Manna | January 25, 2022" target=_blank rel=noopener>
+<img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
+<span>January 25, 2022</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#programming-tips>Programming Tips</a>
+<ul>
+<li>
+<ul>
+<li><a href=#bit-manipulation>Bit Manipulation</a></li>
+<li><a href=#miscellaneous>Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
