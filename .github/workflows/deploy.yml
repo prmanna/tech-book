@@ -29,9 +29,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TOKEN }}
-          external_repository: prmanna/tech-book
+          #external_repository: prmanna/tech-book
           publish_dir: ./public
           user_name: Prasenjit Manna
           user_email: prasenjit.manna@gmail.com
-          publish_branch: main
+          publish_branch: publish
           cname: prasenjitmanna.com
