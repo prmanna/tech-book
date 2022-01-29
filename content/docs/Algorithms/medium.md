@@ -4,14 +4,6 @@ bookCollapseSection: true
 weight: 10
 ---
 
-# Hashing
-
-* Two Sum: Find a pair in array whose sum equals to the target
-  input: [10,4,1,3,2] Output: [4,3]
-
-* Logest consecutive sequence: find length of longest consecutive sequence from given array
-  input: [10, 4, 20, 1,3,2] Output: [1,2,3,4]
-
 # Medium Complexity
 ---
 
@@ -19,3 +11,17 @@ weight: 10
 Hints - with just addition/substruction arithmatic, XOR.
 
 * Tic Tac Win: Design an algorithm to figure out if someone has won a game of tic-tac-toe.
+
+## Hashing
+
+* Two Sum: Find a pair in array whose sum equals to the target
+  input: [10,4,1,3,2] Target: 7 Output: [4,3]
+* Logest consecutive sequence: find length of longest consecutive sequence from given array
+  input: [10, 4, 20, 1,3,2] Output: [1,2,3,4]
+
+## Sliding Window
+
+* Two Sum: find a pair whose sum is equal to target
+
+  input: [10,4,1,3,2] Target: 7 Output: [4,3]
+
