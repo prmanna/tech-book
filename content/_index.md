@@ -3,4 +3,4 @@ title: Introduction
 type: docs
 ---
 
-Hello
+This is my collection of technical books.
