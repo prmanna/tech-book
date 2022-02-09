@@ -36,3 +36,40 @@ Hints - with just addition/substruction arithmatic, XOR.
 
   *Hint* -  use sliding window.
 
+## Recursion
+
+* Combination Sum: Return the list of numbers from given array whose sum  = target 
+
+* Generate all pairs of valid parenthesis 
+
+  Input: 2
+
+  Output: {
+
+  ​		()(),
+
+  ​		(())
+
+  ​	}
+
+## Binary Tree
+
+* Height of the binary tree
+
+  Hints - use recursion
+
+* Diameter of the binary tree
+
+  The diameter of the binary tree is the length of the longest path between any two nodes in the tree.
+
+  Hints - use recursion
+
+* Convert to the Sum Tree: Convert it such that every node's value is equal to sum of its left and right sub tree. 
+
+  Hints - use recursion
+
+* Maximum path sum in binary tree 
+
+* Lowest common ancestor in a binary tree
+
+  
