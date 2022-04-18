@@ -42,14 +42,14 @@ In this sections, all the essential concents will be described.
 
 ### Caching
 1. **Cache** - A piece of hardware or software that stores data, typically meant to retrieve that data faster than otherwise. 
-Caches are often used to store responses to network requests as well as results of computationally tong operations. 
+Caches are often used to store responses to network requests as well as results of computationally tong operations.
 Note that data in a cache can become stale if the main source of truth for that data (i.e., the main database behind the cache) gets updated and the cache doesn't. 
 
 2. **Cache Hit**
 When requested data is found in a cache. 
 
 3. **Cache Miss** 
-When requested data could have been found in a cache but isn't. This is typically used to refer to a negative consequence of a system failure or of a poor design choice. For example: 
+When requested data could have been found in a cache but isn't. This is typically used to refer to a negative consequence of a system failure or of a poor design choice. For example:
 If a server goes down, our load balancer will have to forward requests to a new server, which will result in cache misses.
 
 4. **Cache Eviction Policy**
