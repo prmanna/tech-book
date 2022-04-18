@@ -22,3 +22,11 @@ In this sections, all the essential concents will be described.
 2. Throughput - The number of operations that a system can handle properly per time unit. For instance the throughput of a sec measured in requests per second (RPS or QPS).
 
 ### Availability
+1. Availability - The odds of a particular server or service being up and running at any point in time, usually measured in percentages. A server that has 99% availability will be operational 99% of the time (this would be described as having two nines of availability).
+2. High Availability - Used to describe systems that have particularly high levels of availability, typically 5 nines or more; sometimes abbreviated "HA", 
+3. Nines - Typically refers to percentages of uptime. 
+   For example, 5 nines of availability means an uptime of 99.999% of the time. Below are the downtimes expected per year depending on those 9s: 
+  - 99% (two 9s): 87.7 hours 
+  - 99.9% (three 9s): 8.8 hours 
+  - 99.99%: 52.6 minutes 
+  - 99.999%: 5.3 minutes 
