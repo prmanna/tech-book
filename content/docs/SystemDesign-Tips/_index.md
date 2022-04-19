@@ -66,4 +66,33 @@ Note that forward proxies are often referred to as just proxies.
 2. **Reverse Proxy** 
 A server that sits between clients and servers and acts on behalf of the servers, typically used for logging, load balancing, or caching. | nginx @ Pronounced "engine X°--not "N jinx”, Nginx is a very popular webserver that's often used as a reverse proxy and load balancer. Learn more: https://www.nginx.com/
 
+3. **Load Balancer**
+A type of reverse proxy that distributes traffic across servers, Load balancers can be found in many parts of a system, from the DNS layer all the way to the database layer. 
+Learn more: https://www.nginx.com/
+
+4. **Server-Selection Strategy** 
+How a load balancer chooses servers when distributing traffic amongst multiple servers. Commonly used strategies include roundrobin, random selection, performance-based selection (choosing the server with the best performance metrics, like the fastest response time or the least amount of traffic), and IP-based routing. 
+
+### Databases
+1. **Relational Database** 
+A type of structured database in which data is stored following a tabular format; often supports powerful querying using SQL. 
+Learn more: https://www.postgresql.org/
+
+2. **Non-Relational Database** 
+In contrast with relational database (SQL databases), a type of database that is free of Imposed, tabular-like structure.  Non-relational databases are often referred to as NoSQL databases, 
+
+3. **ACID Transaction**
+    * Atomicity: The operations that constitute the transaction will either all succeed or ail fail. There is no in-between state. 
+    * Consistency: The transaction cannot bring the database to an invalid state. After the transaction is committed or rolled back, the rules for each record will still apply, and all future transactions will see the effect of the transaction. Also named Strong Consistency. 
+    * isolation: The execution of multiple transactions concurrently will have the same effect as if they had been executed sequentially. 
+    * Durability: Any committed transaction is written to non-volatile storage. It will not be undone by a crash, power loss, or network partition. 
+
+4. **Strong Consistency** 
+Strong Consistency usually refers to the consistency of ACID transactions, as opposed to Eventual Consistency. 
+
+5. **Eventual Consistency** 
+A consistency mode which is unlike Strong Consistency. In this model, reads might return a view of the system that is stale. An eventually consistent datastore will give guarantees that the state of the database will eventuall reflect writes within a time period.
+
+
+
 
