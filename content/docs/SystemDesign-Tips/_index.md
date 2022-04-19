@@ -56,5 +56,14 @@ If a server goes down, our load balancer will have to forward requests to a new 
 The policy by which values get evicted or removed from a cache. Popular cache eviction policies include LRU (least-recently used), FIFO (first in first out), and LFU (least-frequently used). 
 
 5. **Content Delivery Network** 
-A CDN is a third-party service that acts like a cache for your servers. Sometimes, web applications can be slow for users in a particular region if your servers are located only in another region. A CDN has servers all around the world, meaning that the latency to a CDN's servers will almost always be far better than the latency to your servers. A CDN's servers are often referred to as PoPs (Points of Presence). Two of the most popular CDNs are Cloudflare and Google Claud CDN. 
+A CDN is a third-party service that acts like a cache for your servers. Sometimes, web applications can be slow for users in a particular region if your servers are located only in another region. A CDN has servers all around the world, meaning that the latency to a CDN's servers will almost always be far better than the latency to your servers. A CDN's servers are often referred to as PoPs (Points of Presence). Two of the most popular CDNs are **Cloudflare** and **Google Claud CDN**. 
+
+### Proxies
+1. **Forward Proxy** 
+A server that sits between a client and servers and acts on behalf of the client, typically used to mask the client's identity (IP address), 
+Note that forward proxies are often referred to as just proxies. 
+
+2. **Reverse Proxy** 
+A server that sits between clients and servers and acts on behalf of the servers, typically used for logging, load balancing, or caching. | nginx @ Pronounced "engine X°--not "N jinx”, Nginx is a very popular webserver that's often used as a reverse proxy and load balancer. Learn more: https://www.nginx.com/
+
 
