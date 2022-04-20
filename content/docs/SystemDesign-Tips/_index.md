@@ -93,6 +93,45 @@ Strong Consistency usually refers to the consistency of ACID transactions, as op
 5. **Eventual Consistency** 
 A consistency mode which is unlike Strong Consistency. In this model, reads might return a view of the system that is stale. An eventually consistent datastore will give guarantees that the state of the database will eventuall reflect writes within a time period.
 
+### Databases
+1. **Key-Value Store** 
+    A Key-Value Store is a flexible NoSQL database that's often used for caching and dynamic configuration. Popular aptions include DynamoDB, Etcd, Redis, and ZooKeeper, 
+    
+      * **etcd**
+        Etcd is a strongly consistent and highly available key-value store that's often used to Implement leader election in a system, Learn more: https://etcd.io/ 
+    
+    
+      * **Redis**
+        An in-memory key-value store. Does offer some persistent storage options but is typically used as a really fast, best-effort caching solution, Redis is also often used to implement rate limiting. Learn more: https://redis.io/ 
+    
+    
+      * **Zookeeper**
+        Zookeeper Is a strongly consistent, highly available key-value store. It's often used to store important configuration of to perform leader election. Learn more: https://zookeeper.apache.org/ 
+    
 
+5. **Blob Storage** 
+   Widely used kind of storage, in small and large scale systems. They don’t really count as databases per se, partially because they only allow the user to store and retrieve data based on the name of the blob. This is sort of like a key-value store but usually blob stores have different guarantees. They might be slower than KV stores but values can be megabytes large (or sometimes gigabytes large). Usually people use this to store things like large binaries, database snapshots, or images and other static assets that a website might have. 
+   Blob storage is rather complicated to have on premise, and only giant companies like Google and Amazon have infrastructure that supports it. So usually in the context of System Design interviews you can assume that you will be able to use GCS or S3. These are blob storage services hosted by Google and Amazon respectively, that cost money depending on how much storage you use and how often you store and retrieve blobs from that storage. 
+   
+    * **Google Cloud Storage(GCS)** - is a blob storage service provided by Google. 
+    Learn more: https://cloud.google.com/storage 
+   
+    * **S3** - ls a blob storage service provided by Amazon through Amazon Web Services (AWS). Learn more: https://aws.amazon.com/s3/ 
 
+3. **Time Series Database**
+   A TSDB is a special kind of database optimized for storing and analyzing time-indexed data: data points that specifically occur at a given moment in time. Examples of TSDBs are InfluxDB, Prometheus, and Graphite.
+
+    * **influxDB** - popular open-source time series database, Learn more; https://www.influxdata.com/ 
+
+    * **Prometheus** - A popular open source time series database, typically used for monitoring purposes. https://prometheus.io
+
+4. **Graph Database**
+   A type of database that stores data following the graph data model. Data entries in a graph database can have explicitly defined relationships, much like nodes in a graph can have edges. 
+   Graph databases take advantage of their underlying graph structure to perform complex queries on deeply connected data very fast. 
+   Graph databases are thus often preferred to relational databases when dealing with systems where data points naturally form a graph and have multiple tevels of relationships—for example, social networks. 
+
+    * **Neo4j** - a popular grpah DB, consists of nodes, relationships, propreties and labels. https://neo4j.com
+
+5. **Spatial Database** 
+   A type of database optimized for storing and querying spatial data like locations on a map. Spatial databases rely on spatial indexes fike quadtrees to quickly perform spatial queries like finding all locations in the vicinity of a region. 
 
