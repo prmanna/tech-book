@@ -93,7 +93,7 @@ Strong Consistency usually refers to the consistency of ACID transactions, as op
 5. **Eventual Consistency** 
 A consistency mode which is unlike Strong Consistency. In this model, reads might return a view of the system that is stale. An eventually consistent datastore will give guarantees that the state of the database will eventuall reflect writes within a time period.
 
-### Databases
+### No-SQL Databases
 1. **Key-Value Store** 
     A Key-Value Store is a flexible NoSQL database that's often used for caching and dynamic configuration. Popular aptions include DynamoDB, Etcd, Redis, and ZooKeeper, 
     
@@ -134,4 +134,13 @@ A consistency mode which is unlike Strong Consistency. In this model, reads migh
 
 5. **Spatial Database** 
    A type of database optimized for storing and querying spatial data like locations on a map. Spatial databases rely on spatial indexes fike quadtrees to quickly perform spatial queries like finding all locations in the vicinity of a region. 
+
+### Replication & Shrading
+
+1. **Replication** - The act of duplicating the data from one database server to others. This is sometimes used to increase the redundancy of your system and tolerate regional failures for instance. Other times you can use replication to move data closer to your clients, thus decreasing latency of accessing specific data.
+
+2. **Sharding** - Sometimes called data partitioning, sharding is the act of splitting a database into two or more pieces called shards and is typically done to increase the throughput of your database. Popular sharding strategies include: 
+    * Sharding based on a client's region. 
+    * Sharding based on the type of data being stored (e.g: user data gets stored in one shard, payments data gets stored In another shard) 
+    * Sharding based on the hash of a column (only for structured data)  
 
