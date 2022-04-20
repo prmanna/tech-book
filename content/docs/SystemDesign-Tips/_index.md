@@ -144,3 +144,8 @@ A consistency mode which is unlike Strong Consistency. In this model, reads migh
     * Sharding based on the type of data being stored (e.g: user data gets stored in one shard, payments data gets stored In another shard) 
     * Sharding based on the hash of a column (only for structured data)  
 
+### Peer-To-Peer Networks
+### Rate Limiting
+### Publish/Subscribe Pattern
+### MapReduce
+### Security And HTTPS
