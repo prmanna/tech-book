@@ -108,7 +108,6 @@ A consistency mode which is unlike Strong Consistency. In this model, reads migh
       * **Zookeeper**
         Zookeeper Is a strongly consistent, highly available key-value store. It's often used to store important configuration of to perform leader election. Learn more: https://zookeeper.apache.org/ 
     
-
 5. **Blob Storage** 
    Widely used kind of storage, in small and large scale systems. They don’t really count as databases per se, partially because they only allow the user to store and retrieve data based on the name of the blob. This is sort of like a key-value store but usually blob stores have different guarantees. They might be slower than KV stores but values can be megabytes large (or sometimes gigabytes large). Usually people use this to store things like large binaries, database snapshots, or images and other static assets that a website might have. 
    Blob storage is rather complicated to have on premise, and only giant companies like Google and Amazon have infrastructure that supports it. So usually in the context of System Design interviews you can assume that you will be able to use GCS or S3. These are blob storage services hosted by Google and Amazon respectively, that cost money depending on how much storage you use and how often you store and retrieve blobs from that storage. 
@@ -145,7 +144,41 @@ A consistency mode which is unlike Strong Consistency. In this model, reads migh
     * Sharding based on the hash of a column (only for structured data)  
 
 ### Peer-To-Peer Networks
+1. Peer-To-Peer Network
+A collection of machines referred to as peers that divide a workload between themselves to presumably complete the workload faster than would otherwise be possible. Peer-to-peer networks are often used in file-distribution systems. 
+
+2. Gossip Protocol 
+When a set of machines talk to each other in a uncoordinated manner in a cluster to spread information through a system without requiring a central source of data. - ad ° 
+
+
 ### Rate Limiting
+1. **Rate Limiting** 
+  The act of limiting the number of requests sent to or from a system. Rate limiting is most often used to limit the number of incoming requests in order to prevent DoS attacks and can be enforced at the IP-address level, at the user-account level, or at the region level, for example. Rate limiting can also be implemented in tiers; for instance, a type of network request could be limited to 1 per second, 5 per 10 seconds, and 10 per minute. 
+
+2. **DoS Attack** 
+  Short for “denial-of-service attack”, a DoS attack is an attack in which a malicious user tries to bring down or damage a system in order to render it unavailable to users. Much of the time, it consists of flooding it with traffic. Some DoS attacks are easily preventable with rate limiting, while others can be far trickier to defend against. 
+
+3. **DDoS Attack** 
+
+   Short for “distributed denial-of-service attack", a DDoS attack is a DoS attack in which the traffic flooding the target system comes from many different sources (like thousands of machines), making It much harder to defend against. 
+
+4. **Redis** 
+An in-memory key-value store. Does offer some persistent storage options but Is typically used as a really fast, best-effort caching solution, Redis is also often used to implement rate limiting. Learn more: https //redis.io/ 
+
+
 ### Publish/Subscribe Pattern
+
+1. **Publish/Subscribe Pattern** 
+Often shortened as Pub/Sub, the Publish/Subscribe pattern Is a popular messaging model that consists of publishers and subscribers. Publishers publish messages to special topics (sometimes called channels) without caring about or even knowing who will read those messages, and subscribers subscribe to topics and read messages coming through those topics. 
+Pub/Sub systems often come with very powerful guarantees like at-least-once delivery, persistent storage, ordering of messages, and replayability of messages. 
+
+2. **Apache Kafka** 
+A distributed messaging system created by Linkedin. Very useful when using the streaming paradigm as opposed to polling. Learn more: https.//kafka,apache, org/
+
+3. **Cloud pub/sub**
+A highly-scalable Pub/Sub messaging service created by Google, Guarantees at-least-once delivery of messages and supports “rewinding” in order to reprocess messages. 
+Learn more: https://cloud.google.com/pubsub/ 
+
+
 ### MapReduce
 ### Security And HTTPS
