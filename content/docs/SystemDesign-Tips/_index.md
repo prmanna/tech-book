@@ -153,10 +153,10 @@ When a set of machines talk to each other in a uncoordinated manner in a cluster
 
 ### Rate Limiting
 1. **Rate Limiting** 
-  The act of limiting the number of requests sent to or from a system. Rate limiting is most often used to limit the number of incoming requests in order to prevent DoS attacks and can be enforced at the IP-address level, at the user-account level, or at the region level, for example. Rate limiting can also be implemented in tiers; for instance, a type of network request could be limited to 1 per second, 5 per 10 seconds, and 10 per minute. 
+    The act of limiting the number of requests sent to or from a system. Rate limiting is most often used to limit the number of incoming requests in order to prevent DoS attacks and can be enforced at the IP-address level, at the user-account level, or at the region level, for example. Rate limiting can also be implemented in tiers; for instance, a type of network request could be limited to 1 per second, 5 per 10 seconds, and 10 per minute. 
 
 2. **DoS Attack** 
-  Short for “denial-of-service attack”, a DoS attack is an attack in which a malicious user tries to bring down or damage a system in order to render it unavailable to users. Much of the time, it consists of flooding it with traffic. Some DoS attacks are easily preventable with rate limiting, while others can be far trickier to defend against. 
+    Short for “denial-of-service attack”, a DoS attack is an attack in which a malicious user tries to bring down or damage a system in order to render it unavailable to users. Much of the time, it consists of flooding it with traffic. Some DoS attacks are easily preventable with rate limiting, while others can be far trickier to defend against. 
 
 3. **DDoS Attack** 
 
@@ -181,4 +181,50 @@ Learn more: https://cloud.google.com/pubsub/
 
 
 ### MapReduce
+1. **MapReduce** 
+A popular framework for processing very large datasets in a distributed setting efficiently, quickly, and in a fault-tolerant manner. A MapReduce job is comprised of 3 main steps: 
+    * the Map step, which runs a map function on the various chunks of the dataset and transforms these chunks into intermediate key-value pairs. 
+    * the Shuffle step, which reorganizes the intermediate key-value pairs such that pairs of the same key are routed to the same machine in the final step. 
+    * the Reduce step, which runs a reduce function on the newly shuffled key-value pairs and transforms them into more meaningful data. The canonical example of a MapReduce use case is counting the number of occurrences of words in a large text file. When dealing with a MapReduce library, engineers and/or systems administrators only need to worry about the map and reduce functions, as well as their inputs and outputs. All other concerns, including the parallelization of tasks and the fault-tolerance of the MapReduce job, are abstracted away and taken care of by the MapReduce implementation. 
+
+2. **Distributed File System** 
+A Distributed Ale System is an abstraction over a (usually large) cluster of machines that allows them to act like one large file system. The two most popular implementations of a DFS are the Google File System (GFS) and the Hadoop Distributed File System (HDFS). Typically, DFSs take care of the classic availability and replication guarantees that can be tricky to obtain in a distributed-system setting, The overarching idea is that files are split into chunks of a certain size (4MB or 64MB, for instance), and those chunks are sharded across a large cluster of machines. A central control plane is in charge of deciding where each chunk resides, routing reads to the right nodes, and handling communication between machines, Olfferent DFS implementations have slightly different APIs and semantics, but they achieve the same common goal: extremely largescale persistent storage,
+3. **Hadoop** 
+A popular, open-source framework that supports MapReduce jobs and many other kinds of data-processing pipelines. Its central component is HDFS (Hadoop Distributed File System), on top of which other technologies have been developed. Learn more: https://hadoop.apache.org/ 
+
+
 ### Security And HTTPS
+
+1. **Symmetric Encryption** 
+  A type of encryption that relies on only a single key to both encrypt and decrypt data. The key must be known to all parties involved in the communication and must therefore typically be shared between the parties at one point or another. 
+  Symmetric-key algorithms tend to be faster than their asymmetric counterparts. 
+  The most widely used symmetric-key algorithms are part of the Advanced Encryption Standard (AES). 
+
+2. **Asymmetric Encryption**
+  Also known as public-key encryption, asymmetric encryption relies on two keys—a public key and a private key—to encrypt and decrypt data. The keys are generated using cryptographic algorithms and are mathematically connected such that data encrypted with the public key can only be decrypted with the private key. 
+  While the private key must be kept secure to maintain the fidelity of this encryption paradigm, the public key can be openly shared. 
+  Asymmetric-key algorithms tend to be slower than their symmetric counterparts. 
+
+3. **AES** 
+  Stands for Advanced Encryption Standard. AES is a widely used encryption standard that has three symmetric-key algorithms (AES-128, AES-192, and AES-256). 
+  Of note, AES is considered to be the "gold standard" in encryption and is even used by the U.S. National Security Agency to encrypt top secret information. . 
+
+4. **HTTPS** 
+  The HyperText Transfer Protocol Secure is an extension of HTTP that's used for secure communication online. It requires servers to have trusted certificates (usually SSL certificates) and uses the Transport Layer Security (TLS), a security protocol built on top of TCP, to encrypt data communicated between a client and a server. 
+  { TLs The Transport Layer Security is a security protocol over which HTTP runs in order to achieve secure communication online. "HTTP over TLS" Is also known as HTTPS. 
+
+5. **SSL Certificate** 
+  A digital certificate granted to a server by a certificate authority. Contains the server's public key, to be used as part of the TLS handshake process in an HTTPS connection. 
+  An SSL certificate effectively confirms that a public key belongs to the server claiming it belongs to them. SSL certificates are a crucial defense against man-in-the-middie attacks, 
+
+6. **Certificate Authority** 
+  A trusted entity that signs digital certificates—namely, SSL certificates that are relied on in HTTPS connections. 
+
+7. **TLS Handshake** 
+   The process through which a client and a server communicating over HTTPS exchange encryption-related information and establish a secure communication. The typical steps in a TLS handshake are roughly as follows: 
+
+    * The client sends a client hello string of random bytes—to the server. 
+    * The server responds with a server hello another string of random bytes—as well as its SSL certificate, which contains its publle key. 
+    * The client verifies that the certificate was issued by a certificate authority and sends a premaster secret—yet another string of random bytes, this time encrypted with the server's public key—to the server. 
+    * The client and the server use the client hello, the server helio, and the premaster secret to then generate the same symmetric encryption session keys, to be used to encrypt and decrypt all data communicated during the remainder of the connection. 
+
