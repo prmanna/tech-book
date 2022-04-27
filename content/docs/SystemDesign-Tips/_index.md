@@ -109,7 +109,7 @@ A consistency mode which is unlike Strong Consistency. In this model, reads migh
         Zookeeper Is a strongly consistent, highly available key-value store. It's often used to store important configuration of to perform leader election. Learn more: https://zookeeper.apache.org/ 
     
       * **DynamoDB**
-        An key-value store by AWS. 
+        An key-value store by AWS, this provides eventual consistency.
     
 5. **Blob Storage** 
    Widely used kind of storage, in small and large scale systems. They don’t really count as databases per se, partially because they only allow the user to store and retrieve data based on the name of the blob. This is sort of like a key-value store but usually blob stores have different guarantees. They might be slower than KV stores but values can be megabytes large (or sometimes gigabytes large). Usually people use this to store things like large binaries, database snapshots, or images and other static assets that a website might have. 
