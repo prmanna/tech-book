@@ -19,17 +19,21 @@ It's important to organize ourselves and to lay out a clear plan regarding how w
 First of all, we'll need to support the following operations:
 
 For Files
-UploadFile
-DownloadFile
-DeleteFile
-RenameFile
-MoveFile
+
+- UploadFile
+- DownloadFile
+- DeleteFile
+- RenameFile
+- MoveFile
+
 For Folders
-CreateFolder
-GetFolder
-DeleteFolder
-RenameFolder
-MoveFolder
+
+* CreateFolder
+* GetFolder
+* DeleteFolder
+* RenameFolder
+* MoveFolder
+
 Secondly, we'll have to come up with a proper storage solution for two types of data:
 
 File Contents: The contents of the files uploaded to Google Drive. These are opaque bytes with no particular structure or format.
@@ -55,24 +59,33 @@ This immutability is very powerful, in part because it means that we can very ea
 ### 5. Entity Info Structure
 Since folders and files will both have common bits of metadata, we can have them share the same structure. The difference will be that folders will have an is_folder flag set to true and a list of children_ids, which will point to the entity information for the folders and files within the folder in question. Files will have an is_folder flag set to false and a blobs field, which will have the IDs of all of the blobs that make up the data within the relevant file. Both entities can also have a parent_id field, which will point to the entity information of the entity's parent folder. This will help us quickly find parents when moving files and folders.
 
-File Info
-{
-  blobs: ['blob_content_hash_0', 'blob_content_hash_1'],
-  id: 'some_unique_entity_id'
-  is_folder: false,
-  name: 'some_file_name',
-  owner_id: 'id_of_owner',
-  parent_id: 'id_of_parent',
-}
-Folder Info
-{
-  children_ids: ['id_of_child_0', 'id_of_child_1'],
-  id: 'some_unique_entity_id'
-  is_folder: true,
-  name: 'some_folder_name',
-  owner_id: 'id_of_owner',
-  parent_id: 'id_of_parent',
-}
+```
+`File Info`
+`{`
+  `blobs: ['blob_content_hash_0', 'blob_content_hash_1'],`
+  `id: 'some_unique_entity_id'`
+  `is_folder: false,`
+  `name: 'some_file_name',`
+  `owner_id: 'id_of_owner',`
+  `parent_id: 'id_of_parent',`
+`}`
+```
+
+
+
+```
+`Folder Info`
+`{`
+  `children_ids: ['id_of_child_0', 'id_of_child_1'],`
+  `id: 'some_unique_entity_id'`
+  `is_folder: true,`
+  `name: 'some_folder_name',`
+  `owner_id: 'id_of_owner',`
+  `parent_id: 'id_of_parent',`
+`}
+```
+
+`
 
 ### 6. Garbage Collection
 Any change to an existing file will create a whole new blob and de-reference the old one. Furthermore, any deleted file will also de-reference the file's blobs. This means that we'll eventually end up with a lot of orphaned blobs that are basically unused and taking up storage for no reason. We'll need a way to get rid of these blobs to free some space.
@@ -92,5 +105,7 @@ DownloadFile fetches the file's metadata from our key-value stores given the fil
 
 All of the Get, Rename, Move, and Delete operations atomically change the metadata of one or several entities within our key-value stores using the transaction guarantees that they give us.
 
-8. System Diagram
+### 8. System Diagram
 Final Systems Architecture
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/google-drive-system-diagram.svg)
