@@ -1,0 +1,98 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="1. Gathering System Requirements #  As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&rsquo;re building exactly.
+We&rsquo;re building a stock-brokerage platform like Robinhood that functions as the intermediary between end-customers and some central stock exchange. The idea is that the central stock exchange is the platform that actually executes stock trades, whereas the stockbroker is just the platform that customers talk to when they want to place a trade&ndash;the stock brokerage is &ldquo;simpler&rdquo; and more &ldquo;human-readable&rdquo;, so to speak."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="Design A Stock-Broker System"><meta property="og:description" content="1. Gathering System Requirements #  As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&rsquo;re building exactly.
+We&rsquo;re building a stock-brokerage platform like Robinhood that functions as the intermediary between end-customers and some central stock exchange. The idea is that the central stock exchange is the platform that actually executes stock trades, whereas the stockbroker is just the platform that customers talk to when they want to place a trade&ndash;the stock brokerage is &ldquo;simpler&rdquo; and more &ldquo;human-readable&rdquo;, so to speak."><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/stock-broker/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-05-13T18:35:39+05:30"><title>Design A Stock-Broker System | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
+<script defer src=/tech-book/en.search.min.1469be2211d25f4aa11af0481ff2c39032dfac5335fad0a5332fc47cc6631bbe.js integrity="sha256-FGm+IhHSX0qhGvBIH/LDkDLfrFM1+tClMy/EfMZjG74=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/tech-book/><img src=/tech-book/logo.png alt=Logo><span>Technical Book</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-374f93193c235d5a59a63115829f835e class=toggle>
+<label for=section-374f93193c235d5a59a63115829f835e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/>Algorithms</a></label><ul><li><input type=checkbox id=section-8729b110b30a06da65be45e52f9e3fb7 class=toggle>
+<label for=section-8729b110b30a06da65be45e52f9e3fb7 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/easy/>Easy Complexity</a></label></li><li><input type=checkbox id=section-df4c4c540e3dcef48dcd2d00c3965057 class=toggle>
+<label for=section-df4c4c540e3dcef48dcd2d00c3965057 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/medium/>Medium Complexity</a></label></li></ul></li><li><input type=checkbox id=section-ea5c43baf485397e13cba9de36dde795 class=toggle>
+<label for=section-ea5c43baf485397e13cba9de36dde795 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/programming-tips/>Programming Tips</a></label><ul></ul></li><li><input type=checkbox id=section-e1ca16f5998b918e4e01f395e9c81195 class=toggle checked>
+<label for=section-e1ca16f5998b918e4e01f395e9c81195 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/>SystemDesign-Tips</a></label><ul><li><input type=checkbox id=section-cd24c01774f2ef0254c419c2af253650 class=toggle>
+<label for=section-cd24c01774f2ef0254c419c2af253650 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/code-deployment-system/>Design A Code-Deployment System</a></label></li><li><input type=checkbox id=section-9c8d84ec532d2a2d7bafc9a630fe088a class=toggle checked>
+<label for=section-9c8d84ec532d2a2d7bafc9a630fe088a class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/stock-broker/ class=active>Design A Stock-Broker System</a></label></li><li><input type=checkbox id=section-81d594663dd77ffbd855c8bfc64baf2e class=toggle>
+<label for=section-81d594663dd77ffbd855c8bfc64baf2e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/>Google Drive - Design</a></label></li></ul></li></ul><ul><li><a href=/tech-book/posts/>Blog</a></li><li><a href=https://prasenjitmanna.com/tech-book/ target=_blank rel=noopener>Technical Book</a></li><li><a href=https://prasenjitmanna.com/ target=_blank rel=noopener>Prasenjit's blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/tech-book/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Design A Stock-Broker System</strong>
+<label for=toc-control><img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#1-gathering-system-requirements>1. Gathering System Requirements</a></li><li><a href=#2-coming-up-with-a-plan>2. Coming Up With A Plan</a></li><li><a href=#3-api-call>3. API Call</a></li><li><a href=#4-api-servers>4. API Server(s)</a></li><li><a href=#5-trade-execution-queue>5. Trade-Execution Queue</a></li><li><a href=#6-trade-execution-logic>6. Trade-Execution Logic</a></li><li><a href=#7-exchange-callback>7. Exchange Callback</a></li><li><a href=#8-system-diagram>8. System Diagram</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h3 id=1-gathering-system-requirements>1. Gathering System Requirements
+<a class=anchor href=#1-gathering-system-requirements>#</a></h3><p>As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&rsquo;re building exactly.</p><p>We&rsquo;re building a stock-brokerage platform like Robinhood that functions as the intermediary between end-customers and some central stock exchange. The idea is that the central stock exchange is the platform that actually executes stock trades, whereas the stockbroker is just the platform that customers talk to when they want to place a trade&ndash;the stock brokerage is &ldquo;simpler&rdquo; and more &ldquo;human-readable&rdquo;, so to speak.</p><p>We only care about supporting market trades&ndash;trades that are executed at the current stock price&ndash;and we can assume that our system stores customer balances (i.e., funds that customers may have previously deposited) in a SQL table.</p><p>We need to design a <em>PlaceTrade</em> API call, and we know that the central exchange&rsquo;s equivalent API method will take in a callback that&rsquo;s guaranteed to be executed upon completion of a call to that API method.</p><p>We&rsquo;re designing this system to support millions of trades per day coming from millions of customers in a single region (the U.S., for example). We want the system to be highly available.</p><h3 id=2-coming-up-with-a-plan>2. Coming Up With A Plan
+<a class=anchor href=#2-coming-up-with-a-plan>#</a></h3><p>It&rsquo;s important to organize ourselves and to lay out a clear plan regarding how we&rsquo;re going to tackle our design. What are the major, distinguishable components of our how system?</p><p>We&rsquo;ll approach the design front to back:</p><ul><li>the <em>PlaceTrade</em> API call that clients will make</li><li>the API server(s) handling client API calls</li><li>the system in charge of executing orders for each customer</li></ul><p>We&rsquo;ll need to make sure that the following hold:</p><ul><li>trades can never be stuck forever without either succeeding or failing to be executed</li><li>a single customer&rsquo;s trades have to be executed in the order in which they were placed</li><li>balances can never go in the negatives</li></ul><h3 id=3-api-call>3. API Call
+<a class=anchor href=#3-api-call>#</a></h3><p>The core API call that we have to implement is <em>PlaceTrade</em>.</p><p>We&rsquo;ll define its signature as:</p><pre tabindex=0><code>PlaceTrade(
+  customerId: string,
+  stockTicker: string,
+  type: string (BUY/SELL),
+  quantity: integer,
+) =&gt; (
+  tradeId: string,
+  stockTicker: string,
+  type: string (BUY/SELL),
+  quantity: integer,
+  createdAt: timestamp,
+  status: string (PLACED),
+  reason: string,
+)
+</code></pre><p>The customer ID can be derived from an authentication token that&rsquo;s only known to the user and that&rsquo;s passed into the API call.</p><p>The status can be one of:</p><ul><li><strong>PLACED</strong></li><li><strong>IN PROGRESS</strong></li><li><strong>FILLED</strong></li><li><strong>REJECTED</strong></li></ul><p>That being said, <strong>PLACED</strong> will actually be the defacto status here, because the other statuses will be asynchronously set once the exchange executes our callback. In other words, the trade status will always be <strong>PLACED</strong> when the <em>PlaceTrade</em> API call returns, but we can imagine that a <em>GetTrade</em> API call could return statuses other than <strong>PLACED</strong>.</p><p>Potential reasons for a <strong>REJECTED</strong> trade might be:</p><ul><li><p>insufficient funds</p></li><li><p>random error</p></li><li><p>past market hours</p></li></ul><h3 id=4-api-servers>4. API Server(s)
+<a class=anchor href=#4-api-servers>#</a></h3><p>We&rsquo;ll need multiple API servers to handle all of the incoming requests. Since we don&rsquo;t need any caching when making trades, we don&rsquo;t need any server stickiness, and we can just use some <strong>round-robin load balancing</strong> to distribute incoming requests between our API servers.</p><p>Once API servers receive a <em>PlaceTrade</em> call, they&rsquo;ll store the trade in a SQL table. This table needs to be in the same SQL database as the one that the balances table is in, because we&rsquo;ll need to use ACID transactions to alter both tables in an atomic way.</p><p>The SQL table for trades will look like this:</p><ul><li>id: <em>string</em>, a random, auto-generated string</li><li>customer_id: <em>string</em>, the id of the customer making the trade</li><li>stockTicker: <em>string</em>, the ticker symbol of the stock being traded</li><li>type: <em>string</em>, either <strong>BUY</strong> or <strong>SELL</strong></li><li>quantity: <em>integer</em> (no fractional shares), the number of shares to trade</li><li>status: <em>string</em>, the status of the trade; starts as <strong>PLACED</strong></li><li>created_at: <em>timestamp</em>, the time when the trade was created</li><li>reason: <em>string</em>, the human-readable justification of the trade&rsquo;s status</li></ul><p>The SQL table for balances will look like this:</p><ul><li>id: <em>string</em>, a random, auto-generated string</li><li>customer_id: <em>string</em>, the id of the customer related to the balance</li><li>amount: <em>float</em>, the amount of money that the customer has in USD</li><li>last_modified: <em>timestamp</em>, the time when the balance was last modified</li></ul><h3 id=5-trade-execution-queue>5. Trade-Execution Queue
+<a class=anchor href=#5-trade-execution-queue>#</a></h3><p>With hundreds of orders placed every second, the trades table will be pretty massive. We&rsquo;ll need to figure out a robust way to actually execute our trades and to update our table, all the while making sure of a couple of things:</p><ul><li>We want to make sure that for a single customer, we only process a single <strong>BUY</strong> trade at any time, because we need to prevent the customer&rsquo;s balance from ever reaching negative values.</li><li>Given the nature of market orders, we never know the exact dollar value that a trade will get executed at in the exchange until we get a response from the exchange, so we have to speak to the exchange in order to know whether the trade can go through.</li></ul><p>We can design this part of our system with a Publish/Subscribe pattern. The idea is to use a message queue like Apache Kafka or Google Cloud Pub/Sub and to have a set of topics that customer ids map to. This gives us at-least-once delivery semantics to make sure that we don&rsquo;t miss new trades. When a customer makes a trade, the API server writes a row to the database and also creates a message that gets routed to a topic for that customer (using hashing), notifying the topic&rsquo;s subscriber that there&rsquo;s a new trade.</p><p>This gives us a guarantee that for a single customer, we only have a single thread trying to execute their trades at any time.</p><p>Subscribers of topics can be rings of 3 workers (clusters of servers, essentially) that use leader election to have 1 master worker do the work for the cluster (this is for our system&rsquo;s high availability)&ndash;the leader grabs messages as they get pushed to the topic and executes the trades for the customers contained in the messages by calling the exchange. As mentioned above, a single customer&rsquo;s trades are only ever handled by the same cluster of workers, which makes our logic and our SQL queries cleaner.</p><p>As far as how many topics and clusters of workers we&rsquo;ll need, we can do some rough estimation. If we plan to execute millions of trades per day, that comes down to about 10-100 trades per second given open trading hours during a third of a day and non-uniform trading patterns. If we assume that the core execution logic lasts about a second, then we should have roughly 10-100 topics and clusters of workers to process trades in parallel.</p><pre tabindex=0><code>~100,000 seconds per day (3600 * 24)
+~1,000,000 trades per day
+trades bunched in 1/3rd of the day
+--&gt; (1,000,000 / 100,000) * 3 = ~30 trades per second
+</code></pre><h3 id=6-trade-execution-logic>6. Trade-Execution Logic
+<a class=anchor href=#6-trade-execution-logic>#</a></h3><p>The subscribers (our workers) are streaming / waiting for messages. Imagine the following message were to arrive in the topic queue:</p><pre tabindex=0><code>{&#34;customerId&#34;: &#34;c1&#34;}
+</code></pre><p>The following would be pseudo-code for the worker logic:</p><pre tabindex=0><code>// We get the oldest trade that isn&#39;t in a terminal state.
+trade = SELECT * FROM trades WHERE
+    customer_id = &#39;c1&#39; AND
+    (status = &#39;PLACED&#39; OR status = &#39;IN PROGRESS&#39;)
+    ORDER BY created_at ASC LIMIT 1;
+
+// If the trade is PLACED, we know that it&#39;s effectively
+// ready to be executed. We set it as IN PROGRESS.
+if trade.status == &#34;PLACED&#34; {
+    UPDATE trades SET status = &#39;IN PROGRESS&#39; WHERE id = trade.id;
+}
+
+// In the event that the trade somehow already exists in the
+// exchange, the callback will do the work for us.
+if exchange.TradeExists(trade.id) {
+    return;
+}
+
+// We get the balance for the customer.
+balance = SELECT amount FROM balances WHERE
+    customer_id = &#39;c1&#39;;
+
+// This is the callback that the exchange will execute once
+// the trade actually completes. We&#39;ll define it further down
+// in the walkthrough.
+callback = ...
+
+exchange.Execute(
+    trade.stockTicker,
+    trade.type,
+    trade.quantity,
+    max_price = balance,
+    callback,
+)
+</code></pre><h3 id=7-exchange-callback>7. Exchange Callback
+<a class=anchor href=#7-exchange-callback>#</a></h3><p>Below is some pseudo code for the exchange callback:</p><pre tabindex=0><code>function exchange_callback(exchange_trade) {
+    if exchange_trade.status == &#39;FILLED&#39; {
+        BEGIN TRANSACTION;
+        trade = SELECT * FROM trades WHERE id = database_trade.id;
+        if trade.status &lt;&gt; &#39;IN PROGRESS&#39; {
+            ROLLBACK;
+            pubsub.send({customer_id: database_trade.customer_id});
+            return;
+        }
+        UPDATE balances SET amount -= exchange_trade.amount WHERE customer_id = database_trade.customer_id;
+        UPDATE trades SET status = &#39;FILLED&#39; WHERE id = database_trade.id;
+        COMMIT;
+    } else if exchange_trade.status == &#39;REJECTED&#39; {
+        BEGIN TRANSACTION;
+        UPDATE trades SET status = &#39;REJECTED&#39; WHERE id = database_trade.id;
+        UPDATE trades SET reason = exchange_trade.reason WHERE id = database_trade.id;
+        COMMIT;
+    }
+    pubsub.send({customer_id: database_trade.customer_id});
+    return http.status(200);
+}
+</code></pre><h3 id=8-system-diagram>8. System Diagram
+<a class=anchor href=#8-system-diagram>#</a></h3><p>Final Systems Architecture</p><p><img src=https://prasenjitmanna.com/tech-book/diagrams/stockbroker-system-diagram.svg alt=img|320x271></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/a6f791b3058244bb943d3142790c81848533b2df title="Last modified by Prasenjit Manna | May 13, 2022" target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
+<span>May 13, 2022</span></a></div></div><script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#1-gathering-system-requirements>1. Gathering System Requirements</a></li><li><a href=#2-coming-up-with-a-plan>2. Coming Up With A Plan</a></li><li><a href=#3-api-call>3. API Call</a></li><li><a href=#4-api-servers>4. API Server(s)</a></li><li><a href=#5-trade-execution-queue>5. Trade-Execution Queue</a></li><li><a href=#6-trade-execution-logic>6. Trade-Execution Logic</a></li><li><a href=#7-exchange-callback>7. Exchange Callback</a></li><li><a href=#8-system-diagram>8. System Diagram</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
