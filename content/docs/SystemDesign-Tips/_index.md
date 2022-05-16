@@ -166,7 +166,7 @@ When a set of machines talk to each other in a uncoordinated manner in a cluster
    Short for “distributed denial-of-service attack", a DDoS attack is a DoS attack in which the traffic flooding the target system comes from many different sources (like thousands of machines), making It much harder to defend against. 
 
 4. **Redis** 
-An in-memory key-value store. Does offer some persistent storage options but Is typically used as a really fast, best-effort caching solution, Redis is also often used to implement rate limiting. Learn more: https //redis.io/ 
+An in-memory key-value store. Does offer some persistent storage options but Is typically used as a really fast, best-effort caching solution, Redis is also often used to implement rate limiting. Learn more: https://redis.io/ 
 
 
 ### Publish/Subscribe Pattern
@@ -176,7 +176,7 @@ Often shortened as Pub/Sub, the Publish/Subscribe pattern Is a popular messaging
 Pub/Sub systems often come with very powerful guarantees like at-least-once delivery, persistent storage, ordering of messages, and replayability of messages. 
 
 2. **Apache Kafka** 
-A distributed messaging system created by Linkedin. Very useful when using the streaming paradigm as opposed to polling. Learn more: https.//kafka,apache, org/
+A distributed messaging system created by Linkedin. Very useful when using the streaming paradigm as opposed to polling. Learn more: https://kafka.apache.org/
 
 3. **Cloud pub/sub**
 A highly-scalable Pub/Sub messaging service created by Google, Guarantees at-least-once delivery of messages and supports “rewinding” in order to reprocess messages. 
@@ -199,29 +199,29 @@ A popular, open-source framework that supports MapReduce jobs and many other kin
 ### Security And HTTPS
 
 1. **Symmetric Encryption** 
-  A type of encryption that relies on only a single key to both encrypt and decrypt data. The key must be known to all parties involved in the communication and must therefore typically be shared between the parties at one point or another. 
-  Symmetric-key algorithms tend to be faster than their asymmetric counterparts. 
-  The most widely used symmetric-key algorithms are part of the Advanced Encryption Standard (AES). 
+    A type of encryption that relies on only a single key to both encrypt and decrypt data. The key must be known to all parties involved in the communication and must therefore typically be shared between the parties at one point or another. 
+    Symmetric-key algorithms tend to be faster than their asymmetric counterparts. 
+    The most widely used symmetric-key algorithms are part of the Advanced Encryption Standard (AES). 
 
 2. **Asymmetric Encryption**
-  Also known as public-key encryption, asymmetric encryption relies on two keys—a public key and a private key—to encrypt and decrypt data. The keys are generated using cryptographic algorithms and are mathematically connected such that data encrypted with the public key can only be decrypted with the private key. 
-  While the private key must be kept secure to maintain the fidelity of this encryption paradigm, the public key can be openly shared. 
-  Asymmetric-key algorithms tend to be slower than their symmetric counterparts. 
+    Also known as public-key encryption, asymmetric encryption relies on two keys—a public key and a private key—to encrypt and decrypt data. The keys are generated using cryptographic algorithms and are mathematically connected such that data encrypted with the public key can only be decrypted with the private key. 
+    While the private key must be kept secure to maintain the fidelity of this encryption paradigm, the public key can be openly shared. 
+    Asymmetric-key algorithms tend to be slower than their symmetric counterparts. 
 
 3. **AES** 
-  Stands for Advanced Encryption Standard. AES is a widely used encryption standard that has three symmetric-key algorithms (AES-128, AES-192, and AES-256). 
-  Of note, AES is considered to be the "gold standard" in encryption and is even used by the U.S. National Security Agency to encrypt top secret information. . 
+    Stands for Advanced Encryption Standard. AES is a widely used encryption standard that has three symmetric-key algorithms (AES-128, AES-192, and AES-256). 
+    Of note, AES is considered to be the "gold standard" in encryption and is even used by the U.S. National Security Agency to encrypt top secret information. . 
 
 4. **HTTPS** 
-  The HyperText Transfer Protocol Secure is an extension of HTTP that's used for secure communication online. It requires servers to have trusted certificates (usually SSL certificates) and uses the Transport Layer Security (TLS), a security protocol built on top of TCP, to encrypt data communicated between a client and a server. 
-  { TLs The Transport Layer Security is a security protocol over which HTTP runs in order to achieve secure communication online. "HTTP over TLS" Is also known as HTTPS. 
+    The HyperText Transfer Protocol Secure is an extension of HTTP that's used for secure communication online. It requires servers to have trusted certificates (usually SSL certificates) and uses the Transport Layer Security (TLS), a security protocol built on top of TCP, to encrypt data communicated between a client and a server. 
+    { TLs The Transport Layer Security is a security protocol over which HTTP runs in order to achieve secure communication online. "HTTP over TLS" Is also known as HTTPS. 
 
 5. **SSL Certificate** 
-  A digital certificate granted to a server by a certificate authority. Contains the server's public key, to be used as part of the TLS handshake process in an HTTPS connection. 
-  An SSL certificate effectively confirms that a public key belongs to the server claiming it belongs to them. SSL certificates are a crucial defense against man-in-the-middie attacks, 
+    A digital certificate granted to a server by a certificate authority. Contains the server's public key, to be used as part of the TLS handshake process in an HTTPS connection. 
+    An SSL certificate effectively confirms that a public key belongs to the server claiming it belongs to them. SSL certificates are a crucial defense against man-in-the-middie attacks, 
 
 6. **Certificate Authority** 
-  A trusted entity that signs digital certificates—namely, SSL certificates that are relied on in HTTPS connections. 
+    A trusted entity that signs digital certificates—namely, SSL certificates that are relied on in HTTPS connections. 
 
 7. **TLS Handshake** 
    The process through which a client and a server communicating over HTTPS exchange encryption-related information and establish a secure communication. The typical steps in a TLS handshake are roughly as follows: 
