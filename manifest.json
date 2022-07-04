@@ -1,14 +1,14 @@
 {
   "name": "Technical Book",
   "short_name": "Technical Book",
-  "start_url": "/tech-book/",
-  "scope": "/tech-book/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "/tech-book/favicon.svg",
+      "src": "/favicon.svg",
       "sizes": "512x512"
     }
   ]
