@@ -1,2 +1,2 @@
-# tech-book-repo
+# tech-book
 #
