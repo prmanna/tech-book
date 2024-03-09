@@ -2,12 +2,12 @@
 Input: Do geese see God? Output: True
 Input: Was it a car or a cat I saw? Output: True
 Input: A brown fox jumping over Output: False
-```c++ #include <cctype> // isalnum, tolower #include <iostream> // boolalpha, cin, cout #include <string> // getline bool is_palindrome(std::string s) { int l = 0, r = s."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="Two Pointers"><meta property="og:description" content="Two Pointers # Valid Palindrome # Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:
+#include <cctype> // isalnum, tolower #include <iostream> // boolalpha, cin, cout #include <string> // getline bool is_palindrome(std::string s) { int l = 0, r = s."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="Two Pointers"><meta property="og:description" content="Two Pointers # Valid Palindrome # Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:
 Input: Do geese see God? Output: True
 Input: Was it a car or a cat I saw? Output: True
 Input: A brown fox jumping over Output: False
-```c++ #include <cctype> // isalnum, tolower #include <iostream> // boolalpha, cin, cout #include <string> // getline bool is_palindrome(std::string s) { int l = 0, r = s."><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2024-03-09T23:27:16+05:30"><title>Two Pointers | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
-<script defer src=/tech-book/en.search.min.3a124ce33ed4d9451487ebfaf59fad0c49cde7620343fe005da197d2c3c7c2fc.js integrity="sha256-OhJM4z7U2UUUh+v69Z+tDEnN52IDQ/4AXaGX0sPHwvw=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+#include <cctype> // isalnum, tolower #include <iostream> // boolalpha, cin, cout #include <string> // getline bool is_palindrome(std::string s) { int l = 0, r = s."><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2024-03-09T23:41:49+05:30"><title>Two Pointers | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
+<script defer src=/tech-book/en.search.min.5a7500b442940dbb632c89cf5d9d84ebf23360aabe5a5e835e31ff581a21e434.js integrity="sha256-WnUAtEKUDbtjLInPXZ2E6/IzYKq+Wl6DXjH/WBoh5DQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/tech-book/><img src=/tech-book/logo.png alt=Logo><span>Technical Book</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-374f93193c235d5a59a63115829f835e class=toggle checked>
 <label for=section-374f93193c235d5a59a63115829f835e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/>Algorithms</a></label><ul><li><input type=checkbox id=section-8729b110b30a06da65be45e52f9e3fb7 class=toggle>
 <label for=section-8729b110b30a06da65be45e52f9e3fb7 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/easy/>Easy Complexity</a></label></li><li><input type=checkbox id=section-099794dc84dde9d1e65baa1aa530d340 class=toggle checked>
@@ -23,37 +23,35 @@ Input: A brown fox jumping over Output: False
 <strong>Two Pointers</strong>
 <label for=toc-control><img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#two-pointers>Two Pointers</a><ul><li><a href=#valid-palindrome>Valid Palindrome</a></li><li><a href=#remove-duplicates>Remove Duplicates</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=two-pointers>Two Pointers
 <a class=anchor href=#two-pointers>#</a></h1><hr><h2 id=valid-palindrome>Valid Palindrome
-<a class=anchor href=#valid-palindrome>#</a></h2><p>Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:</p><p>Input: Do geese see God? Output: True</p><p>Input: Was it a car or a cat I saw? Output: True</p><p>Input: A brown fox jumping over Output: False</p><pre><code> ```c++
-    #include &lt;cctype&gt; // isalnum, tolower
-    #include &lt;iostream&gt; // boolalpha, cin, cout
-    #include &lt;string&gt; // getline
-
-    bool is_palindrome(std::string s) {
-        int l = 0, r = s.size() - 1;
-        while (l &lt; r) {
-            // Note 1, 2
-            while (l &lt; r &amp;&amp; !std::isalnum(s[l])) {
-                l++;
-            }
-            while (l &lt; r &amp;&amp; !std::isalnum(s[r])) {
-                r--;
-            }
-            // compare characters ignoring case
-            if (std::tolower(s[l]) != std::tolower(s[r])) return false;
-            l++;
-            r--;
-        }
-        return true;
-    }
-
-    int main() {
-        std::string s;
-        std::getline(std::cin, s);
-        bool res = is_palindrome(s);
-        std::cout &lt;&lt; std::boolalpha &lt;&lt; res &lt;&lt; '\n';
-    }
- ```
-</code></pre><h2 id=remove-duplicates>Remove Duplicates
+<a class=anchor href=#valid-palindrome>#</a></h2><p>Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:</p><p>Input: Do geese see God? Output: True</p><p>Input: Was it a car or a cat I saw? Output: True</p><p>Input: A brown fox jumping over Output: False</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>        <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cctype&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// isalnum, tolower
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// boolalpha, cin, cout
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// getline
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>is_palindrome</span>(std<span style=color:#f92672>::</span>string s) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> l <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, r <span style=color:#f92672>=</span> s.size() <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> (l <span style=color:#f92672>&lt;</span> r) {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// Note 1, 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                <span style=color:#66d9ef>while</span> (l <span style=color:#f92672>&lt;</span> r <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>!</span>std<span style=color:#f92672>::</span>isalnum(s[l])) {
+</span></span><span style=display:flex><span>                    l<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>while</span> (l <span style=color:#f92672>&lt;</span> r <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>!</span>std<span style=color:#f92672>::</span>isalnum(s[r])) {
+</span></span><span style=display:flex><span>                    r<span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// compare characters ignoring case
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                <span style=color:#66d9ef>if</span> (std<span style=color:#f92672>::</span>tolower(s[l]) <span style=color:#f92672>!=</span> std<span style=color:#f92672>::</span>tolower(s[r])) <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>                l<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>                r<span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>            std<span style=color:#f92672>::</span>string s;
+</span></span><span style=display:flex><span>            std<span style=color:#f92672>::</span>getline(std<span style=color:#f92672>::</span>cin, s);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>bool</span> res <span style=color:#f92672>=</span> is_palindrome(s);
+</span></span><span style=display:flex><span>            std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>boolalpha <span style=color:#f92672>&lt;&lt;</span> res <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#39;\n&#39;</span>;
+</span></span><span style=display:flex><span>        }
+</span></span></code></pre></div><h2 id=remove-duplicates>Remove Duplicates
 <a class=anchor href=#remove-duplicates>#</a></h2><p>Given a sorted list of numbers, remove duplicates and return the new length. You must do this in-place and without using extra memory.</p><p>Input: [0, 0, 1, 1, 1, 2, 2].</p><p>Output: 3.</p><p>Your function should modify the list in place so the first 3 elements becomes 0, 1, 2. Return 3 because the new length is 3.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// copy
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// boolalpha, cin, cout
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iterator&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// back_inserter, istream_iterator, ostream_iterator, prev
@@ -98,5 +96,5 @@ Input: A brown fox jumping over Output: False
 </span></span><span style=display:flex><span>    arr.resize(res);
 </span></span><span style=display:flex><span>    put_words(arr);
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/c0476873a1923d9747606f92d589daab415e4af9 title='Last modified by Prasenjit Manna | March 9, 2024' target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/d344a0fb2236abdf09d7f86271a44957f7c1b0f4 title='Last modified by Prasenjit Manna | March 9, 2024' target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
 <span>March 9, 2024</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#two-pointers>Two Pointers</a><ul><li><a href=#valid-palindrome>Valid Palindrome</a></li><li><a href=#remove-duplicates>Remove Duplicates</a></li></ul></li></ul></nav></div></aside></main></body></html>
