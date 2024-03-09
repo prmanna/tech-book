@@ -17,7 +17,7 @@ Input: Was it a car or a cat I saw? Output: True
 Input: A brown fox jumping over Output: False
 
 
-     ```c++
+```c++
         #include <cctype> // isalnum, tolower
         #include <iostream> // boolalpha, cin, cout
         #include <string> // getline
@@ -46,7 +46,7 @@ Input: A brown fox jumping over Output: False
             bool res = is_palindrome(s);
             std::cout << std::boolalpha << res << '\n';
         }
-     ```
+```
 ## Remove Duplicates
 Given a sorted list of numbers, remove duplicates and return the new length. You must do this in-place and without using extra memory.
 
