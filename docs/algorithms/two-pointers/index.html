@@ -6,8 +6,8 @@ Input: A brown fox jumping over Output: False
 Input: Do geese see God? Output: True
 Input: Was it a car or a cat I saw? Output: True
 Input: A brown fox jumping over Output: False
-#include <cctype> // isalnum, tolower #include <iostream> // boolalpha, cin, cout #include <string> // getline bool is_palindrome(std::string s) { int l = 0, r = s."><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2024-03-10T20:39:33+05:30"><title>Two Pointers & Sliding Window | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
-<script defer src=/tech-book/en.search.min.b31631bc7333fe64da0222dd1c0ac07f90ceb5d971964e8bfc5eca4e35101a07.js integrity="sha256-sxYxvHMz/mTaAiLdHArAf5DOtdlxlk6L/F7KTjUQGgc=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+#include <cctype> // isalnum, tolower #include <iostream> // boolalpha, cin, cout #include <string> // getline bool is_palindrome(std::string s) { int l = 0, r = s."><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2024-03-10T20:41:31+05:30"><title>Two Pointers & Sliding Window | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
+<script defer src=/tech-book/en.search.min.055d1b445f15389c290b408c1e6e0773fdfbfb990d8391807f4dc5349db06d53.js integrity="sha256-BV0bRF8VOJwpC0CMHm4Hc/37+5kNg5GAf03FNJ2wbVM=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/tech-book/><img src=/tech-book/logo.png alt=Logo><span>Technical Book</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-374f93193c235d5a59a63115829f835e class=toggle checked>
 <label for=section-374f93193c235d5a59a63115829f835e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/>Algorithms</a></label><ul><li><input type=checkbox id=section-2f77d5839f14fc16598e51884edf9cc7 class=toggle>
 <label for=section-2f77d5839f14fc16598e51884edf9cc7 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/>Depth First Search</a></label></li><li><input type=checkbox id=section-8729b110b30a06da65be45e52f9e3fb7 class=toggle>
@@ -22,7 +22,7 @@ Input: A brown fox jumping over Output: False
 <label for=section-de7910a662f896155a583da23f7844c9 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-slack/>Design Slack</a></label></li><li><input type=checkbox id=section-81d594663dd77ffbd855c8bfc64baf2e class=toggle>
 <label for=section-81d594663dd77ffbd855c8bfc64baf2e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/>Google Drive - Design</a></label></li></ul></li></ul><ul><li><a href=/tech-book/posts/>Blog</a></li><li><a href=https://prasenjitmanna.com/tech-book/ target=_blank rel=noopener>Technical Book</a></li><li><a href=https://prasenjitmanna.com/ target=_blank rel=noopener>Prasenjit's blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/tech-book/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>Two Pointers & Sliding Window</strong>
-<label for=toc-control><img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#two-pointers>Two Pointers</a><ul><li><a href=#valid-palindrome>Valid Palindrome</a></li><li><a href=#remove-duplicates>Remove Duplicates</a></li></ul></li><li><a href=#sliding-window>Sliding Window</a><ul><li><a href=#fixed-size-sliding-window>Fixed Size Sliding Window</a></li><li><a href=#flexible-size-sliding-window---shortest>Flexible Size Sliding Window - Shortest</a></li><li><a href=#linked-list-cycle>Linked List Cycle</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=two-pointers>Two Pointers
+<label for=toc-control><img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#two-pointers>Two Pointers</a><ul><li><a href=#valid-palindrome>Valid Palindrome</a></li><li><a href=#remove-duplicates>Remove Duplicates</a></li></ul></li><li><a href=#sliding-window>Sliding Window</a><ul><li><a href=#fixed-size-sliding-window>Fixed Size Sliding Window</a></li><li><a href=#flexible-size-sliding-window---longest>Flexible Size Sliding Window - Longest</a></li><li><a href=#flexible-size-sliding-window---shortest>Flexible Size Sliding Window - Shortest</a></li><li><a href=#linked-list-cycle>Linked List Cycle</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=two-pointers>Two Pointers
 <a class=anchor href=#two-pointers>#</a></h1><hr><h2 id=valid-palindrome>Valid Palindrome
 <a class=anchor href=#valid-palindrome>#</a></h2><p>Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:</p><p>Input: Do geese see God? Output: True</p><p>Input: Was it a car or a cat I saw? Output: True</p><p>Input: A brown fox jumping over Output: False</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cctype&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// isalnum, tolower
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// boolalpha, cin, cout
@@ -100,107 +100,100 @@ Input: A brown fox jumping over Output: False
 </span></span></code></pre></div><h1 id=sliding-window>Sliding Window
 <a class=anchor href=#sliding-window>#</a></h1><hr><p>Sliding window problems is a variant of the same direction two pointers problems. The function performs on the entire interval between the two pointers instead of only at the two positions. Usually, we keep track of the overall result of the window, and when we &ldquo;slide&rdquo; the window (insert/remove an item), we simply manipulate the result to accomodate the changes to the window. Time complexity wise, this is much more efficient as we do not recalculate the overlapping intervals between two windows over and over again. We try to reduce a nested loop into two passes on the input (one pass with each pointer).</p><h2 id=fixed-size-sliding-window>Fixed Size Sliding Window
 <a class=anchor href=#fixed-size-sliding-window>#</a></h2><p>Given an array (list) nums consisted of only non-negative integers, find the largest sum among all subarrays of length k in nums.
-For example, if the input is nums = [1, 2, 3, 7, 4, 1], k = 3, then the output would be 14 as the largest length 3 subarray sum is given by [3, 7, 4] which sums to 14.</p><pre><code>```c++
-#include &lt;algorithm&gt; // copy
-#include &lt;iostream&gt; // boolalpha, cin, cout, streamsize
-#include &lt;iterator&gt; // back_inserter, istream_iterator
-#include &lt;limits&gt; // numeric_limits
-#include &lt;sstream&gt; // istringstream
-#include &lt;string&gt; // getline, string
-#include &lt;vector&gt; // vector
-
-int subarray_sum_fixed(std::vector&lt;int&gt; nums, int k) {
-    int window_sum = 0;
-    for (int i = 0; i &lt; k; ++i) {
-      window_sum = window_sum + nums[i];
-    }
-    int largest = window_sum;
-    for (int right = k; right &lt; nums.size(); ++right) {
-        int left = right - k;
-        window_sum = window_sum - nums[left];
-        window_sum = window_sum + nums[right];
-        largest = std::max(largest, window_sum);
-    
-    }
-    return largest;
-}
-
-template&lt;typename T&gt;
-std::vector&lt;T&gt; get_words() {
-    std::string line;
-    std::getline(std::cin, line);
-    std::istringstream ss{line};
-    ss &gt;&gt; std::boolalpha;
-    std::vector&lt;T&gt; v;
-    std::copy(std::istream_iterator&lt;T&gt;{ss}, std::istream_iterator&lt;T&gt;{}, std::back_inserter(v));
-    return v;
-}
-
-void ignore_line() {
-    std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
-}
-
-int main() {
-    std::vector&lt;int&gt; nums = get_words&lt;int&gt;();
-    int k;
-    std::cin &gt;&gt; k;
-    ignore_line();
-    int res = subarray_sum_fixed(nums, k);
-    std::cout &lt;&lt; res &lt;&lt; '\n';
-}
-</code></pre><pre tabindex=0><code>
-## Flexible Size Sliding Window - Longest
-Recall finding the largest size k subarray sum of an integer array in Largest Subarray Sum. What if we dont need the largest sum among all subarrays of fixed size k, but instead, we want to find the length of the longest subarray with sum smaller than or equal to a target?
-
-Given input nums = [1, 6, 3, 1, 2, 4, 5] and target = 10, then the longest subarray that does not exceed 10 is [3, 1, 2, 4], so the output is 4 (length of [3, 1, 2, 4]).
-
-```c++
-    #include &lt;algorithm&gt; // copy
-    #include &lt;iostream&gt; // boolalpha, cin, cout, streamsize
-    #include &lt;iterator&gt; // back_inserter, istream_iterator
-    #include &lt;limits&gt; // numeric_limits
-    #include &lt;sstream&gt; // istringstream
-    #include &lt;string&gt; // getline, string
-    #include &lt;vector&gt; // vector
-
-    int subarray_sum_longest(std::vector&lt;int&gt; nums, int target) {
-        int windowSum = 0, length = 0;
-        int left = 0;
-        for (int right = 0; right &lt; nums.size(); ++right) {
-            windowSum = windowSum + nums[right];
-            while (windowSum &gt; target) {
-                windowSum = windowSum - nums[left];
-                ++left;
-            }
-            length = std::max(length, right-left+1);
-        }
-        return length;
-    }
-
-    template&lt;typename T&gt;
-    std::vector&lt;T&gt; get_words() {
-        std::string line;
-        std::getline(std::cin, line);
-        std::istringstream ss{line};
-        ss &gt;&gt; std::boolalpha;
-        std::vector&lt;T&gt; v;
-        std::copy(std::istream_iterator&lt;T&gt;{ss}, std::istream_iterator&lt;T&gt;{}, std::back_inserter(v));
-        return v;
-    }
-
-    void ignore_line() {
-        std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), &#39;\n&#39;);
-    }
-
-    int main() {
-        std::vector&lt;int&gt; nums = get_words&lt;int&gt;();
-        int target;
-        std::cin &gt;&gt; target;
-        ignore_line();
-        int res = subarray_sum_longest(nums, target);
-        std::cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
-    }
-</code></pre><h2 id=flexible-size-sliding-window---shortest>Flexible Size Sliding Window - Shortest
+For example, if the input is nums = [1, 2, 3, 7, 4, 1], k = 3, then the output would be 14 as the largest length 3 subarray sum is given by [3, 7, 4] which sums to 14.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// copy
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// boolalpha, cin, cout, streamsize
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iterator&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// back_inserter, istream_iterator
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;limits&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// numeric_limits
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sstream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// istringstream
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// getline, string
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// vector
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>subarray_sum_fixed</span>(std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums, <span style=color:#66d9ef>int</span> k) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> window_sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> k; <span style=color:#f92672>++</span>i) {
+</span></span><span style=display:flex><span>          window_sum <span style=color:#f92672>=</span> window_sum <span style=color:#f92672>+</span> nums[i];
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> largest <span style=color:#f92672>=</span> window_sum;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> right <span style=color:#f92672>=</span> k; right <span style=color:#f92672>&lt;</span> nums.size(); <span style=color:#f92672>++</span>right) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> left <span style=color:#f92672>=</span> right <span style=color:#f92672>-</span> k;
+</span></span><span style=display:flex><span>            window_sum <span style=color:#f92672>=</span> window_sum <span style=color:#f92672>-</span> nums[left];
+</span></span><span style=display:flex><span>            window_sum <span style=color:#f92672>=</span> window_sum <span style=color:#f92672>+</span> nums[right];
+</span></span><span style=display:flex><span>            largest <span style=color:#f92672>=</span> std<span style=color:#f92672>::</span>max(largest, window_sum);
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> largest;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>template</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> get_words() {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>string line;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>getline(std<span style=color:#f92672>::</span>cin, line);
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>istringstream ss{line};
+</span></span><span style=display:flex><span>        ss <span style=color:#f92672>&gt;&gt;</span> std<span style=color:#f92672>::</span>boolalpha;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> v;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>copy(std<span style=color:#f92672>::</span>istream_iterator<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span>{ss}, std<span style=color:#f92672>::</span>istream_iterator<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span>{}, std<span style=color:#f92672>::</span>back_inserter(v));
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> v;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>ignore_line</span>() {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cin.ignore(std<span style=color:#f92672>::</span>numeric_limits<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>streamsize<span style=color:#f92672>&gt;::</span>max(), <span style=color:#e6db74>&#39;\n&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> get_words<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> k;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cin <span style=color:#f92672>&gt;&gt;</span> k;
+</span></span><span style=display:flex><span>        ignore_line();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> res <span style=color:#f92672>=</span> subarray_sum_fixed(nums, k);
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> res <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#39;\n&#39;</span>;
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h2 id=flexible-size-sliding-window---longest>Flexible Size Sliding Window - Longest
+<a class=anchor href=#flexible-size-sliding-window---longest>#</a></h2><p>Recall finding the largest size k subarray sum of an integer array in Largest Subarray Sum. What if we dont need the largest sum among all subarrays of fixed size k, but instead, we want to find the length of the longest subarray with sum smaller than or equal to a target?</p><p>Given input nums = [1, 6, 3, 1, 2, 4, 5] and target = 10, then the longest subarray that does not exceed 10 is [3, 1, 2, 4], so the output is 4 (length of [3, 1, 2, 4]).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// copy
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// boolalpha, cin, cout, streamsize
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iterator&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// back_inserter, istream_iterator
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;limits&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// numeric_limits
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sstream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// istringstream
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// getline, string
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// vector
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>subarray_sum_longest</span>(std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums, <span style=color:#66d9ef>int</span> target) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> windowSum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, length <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> left <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> right <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; right <span style=color:#f92672>&lt;</span> nums.size(); <span style=color:#f92672>++</span>right) {
+</span></span><span style=display:flex><span>            windowSum <span style=color:#f92672>=</span> windowSum <span style=color:#f92672>+</span> nums[right];
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> (windowSum <span style=color:#f92672>&gt;</span> target) {
+</span></span><span style=display:flex><span>                windowSum <span style=color:#f92672>=</span> windowSum <span style=color:#f92672>-</span> nums[left];
+</span></span><span style=display:flex><span>                <span style=color:#f92672>++</span>left;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            length <span style=color:#f92672>=</span> std<span style=color:#f92672>::</span>max(length, right<span style=color:#f92672>-</span>left<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> length;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>template</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> get_words() {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>string line;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>getline(std<span style=color:#f92672>::</span>cin, line);
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>istringstream ss{line};
+</span></span><span style=display:flex><span>        ss <span style=color:#f92672>&gt;&gt;</span> std<span style=color:#f92672>::</span>boolalpha;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> v;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>copy(std<span style=color:#f92672>::</span>istream_iterator<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span>{ss}, std<span style=color:#f92672>::</span>istream_iterator<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span>{}, std<span style=color:#f92672>::</span>back_inserter(v));
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> v;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>ignore_line</span>() {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cin.ignore(std<span style=color:#f92672>::</span>numeric_limits<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>streamsize<span style=color:#f92672>&gt;::</span>max(), <span style=color:#e6db74>&#39;\n&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> get_words<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> target;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cin <span style=color:#f92672>&gt;&gt;</span> target;
+</span></span><span style=display:flex><span>        ignore_line();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> res <span style=color:#f92672>=</span> subarray_sum_longest(nums, target);
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> res <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#39;\n&#39;</span>;
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h2 id=flexible-size-sliding-window---shortest>Flexible Size Sliding Window - Shortest
 <a class=anchor href=#flexible-size-sliding-window---shortest>#</a></h2><p>Let&rsquo;s continue on finding the sum of subarrays. This time given a positive integer array nums, we want to find the length of the shortest subarray such that the subarray sum is at least target. Recall the same example with input nums = [1, 4, 1, 7, 3, 0, 2, 5] and target = 10, then the smallest window with the sum >= 10 is [7, 3] with length 2. So the output is 2.</p><p>We&rsquo;ll assume for this problem that it&rsquo;s guaranteed target will not exceed the sum of all elements in nums.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// copy
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// boolalpha, cin, cout, streamsize
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iterator&gt;</span><span style=color:#75715e> </span><span style=color:#75715e>// back_inserter, istream_iterator
@@ -256,5 +249,5 @@ Given input nums = [1, 6, 3, 1, 2, 4, 5] and target = 10, then the longest subar
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> hare<span style=color:#f92672>-&gt;</span>next <span style=color:#f92672>!=</span> NULL;
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/4921b226523bb693f8f6e3c48431f1d489daf219 title='Last modified by Prasenjit Manna | March 10, 2024' target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
-<span>March 10, 2024</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#two-pointers>Two Pointers</a><ul><li><a href=#valid-palindrome>Valid Palindrome</a></li><li><a href=#remove-duplicates>Remove Duplicates</a></li></ul></li><li><a href=#sliding-window>Sliding Window</a><ul><li><a href=#fixed-size-sliding-window>Fixed Size Sliding Window</a></li><li><a href=#flexible-size-sliding-window---shortest>Flexible Size Sliding Window - Shortest</a></li><li><a href=#linked-list-cycle>Linked List Cycle</a></li></ul></li></ul></nav></div></aside></main></body></html>
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/0e7c97d7026482c86507dfdd41212ade6458b110 title='Last modified by Prasenjit Manna | March 10, 2024' target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
+<span>March 10, 2024</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#two-pointers>Two Pointers</a><ul><li><a href=#valid-palindrome>Valid Palindrome</a></li><li><a href=#remove-duplicates>Remove Duplicates</a></li></ul></li><li><a href=#sliding-window>Sliding Window</a><ul><li><a href=#fixed-size-sliding-window>Fixed Size Sliding Window</a></li><li><a href=#flexible-size-sliding-window---longest>Flexible Size Sliding Window - Longest</a></li><li><a href=#flexible-size-sliding-window---shortest>Flexible Size Sliding Window - Shortest</a></li><li><a href=#linked-list-cycle>Linked List Cycle</a></li></ul></li></ul></nav></div></aside></main></body></html>
