@@ -169,50 +169,117 @@ Recall finding the largest size k subarray sum of an integer array in Largest Su
 Given input nums = [1, 6, 3, 1, 2, 4, 5] and target = 10, then the longest subarray that does not exceed 10 is [3, 1, 2, 4], so the output is 4 (length of [3, 1, 2, 4]).
 
 ```c++
-#include <algorithm> // copy
-#include <iostream> // boolalpha, cin, cout, streamsize
-#include <iterator> // back_inserter, istream_iterator
-#include <limits> // numeric_limits
-#include <sstream> // istringstream
-#include <string> // getline, string
-#include <vector> // vector
+    #include <algorithm> // copy
+    #include <iostream> // boolalpha, cin, cout, streamsize
+    #include <iterator> // back_inserter, istream_iterator
+    #include <limits> // numeric_limits
+    #include <sstream> // istringstream
+    #include <string> // getline, string
+    #include <vector> // vector
 
-int subarray_sum_longest(std::vector<int> nums, int target) {
-    int windowSum = 0, length = 0;
-    int left = 0;
-    for (int right = 0; right < nums.size(); ++right) {
-        windowSum = windowSum + nums[right];
-        while (windowSum > target) {
-            windowSum = windowSum - nums[left];
-            ++left;
+    int subarray_sum_longest(std::vector<int> nums, int target) {
+        int windowSum = 0, length = 0;
+        int left = 0;
+        for (int right = 0; right < nums.size(); ++right) {
+            windowSum = windowSum + nums[right];
+            while (windowSum > target) {
+                windowSum = windowSum - nums[left];
+                ++left;
+            }
+            length = std::max(length, right-left+1);
         }
-        length = std::max(length, right-left+1);
+        return length;
     }
-    return length;
+
+    template<typename T>
+    std::vector<T> get_words() {
+        std::string line;
+        std::getline(std::cin, line);
+        std::istringstream ss{line};
+        ss >> std::boolalpha;
+        std::vector<T> v;
+        std::copy(std::istream_iterator<T>{ss}, std::istream_iterator<T>{}, std::back_inserter(v));
+        return v;
+    }
+
+    void ignore_line() {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    int main() {
+        std::vector<int> nums = get_words<int>();
+        int target;
+        std::cin >> target;
+        ignore_line();
+        int res = subarray_sum_longest(nums, target);
+        std::cout << res << '\n';
+    }
+```
+
+## Flexible Size Sliding Window - Shortest
+Let's continue on finding the sum of subarrays. This time given a positive integer array nums, we want to find the length of the shortest subarray such that the subarray sum is at least target. Recall the same example with input nums = [1, 4, 1, 7, 3, 0, 2, 5] and target = 10, then the smallest window with the sum >= 10 is [7, 3] with length 2. So the output is 2.
+
+We'll assume for this problem that it's guaranteed target will not exceed the sum of all elements in nums.
+
+
+```c++
+    #include <algorithm> // copy
+    #include <iostream> // boolalpha, cin, cout, streamsize
+    #include <iterator> // back_inserter, istream_iterator
+    #include <limits> // numeric_limits
+    #include <sstream> // istringstream
+    #include <string> // getline, string
+    #include <vector> // vector
+
+    int subarray_sum_shortest(std::vector<int> nums, int target) {
+        int windowSum = 0, length = nums.size();
+        int left = 0;
+        for (int right = 0; right < nums.size(); ++right) {
+            windowSum = windowSum + nums[right];
+            while (windowSum >= target) {
+                length = std::min(length, right-left+1);
+                windowSum = windowSum - nums[left];
+                ++left;
+            }
+        }
+        return length;
+    }
+
+    template<typename T>
+    std::vector<T> get_words() {
+        std::string line;
+        std::getline(std::cin, line);
+        std::istringstream ss{line};
+        ss >> std::boolalpha;
+        std::vector<T> v;
+        std::copy(std::istream_iterator<T>{ss}, std::istream_iterator<T>{}, std::back_inserter(v));
+        return v;
+    }
+
+    void ignore_line() {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    int main() {
+        std::vector<int> nums = get_words<int>();
+        int target;
+        std::cin >> target;
+        ignore_line();
+        int res = subarray_sum_shortest(nums, target);
+        std::cout << res << '\n';
+    }
+```
+## Linked List Cycle
+Given a linked list with potentially a loop, determine whether the linked list from the first node contains a cycle in it. For bonus points, do this with constant space.
+
+```c++
+    bool has_cycle(Node<int>* nodes) {
+        Node<int>* tortoise = next_node(nodes);
+    Node<int>* hare = next_node(next_node(nodes));
+    while (tortoise != hare && hare->next != NULL) {
+        tortoise = next_node(tortoise);
+        hare = next_node(next_node(hare));
+    }
+    return hare->next != NULL;
 }
-
-template<typename T>
-std::vector<T> get_words() {
-    std::string line;
-    std::getline(std::cin, line);
-    std::istringstream ss{line};
-    ss >> std::boolalpha;
-    std::vector<T> v;
-    std::copy(std::istream_iterator<T>{ss}, std::istream_iterator<T>{}, std::back_inserter(v));
-    return v;
-}
-
-void ignore_line() {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
-
-int main() {
-    std::vector<int> nums = get_words<int>();
-    int target;
-    std::cin >> target;
-    ignore_line();
-    int res = subarray_sum_longest(nums, target);
-    std::cout << res << '\n';
-}```
-
-
+```
