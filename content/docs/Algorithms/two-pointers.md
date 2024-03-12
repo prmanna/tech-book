@@ -275,11 +275,11 @@ Given a linked list with potentially a loop, determine whether the linked list f
 ```c++
     bool has_cycle(Node<int>* nodes) {
         Node<int>* tortoise = next_node(nodes);
-    Node<int>* hare = next_node(next_node(nodes));
-    while (tortoise != hare && hare->next != NULL) {
-        tortoise = next_node(tortoise);
-        hare = next_node(next_node(hare));
+        Node<int>* hare = next_node(next_node(nodes));
+        while (tortoise != hare && hare->next != NULL) {
+            tortoise = next_node(tortoise);
+            hare = next_node(next_node(hare));
+        }
+        return hare->next != NULL;
     }
-    return hare->next != NULL;
-}
 ```
