@@ -6,6 +6,8 @@ weight: 5
 
 # Depth First Search
 ---
+## Intro
+
 The *pre-order traversal* of a tree is DFS.
 ```c++
     Node<int>* dfs(Node<int>* root, int target) {
@@ -22,7 +24,6 @@ The *pre-order traversal* of a tree is DFS.
     }
 
 ```
-
 
 ## Max depth of a binary tree
 Max depth of a binary tree is the longest root-to-leaf path. Given a binary tree, find its max depth. Here, we define the length of the path to be the number of edges on that path, not the number of nodes.
