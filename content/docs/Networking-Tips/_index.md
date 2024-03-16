@@ -1,5 +1,5 @@
 ---
-title: "Algorithms"
+title: "Networking Tips"
 bookCollapseSection: true
 ---
 
