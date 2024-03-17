@@ -31,7 +31,7 @@ Therefore, in addition to being able to avoid congestion, congestion control app
 
 ## The Congestion Window
 A key concept to understand about any congestion control algorithm is the concept of a congestion window. The congestion window refers to the number of segments that a sender can send without having seen an acknowledgment yet. If the congestion window on a sender is set to 2, that means that after the sender sends 2 segments, it must wait to get an acknowledgment from the receiver in order to send any more. The congestion window is often referred to as the “flight size”, because it also corresponds to the number of segments “in flight” at any given point in time.
-
+ 
 The higher the congestion window, more packets you’ll be able to get across to the receiver in the same time period. To understand this intuitively, if the delay on the network is 88ms, and the congestion window is 10 segments, you’ll be able to send 10 segments for every round trip (88*2 = 176 ms), and if it’s 20 segments, you’ll be able to send 20 segments in the same time period.
 
 Of course, the risk with raising the congestion window too high is that it will lead to congestion. The goal of a congestion control algorithm, then, is to figure out the right size congestion window to use.
