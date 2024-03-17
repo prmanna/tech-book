@@ -27,6 +27,8 @@ While today there are congestion control schemes that take into account both of 
 
 Therefore, in addition to being able to avoid congestion, congestion control approaches need to be able to “explore” the available bandwidth.
 
+## Control-Based Algorithms
+
 ## The Congestion Window
 A key concept to understand about any congestion control algorithm is the concept of a congestion window. The congestion window refers to the number of segments that a sender can send without having seen an acknowledgment yet. If the congestion window on a sender is set to 2, that means that after the sender sends 2 segments, it must wait to get an acknowledgment from the receiver in order to send any more. The congestion window is often referred to as the “flight size”, because it also corresponds to the number of segments “in flight” at any given point in time.
 
@@ -61,6 +63,8 @@ A final issue is that this algorithm uses packet loss as the indicator for wheth
 ## TCP CUBIC
 This algorithm was implemented in 2005, and is currently the default congestion control algorithm used on Linux systems. Like Tahoe, it relies on packet loss as the indicator of congestion. However, unlike Tahoe, it works far better on high bandwidth networks, since rather than increasing the window by 1 on every round trip, it uses, as the name would suggest, a cubic function to determine what the window size should be, and therefore grows much more quickly.
 
-## BBR(Bottleneck Bandwidth and RTT) - (Bufferbloat) 
+## Avoidance-Based Algorithms
+
+### BBR(Bottleneck Bandwidth and RTT) - (Bufferbloat) 
 This is a very recent algorithm developed by Google, and unlike Tahoe or CUBIC, uses delay as the indicator of congestion, rather than packet loss. The rough thinking behind this is that delays are a leading indicator of congestion–they occur before packets actually start getting lost. Slowing down the rate of sending before the packets get lost ends up leading to higher throughput.
 
