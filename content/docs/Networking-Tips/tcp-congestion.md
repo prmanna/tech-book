@@ -36,3 +36,29 @@ Of course, the risk with raising the congestion window too high is that it will 
 
 From a theoretical perspective, the right size congestion window to use is the bandwidth-delay product of the link, which as we discussed earlier is the full capacity of the link. The idea here is that if the congestion window is equal to the BDP of the link, it will be fully utilized, and not cause congestion.
 
+## TCP Tahoe
+TCP Tahoe is a congestion control scheme that was invented back in the 80s, when congestion was first becoming a problem on the internet. The algorithm itself is fairly simple, and grows the congestion window in two phases.
+
+### Phase 1: Slow Start: The algorithm begins in a state called “slow start”. In Slow Start, the congestion window grows by 1 every time an acknowledgement is received. This effectively doubles the congestion window on every round trip. If the congestion window is 4, four packets will be in flight at once, and when each of those packets is acknowledged, the congestion window will increase by 1, resulting in a window of size 8. This process continues until the congestion window hits a value called the “Slow Start Threshold” ssthresh. This is a configurable number.
+
+### Phase 2: Congestion Avoidance: Once the congestion window has hit the ssthresh, it moves from “slow start” into congestion avoidance mode. In congestion avoidance, the congestion window increases by 1 on every round trip. So if the congestion window is 4, the window will increase to 5 after all four of those packets in flight have been acknowledged. This increases the window much more slowly.
+
+If Tahoe detects that a packet is lost, it will resend the packet, the slow start threshold is updated to be half the current congestion window, the congestion window is set back to 1, and the algorithm goes back to slow start.
+
+### Detecting Packet Loss & Fast Retransmit
+There are two ways that a TCP sender could detect that a packet is lost.
+
+The sender “times out”. The sender puts a timeout on every packet that is sent out into the wild, and when that timeout is hit without that packet having been acknowledged, it resends the packet and sets the congestion window to 1.
+
+The receiver sends back “duplicate acks”. In TCP, receivers only acknowledge packets that are sent in order. If a packet is sent out of order, it will send out an acknowledgement for the last packet it saw in order. So, if a receiver has received segments 1,2, and 3, and then receives segment #5, it will ack segment #3 again, because #5 came in out of order. In Tahoe, if a sender receives 3 duplicate acks, it considers a packet lost. This is considered “Fast Retransmit”, because it doesn’t wait for the timeout to happen.
+
+There are a number of issues with this approach though, which is why it is no longer used today. In particular, it takes a really long time, especially on higher bandwidth networks, for the algorithm to actually take full advantage of the available bandwidth. This is because the window size grows pretty slowly after hitting the slow start threshold.
+Another issue is that packet loss doesn’t necessarily mean that congestion is occuring–some links, like WiFi, are just inherently lossy. Reacting drastically by cutting the window size to 1 isn’t necessarily always appropriate.
+A final issue is that this algorithm uses packet loss as the indicator for whether there’s congestion. If the packet loss is happening due to congestion, you are already too late–the window is too high, and you need to let the queues drain.
+
+## TCP CUBIC
+This algorithm was implemented in 2005, and is currently the default congestion control algorithm used on Linux systems. Like Tahoe, it relies on packet loss as the indicator of congestion. However, unlike Tahoe, it works far better on high bandwidth networks, since rather than increasing the window by 1 on every round trip, it uses, as the name would suggest, a cubic function to determine what the window size should be, and therefore grows much more quickly.
+
+## BBR(Bottleneck Bandwidth and RTT) - (Bufferbloat) 
+This is a very recent algorithm developed by Google, and unlike Tahoe or CUBIC, uses delay as the indicator of congestion, rather than packet loss. The rough thinking behind this is that delays are a leading indicator of congestion–they occur before packets actually start getting lost. Slowing down the rate of sending before the packets get lost ends up leading to higher throughput.
+
