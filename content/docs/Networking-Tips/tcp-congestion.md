@@ -63,8 +63,8 @@ A final issue is that this algorithm uses packet loss as the indicator for wheth
 ## TCP CUBIC
 This algorithm was implemented in 2005, and is currently the default congestion control algorithm used on Linux systems. Like Tahoe, it relies on packet loss as the indicator of congestion. However, unlike Tahoe, it works far better on high bandwidth networks, since rather than increasing the window by 1 on every round trip, it uses, as the name would suggest, a cubic function to determine what the window size should be, and therefore grows much more quickly.
 
-## Avoidance-Based Algorithms
+# Avoidance-Based Algorithms
 
-### BBR(Bottleneck Bandwidth and RTT) - (Bufferbloat) 
+## BBR(Bottleneck Bandwidth and RTT) - (Bufferbloat) 
 This is a very recent algorithm developed by Google, and unlike Tahoe or CUBIC, uses delay as the indicator of congestion, rather than packet loss. The rough thinking behind this is that delays are a leading indicator of congestion–they occur before packets actually start getting lost. Slowing down the rate of sending before the packets get lost ends up leading to higher throughput.
 
