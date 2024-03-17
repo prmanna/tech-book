@@ -68,3 +68,7 @@ This algorithm was implemented in 2005, and is currently the default congestion 
 ## BBR(Bottleneck Bandwidth and RTT) - (Bufferbloat) 
 This is a very recent algorithm developed by Google, and unlike Tahoe or CUBIC, uses delay as the indicator of congestion, rather than packet loss. The rough thinking behind this is that delays are a leading indicator of congestion–they occur before packets actually start getting lost. Slowing down the rate of sending before the packets get lost ends up leading to higher throughput.
 
+# Active Queue Management
+
+## Random Early Detection
+
