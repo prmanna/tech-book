@@ -39,9 +39,11 @@ From a theoretical perspective, the right size congestion window to use is the b
 ## TCP Tahoe
 TCP Tahoe is a congestion control scheme that was invented back in the 80s, when congestion was first becoming a problem on the internet. The algorithm itself is fairly simple, and grows the congestion window in two phases.
 
-### Phase 1: Slow Start: The algorithm begins in a state called “slow start”. In Slow Start, the congestion window grows by 1 every time an acknowledgement is received. This effectively doubles the congestion window on every round trip. If the congestion window is 4, four packets will be in flight at once, and when each of those packets is acknowledged, the congestion window will increase by 1, resulting in a window of size 8. This process continues until the congestion window hits a value called the “Slow Start Threshold” ssthresh. This is a configurable number.
+### Phase 1
+Slow Start: The algorithm begins in a state called “slow start”. In Slow Start, the congestion window grows by 1 every time an acknowledgement is received. This effectively doubles the congestion window on every round trip. If the congestion window is 4, four packets will be in flight at once, and when each of those packets is acknowledged, the congestion window will increase by 1, resulting in a window of size 8. This process continues until the congestion window hits a value called the “Slow Start Threshold” ssthresh. This is a configurable number.
 
-### Phase 2: Congestion Avoidance: Once the congestion window has hit the ssthresh, it moves from “slow start” into congestion avoidance mode. In congestion avoidance, the congestion window increases by 1 on every round trip. So if the congestion window is 4, the window will increase to 5 after all four of those packets in flight have been acknowledged. This increases the window much more slowly.
+### Phase 2
+Congestion Avoidance: Once the congestion window has hit the ssthresh, it moves from “slow start” into congestion avoidance mode. In congestion avoidance, the congestion window increases by 1 on every round trip. So if the congestion window is 4, the window will increase to 5 after all four of those packets in flight have been acknowledged. This increases the window much more slowly.
 
 If Tahoe detects that a packet is lost, it will resend the packet, the slow start threshold is updated to be half the current congestion window, the congestion window is set back to 1, and the algorithm goes back to slow start.
 
