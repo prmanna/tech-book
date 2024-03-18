@@ -71,4 +71,18 @@ This is a very recent algorithm developed by Google, and unlike Tahoe or CUBIC, 
 # Active Queue Management
 
 ## Random Early Detection
+Each router is programmed to monitor its own queue length and, when it detects that congestion is imminent, to notify the source to adjust its congestion window. RED, invented by Sally Floyd and Van Jacobson in the early 1990s.
+
+RED is most commonly implemented such that it implicitly notifies the source of congestion by dropping one of its packets. The source is, therefore, effectively notified by the subsequent timeout or duplicate ACK. In case you haven’t already guessed, RED is designed to be used in conjunction with TCP, which currently detects congestion by means of timeouts (or some other means of detecting packet loss such as duplicate ACKs). As the “early” part of the RED acronym suggests, the gateway drops the packet earlier than it would have to, so as to notify the source that it should decrease its congestion window sooner than it would normally have. In other words, the router drops a few packets before it has exhausted its buffer space completely, so as to cause the source to slow down, with the hope that this will mean it does not have to drop lots of packets later on.
+
+how RED decides when to drop a packet and what packet it decides to drop. To understand the basic idea, consider a simple FIFO queue. Rather than wait for the queue to become completely full and then be forced to drop each arriving packet (the tail drop policy), we could decide to drop each arriving packet with some drop probability whenever the queue length exceeds some drop level. This idea is called early random drop. The RED algorithm defines the details of how to monitor the queue length and when to drop a packet.
+
+## Explicit Congestion Notification || IP & TCP Flags
+
+While TCP’s congestion control mechanism was initially based on packet loss as the primary congestion signal, it has long been recognized that TCP could do a better job if routers were to send a more explicit congestion signal. That is, instead of dropping a packet and assuming TCP will eventually notice (e.g., due to the arrival of a duplicate ACK), any AQM algorithm can potentially do a better job if it instead marks the packet and continues to send it along its way to the destination. This idea was codified in changes to the IP and TCP headers known as Explicit Congestion Notification (ECN), as specified in RFC 3168.
+
+Specifically, this feedback is implemented by treating **two bits in the IP TOS** field as ECN bits. One bit is set by the source to indicate that it is **ECN-capable**, that is, able to react to a congestion notification. This is called the ECT bit (ECN-Capable Transport). The other bit is set by routers along the end-to-end path when congestion is encountered, as computed by whatever AQM algorithm it is running. This is called the **CE bit (Congestion Encountered)**.
+
+In addition to these two bits in the IP header (which are transport-agnostic), ECN also includes the addition of **two optional flags to the TCP header**. The first, **ECE (ECN-Echo)**, communicates from the receiver to the sender that it has received a packet with the CE bit set. The second, **CWR (Congestion Window Reduced)** communicates from the sender to the receiver that it has reduced the congestion window.
+
 
