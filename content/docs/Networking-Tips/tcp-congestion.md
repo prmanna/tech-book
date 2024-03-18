@@ -85,4 +85,5 @@ Specifically, this feedback is implemented by treating **two bits in the IP TOS*
 
 In addition to these two bits in the IP header (which are transport-agnostic), ECN also includes the addition of **two optional flags to the TCP header**. The first, **ECE (ECN-Echo)**, communicates from the receiver to the sender that it has received a packet with the CE bit set. The second, **CWR (Congestion Window Reduced)** communicates from the sender to the receiver that it has reduced the congestion window.
 
-
+**References:**
+* https://tcpcc.systemsapproach.org/aqm.html
