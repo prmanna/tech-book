@@ -59,16 +59,16 @@ This maintains backward compatibility with the IP precedence field.
 | Service class | DSCP Name | DSCP Value | [IP precedence](https://en.wikipedia.org/wiki/IP_precedence "IP precedence") | Examples of application |
 | --- | --- | --- | --- | --- |
 | Standard | CS0 (DF) | 0 | 0 (000) |  |
-| Low-priority data | CS1 | 8 | 1 (001) | File transfer ([FTP](https://en.wikipedia.org/wiki/File_Transfer_Protocol "File Transfer Protocol"), [SMB](https://en.wikipedia.org/wiki/Server_Message_Block "Server Message Block")) |
-| Network [operations, administration and management](https://en.wikipedia.org/wiki/Operations,_administration_and_management "Operations, administration and management") (OAM) | CS2 | 16 | 2 (010) | [SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol "Simple Network Management Protocol"), [SSH](https://en.wikipedia.org/wiki/Secure_Shell "Secure Shell"), [Ping](https://en.wikipedia.org/wiki/Ping_(networking_utility) "Ping (networking utility)"), [Telnet](https://en.wikipedia.org/wiki/Telnet "Telnet"), [syslog](https://en.wikipedia.org/wiki/Syslog "Syslog") |
+| Low-priority data | CS1 | 8 | 1 (001) | File transfer (FTP, SMB) |
+| Network operations, administration and management (OAM) | CS2 | 16 | 2 (010) | SNMP, SSH, Ping, Telnet, syslog |
 | Broadcast video | CS3 | 24 | 3 (011) | 
-- [RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol "Real Time Streaming Protocol") broadcast TV
+- RTSP(Real Time Streaming Protocol") broadcast TV
 - streaming of live audio and video events
-- [video surveillance](https://en.wikipedia.org/wiki/Closed-circuit_television "Closed-circuit television")
-- [video-on-demand](https://en.wikipedia.org/wiki/Video_on_demand "Video on demand")
+- video surveillance)
+- video-on-demand)
  |
 | Real-time interactive | CS4 | 32 | 4 (100) | Gaming, low priority video conferencing |
-| Signaling | CS5 | 40 | 5 (101) | Peer-to-peer ([SIP](https://en.wikipedia.org/wiki/Session_Initiation_Protocol "Session Initiation Protocol"), [H.323](https://en.wikipedia.org/wiki/H.323 "H.323"), [H.248](https://en.wikipedia.org/wiki/H.248 "H.248")), NTP |
+| Signaling | CS5 | 40 | 5 (101) | Peer-to-peer (SIP, H.323, H.248), NTP |
 | Network control | CS6 | 48 | 6 (110) | Routing protocols (OSPF, BGP, ISIS, RIP) |
 | Reserved for future use | CS7 | 56 | 7 (111) |  |
 
