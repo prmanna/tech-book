@@ -22,7 +22,7 @@ weight: 10
     001	Priority<br>
     000	Routine<br>
 
-    **Bits**
+    **Bits**<br>
     4   (1 = Low Delay; 0 = Normal Delay)<br>
     3   (1 = High Throughput; 0 = Normal Throughput)<br>
     2   (1 = High Reliability; 0 = Normal Reliability)<br>
@@ -31,9 +31,9 @@ weight: 10
 
 ## TOS | DSCP (Differentiated Services Code Point)
 RFC 2474 (Differentiated Services) Interpretation
-**Bits**
-7-2	DSCP
-1-0	ECN (Explicit Congestion Notification)
+**Bits**<br>
+7-2	DSCP<br>
+1-0	ECN (Explicit Congestion Notification)<br>
 
 ### Default Forwarding (DF) PHB
 Typically best-effort traffic
