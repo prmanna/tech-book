@@ -111,3 +111,4 @@ tbd
 
 **References:**
 * https://tcpcc.systemsapproach.org/aqm.html
+* https://squidarth.com/rc/programming/networking/2018/07/18/intro-congestion
