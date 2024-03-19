@@ -13,7 +13,7 @@ weight: 10
     ** Bits **
     **7-5 IP Precedence**
 
-    111	Network Control
+    111	Network Control<br>
     110	Internetwork Control
     101	Critic/ECP
     100	Flash Override
@@ -58,4 +58,8 @@ probability | Class 1 | Class 2 | Class 3 | Class 4 |
 This maintains backward compatibility with the IP precedence field.
 
 PHB == Per-Hop-Behavior
+
+* CS  Class Selector (RFC 2474)
+* AFxy Assured Forwarding (x=class, y=drop precedence) (RFC2597)
+* EF Expedited Forwarding (RFC 3246)
 
