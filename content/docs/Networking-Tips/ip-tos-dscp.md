@@ -61,12 +61,7 @@ This maintains backward compatibility with the IP precedence field.
 | Standard | CS0 (DF) | 0 | 0 (000) |  |
 | Low-priority data | CS1 | 8 | 1 (001) | File transfer (FTP, SMB) |
 | Network operations, administration and management (OAM) | CS2 | 16 | 2 (010) | SNMP, SSH, Ping, Telnet, syslog |
-| Broadcast video | CS3 | 24 | 3 (011) | 
-- RTSP(Real Time Streaming Protocol") broadcast TV
-- streaming of live audio and video events
-- video surveillance)
-- video-on-demand)
- |
+| Broadcast video | CS3 | 24 | 3 (011) | RTSP broadcast TV, treaming of live audio and video events, video surveillance,video-on-demand |
 | Real-time interactive | CS4 | 32 | 4 (100) | Gaming, low priority video conferencing |
 | Signaling | CS5 | 40 | 5 (101) | Peer-to-peer (SIP, H.323, H.248), NTP |
 | Network control | CS6 | 48 | 6 (110) | Routing protocols (OSPF, BGP, ISIS, RIP) |
