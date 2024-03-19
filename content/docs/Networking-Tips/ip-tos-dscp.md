@@ -56,7 +56,6 @@ Gives assurance of delivery under prescribed conditions
 ### Class Selector PHBs
 This maintains backward compatibility with the IP precedence field.
 
-
 | Service class | DSCP Name | DSCP Value | [IP precedence](https://en.wikipedia.org/wiki/IP_precedence "IP precedence") | Examples of application |
 | --- | --- | --- | --- | --- |
 | Standard | CS0 (DF) | 0 | 0 (000) |  |
