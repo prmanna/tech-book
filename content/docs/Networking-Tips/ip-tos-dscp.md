@@ -14,20 +14,20 @@ weight: 10
     **7-5 IP Precedence**
 
     111	Network Control<br>
-    110	Internetwork Control
-    101	Critic/ECP
-    100	Flash Override
-    011	Flash
-    010	Immediate
-    001	Priority
-    000	Routine
+    110	Internetwork Control<br>
+    101	Critic/ECP<br>
+    100	Flash Override<br>
+    011	Flash<br>
+    010	Immediate<br>
+    001	Priority<br>
+    000	Routine<br>
 
     **Bits**
-    4   (1 = Low Delay; 0 = Normal Delay)
-    3   (1 = High Throughput; 0 = Normal Throughput)
-    2   (1 = High Reliability; 0 = Normal Reliability)
-    1   (1 = Minimise monetary cost (RFC 1349))
-    0   (Must be 0)
+    4   (1 = Low Delay; 0 = Normal Delay)<br>
+    3   (1 = High Throughput; 0 = Normal Throughput)<br>
+    2   (1 = High Reliability; 0 = Normal Reliability)<br>
+    1   (1 = Minimise monetary cost (RFC 1349))<br>
+    0   (Must be 0)<br>
 
 ## TOS | DSCP (Differentiated Services Code Point)
 RFC 2474 (Differentiated Services) Interpretation
