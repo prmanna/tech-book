@@ -97,9 +97,17 @@ There have been several efforts to optimize TCP for cloud datacenters, where Dat
 
 It should be noted that DCTCP is not just a version of TCP, but rather, a system design that changes both the switch behavior and the end host response to congestion information received from switches.
 
+
+tbd 
+
 ## HTTP Performance (QUIC)
+tbd
+
 ## Multipath Transport
+tbd
+
 ## Mobile Cellular Networks
+tbd
 
 **References:**
 * https://tcpcc.systemsapproach.org/aqm.html
