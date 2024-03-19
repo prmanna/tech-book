@@ -21,7 +21,8 @@ IP Precedence # RFC791/RFC1349 Interpretation
 010 Immediate
 001 Priority
 000 Routine
-Bits 4 (1 = Low Delay; 0 = Normal Delay)
+Bits
+4 (1 = Low Delay; 0 = Normal Delay)
 3 (1 = High Throughput; 0 = Normal Throughput)
 2 (1 = High Reliability; 0 = Normal Reliability)</description></item><item><title>Medium Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</guid><description>Medium Complexity # Number Swapper: Write a function to swap a number in place (that is, without temporary variables). Hints - with just addition/substruction arithmatic, XOR.
 Tic Tac Win: Design an algorithm to figure out if someone has won a game of tic-tac-toe.
