@@ -75,3 +75,6 @@ PHB == Per-Hop-Behavior
 * AFxy: Assured Forwarding (x=class, y=drop precedence) (RFC2597)
 * EF: Expedited Forwarding (RFC 3246)
 
+**References:**
+* https://en.wikipedia.org/wiki/Differentiated_services
+* https://bogpeople.com/networking/dscp.shtml
