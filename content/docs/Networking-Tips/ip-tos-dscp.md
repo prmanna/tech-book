@@ -47,8 +47,7 @@ The recommended DSCP for EF is 101110B (46 or 2E(hex))
 Gives assurance of delivery under prescribed conditions
 
 
-| Drop  
-probability | Class 1 | Class 2 | Class 3 | Class 4 |
+| Drop probability | Class 1 | Class 2 | Class 3 | Class 4 |
 | --- | --- | --- | --- | --- |
 | Low | AF11 (DSCP 10) 001010 | AF21 (DSCP 18) 010010 | AF31 (DSCP 26) 011010 | AF41 (DSCP 34) 100010 |
 | Medium | AF12 (DSCP 12) 001100 | AF22 (DSCP 20) 010100 | AF32 (DSCP 28) 011100 | AF42 (DSCP 36) 100100 |
