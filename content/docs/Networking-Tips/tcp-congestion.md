@@ -83,10 +83,10 @@ While TCP’s congestion control mechanism was initially based on packet loss as
 
 Specifically, this feedback is implemented by treating **two bits in the IP TOS** field as ECN bits. One bit is set by the source to indicate that it is **ECN-capable**, that is, able to react to a congestion notification. This is called the ECT bit (ECN-Capable Transport). The other bit is set by routers along the end-to-end path when congestion is encountered, as computed by whatever AQM algorithm it is running. This is called the **CE bit (Congestion Encountered)**.
 
-In addition to these two bits in the IP header (which are transport-agnostic), ECN also includes the addition of **two optional flags to the TCP header**. The first, **ECE (ECN-Echo)**, communicates from the receiver to the sender that it has received a packet with the CE bit set. The second, **CWR (Congestion Window Reduced)** communicates from the sender to the receiver that it has reduced the congestion window.
+In addition to these two bits in the IP header (which are transport-agnostic), ECN also includes the addition of **two optional flags to the TCP header**. The first, **ECE (ECN-Echo/Experienced)**, communicates from the receiver to the sender that it has received a packet with the CE bit set. The second, **CWR (Congestion Window Reduced)** communicates from the sender to the receiver that it has reduced the congestion window.
 
 # Beyond TCP
-## Datacenters (DCTCP, On-Ramp)
+## Datacenters (DCTCP)
 There have been several efforts to optimize TCP for cloud datacenters, where Data Center TCP was one of the first. There are several aspects of the datacenter environment that warrant an approach that differs from more traditional TCP. These include:
 
 * Round trip time for intra-DC traffic are small;
@@ -97,14 +97,36 @@ There have been several efforts to optimize TCP for cloud datacenters, where Dat
 
 It should be noted that DCTCP is not just a version of TCP, but rather, a system design that changes both the switch behavior and the end host response to congestion information received from switches.
 
+The central insight in DCTCP is that using loss as the main signal of congestion in the datacenter environment is insufficient. By the time a queue has built up enough to overflow, low latency traffic is already failing to meet its deadlines, negatively impacting performance. Thus DCTCP uses a version of ECN to provide an early signal of congestion. But whereas the original design of ECN treated an ECN marking much like a dropped packet, and cut the congestion window in half, DCTCP takes a more finely-tuned approach. DCTCP tries to estimate the fraction of bytes that are encountering congestion rather than making the simple binary decision that congestion is present. It then scales the congestion window based on this estimate. The standard TCP algorithm still kicks in should a packet actually be lost. The approach is designed to keep queues short by reacting early to congestion while not over-reacting to the point that they run empty and sacrifice throughput.
 
-tbd 
+The key challenge in this approach is to estimate the fraction of bytes encountering congestion. Each switch is simple. If a packet arrives and the switch sees the queue length (K) is above some threshold; e.g.,
+K > (RTT * C) / 7
+
+where C is the link rate in packets per second, then the switch sets the CE bit in the IP header. The complexity of RED is not required.
+
+The receiver then maintains a boolean variable for every flow, which we’ll denote DCTCP.CE, and sets it initially to false. When sending an ACK, the receiver sets the ECE (Echo Congestion Experienced) flag in the TCP header if and only if DCTCP.CE is true. It also implements the following state machine in response to every received packet:
+
+If the CE bit is set and DCTCP.CE=False, set DCTCP.CE to True and send an immediate ACK.
+
+If the CE bit is not set and DCTCP.CE=True, set DCTCP.CE to False and send an immediate ACK.
+
+Otherwise, ignore the CE bit.
 
 ## HTTP Performance (QUIC)
-tbd
+HTTP has been around since the invention of the World Wide Web in the 1990s and from its inception it has run over TCP. HTTP/1.0, the original version, had quite a number of performance problems due to the way it used TCP, such as the fact that every request for an object required a new TCP connection to be set up and then closed after the reply was returned. HTTP/1.1 was proposed at an early stage to make better use of TCP. TCP continued to be the protocol used by HTTP for another twenty-plus years.
+
+In fact, TCP continued to be problematic as a protocol to support the Web, especially because a reliable, ordered byte stream isn’t exactly the right model for Web traffic. In particular, since most web pages contain many objects, it makes sense to be able to request many objects in parallel, but TCP only provides a single byte stream. If one packet is lost, TCP waits for its retransmission and successful delivery before continuing, while HTTP would have been happy to receive other objects that were not affected by that single lost packet. Opening multiple TCP connections would appear to be a solution to this, but that has its own set of drawbacks including a lack of shared information about congestion across connections.
+
+Other factors such as the rise of high-latency wireless networks, the availability of multiple networks for a single device (e.g., Wi-Fi and cellular), and the increasing use of encrypted, authenticated connections on the Web also contributed to the realization that the transport layer for HTTP would benefit from a new approach. The protocol that emerged to fill this need was QUIC.
+
+QUIC originated at Google in 2012 and was subsequently developed as a proposed standard at the IETF. It has already seen a solid amount of deployment—it is in most Web browsers, many popular websites, and is even starting to be used for non-HTTP applications. Deployability was a key consideration for the designers of the protocol. There are a lot of moving parts to QUIC—its specification spans three RFCs of several hundred pages—but we focus here on its approach to congestion control, which embraces many of the ideas we have seen to date in this book.
+
+Like TCP, QUIC builds congestion control into the transport, but it does so in a way that recognizes that there is no single perfect congestion control algorithm. Instead, there is an assumption that different senders may use different algorithms. The baseline algorithm in the QUIC specification is similar to TCP NewReno, but a sender can unilaterally choose a different algorithm to use, such as CUBIC. QUIC provides all the machinery to detect lost packets in support of various congestion control algorithms.
 
 ## Multipath Transport
-tbd
+While the early hosts connected to the Internet had only a single network interface, it is common these days to have interfaces to at least two different networks on a device. The most common example is a mobile phone with both cellular and WiFi interfaces. Another example is datacenters, which often allocate multiple network interfaces to servers to improve fault tolerance. Many applications use only one of the available networks at a time, but the potential exists to improve performance by using multiple interfaces simultaneously. This idea of multipath communication has been around for decades and led to a body of work at the IETF to standardize extensions to TCP to support end-to-end connections that leverage multiple paths between pairs of hosts. This is known as Multipath TCP (MPTCP).
+
+A pair of hosts sending traffic over two or more paths simultaneously has implications for congestion control. For example, if both paths share a common bottleneck link, then a naive implementation of one TCP connection per path would acquire twice as much share of the bottleneck bandwidth as a standard TCP connection. The designers of MPTCP set out to address this potential unfairness while also realizing the benefits of multiple paths. The proposed congestion control approach could equally be applied to other transports such as QUIC. 
 
 ## Mobile Cellular Networks
 tbd
