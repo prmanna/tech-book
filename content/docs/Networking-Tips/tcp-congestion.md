@@ -128,9 +128,6 @@ While the early hosts connected to the Internet had only a single network interf
 
 A pair of hosts sending traffic over two or more paths simultaneously has implications for congestion control. For example, if both paths share a common bottleneck link, then a naive implementation of one TCP connection per path would acquire twice as much share of the bottleneck bandwidth as a standard TCP connection. The designers of MPTCP set out to address this potential unfairness while also realizing the benefits of multiple paths. The proposed congestion control approach could equally be applied to other transports such as QUIC. 
 
-## Mobile Cellular Networks
-tbd
-
 **References:**
 * https://tcpcc.systemsapproach.org/aqm.html
 * https://squidarth.com/rc/programming/networking/2018/07/18/intro-congestion
