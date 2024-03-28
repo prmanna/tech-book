@@ -45,4 +45,21 @@ Eth-Trunk load balancing is classified into per-packet load balancing and per-fl
   + Round-robin mode: Each member interface of an Eth-Trunk forwards traffic in turn. When known unicast packets have a similar length, configure round-robin per-packet load balancing.
 * Per-flow load balancing ensures the packet sequence and ensures that the same data flow is forwarded through the same physical link and different data flows are forwarded through different physical links. Table 1-2 describes the per-flow load balancing modes for different types of packets.
 
+## How Do I Solve the Hash Polarization Problem?
+Hash polarization, also known as hash imbalance, indicates that traffic is unevenly load balanced after being hashed twice or more. This situation is common when hash operations are performed across devices multiple times. For example, a device performs ECMP hashing and forwards traffic to two or more connected devices, which then perform ECMP or Eth-Trunk hashing again. Hash polarization may also occur if the outbound interfaces of ECMP routes are multiple Eth-Trunk interfaces on the same device.
+The implementation of the hash function on switches heavily depends on chips. Therefore, hash polarization may occur if switches using the same type of chips are located at adjacent network layers. If both Eth-Trunk hashing and ECMP hashing exist on the same device, hash polarization may also occur.
+Therefore, if ECMP or Eth-Trunk hashing is deployed on a multi-layer network, consider the risk of hash polarization.
+### Suggestions
+If load imbalance or hash polarization occurs during traffic forwarding, you can adjust the hash algorithm on the device to resolve the problem. 
+* Hash algorithm: is configured by specifying the hash-mode hash-mode-id parameter.
+* Seed value: is configured by specifying the seed seed-data parameter. If devices from multiple vendors exist on the network, you are advised to configure the same seed value for these devices.
+* Offset: is configured by specifying the universal-id universal-id parameter. Typically, one hash algorithm corresponds to one offset. When devices from multiple vendors exist on the network, you are advised to configure the same offset for these devices.
+
+## Resilient Hashing
+When a next hop fails or is removed from an ECMP pool, the hashing or hash bucket assignment can change. For deployments where there is a need for flows to always use the same next hop, like TCP anycast deployments, this can create session failures.
+
+Resilient hashing is an alternate mechanism for managing ECMP groups. The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs — they’re assigned to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Since all packets in a given flow have the same header hash value, they all use the same flow bucket.
+
 **References:**
+* https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-43/Layer-3/Routing/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/
+* https://support.huawei.com/enterprise/en/doc/EDOC1100086965
