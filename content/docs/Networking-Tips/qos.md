@@ -41,7 +41,7 @@ There are two modes of operation for the srTCM one, called Color-Aware works wit
 
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/MarkerSingle.png)
 
-### Two rate three color marker
+### Two Rate Three Color Marker
 
 Another policer called a two rate three color marker (trTCM) is defined in RFC2698, an informational RFC. The two rate means we will use a two token generators each with a specified rate parameter. Once again the three colors Green, Yellow, Red indicate the level of compliance which gets translated into packet drop precedence when the packets get marked. The parameters for this policer are: the Peak Information Rate (PIR), the Peak Burst Size (PBS), the Committed Information Rate (CIR), and the Committed Burst Size (CBS). All use units similar to that of the srTCM. The initialization, update, and marking behavior for the Color-Blind mode is shown below.
 
