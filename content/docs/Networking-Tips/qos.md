@@ -35,7 +35,7 @@ This particular policer is defined by three traffic parameters, an update algori
 
 * Committed Burst Size (CBS) measured in bytes. This is the token bucket size associated with the rate.
 
-Excess Burst Size (EBS) measured in bytes. This is a bucket filled from the overflow of the first bucket hence the expression "excesses burst size". This bucket allows us to save up tokens from periods of inactivity for later use. The CBS and EBS must be configured so that at least one of them is larger than 0.
+* Excess Burst Size (EBS) measured in bytes. This is a bucket filled from the overflow of the first bucket hence the expression "excesses burst size". This bucket allows us to save up tokens from periods of inactivity for later use. The CBS and EBS must be configured so that at least one of them is larger than 0.
 
 There are two modes of operation for the srTCM one, called Color-Aware works with packets that have been previously marked by another policer in the network, the other mode called Color-Blind works with packets that have not been previously marked. The Color-Blind mode of operation is shown in below.
 
@@ -49,5 +49,4 @@ Another policer called a two rate three color marker (trTCM) is defined in RFC26
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/MarkerDouble.png)
 
 **References:**
-
-**References:**
+* https://www.grotto-networking.com/BBQoS.html
