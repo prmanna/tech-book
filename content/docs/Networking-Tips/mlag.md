@@ -16,7 +16,7 @@ I was also told that link aggregation makes your bridged network more stable. Ev
 ## Multi-Chassis Link Aggregation
 Imagine you could pretend two physical boxes use a single control plane and coordinated switching fabrics. The links terminated on two physical boxes would seem to terminate within the same control plane and you could aggregate them using LACP. Welcome to the wonderful world of Multi-Chassis Link Aggregation (MLAG).
 
-![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/s200-LAG_Basic.png)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/s200-MCLA.png)
 
 MLAG nicely solves two problems:
 
