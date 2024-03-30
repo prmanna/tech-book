@@ -4,7 +4,7 @@ bookCollapseSection: true
 weight: 5
 ---
 
-# Easy Complexity
+# C++ Tips
 ---
 
 ## Array
@@ -46,3 +46,133 @@ Since C++17, we can also retrieve the size of an array with `std::size()`.
 int arr[] = { 6, 7, 8 }
 std::cout << std::size(arr) << '\n';    // print out 3
 ```
+
+## Vector
+
+When you need to create a dynamically resizable array, C++ provides a useful sequence container `vector`. Like arrays, it provides efficient constant time element access.
+
+- `vector_name[i]` gets or sets item stored at index `i`, `O(1)`
+- `emplace_back(item)` adds item to the end of the vector, [amortized](https://stackoverflow.com/questions/200384/constant-amortized-time) `O(1)`
+- `size()` returns the size of the vector, `O(1)`
+
+The `emplace_back()` operation, which appends a new element to the end of the vector, runs in amortized constant time. A vector will resize itself when needed. A typical resizing implementation is that when the array is full, the array doubles in size, and the old content is copied over to the newer, larger array. The doubling takes `O(n)` time, but it happens rarely that the overall insertion still takes `O(1)` time.
+
+In general, to iterate through an array, a `for` loop is easier to reason than `while` since there's no condition to manage that could skip elements. In C++, there are two types of for loops: the simple `for` loop and the `for-each` loop. Use `for-each` loop if you don't need to access the index since it avoids the possible error of messsing up the index.
+
+```cpp
+std::vector<int> numbers{20, 6, 13, 5};
+// simple for loop goes through indices so we fetch elements using indices
+for (int i = 0; i < numbers.size(); i++) {
+    int number = numbers[i];
+    std::cout << number << std::endl;
+}
+
+// for-each loop directly fetches elements
+for (int number : numbers) {
+    std::cout << number << std::endl;
+}
+```
+## Linked List
+
+C++ doesn't have a built-in singly linked list. Normally at an interview, you'll be given a definition like this:
+
+```cpp
+struct LinkedListNode {
+  int val;
+  LinkedListNode* next;
+}
+```
+
+- append to end is `O(1)`
+- finding an element is `O(N)`
+
+Besides problems that specifically ask for linked lists, you don't normally define and use linked list. If you need a list with `O(1)` append you can use a `vector`, and if you want `O(1)` for both prepend and append you can use `deque`.
+
+## Stack
+
+C++ provides a container adaptor `std::stack` that works on the basis of LIFO (last-in-first-out).
+
+- push: `push(item)` adds item to end of stack, `O(1)`
+- pop: `pop()` removes item at the end of stack, `O(1)`
+- size: `size()`, `O(1)`
+- top: `top()` returns but doesn't remove item at the end of stack, `O(1)`
+
+Stack is arguably the most magical data structure in computer science. In fact, with [two stacks and a finite-state machine](https://algomonster.s3.us-east-2.amazonaws.com/documents/A+Turing+Machine+Is+Just+a+Finite+Automaton+with+Two+Stacks+A+Co.pdf) you can build a Turing Machine that can solve any problem a computer can solve.
+
+Recursion and function calls are implemented with stack behind the scene. We'll discuss this in the [recursion review](https://algo.monster/problems/recursion_intro) module.
+
+## Queue
+
+We normally use `std::deque` when we need a queue.
+
+- enqueue: `push_back(item)` inserts item at the end of the queue, `O(1)`
+- dequeue: `pop_front()` removes and return item from the head of the queue, `O(1)`
+- size: `size()`, `O(1)`
+- peek: `front()` returns but don't remove item at the head of the queue, `O(1)`
+
+In coding interviews, we see queues most often in breadth-first search. We'll also cover monotonic deque where elements are sorted inside the deque that is useful in solving some advanced coding problems.
+
+## Hash Table
+
+`std::unordered_map` in C++ implements hash table.
+
+- `at(key)` gets item mapped to key if present, `O(1)`
+- `map[key]` gets item mapped to key if present (returns `0` if not present), and inserts the key if not, `O(N)`
+- `map[key] = item` sets item mapped to key, `O(1)`
+- `count(key)` finds out if key is present or not, `O(1)`
+- `erase(key)` removes item mapped to key if present, `O(1)`
+
+It's worth mentioning that these are average case time complexity. A hash table's worst time complexity is actually `O(N)` due to [hash collision and other things](https://en.wikipedia.org/wiki/Hash_table#Collision_resolution). For the vast majority of the cases and certainly most coding interviews, the assumption of constant time lookup/insert/delete is valid.
+
+Use a hash table if you want to create a mapping from A to B. Many starter interview problems can be solved with hash tables.
+
+## Hash Set
+
+`std::unordered_set` in C++ is useful in answering existence queries in constant time.
+
+- `count(item)` checks if item is in a set, `O(1)`
+- `insert(item)` adds item to a set if it's not already present, `O(1)`
+- `erase(item)` removes item from a set if it's present, `O(1)`
+- `size()` gets the size of the set, `O(1)`
+
+Hash set is useful when you only need to know existence of a key. Example use cases include DFS and BFS on graphs.
+
+## Tree
+
+Normally at an interview, you'd be given the following implementation for a binary tree:
+
+```cpp
+struct Node {
+    int val;
+    Node* left;
+    Node* right;
+
+    Node(T val, Node* left = nullptr, Node* right = nullptr)
+        : val{val}, left{left}, right{right} {}
+};
+```
+
+For n-nary trees:
+
+```cpp
+#include <vector>
+
+struct Node {
+    int val;
+    std::vector<Node*> children;
+
+    Node(int val, std::vector<Node*> children = {})
+        : val{val}, children{children} {}
+};
+```
+## Infinity
+
+Infinity is useful when you want to initialize a variable that is greater or smaller than any value that your algorithm may want to compare with. `std::numeric_limits<T>` provides the maximum and minimum values of fundamental arithmatic types in C++.
+
+```cpp
+#include <limits>
+
+int max = std::numeric_limits<int>::max();    // 2147483648
+int min = std::numeric_limits<int>::min();    // -2147483648
+```
+
