@@ -25,7 +25,7 @@ The spine-leaf architecture has become a popular data center architecture, bring
 
 **Minimal latency and congestion:** By limiting the maximum number of hops to two between any source and destination nodes, we establish a more direct traffic path, enhancing overall performance and mitigating bottlenecks. The only exception is when the destination is on the same leaf switch.
 
-### Spine-leaf vs. Traditional Three-Tier Architecture
+## Spine-leaf vs. Traditional Three-Tier Architecture
 The main difference between spine-leaf architecture and 3-tier architecture lies in the number of network layers, and the traffic they transform is north-south or east-west traffic.
 
 As shown in the following figure, the traditional three-tier network architecture consists of three layers: core, aggregation and access. The access switches are connected to servers and storage devices, the aggregation layer aggregates the access layer traffic, provides redundant connections at the access layer, and the core layer provides network transmission. But this three-layer topology is usually designed for north-south traffic and uses the STP protocol, supporting up to 100 switches. In the case of continuous expansion of network data, this will inevitably result in port blockage and limited scalability.
@@ -37,7 +37,7 @@ The spine-leaf architecture is to add east-west traffic parallelism to the north
 ## How to Design Spine-leaf Architecture?
 Before designing a spine-leaf architecture, you need to figure out some important and relevant considerations, especially the oversubscription rate and the size of the spine switch. Surely, we have also given a detailed example for your reference.
 
-### Design Considerations of Spine-leaf Architecture
+## Design Considerations of Spine-leaf Architecture
 
 **Oversubscription rate:** It is the contention rate when all devices are sending traffic at the same time. It can be measured in the north/south direction (traffic entering/leaving the data center) and in the east/west direction (traffic between devices within the data center). The most appropriate oversubscription ratio for modern network architectures is 3:1 or less, which is measured and delineated as a ratio between upstream bandwidth (to backbone switches) and downstream capacity (to servers/storage).
 
