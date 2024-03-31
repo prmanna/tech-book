@@ -4,7 +4,7 @@ bookCollapseSection: true
 weight: 5
 ---
 
-# Easy Complexity
+# Priority Queue and Heap
 ---
 Priority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue.
 
