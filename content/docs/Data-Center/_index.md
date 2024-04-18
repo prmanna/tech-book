@@ -1,5 +1,5 @@
 ---
-title: "Data Center Tips
+title: "Data Center Tips"
 bookCollapseSection: true
 ---
 
