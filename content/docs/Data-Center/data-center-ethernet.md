@@ -23,25 +23,34 @@ weight: 10
 ## ISIS Protocol
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide18-isis.png)
 
-## 
+## SPB
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide19-spb.png)
-## 
+
+## VLAN
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide24-vlan.png)
-## 
+
+## LLDP
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide25-lldp.png)
-## 
+
+## Data Center Bridging
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide26-lldp.png)
-## 
+
+## Pause Frame
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide27-pause.png)
-## 
+
+## Priority Based flow control (PFC)
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide28-pfc.png)
-## 
+
+## Enhanced Transmission Selection
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide29-ets.png)
+
 ## 
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide30-ets2.png)
-## 
+
+## Congestion Notification
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide34-qcn.png)
-## 
+
+## DCBX
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide35-dcbx.png)
 
 **References:**
