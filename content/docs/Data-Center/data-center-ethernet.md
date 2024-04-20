@@ -23,7 +23,7 @@ weight: 10
 ## ISIS Protocol
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide18-isis.png)
 
-## SPB
+## Shortest Path Bridge (SPB)
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide19-spb.png)
 
 ## VLAN

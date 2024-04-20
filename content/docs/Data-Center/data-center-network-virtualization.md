@@ -86,3 +86,4 @@ weight: 10
 **References:**
 * [Raj Jain](https://www.cse.wustl.edu/~jain/cse570-21/index.html)
 * [LAN Extension and Network Virtualization in Cloud Data Centers by Raj Jain](https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/LAN-Extension-and-Network-Virtualization-in-Cloud-Data-Centers-by-Raj-Jain.pdf)
+* [Overlay Virtual Networking Explained by Ivan Pepelnjak(ip@ipSpace.net)](https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/Overlay-Virtual-Networking-Explained-PLNOG11.pdf)
