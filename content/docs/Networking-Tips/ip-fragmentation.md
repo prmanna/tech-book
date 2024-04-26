@@ -59,4 +59,4 @@ Routers are no longer required to perform packet fragmentation and reassembly, m
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ip-fragment/rsz_1ipv6_frme_examke.png)
 
 **References:**
-* 
+* [IPv6 Fragmentation](https://network-insight.net/2015/10/16/ipv6-fragmentation/) 
