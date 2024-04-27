@@ -54,7 +54,7 @@ The following IPv6 extension headers are currently defined.
 ## The IPv6 fragment header
 With IPv4, all this was contained in the IPv4 header. There is no separate fragment header in IPv4, and the fragment fields in the IPv4 header are moved to the **IPv6 fragment header.** The _“Don’t fragment_” bit (DF) is removed, and intermediate routers are not allowed to fragment. They only permitted end stations to create and reassemble fragments ([**RFC 2460)**, **not intermediate routers**](https://www.rfc-editor.org/rfc/rfc2460). The design decision stems from the performance hit that fragmentation imposes on nodes.
 
-Routers are no longer required to perform packet fragmentation and reassembly, making dropped packets more significant than the router’s interface MTU. Instead, I**Pv6 hosts perform PMTU** to determine the maximum packet size for the entire path. When a packet hits an interface with a smaller MTU, the routers send back an ICMPv6 type 2 error, known as Packet Too Big, to the sending host. The sending host receives the error message, reduces the size of the sending packet, and tries again.
+Routers are no longer required to perform packet fragmentation and reassembly, making dropped packets more significant than the router’s interface MTU. Instead, I**Pv6 hosts perform PMTU** to determine the maximum packet size for the entire path. When a packet hits an interface with a smaller MTU, the routers send back an **ICMPv6 type 2 error, known as Packet Too Big**, to the sending host. The sending host receives the error message, reduces the size of the sending packet, and tries again.
 
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ip-fragment/rsz_1ipv6_frme_examke.png)
 
