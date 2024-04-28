@@ -39,6 +39,11 @@ enableGitInfo = true
   url = "https://prasenjitmanna.com/"
   weight = 30
 
+[[menu.after]]
+  name = "Prasenjit's upskills"
+  url = "https://prasenjitmanna.com/upskills/"
+  weight = 31
+
 [params]
   # (Optional, default light) Sets color theme: light, dark or auto.
   # Theme 'auto' switches between dark and light modes based on browser/os preferences
