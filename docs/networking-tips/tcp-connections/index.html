@@ -1,5 +1,5 @@
-<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Intro # References: *"><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="TCP Connection"><meta property="og:description" content="Intro # References: *"><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-connections/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2024-05-01T12:18:55+05:30"><title>TCP Connection | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
-<script defer src=/tech-book/en.search.min.5daff1b4b101c72c6be0fe4d5f6ffa9747e3b1147a303e5922d5cc615e6b7e47.js integrity="sha256-Xa/xtLEBxyxr4P5NX2/6l0fjsRR6MD5ZItXMYV5rfkc=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Intro # TCP Connection Establishment Handshake # Sync The initiator that is establishing a connection with a target generates a random sequence number (5,045 for this example) and sends a TCP packet with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence number. Sync/Ack Upon receipt of the TCP Sync packet from the initiator, the target sets its ack number value to the received sequenceNumber + 1 (5,046 in this example)."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="TCP Connection"><meta property="og:description" content="Intro # TCP Connection Establishment Handshake # Sync The initiator that is establishing a connection with a target generates a random sequence number (5,045 for this example) and sends a TCP packet with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence number. Sync/Ack Upon receipt of the TCP Sync packet from the initiator, the target sets its ack number value to the received sequenceNumber + 1 (5,046 in this example)."><meta property="og:type" content="article"><meta property="og:url" content="https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-connections/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2024-05-01T12:47:07+05:30"><title>TCP Connection | Technical Book</title><link rel=manifest href=/tech-book/manifest.json><link rel=icon href=/tech-book/favicon.png type=image/x-icon><link rel=stylesheet href=/tech-book/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous><script defer src=/tech-book/flexsearch.min.js></script>
+<script defer src=/tech-book/en.search.min.3247bc536a7d53f7155695cc62dae340cc66adac036166a38bce9b30ca4e6990.js integrity="sha256-Mke8U2p9U/cVVpXMYtrjQMxmrawDYWaji86bMMpOaZA=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/tech-book/><img src=/tech-book/logo.png alt=Logo><span>Technical Book</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-374f93193c235d5a59a63115829f835e class=toggle>
 <label for=section-374f93193c235d5a59a63115829f835e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/>Algorithms</a></label><ul><li><input type=checkbox id=section-f6b4293ac79e9f284ef5649e49e3639f class=toggle>
 <label for=section-f6b4293ac79e9f284ef5649e49e3639f class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/>Breadth First Search</a></label></li><li><input type=checkbox id=section-2f77d5839f14fc16598e51884edf9cc7 class=toggle>
@@ -32,7 +32,99 @@
 <label for=section-de7910a662f896155a583da23f7844c9 class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-slack/>Design Slack</a></label></li><li><input type=checkbox id=section-81d594663dd77ffbd855c8bfc64baf2e class=toggle>
 <label for=section-81d594663dd77ffbd855c8bfc64baf2e class="flex justify-between"><a href=https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/>Google Drive - Design</a></label></li></ul></li></ul><ul><li><a href=/tech-book/posts/>Blog</a></li><li><a href=https://prasenjitmanna.com/tech-book/ target=_blank rel=noopener>Technical Book</a></li><li><a href=https://prasenjitmanna.com/ target=_blank rel=noopener>Prasenjit's blog</a></li><li><a href=https://prasenjitmanna.com/upskills/ target=_blank rel=noopener>Prasenjit's upskills</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/tech-book/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>TCP Connection</strong>
-<label for=toc-control><img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#intro>Intro</a></li></ul></nav></aside></header><article class=markdown><h1 id=intro>Intro
-<a class=anchor href=#intro>#</a></h1><p><strong>References:</strong>
-*</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/54ffcdfccbd5763876e001247502ec171f8be402 title='Last modified by Prasenjit Manna | May 1, 2024' target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
-<span>May 1, 2024</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#intro>Intro</a></li></ul></nav></div></aside></main></body></html>
+<label for=toc-control><img src=/tech-book/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#intro>Intro</a><ul><li><a href=#tcp-connection-establishment-handshake>TCP Connection Establishment Handshake</a></li><li><a href=#tcp-connection-termination-handshake>TCP Connection Termination Handshake</a></li><li><a href=#reliable-data-delivery>Reliable Data Delivery</a><ul><li><a href=#tcp-sequence-number-behavior>TCP Sequence Number Behavior</a></li><li><a href=#tcp-data-reorder>TCP Data Reorder</a></li><li><a href=#missing-data-retransmission>Missing Data Retransmission</a></li><li><a href=#duplicate-data-discard>Duplicate Data Discard</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=intro>Intro
+<a class=anchor href=#intro>#</a></h1><h2 id=tcp-connection-establishment-handshake>TCP Connection Establishment Handshake
+<a class=anchor href=#tcp-connection-establishment-handshake>#</a></h2><ol><li>Sync
+The initiator that is establishing a connection with a target generates a
+random sequence number (5,045 for this example) and sends a TCP packet
+with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence
+number.</li><li>Sync/Ack
+Upon receipt of the TCP Sync packet from the initiator, the target sets its ack
+number value to the received sequenceNumber + 1 (5,046 in this example). The
+target responds by setting its own sequence number to a random value
+(17,764 in this example) and sending a TCP packet whose sync and ack flags
+are both set to 1 and whose sequenceNumber is set to the just-defined sequence
+number value and whose ackNumber is set to the target’s just-set ack number.</li><li>Ack
+Upon receipt of the TCP Sync/Ack packet, the initiator sets its ack number to
+the received sequenceNumber + 1. The initiator then sends a TCP Ack packet to
+the target whose ack flag is set to 1 and whose sequenceNumber and ackNumber
+are set to the initiator’s corresponding internal values.
+<img src=https://prasenjitmanna.com/tech-book/diagrams/tcp-conn/tcp-3way-handshake.png alt=img|320x271></li></ol><h2 id=tcp-connection-termination-handshake>TCP Connection Termination Handshake
+<a class=anchor href=#tcp-connection-termination-handshake>#</a></h2><p>The steps in a four-way TCP connection termination handshake are thus.</p><ol><li>Initiator Finish
+One side of the connection (the initiator) sends a TCP packet to its connection
+partner whose finish bit is set to 1.</li><li>Target Ack or Finish/Ack
+The target of the initial termination message responds by sending a TCP
+packet to the initiator whose ack bit is set to 1. This acknowledges that the
+initiator-to-target data connection is closed and that the initiator will no
+longer send TCP data packets to the target. The target responds by sending
+two TCP packets to the initiator: one whose ack bit is set to 1 and one whose
+finish bit is set to 1. If the target has no more data to send to the initiator, it
+may combine these two TCP packets into a single TCP packet where both ack
+and finish are set to 1. If the target does have more data to send, the connection
+may remain “half open” until the data transmissions are complete.</li><li>Initiator Ack
+Finally the initiator sends a TCP packet whose ack bit is set to 1 to complete
+the connection termination process.
+<img src=https://prasenjitmanna.com/tech-book/diagrams/tcp-conn/tcp-conn-termination.png alt=img|320x271></li></ol><h2 id=reliable-data-delivery>Reliable Data Delivery
+<a class=anchor href=#reliable-data-delivery>#</a></h2><p>For a data connection to be reliable, three types of problems must be detected and
+corrected. These are:
+* out-of-order data
+* missing data
+* duplicated data</p><p>TCP’s sequence numbers address all three of these problems.</p><h3 id=tcp-sequence-number-behavior>TCP Sequence Number Behavior
+<a class=anchor href=#tcp-sequence-number-behavior>#</a></h3><p>Briefly: The initial sequence number is chosen randomly. As the TCP sender
+transmits bytes to the receiver, each TCP packet includes a sequenceNumber value
+that indicates the cumulative sequence number of the last byte of each packet. The
+TCP receiver responds by transmitting TCP Ack packets whose ackNumber value
+identifies the highest-numbered byte received without any gaps from the first byte
+of the TCP session. Sequence numbers roll over through zero upon exceeding the
+maximum value that a 32-bit number can hold.</p><h3 id=tcp-data-reorder>TCP Data Reorder
+<a class=anchor href=#tcp-data-reorder>#</a></h3><p>You can see the presence of sequenceNumber in each packet means that a TCP
+receiver can position each received packet within a TCP reorder buffer where
+the original sequence of data bytes may be reassembled. Let’s consider a simple
+scenario where the initial sequence number is 0. If the first packet received by the
+TCP receiver has a sequenceNumber value of 1,000 and the packet has a TCP data
+payload of 1,000 bytes, then this packet neatly fits within the buffer at offset 0.
+The next packet received by the TCP receiver has a sequenceNumber value of 3,000
+and carries 1,000 bytes of TCP data. The receiver subtracts the data byte count
+from the received sequenceNumber value to arrive at a sequence number of 2,000
+for this packet’s first data byte. Thus, the data is written to the buffer starting at
+offset 2,000, leaving a 1,000-byte gap between the first and second received packets.
+Finally, a TCP packet with 1,000 data bytes and a sequenceNumber of 2,000
+is received, meaning the sequence number of the first byte of this packet is 1,000.
+This third packet’s data is written into the 1,000-byte gap between the first two
+packets’ data, completing the in-order data transfer.
+<img src=https://prasenjitmanna.com/tech-book/diagrams/tcp-conn/tcp-data-reorder.png alt=img|320x271></p><h3 id=missing-data-retransmission>Missing Data Retransmission
+<a class=anchor href=#missing-data-retransmission>#</a></h3><p>Using the data reordering example from above as a starting point, let’s assume that
+the TCP packet whose sequenceNumber value is 2,000 wasn’t simply delivered out
+of order, but was lost due to any of a variety of the usual things that happen on
+networks. From the TCP receiver’s perspective, the order in which the TCP data packets are received and its responses to the data packets are the same regardless
+of whether a packet was lost in transmission (and later retransmitted) or simply
+delivered out of order by the network.
+In response to the receipt of the first TCP data packet, the TCP receiver transmits
+a TCP Ack packet back to the sender with an ackNumber value of 1,000, indicating
+that is has successfully received bytes 0 through 999. The second TCP data packet
+received by the TCP receiver indicates that a gap exists from byte 1,000 through
+1,999. To inform the TCP sender of this, the TCP receiver transmits another TCP
+Ack packet with the exact same ackNumber value of 1,000. This informs the TCP
+sender that, while the first 1,000 bytes have been successfully received, the next
+packet (and possibly more) is currently missing. This duplicate acknowledge (the
+sender has already received an acknowledge for the first 1,000 bytes) motivates
+the sender to retransmit the first unacknowledged packet (i.e., the packet whose
+sequenceNumber is 2,000).
+The TCP sender, in turn, keeps track of the TCP Ack messages that have been received
+and maintains an awareness of the highest-numbered data byte that’s been
+successfully transmitted. Every unacknowledged byte is subject to retransmission.
+Re-transmissions and acknowledges may also get lost. Hence, TCP maintains timers
+to detect these cases and automatically retransmit either data or Ack packets as
+necessary to keep the process moving along.</p><p><img src=https://prasenjitmanna.com/tech-book/diagrams/tcp-conn/tcp-missing-data-behavior.png alt=img|320x271></p><h3 id=duplicate-data-discard>Duplicate Data Discard
+<a class=anchor href=#duplicate-data-discard>#</a></h3><p>Duplicate data may be received by a TCP receiver if a packet that is assumed missing
+is simply delayed and delivered out of order. The TCP receiver may request another
+copy of the packet through the use of a TCP Ack message before the delayed
+data packet is received. If both copies of the data packet are eventually successfully
+received, then the receiver must deal with redundant data.
+If a TCP receiver receives a TCP data packet whose sequenceNumber corresponds
+to a data packet that had previously been received (regardless of whether or not it
+had been acknowledged), the TCP receiver may either discard the packet or simply
+overwrite the data in its receive buffer with the newly received data. Since the data
+is the same, the data in the buffer does not change.</p><p><strong>References:</strong>
+*</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/prmanna/tech-book/commit/ad7ed7bd07b2875334f65449c5c25217f15653e5 title='Last modified by Prasenjit Manna | May 1, 2024' target=_blank rel=noopener><img src=/tech-book/svg/calendar.svg class=book-icon alt=Calendar>
+<span>May 1, 2024</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#intro>Intro</a><ul><li><a href=#tcp-connection-establishment-handshake>TCP Connection Establishment Handshake</a></li><li><a href=#tcp-connection-termination-handshake>TCP Connection Termination Handshake</a></li><li><a href=#reliable-data-delivery>Reliable Data Delivery</a><ul><li><a href=#tcp-sequence-number-behavior>TCP Sequence Number Behavior</a></li><li><a href=#tcp-data-reorder>TCP Data Reorder</a></li><li><a href=#missing-data-retransmission>Missing Data Retransmission</a></li><li><a href=#duplicate-data-discard>Duplicate Data Discard</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
