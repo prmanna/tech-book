@@ -121,5 +121,12 @@ had been acknowledged), the TCP receiver may either discard the packet or simply
 overwrite the data in its receive buffer with the newly received data. Since the data
 is the same, the data in the buffer does not change.
 
+### Selective Acknowledge
+If a TCP data packet is lost before arriving at a receiver, but that missing packet
+is followed by several successfully received TCP data packets, the receiver has
+no effective means for alerting the sender to just retransmit the single missing
+packet. Selective acknowledgment (defined by RFC 2018 and known colloquially
+as SACK) is an optional extension to TCP that addresses this specific, common
+scenario.
+
 **References:**
-* 
