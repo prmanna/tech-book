@@ -7,6 +7,32 @@ weight: 5
 # C++ Tips
 ---
 
+## Templates
+
+A template is a simple yet very powerful tool in C++. The simple idea is to pass the data type as a parameter so that we don’t need to write the same code for different data types. For example, a software company may need to sort() for different data types. Rather than writing and maintaining multiple codes, we can write one sort() and pass the datatype as a parameter.
+
+C++ adds two new keywords to support templates: ‘template’ and ‘typename’. The second keyword can always be replaced by the keyword ‘class’.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+template <typename T>
+T myFunc (T x, T y)
+{
+    return (x>y)? x:y;
+}
+int main ()
+{
+    cout << myFunc<int>(3,7) << endl;
+    std::cout << myFunc<char>('g', 'e') << std::endl;
+
+    return 0;
+}
+```
+
+Reference: [Templates in C++ with Examples](https://www.geeksforgeeks.org/templates-cpp/)
+
 ## Array
 
 An array in C++ holds a fixed number of elements of a single type in contiguous memory locations.
