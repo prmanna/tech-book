@@ -121,6 +121,18 @@ std::cout << std::size(arr) << '\n';    // print out 3
 ## Vector
 
 When you need to create a dynamically resizable array, C++ provides a useful sequence container `vector`. Like arrays, it provides efficient constant time element access.
+```cpp
+vector<data_type> vectorName;
+```
+**Commonly used Vector Functions**
+push_back() – It is used to insert the elements at the end of the vector.
+pop_back() – It is used to pop or remove elements from the end of the vector.
+clear() – It is used to remove all the elements of the vector.
+empty() – It is used to check if the vector is empty.
+at(i) – It is used to access the element at the specified index ‘i’.
+front() – It is used to access the first element of the vector.
+back() – It is used to access the last element of the vector.
+erase() – It is used to remove an element at a specified position.
 
 - `vector_name[i]` gets or sets item stored at index `i`, `O(1)`
 - `emplace_back(item)` adds item to the end of the vector, [amortized](https://stackoverflow.com/questions/200384/constant-amortized-time) `O(1)`
