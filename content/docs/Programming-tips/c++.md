@@ -133,7 +133,8 @@ vector<data_type> vectorName;
 + front() – It is used to access the first element of the vector.
 + back() – It is used to access the last element of the vector.
 + erase() – It is used to remove an element at a specified position.
-+ size()
++ size() - returns the size of the array
++ resize() - resize the array with the new size
 
 - `vector_name[i]` gets or sets item stored at index `i`, `O(1)`
 - `emplace_back(item)` adds item to the end of the vector, [amortized](https://stackoverflow.com/questions/200384/constant-amortized-time) `O(1)`
