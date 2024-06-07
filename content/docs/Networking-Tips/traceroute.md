@@ -15,10 +15,12 @@ There are two implementations emerged. lets go little deeper for both the implem
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/flow-based-load-balancing.png)
 
 ## Paris Traceroute
+This maintain a per-flow session information for load-balancer to work. Other than this, it also maintain tcp, udp and icmp packet mode. Also, it sends multiple probe with different session information, which helps to find different packet path for same destination.
 
 ## Dublin Traceroute
-
+This is Paris-traceroute + NAT awareness.
 
 **References:**
 * [Paris Traceroute](https://paris-traceroute.net/about/) 
 * [Dublin Traceroute](https://dublin-traceroute.net/)
+* [The Power of Paris Traceroute for Modern Load-Balanced Networks](https://www.kentik.com/blog/the-power-of-paris-traceroute-for-modern-load-balanced-networks/)
