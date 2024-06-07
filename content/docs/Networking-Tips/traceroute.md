@@ -12,7 +12,13 @@ There are two implementations emerged. lets go little deeper for both the implem
 1. paris-traceroute (https://paris-traceroute.net/about/)
 2. dublin-traceroute (https://dublin-traceroute.net/)
 
-## 
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/flow-based-load-balancing.png)
+
+## Paris Traceroute
+
+## Dublin Traceroute
+
 
 **References:**
-* 
+* [Paris Traceroute](https://paris-traceroute.net/about/) 
+* [Dublin Traceroute](https://dublin-traceroute.net/)
