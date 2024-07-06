@@ -16,6 +16,7 @@ Every host is identified by the IP address but remembering numbers is very diffi
 ## Domain Hierarchy
 
 ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dns/domain-660x380.png)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dns/DNS-extra.png)
 
 TLD (Top-Level Domain) is the rightmost part of a domain name. The TLD for geeksforgeeks.com is “.com”. TLDs are divided into two categories: gTLDs (generic top-level domains) and ccTLDs (country code top-level domains). Historically, the purpose of a common top-level domain (gTLD) was to inform users of the purpose of the domain name; For example, a.com would be for business purposes, .org for organization, .edu for education, and .gov for the government. And a country code top-level domain (ccTLD) was used for geographic purposes, such as .ca for Canadian sites, .co.uk for UK sites, and so on. As a result of the high demand, many new gTLDs have emerged, including.online,.club,.website,.biz, and many others.
 
@@ -31,6 +32,11 @@ DNS Record Types: However, DNS is not just for websites, and there are many othe
 * MX Record – These records point to the servers that handle the email for the domain you are looking for. For example, the MX record response for geeksforgeeks.com would look like alt1.aspmx.l.google.com. There is also a priority sign on these documents. It instructs the client in which order to try the servers. This is useful when the primary server fails and the email needs to be sent to a backup server.
 * TXT Record – TXT records are text fields that can be used to store any text-based data. TXT records can be used for a variety of things, but one of the most common is to identify the server that has the authorization to send an email on behalf of the domain (this can help in the fight against spam and fake email). is). They can also be used to verify domain ownership when registering for third-party services.
 
-## 
+## How Does DNS Work?
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dns/How-DNS-Works-gif.gif)
+
+## What Are The Steps in a DNS Lookup?
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dns/Working-of-DNS.gif)
 
 **References:**
+* [DNS](https://www.geeksforgeeks.org/domain-name-system-dns-in-application-layer/)
