@@ -5,7 +5,7 @@ weight: 10
 ---
 
 # Intro
-DNS (Domain Name System) allows you to interact with devices on the Internet without having to remember long strings of numbers. 
+DNS (Domain Name System) allows you to interact with devices on the Internet without having to remember long strings of numbers. DNS is designed to be used in both the ways like as a TCP or as a UDP. It converts to TCP when it is not able to communicate on UDP.
 
 ## What is the Need for DNS?
 Every host is identified by the IP address but remembering numbers is very difficult for people also the IP addresses are not static therefore a mapping is required to change the domain name to the IP address. So DNS is used to convert the domain name of the websites to their numerical IP address. 
