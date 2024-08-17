@@ -4,6 +4,34 @@ bookCollapseSection: true
 weight: 10
 ---
 
+from 
+https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/
+
+### [B.1.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#appendix-B.1) [Key Building Blocks](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#name-key-building-blocks)
+
+\[[TS-23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId-3144)\] defines the Network Functions (UPF, Access and Mobility Function (AMF), etc.) that compose the 5G System (5GS) Architecture together with related interfaces (e.g., N1 and N2). This architecture has built-in control and user plane separation, and the control plane leverages a Service- Based Architecture (SBA). [Figure 33](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#_figure-28) outlines an example 5GS architecture with a subset of possible NFs and network interfaces.[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#appendix-B.1-1)
+
+  +-----+  +-----+  +-----+    +-----+  +-----+  +-----+ 
+  |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  | 
+  +--+--+  +--+--+  +--+--+    +--+--+  +--+--+  +--+--+ 
+Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf 
+  ---+--------+--+-----+----------+---+----+--------+---- 
+            Nausf|    Namf|       Nsmf| 
+              +--+--+  +--+--+     +--+------+ 
+              |AUSR |  | AMF |     |   SMF   | 
+              +-----+  +--+--+     +--+------+ 
+                       /  |           |      \\ 
+Control Plane      N1 /   |N2         |N4     \\N4 
+------------------------------------------------------------ 
+User Plane          /     |           |         \\ 
+                +---+  +--+--+  N3 +--+--+ N9 +-----+ N6  .---. 
+                |UE +--+(R)AN+-----+ UPF +----+ UPF +----( DN  ) 
+                +---+  +-----+     +-----+    +-----+     '---' 
+
+[Figure 33](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#figure-33): [5GS Architecture and Service-based Interfaces](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#name-5gs-architecture-and-servic)
+
+
+
 
 ## [Appendix B.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B) [An Overview of 5G Networking](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-an-overview-of-5g-networkin)
 
