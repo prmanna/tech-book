@@ -7,52 +7,6 @@ weight: 10
 from 
 https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/
 
-### [B.1.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#appendix-B.1) [Key Building Blocks](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#name-key-building-blocks)
-
-[[TS-23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId-3144)\] defines the Network Functions (UPF, Access and Mobility Function (AMF), etc.) that compose the 5G System (5GS) Architecture together with related interfaces (e.g., N1 and N2). This architecture has built-in control and user plane separation, and the control plane leverages a Service- Based Architecture (SBA). [Figure 33](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#_figure-28) outlines an example 5GS architecture with a subset of possible NFs and network interfaces.[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#appendix-B.1-1)
-
-```
-  +-----+  +-----+  +-----+    +-----+  +-----+  +-----+
-  |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
-  +--+--+  +--+--+  +--+--+    +--+--+  +--+--+  +--+--+
-Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf
-  ---+--------+--+-----+----------+---+----+--------+----
-            Nausf|    Namf|       Nsmf|
-              +--+--+  +--+--+     +--+------+
-              |AUSR |  | AMF |     |   SMF   |
-              +-----+  +--+--+     +--+------+
-                       /  |           |      \
-Control Plane      N1 /   |N2         |N4     \N4
-------------------------------------------------------------
-User Plane          /     |           |         \
-                +---+  +--+--+  N3 +--+--+ N9 +-----+ N6  .---.
-                |UE +--+(R)AN+-----+ UPF +----+ UPF +----( DN  )
-                +---+  +-----+     +-----+    +-----+     '---'
-Figure 33: 5GS Architecture and Service-based Interfaces
-```
-
-  +-----+  +-----+  +-----+    +-----+  +-----+  +-----+ 
-  |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  | 
-  +--+--+  +--+--+  +--+--+    +--+--+  +--+--+  +--+--+ 
-Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf 
-  ---+--------+--+-----+----------+---+----+--------+---- 
-            Nausf|    Namf|       Nsmf| 
-              +--+--+  +--+--+     +--+------+ 
-              |AUSR |  | AMF |     |   SMF   | 
-              +-----+  +--+--+     +--+------+ 
-                       /  |           |      \\ 
-Control Plane      N1 /   |N2         |N4     \\N4 
------------------------------------------------------------- 
-User Plane          /     |           |         \\ 
-                +---+  +--+--+  N3 +--+--+ N9 +-----+ N6  .---. 
-                |UE +--+(R)AN+-----+ UPF +----+ UPF +----( DN  ) 
-                +---+  +-----+     +-----+    +-----+     '---' 
-
-[Figure 33](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#figure-33): [5GS Architecture and Service-based Interfaces](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-09#name-5gs-architecture-and-servic)
-
-
-
-
 ## [Appendix B.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B) [An Overview of 5G Networking](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-an-overview-of-5g-networkin)
 
 This section provides a brief introduction to 5G mobile networking with a perspective on the Transport Network. This section does not intend to replace or define 3GPP architecture, instead its objective is to provide an overview for readers that do not have a mobile background. For more comprehensive information, refer to \[[TS-23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId-3144)\].[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B-1)
@@ -61,6 +15,7 @@ This section provides a brief introduction to 5G mobile networking with a perspe
 
 \[[TS-23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId-3144)\] defines the Network Functions (UPF, Access and Mobility Function (AMF), etc.) that compose the 5G System (5GS) Architecture together with related interfaces (e.g., N1 and N2). This architecture has built-in control and user plane separation, and the control plane leverages a Service- Based Architecture (SBA). [Figure 33](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#_figure-28) outlines an example 5GS architecture with a subset of possible NFs and network interfaces.[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.1-1)
 
+```
   +-----+  +-----+  +-----+    +-----+  +-----+  +-----+
   |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
   +--+--+  +--+--+  +--+--+    +--+--+  +--+--+  +--+--+
@@ -77,7 +32,7 @@ User Plane          /     |           |         \\
                 +---+  +--+--+  N3 +--+--+ N9 +-----+ N6  .---.
                 |UE +--+(R)AN+-----+ UPF +----+ UPF +----( DN  )
                 +---+  +-----+     +-----+    +-----+     '---'
-
+```
 [Figure 33](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#figure-33): [5GS Architecture and Service-based Interfaces](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-5gs-architecture-and-servic)
 
 Similar to previous versions of 3GPP mobile networks \[[RFC6459](https://www.rfc-editor.org/rfc/rfc6459)\], a 5G mobile network is split into the following four major domains ([Figure 34](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#_figure-29)):[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.1-3)
@@ -99,6 +54,7 @@ Similar to previous versions of 3GPP mobile networks \[[RFC6459](https://www.rfc
     Provides connectivity between 5G NFs. The TN may provide connectivity from the RAN to the CN as well as within the RAN or within the CN. The traffic generated by NFs is - mostly - based on IP or Ethernet.[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.1-4.4.2)
     
 
+```
 +----------------------------------------------+
 |             +------------+    +------------+ |
 | +----+      |            |    |            | |   .-------.
@@ -113,6 +69,7 @@ Similar to previous versions of 3GPP mobile networks \[[RFC6459](https://www.rfc
 |                    5G System                 |
 +----------------------------------------------+
 
+```
 [Figure 34](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#figure-34): [Building Blocks of 5G Architecture (A High-Level Representation)](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-building-blocks-of-5g-archi)
 
 ### [B.2.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.2) [Core Network (CN)](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-core-network-cn)
@@ -132,6 +89,7 @@ The 5G Core Network (5GC) is made up of a set of NFs which fall into two main ca
     - the SMF controls the 5GC UPF via the N4 interface[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.2-2.2.3.2.1)
         
 
+```
   +---------+    +-------------------------+
   |   RAN   |    |      5G Core (5GC)      |
   |         |    |                         |
@@ -149,6 +107,7 @@ The 5G Core Network (5GC) is made up of a set of NFs which fall into two main ca
   |         |    |               +-----+   |     \`-------'
   +---------+    +-------------------------+
 
+```
 [Figure 35](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#figure-35): [5G Core Network (CN)](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-5g-core-network-cn)
 
 ### [B.3.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.3) [Radio Access Network (RAN)](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-radio-access-network-ran)
@@ -168,6 +127,7 @@ The 5G RAN architecture supports RAN disaggregation in various ways. Notably, th
 
 [Figure 36](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#_figure-31) depicts a disaggregated RAN with NFs and interfaces.[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.3-5)
 
+```
             +---------------------------------+    +-----------+
             |                                 | N3 |           |
 +----+  NR  |                                 +----+  5G Core  |
@@ -195,6 +155,7 @@ The 5G RAN architecture supports RAN disaggregation in various ways. Notably, th
             |       Disaggregated gNodeB      |    |           |
             +---------------------------------+    +-----------+
 
+```
 [Figure 36](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#figure-36): [RAN Disaggregation](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-ran-disaggregation)
 
 ### [B.4.](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.4) [Transport Network (TN)](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-transport-network-tn)
@@ -210,6 +171,7 @@ The 5G transport architecture defines three main segments for the Transport Netw
 
 [Figure 37](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#_figure-32) illustrates the different segments of the Transport Network with the relevant NFs.[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.4-3)
 
+```
 +---------------------------------------------------------+
 |                    Transport Network                    |
 |                                                         |
@@ -221,10 +183,12 @@ The 5G transport architecture defines three main segments for the Transport Netw
  | RU |      | DU |         | CU |        | UPF :----( DN  )
  +----+      +----+         +----+        +-----+     \`---'
 
+```
 [Figure 37](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#figure-37): [5G Transport Segments](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-5g-transport-segments)
 
 A given part of the transport network can carry several 5G transport segments concurrently, as outlined in [Figure 38](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#_figure-33). This is because different types of 5G NFs might be placed in the same location (e.g., the UPF from one slice might be placed in the same location as the CU-UP from another slice).[¶](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B.4-5)
 
+```
 +---------+
 |+----+   | Colocated
 ||RU-1|   | RU/DU
@@ -244,5 +208,6 @@ A given part of the transport network can carry several 5G transport segments co
  |RU-2|      |DU-2|         |CU-2|        |UPF-2+----( DN  )
  +----+      +----+         +----+        +-----+     \`---'
 
+```
 [Figure 38](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#figure-38): [Concurrent 5G Transport Segments](https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-concurrent-5g-transport-seg)
 
