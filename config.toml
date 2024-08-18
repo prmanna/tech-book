@@ -30,19 +30,19 @@ enableGitInfo = true
 # [[menu.before]]
 
 [[menu.after]]
-  name = "Technical Book"
-  url = "https://prasenjitmanna.com/tech-book/"
+  name = "Prasenjit's Blog"
+  url = "https://prasenjitmanna.com/"
   weight = 20
 
 [[menu.after]]
-  name = "Prasenjit's blog"
-  url = "https://prasenjitmanna.com/"
+  name = "Prasenjit - Tech Book"
+  url = "https://prasenjitmanna.com/tech-book/"
   weight = 30
 
 [[menu.after]]
-  name = "Prasenjit's upskills"
+  name = "Prasenjit - Upskills"
   url = "https://prasenjitmanna.com/upskills/"
-  weight = 31
+  weight = 40
 
 [params]
   # (Optional, default light) Sets color theme: light, dark or auto.
