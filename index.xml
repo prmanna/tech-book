@@ -1,49 +1,379 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on Technical Book</title><link>https://prasenjitmanna.com/tech-book/</link><description>Recent content in Introduction on Technical Book</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/index.xml" rel="self" type="application/rss+xml"/><item><title>Breadth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</guid><description>Breadth First Search # Intro # Hopefully, by this time, you&amp;rsquo;ve drunk enough DFS kool-aid to understand its immense power and seen enough visualization to create a call stack in your mind. Now let me introduce the companion spell Breadth First Search (BFS). The names are self-explanatory. While depth first search reaches for depth (child nodes) first before breadth (nodes in the same level/depth), breadth first search visits all nodes in a level before starting to visit the next level.</description></item><item><title>C++ Tips</title><link>https://prasenjitmanna.com/tech-book/docs/programming-tips/c++/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/programming-tips/c++/</guid><description>C++ Tips # Templates # A template is a simple yet very powerful tool in C++. The simple idea is to pass the data type as a parameter so that we don’t need to write the same code for different data types. For example, a software company may need to sort() for different data types. Rather than writing and maintaining multiple codes, we can write one sort() and pass the datatype as a parameter.</description></item><item><title>Depth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</guid><description>Depth First Search # Intro # The pre-order traversal of a tree is DFS.
-Node&amp;lt;int&amp;gt;* dfs(Node&amp;lt;int&amp;gt;* root, int target) { if (root == nullptr) return nullptr; if (root-&amp;gt;val == target) return root; // return non-null return value from the recursive calls Node&amp;lt;int&amp;gt;* left = dfs(root-&amp;gt;left, target); if (left != nullptr) return left; // at this point, we know left is null, and right could be null or non-null // we return right child&amp;#39;s recursive call result directly because // - if it&amp;#39;s non-null we should return it // - if it&amp;#39;s null, then both left and right are null, we want to return null return dfs(root-&amp;gt;right, target); } Max depth of a binary tree # Max depth of a binary tree is the longest root-to-leaf path.</description></item><item><title>Easy Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</guid><description> Easy Complexity #</description></item><item><title>Priority Queue and Heap</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</guid><description>Priority Queue and Heap # Priority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue.
-Priority Queue # A priority queue is a data structure that consists of a collection of items and supports the following operations:
-insert: insert an item with a key. delete_min/delete_max: remove the item with the smallest/largest key and return it. Note that
-we only allow getting and deleting the element with the min/max key and NOT any arbitrary key.</description></item><item><title>Two Pointers &amp; Sliding Window</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</guid><description>Two Pointers # Valid Palindrome # Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:
-Input: Do geese see God? Output: True
-Input: Was it a car or a cat I saw? Output: True
-Input: A brown fox jumping over Output: False
-#include &amp;lt;cctype&amp;gt; // isalnum, tolower #include &amp;lt;iostream&amp;gt; // boolalpha, cin, cout #include &amp;lt;string&amp;gt; // getline bool is_palindrome(std::string s) { int l = 0, r = s.</description></item><item><title>An Overview of 5G Networking</title><link>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</guid><description>from https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/
-Appendix B. An Overview of 5G Networking # This section provides a brief introduction to 5G mobile networking with a perspective on the Transport Network. This section does not intend to replace or define 3GPP architecture, instead its objective is to provide an overview for readers that do not have a mobile background. For more comprehensive information, refer to [TS-23.501].
-B.1. Key Building Blocks # [TS-23.501] defines the Network Functions (UPF, Access and Mobility Function (AMF), etc.</description></item><item><title>Data Center Ethernet</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</guid><description> Intro # Residential vs Data Center Ethernet # Link Aggregation Control Protocol (LACP) # Spanning Tree Protocol # Multiple Spanning Tree Protocol # Multiple Spanning Tree Protocol # ISIS Protocol # Shortest Path Bridge (SPB) # VLAN # LLDP # Data Center Bridging # Pause Frame # Priority Based flow control (PFC) # Enhanced Transmission Selection # # Congestion Notification # DCBX # References:
-Raj Jain Data Center Ethernet by Raj Jain Data Center Tutorial</description></item><item><title>Data Center Technologies</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</guid><description> Intro # Data Center Network Topologies: 3-Tier # 3-Tier Data Center Networks # 3-Tier Data Center Networks (Cont) # 3-Tier Hierarchical Network Design # Problem with 3-Tier Topology # Clos Networks # Fat-Tree DCN # Fat-Tree Topology (Cont) # Advantages of 2-Tier Architecture # Rack-Scale Architecture # References:
-Raj Jain Data Center Network Topologies by Raj Jain</description></item><item><title>Design A Code-Deployment System</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/code-deployment-system/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/code-deployment-system/</guid><description>1. Gathering System Requirements # As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.
-From the answers we were given to our clarifying questions (see Prompt Box), we&amp;rsquo;re building a system that involves repeatedly (in the order of thousands of times per day) building and deploying code to hundreds of thousands of machines spread out across 5-10 regions around the world.</description></item><item><title>Design A Stock-Broker System</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/stock-broker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/stock-broker/</guid><description>1. Gathering System Requirements # As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.
-We&amp;rsquo;re building a stock-brokerage platform like Robinhood that functions as the intermediary between end-customers and some central stock exchange. The idea is that the central stock exchange is the platform that actually executes stock trades, whereas the stockbroker is just the platform that customers talk to when they want to place a trade&amp;ndash;the stock brokerage is &amp;ldquo;simpler&amp;rdquo; and more &amp;ldquo;human-readable&amp;rdquo;, so to speak.</description></item><item><title>Design Amazon</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-amazon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-amazon/</guid><description>1. Gathering System Requirements # As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.
-We&amp;rsquo;re designing the e-commerce side of the Amazon website, and more specifically, the system that supports users searching for items on the Amazon home page, adding items to cart, submitting orders, and those orders being assigned to relevant Amazon warehouses for shipment.</description></item><item><title>Design Slack</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-slack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-slack/</guid><description>1. Gathering System Requirements # As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.
-We&amp;rsquo;re designing the core communication system behind Slack, which allows users to send instant messages in Slack channels.
-Specifically, we&amp;rsquo;ll want to support:
-Loading the most recent messages in a Slack channel when a user clicks on the channel.</description></item><item><title>DNS Overview</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</guid><description>Intro # DNS (Domain Name System) allows you to interact with devices on the Internet without having to remember long strings of numbers. DNS is designed to be used in both the ways like as a TCP or as a UDP. It converts to TCP when it is not able to communicate on UDP.
-What is the Need for DNS? # Every host is identified by the IP address but remembering numbers is very difficult for people also the IP addresses are not static therefore a mapping is required to change the domain name to the IP address.</description></item><item><title>ECMP Load Balancing</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</guid><description>Intro # ECMP Hashing # ECMP is classified into per-flow load balancing and per-packet load balancing.
-Per-flow load balancing can ensure the packet sequence and ensure that the same data flow is forwarded according to the routing entry with the same next hop and different data flows are forwarded according to routing entries with different next hops.
-When multiple routes are installed in the routing table, a hash is used to determine which path a packet follows.</description></item><item><title>Google Drive - Design</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/</guid><description>1. Gathering System Requirements # As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.
-We&amp;rsquo;re designing the core user flow of the Google Drive web application. This consists of storing two main entities: folders and files. More specifically, the system should allow users to create folders, upload and download files, and rename and move entities once they&amp;rsquo;re stored.</description></item><item><title>gRPC on HTTP/2</title><link>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</guid><description> Intro # tbd
-References:
-HTTP/2: Smarter at scale gRPC on HTTP/2: Engineering a robust, high performance protocol</description></item><item><title>IP Fragmentation - IPv4 &amp; IPv6</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</guid><description>Intro # Like IPv4, IPv6 fragmentation divides an IPv6 packet into smaller packets to facilitate transmission across networks with a smaller Maximum Transmission Unit (MTU). Unlike IPv4, fragmentation is not mandatory in IPv6, as all networks support an MTU of at least 1280 bytes.
-Unlike IPv4, IPv6 relies on the source device instead of intermediary routers for fragmentation Unlike IPv4, an IPv6 router does not fragment a packet unless it is the packet’s source.</description></item><item><title>IP Precedence And TOS | DSCP</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</guid><description>Intro # 8 Bits of Type of Service in IP Header.
-IP Precedence # RFC791/RFC1349 Interpretation
-** Bits ** 7-5 IP Precedence
-111 Network Control
-110 Internetwork Control
-101 Critic/ECP
-100 Flash Override
-011 Flash
-010 Immediate
-001 Priority
-000 Routine
-Bits
-4 (1 = Low Delay; 0 = Normal Delay)
-3 (1 = High Throughput; 0 = Normal Throughput)
-2 (1 = High Reliability; 0 = Normal Reliability)</description></item><item><title>Linux traceroute tool</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</guid><description>Intro # The linux traceroute tool is been great use for network engineer for their troubleshooting. The first version of this tool has been introduced 25 years ago. It&amp;rsquo;s relying on the TTL field of the ip-header, keep on incrementing starting on TTL as 1. Along the way, each router decreases the TTL by one, and when it hits zero, the router sends back an ICMP &amp;rsquo;time exceeded&amp;rsquo; message, revealing its identity.</description></item><item><title>Medium Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</guid><description>Medium Complexity # Number Swapper: Write a function to swap a number in place (that is, without temporary variables). Hints - with just addition/substruction arithmatic, XOR.
-Tic Tac Win: Design an algorithm to figure out if someone has won a game of tic-tac-toe.
-Hashing # Two Sum: Find a pair in array whose sum equals to the target input: [10,4,1,3,2] Target: 7 Output: [4,3]
-Hint - insert in hash and then start searching from first element, find the difference with the target and find the hash.</description></item><item><title>Multi Chassis Link Aggregation Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</guid><description>Intro # Link Aggregation Basics # Link aggregation is an ancient technology that allows you to bond multiple parallel links into a single virtual link (link aggregation group – LAG). With parallel links being replaced by a single virtual link, STP detects no loops and all the physical links can be fully utilized.
-I was also told that link aggregation makes your bridged network more stable. Every link state change triggers a Topology Change Notification in spanning tree, potentially sending a large part of your network through the STP listening-learning-forwarding state diagram.</description></item><item><title>Network Virtualization in Cloud Data Centers</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</guid><description>Intro # Geographic Clusters of Data Centers # Data Center Interconnection (DCI) # Challenges of LAN Extension # TRILL # TRILL Architecture # TRILL Encapsulation Format # TRILL Features # GRE # GRE (Cont) # NVGRE # NVGRE (Cont) # NVO3 # NVO3 Terminology # NVO3 Terminology (Cont) # Current NVO Technologies # VXLAN # VXLAN Architecture # VXLAN Deployment Example # ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/VXLAN Deployment Example.png)
-VXLAN Encapsulation Format # !</description></item><item><title>Optical Transceiver(Grey) &amp; Breakout Model</title><link>https://prasenjitmanna.com/tech-book/docs/optical-knowledge/optical-breakout/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/optical-knowledge/optical-breakout/</guid><description>Intro # There are two types of optics, grey and colored. In the grey optics, it has specific wavelength based on the pluggable types and they are used for short distances, while colored optics are designed for longer distance and it has more control on the frequency/wave-length configuration. In general, grey optics are used in router interface. This section covers mostly on Grey Optics.
-Transceiver Names: Your Guide to Decoding Fiber Optics</description></item><item><title>QoS</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</guid><description>Intro # Traffic Shaping # The traffic shapers that we will look at here are commonly called token bucket shapers and are based on a token bucket algorithm which we will see can serve multiple purposes in achieving network QoS. We should note that frequently in networking literature such algorithms were also referred to as leaky bucket algorithms. In all but one case, that we will not be discussing here, these algorithms produce the same results.</description></item><item><title>Spine-leaf Architecture Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</guid><description>Intro # What Is Spine-leaf Architecture? # The spine-leaf architecture consists of only two layers of switches: spine and leaf switches. The spine layer consists of switches that perform routing and work as the core of the network. The leaf layer involves access switches that connect to servers, storage devices, and other end-users. This structure helps data center networks reduce hop count and reduce network latency.
-In the spine-leaf architecture, each leaf switch is connected to each spine switch.</description></item><item><title>TCP Congestion Control</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</guid><description>Intro # TCP is a protocol that is used to transmit information from one computer on the internet to another, and is the protocol I’ll be focused on in this post. What distinguishes TCP from other networking protocols is that it guarantees 100% transmission. This means that if you send 100kb of data from one computer to another using TCP, all 100kb will make it to the other side. This property of TCP is very powerful and is the reason that many network applications we use, such as the web and email are built on top of it.</description></item><item><title>TCP Data Transfer</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</guid><description>Intro # TCP Connection Establishment Handshake # Sync The initiator that is establishing a connection with a target generates a random sequence number (5,045 for this example) and sends a TCP packet with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence number. Sync/Ack Upon receipt of the TCP Sync packet from the initiator, the target sets its ack number value to the received sequenceNumber + 1 (5,046 in this example).</description></item><item><title>First Blog</title><link>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</link><pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</guid><description>Preface # This is my black board for my future technical book. There is no structure of this blog posts. Whenever I find a good technical literature, I am planning to add it here.
-Feedback is very important for any development cycle. Please drop a message at prasenjit.manna@gmail.com.
-Thanks, Prasenjit Manna</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on Technical Book</title><link>https://prasenjitmanna.com/tech-book/</link><description>Recent content in Introduction on Technical Book</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/index.xml" rel="self" type="application/rss+xml"/><item><title>Breadth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</guid><description>&lt;h1 id="breadth-first-search">
+ Breadth First Search
+ &lt;a class="anchor" href="#breadth-first-search">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h2>
+&lt;p>Hopefully, by this time, you&amp;rsquo;ve drunk enough DFS kool-aid to understand its immense power and seen enough visualization to create a call stack in your mind. Now let me introduce the companion spell Breadth First Search (BFS). The names are self-explanatory. While depth first search reaches for depth (child nodes) first before breadth (nodes in the same level/depth), breadth first search visits all nodes in a level before starting to visit the next level.
+While DFS uses &lt;strong>recursion/stack&lt;/strong> to keep track of progress, BFS uses a &lt;strong>queue (First In First Out)&lt;/strong>. When we dequeue a node, we enqueue its children.&lt;/p></description></item><item><title>C++ Tips</title><link>https://prasenjitmanna.com/tech-book/docs/programming-tips/c++/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/programming-tips/c++/</guid><description>&lt;h1 id="c-tips">
+ C++ Tips
+ &lt;a class="anchor" href="#c-tips">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="templates">
+ Templates
+ &lt;a class="anchor" href="#templates">#&lt;/a>
+&lt;/h2>
+&lt;p>A template is a simple yet very powerful tool in C++. The simple idea is to pass the data type as a parameter so that we don’t need to write the same code for different data types. For example, a software company may need to sort() for different data types. Rather than writing and maintaining multiple codes, we can write one sort() and pass the datatype as a parameter.&lt;/p></description></item><item><title>Depth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</guid><description>&lt;h1 id="depth-first-search">
+ Depth First Search
+ &lt;a class="anchor" href="#depth-first-search">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h2>
+&lt;p>The &lt;em>pre-order traversal&lt;/em> of a tree is DFS.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;*&lt;/span> dfs(Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;*&lt;/span> root, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (root &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val &lt;span style="color:#f92672">==&lt;/span> target) &lt;span style="color:#66d9ef">return&lt;/span> root;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// return non-null return value from the recursive calls
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;*&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> dfs(root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>left, target);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (left &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> left;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// at this point, we know left is null, and right could be null or non-null
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// we return right child&amp;#39;s recursive call result directly because
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// - if it&amp;#39;s non-null we should return it
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// - if it&amp;#39;s null, then both left and right are null, we want to return null
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">dfs&lt;/span>(root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>right, target);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Easy Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</guid><description>&lt;h1 id="easy-complexity">
+ Easy Complexity
+ &lt;a class="anchor" href="#easy-complexity">#&lt;/a>
+&lt;/h1>
+&lt;hr></description></item><item><title>Priority Queue and Heap</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</guid><description>&lt;h1 id="priority-queue-and-heap">
+ Priority Queue and Heap
+ &lt;a class="anchor" href="#priority-queue-and-heap">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;p>Priority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue.&lt;/p>
+&lt;h2 id="priority-queue">
+ Priority Queue
+ &lt;a class="anchor" href="#priority-queue">#&lt;/a>
+&lt;/h2>
+&lt;p>A priority queue is a data structure that consists of a collection of items and supports the following operations:&lt;/p>
+&lt;ul>
+&lt;li>insert: insert an item with a key.&lt;/li>
+&lt;li>delete_min/delete_max: remove the item with the smallest/largest key and return it.&lt;/li>
+&lt;/ul>
+&lt;p>Note that&lt;/p></description></item><item><title>Two Pointers &amp; Sliding Window</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</guid><description>&lt;h1 id="two-pointers">
+ Two Pointers
+ &lt;a class="anchor" href="#two-pointers">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="valid-palindrome">
+ Valid Palindrome
+ &lt;a class="anchor" href="#valid-palindrome">#&lt;/a>
+&lt;/h2>
+&lt;p>Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:&lt;/p>
+&lt;p>Input: Do geese see God? Output: True&lt;/p>
+&lt;p>Input: Was it a car or a cat I saw? Output: True&lt;/p>
+&lt;p>Input: A brown fox jumping over Output: False&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;cctype&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// isalnum, tolower
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// boolalpha, cin, cout
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;string&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// getline
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">is_palindrome&lt;/span>(std&lt;span style="color:#f92672">::&lt;/span>string s) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, r &lt;span style="color:#f92672">=&lt;/span> s.size() &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Note 1, 2
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f92672">!&lt;/span>std&lt;span style="color:#f92672">::&lt;/span>isalnum(s[l])) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> l&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f92672">!&lt;/span>std&lt;span style="color:#f92672">::&lt;/span>isalnum(s[r])) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> r&lt;span style="color:#f92672">--&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// compare characters ignoring case
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (std&lt;span style="color:#f92672">::&lt;/span>tolower(s[l]) &lt;span style="color:#f92672">!=&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>tolower(s[r])) &lt;span style="color:#66d9ef">return&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> l&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> r&lt;span style="color:#f92672">--&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>string s;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>getline(std&lt;span style="color:#f92672">::&lt;/span>cin, s);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> res &lt;span style="color:#f92672">=&lt;/span> is_palindrome(s);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>boolalpha &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> res &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#39;\n&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>An Overview of 5G Networking</title><link>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</guid><description>&lt;p>from
+&lt;a href="https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/">https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/&lt;/a>&lt;/p>
+&lt;h2 id="appendix-bhttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08appendix-b-an-overview-of-5g-networkinghttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08name-an-overview-of-5g-networkin">
+ &lt;a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B">Appendix B.&lt;/a> &lt;a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-an-overview-of-5g-networkin">An Overview of 5G Networking&lt;/a>
+ &lt;a class="anchor" href="#appendix-bhttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08appendix-b-an-overview-of-5g-networkinghttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08name-an-overview-of-5g-networkin">#&lt;/a>
+&lt;/h2>
+&lt;p>This section provides a brief introduction to 5G mobile networking with a perspective on the Transport Network. This section does not intend to replace or define 3GPP architecture, instead its objective is to provide an overview for readers that do not have a mobile background. For more comprehensive information, refer to [&lt;a href="https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId-3144">TS-23.501&lt;/a>].&lt;/p></description></item><item><title>Data Center Ethernet</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="residential-vs-data-center-ethernet">
+ Residential vs Data Center Ethernet
+ &lt;a class="anchor" href="#residential-vs-data-center-ethernet">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide4-different-ethernet.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="link-aggregation-control-protocol-lacp">
+ Link Aggregation Control Protocol (LACP)
+ &lt;a class="anchor" href="#link-aggregation-control-protocol-lacp">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide12-lacp.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="spanning-tree-protocol">
+ Spanning Tree Protocol
+ &lt;a class="anchor" href="#spanning-tree-protocol">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide13-stp.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="multiple-spanning-tree-protocol">
+ Multiple Spanning Tree Protocol
+ &lt;a class="anchor" href="#multiple-spanning-tree-protocol">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide16-rstp.png" alt="img|320x271" />&lt;/p></description></item><item><title>Data Center Technologies</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="data-center-network-topologies-3-tier">
+ Data Center Network Topologies: 3-Tier
+ &lt;a class="anchor" href="#data-center-network-topologies-3-tier">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide14.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="3-tier-data-center-networks">
+ 3-Tier Data Center Networks
+ &lt;a class="anchor" href="#3-tier-data-center-networks">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide15.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="3-tier-data-center-networks-cont">
+ 3-Tier Data Center Networks (Cont)
+ &lt;a class="anchor" href="#3-tier-data-center-networks-cont">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide16.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="3-tier-hierarchical-network-design">
+ 3-Tier Hierarchical Network Design
+ &lt;a class="anchor" href="#3-tier-hierarchical-network-design">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide19.png" alt="img|320x271" />&lt;/p></description></item><item><title>Design A Code-Deployment System</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/code-deployment-system/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/code-deployment-system/</guid><description>&lt;h3 id="1-gathering-system-requirements">
+ 1. Gathering System Requirements
+ &lt;a class="anchor" href="#1-gathering-system-requirements">#&lt;/a>
+&lt;/h3>
+&lt;p>As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.&lt;/p>
+&lt;p>From the answers we were given to our clarifying questions (see Prompt Box), we&amp;rsquo;re building a system that involves repeatedly (in the order of thousands of times per day) building and deploying code to hundreds of thousands of machines spread out across &lt;strong>5-10 regions around&lt;/strong> the world.&lt;/p></description></item><item><title>Design A Stock-Broker System</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/stock-broker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/stock-broker/</guid><description>&lt;h3 id="1-gathering-system-requirements">
+ 1. Gathering System Requirements
+ &lt;a class="anchor" href="#1-gathering-system-requirements">#&lt;/a>
+&lt;/h3>
+&lt;p>As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.&lt;/p>
+&lt;p>We&amp;rsquo;re building a stock-brokerage platform like Robinhood that functions as the intermediary between end-customers and some central stock exchange. The idea is that the central stock exchange is the platform that actually executes stock trades, whereas the stockbroker is just the platform that customers talk to when they want to place a trade&amp;ndash;the stock brokerage is &amp;ldquo;simpler&amp;rdquo; and more &amp;ldquo;human-readable&amp;rdquo;, so to speak.&lt;/p></description></item><item><title>Design Amazon</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-amazon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-amazon/</guid><description>&lt;h3 id="1-gathering-system-requirements">
+ 1. Gathering System Requirements
+ &lt;a class="anchor" href="#1-gathering-system-requirements">#&lt;/a>
+&lt;/h3>
+&lt;p>As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.&lt;/p>
+&lt;p>We&amp;rsquo;re designing the e-commerce side of the Amazon website, and more specifically, the system that supports users searching for items on the Amazon home page, adding items to cart, submitting orders, and those orders being assigned to relevant Amazon warehouses for shipment.&lt;/p></description></item><item><title>Design Slack</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-slack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/design-slack/</guid><description>&lt;h3 id="1-gathering-system-requirements">
+ 1. Gathering System Requirements
+ &lt;a class="anchor" href="#1-gathering-system-requirements">#&lt;/a>
+&lt;/h3>
+&lt;p>As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.&lt;/p>
+&lt;p>We&amp;rsquo;re designing the core communication system behind Slack, which allows users to send instant messages in Slack channels.&lt;/p>
+&lt;p>Specifically, we&amp;rsquo;ll want to support:&lt;/p>
+&lt;ul>
+&lt;li>Loading the most recent messages in a Slack channel when a user clicks on the channel.&lt;/li>
+&lt;li>Immediately seeing which channels have unread messages for a particular user when that user loads Slack.&lt;/li>
+&lt;li>Immediately seeing which channels have unread mentions of a particular user, for that particular user, when that user loads Slack, and more specifically, the number of these unread mentions in each relevant channel.&lt;/li>
+&lt;li>Sending and receiving Slack messages instantly, in real time.&lt;/li>
+&lt;li>Cross-device synchronization: if a user has both the Slack desktop app and the Slack mobile app open, with an unread channel in both, and if they read this channel on one device, the second device should immediately be updated and no longer display the channel as unread.&lt;/li>
+&lt;/ul>
+&lt;p>The system should have low latencies and high availability, catering to a single region of roughly 20 million users. The largest Slack organizations will have as many as 50,000 users, with channels of the same size within them.&lt;/p></description></item><item><title>DNS Overview</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>DNS (Domain Name System) allows you to interact with devices on the Internet without having to remember long strings of numbers. DNS is designed to be used in both the ways like as a TCP or as a UDP. It converts to TCP when it is not able to communicate on UDP.&lt;/p>
+&lt;h2 id="what-is-the-need-for-dns">
+ What is the Need for DNS?
+ &lt;a class="anchor" href="#what-is-the-need-for-dns">#&lt;/a>
+&lt;/h2>
+&lt;p>Every host is identified by the IP address but remembering numbers is very difficult for people also the IP addresses are not static therefore a mapping is required to change the domain name to the IP address. So DNS is used to convert the domain name of the websites to their numerical IP address.&lt;/p></description></item><item><title>ECMP Load Balancing</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="ecmp-hashing">
+ ECMP Hashing
+ &lt;a class="anchor" href="#ecmp-hashing">#&lt;/a>
+&lt;/h2>
+&lt;p>ECMP is classified into &lt;strong>per-flow load balancing&lt;/strong> and &lt;strong>per-packet load balancing&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Per-flow&lt;/strong> load balancing can ensure the packet sequence and ensure that the same data flow is forwarded according to the routing entry with the same next hop and different data flows are forwarded according to routing entries with different next hops.&lt;/p></description></item><item><title>Google Drive - Design</title><link>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/systemdesign-tips/google-drive/</guid><description>&lt;h3 id="1-gathering-system-requirements">
+ 1. Gathering System Requirements
+ &lt;a class="anchor" href="#1-gathering-system-requirements">#&lt;/a>
+&lt;/h3>
+&lt;p>As with any systems design interview question, the first thing that we want to do is to gather system requirements; we need to figure out what system we&amp;rsquo;re building exactly.&lt;/p>
+&lt;p>We&amp;rsquo;re designing the core user flow of the &lt;strong>Google Drive&lt;/strong> web application. This consists of storing two main entities: folders and files. More specifically, the system should allow users to create folders, upload and download files, and rename and move entities once they&amp;rsquo;re stored. We don&amp;rsquo;t have to worry about ACLs, sharing entities, or any other auxiliary Google Drive features.&lt;/p></description></item><item><title>gRPC on HTTP/2</title><link>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>tbd&lt;/p>
+&lt;p>&lt;strong>References:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.cncf.io/blog/2018/07/03/http-2-smarter-at-scale/">HTTP/2: Smarter at scale&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.cncf.io/blog/2018/08/31/grpc-on-http-2-engineering-a-robust-high-performance-protocol/">gRPC on HTTP/2: Engineering a robust, high performance protocol&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>IP Fragmentation - IPv4 &amp; IPv6</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>Like IPv4, IPv6 fragmentation divides an IPv6 packet into smaller packets to facilitate transmission across networks with a smaller Maximum Transmission Unit (MTU). Unlike IPv4, fragmentation is not mandatory in IPv6, as all networks support an MTU of at least 1280 bytes.&lt;/p>
+&lt;ul>
+&lt;li>Unlike IPv4, IPv6 relies on the source device instead of intermediary routers for fragmentation&lt;/li>
+&lt;li>Unlike IPv4, an IPv6 router does not fragment a packet unless it is the packet’s source. Intermediate nodes (routers) do not fragment. You will see how an IPv6 device fragments packets when it is the source of the packet with the use of extension headers.
+An IPv6 router drops packets too large for the egress interface and sends an ICMPv6 Packet Too Big message back to the source. Packet Too Big messages include the link’s MTU size in bytes so the source can resize the packet. Therefore, using the largest packet size supported by all the links from the source to the destination is preferable. Path MTUs (PMTUs) are used for this purpose.&lt;/li>
+&lt;/ul>
+&lt;h2 id="path-mtu-discovery">
+ Path MTU Discovery:
+ &lt;a class="anchor" href="#path-mtu-discovery">#&lt;/a>
+&lt;/h2>
+&lt;p>In addition, IPv6 nodes can use the Path MTU Discovery (PMTUD) mechanism to dynamically determine the maximum MTU size along the path to a destination. PMTUD sends packets with the “Don’t Fragment” (DF) flag set and progressively reduces the packet size until a smaller MTU is found. Once the maximum MTU size is determined, the source node can adjust its packet size accordingly to avoid fragmentation.&lt;/p></description></item><item><title>IP Precedence And TOS | DSCP</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>8 Bits of Type of Service in IP Header.&lt;/p>
+&lt;h2 id="ip-precedence">
+ IP Precedence
+ &lt;a class="anchor" href="#ip-precedence">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>RFC791/RFC1349 Interpretation&lt;/p>
+&lt;p>** Bits **
+&lt;strong>7-5 IP Precedence&lt;/strong>&lt;/p>
+&lt;p>111	Network Control&lt;br>
+110	Internetwork Control&lt;br>
+101	Critic/ECP&lt;br>
+100	Flash Override&lt;br>
+011	Flash&lt;br>
+010	Immediate&lt;br>
+001	Priority&lt;br>
+000	Routine&lt;br>&lt;/p>
+&lt;p>&lt;strong>Bits&lt;/strong>&lt;br>
+4 (1 = Low Delay; 0 = Normal Delay)&lt;br>
+3 (1 = High Throughput; 0 = Normal Throughput)&lt;br>
+2 (1 = High Reliability; 0 = Normal Reliability)&lt;br>
+1 (1 = Minimise monetary cost (RFC 1349))&lt;br>
+0 (Must be 0)&lt;br>&lt;/p></description></item><item><title>Linux traceroute tool</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>The linux traceroute tool is been great use for network engineer for their troubleshooting. The first version of this tool has been introduced 25 years ago. It&amp;rsquo;s relying on the TTL field of the ip-header, keep on incrementing starting on TTL as 1. Along the way, each router decreases the TTL by one, and when it hits zero, the router sends back an ICMP &amp;rsquo;time exceeded&amp;rsquo; message, revealing its identity.
+The modern network has evloved over time. Now a ways, it has always the multi-path support for destinations, NAT, etc. Hence, traceroute needs to enhanced to accomodate these use-cases.&lt;/p></description></item><item><title>Medium Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</guid><description>&lt;h1 id="medium-complexity">
+ Medium Complexity
+ &lt;a class="anchor" href="#medium-complexity">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;ul>
+&lt;li>
+&lt;p>Number Swapper: Write a function to swap a number in place (that is, without temporary variables).
+Hints - with just addition/substruction arithmatic, XOR.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Tic Tac Win: Design an algorithm to figure out if someone has won a game of tic-tac-toe.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="hashing">
+ Hashing
+ &lt;a class="anchor" href="#hashing">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>Two Sum: Find a pair in array whose sum equals to the target
+input: [10,4,1,3,2] Target: 7 Output: [4,3]&lt;/p></description></item><item><title>Multi Chassis Link Aggregation Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="link-aggregation-basics">
+ Link Aggregation Basics
+ &lt;a class="anchor" href="#link-aggregation-basics">#&lt;/a>
+&lt;/h2>
+&lt;p>Link aggregation is an ancient technology that allows you to bond multiple parallel links into a single virtual link (link aggregation group – LAG). With parallel links being replaced by a single virtual link, STP detects no loops and all the physical links can be fully utilized.&lt;/p></description></item><item><title>Network Virtualization in Cloud Data Centers</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="geographic-clusters-of-data-centers">
+ Geographic Clusters of Data Centers
+ &lt;a class="anchor" href="#geographic-clusters-of-data-centers">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide3-cluster.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="data-center-interconnection-dci">
+ Data Center Interconnection (DCI)
+ &lt;a class="anchor" href="#data-center-interconnection-dci">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide4-dci.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="challenges-of-lan-extension">
+ Challenges of LAN Extension
+ &lt;a class="anchor" href="#challenges-of-lan-extension">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide5-challenges.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="trill">
+ TRILL
+ &lt;a class="anchor" href="#trill">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide6-trill.png" alt="img|320x271" />&lt;/p></description></item><item><title>Optical Transceiver(Grey) &amp; Breakout Model</title><link>https://prasenjitmanna.com/tech-book/docs/optical-knowledge/optical-breakout/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/optical-knowledge/optical-breakout/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>There are two types of optics, grey and colored. In the grey optics, it has specific wavelength based on the pluggable types and they are used for short distances, while colored optics are designed for longer distance and it has more control on the frequency/wave-length configuration.
+In general, grey optics are used in router interface. This section covers mostly on Grey Optics.&lt;/p></description></item><item><title>QoS</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="traffic-shaping">
+ Traffic Shaping
+ &lt;a class="anchor" href="#traffic-shaping">#&lt;/a>
+&lt;/h2>
+&lt;p>The traffic shapers that we will look at here are commonly called token bucket shapers and are based on a token bucket algorithm which we will see can serve multiple purposes in achieving network QoS. We should note that frequently in networking literature such algorithms were also referred to as leaky bucket algorithms. In all but one case, that we will not be discussing here, these algorithms produce the same results. Use the token bucket and leaky bucket Wikipedia entries as a guide if you are reading older networking literature.&lt;/p></description></item><item><title>Spine-leaf Architecture Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="what-is-spine-leaf-architecture">
+ What Is Spine-leaf Architecture?
+ &lt;a class="anchor" href="#what-is-spine-leaf-architecture">#&lt;/a>
+&lt;/h2>
+&lt;p>The spine-leaf architecture consists of only two layers of switches: spine and leaf switches. The spine layer consists of switches that perform routing and work as the core of the network. The leaf layer involves access switches that connect to servers, storage devices, and other end-users. This structure helps data center networks reduce hop count and reduce network latency.&lt;/p></description></item><item><title>TCP Congestion Control</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>TCP is a protocol that is used to transmit information from one computer on the internet to another, and is the protocol I’ll be focused on in this post. What distinguishes TCP from other networking protocols is that it guarantees 100% transmission. This means that if you send 100kb of data from one computer to another using TCP, all 100kb will make it to the other side.
+This property of TCP is very powerful and is the reason that many network applications we use, such as the web and email are built on top of it.
+The way TCP is able to accomplish this goal of trasmitting all the information that is sent over the wire is that for every segment of data that is sent from party A to party B, party B sends an “acknowledgement” segment back to party A indicating that it got that message.&lt;/p></description></item><item><title>TCP Data Transfer</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="tcp-connection-establishment-handshake">
+ TCP Connection Establishment Handshake
+ &lt;a class="anchor" href="#tcp-connection-establishment-handshake">#&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>Sync
+The initiator that is establishing a connection with a target generates a
+random sequence number (5,045 for this example) and sends a TCP packet
+with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence
+number.&lt;/li>
+&lt;li>Sync/Ack
+Upon receipt of the TCP Sync packet from the initiator, the target sets its ack
+number value to the received sequenceNumber + 1 (5,046 in this example). The
+target responds by setting its own sequence number to a random value
+(17,764 in this example) and sending a TCP packet whose sync and ack flags
+are both set to 1 and whose sequenceNumber is set to the just-defined sequence
+number value and whose ackNumber is set to the target’s just-set ack number.&lt;/li>
+&lt;li>Ack
+Upon receipt of the TCP Sync/Ack packet, the initiator sets its ack number to
+the received sequenceNumber + 1. The initiator then sends a TCP Ack packet to
+the target whose ack flag is set to 1 and whose sequenceNumber and ackNumber
+are set to the initiator’s corresponding internal values.
+&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/tcp-conn/tcp-3way-handshake.png" alt="img|320x271" />&lt;/li>
+&lt;/ol>
+&lt;h2 id="tcp-connection-termination-handshake">
+ TCP Connection Termination Handshake
+ &lt;a class="anchor" href="#tcp-connection-termination-handshake">#&lt;/a>
+&lt;/h2>
+&lt;p>The steps in a four-way TCP connection termination handshake are thus.&lt;/p></description></item><item><title>First Blog</title><link>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</link><pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</guid><description>&lt;h2 id="preface">
+ Preface
+ &lt;a class="anchor" href="#preface">#&lt;/a>
+&lt;/h2>
+&lt;p>This is my black board for my future technical book. There is no structure of this blog posts. Whenever I find a good technical literature, I am planning to add it here.&lt;/p>
+&lt;p>Feedback is very important for any development cycle. Please drop a message at &lt;a href="mailto:prasenjit.manna@gmail.com">prasenjit.manna@gmail.com&lt;/a>.&lt;/p>
+&lt;p>Thanks,
+Prasenjit Manna&lt;/p></description></item></channel></rss>

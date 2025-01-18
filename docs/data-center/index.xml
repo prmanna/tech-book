@@ -1,4 +1,70 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Center Tips on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/</link><description>Recent content in Data Center Tips on Technical Book</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/data-center/index.xml" rel="self" type="application/rss+xml"/><item><title>Data Center Ethernet</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</guid><description> Intro # Residential vs Data Center Ethernet # Link Aggregation Control Protocol (LACP) # Spanning Tree Protocol # Multiple Spanning Tree Protocol # Multiple Spanning Tree Protocol # ISIS Protocol # Shortest Path Bridge (SPB) # VLAN # LLDP # Data Center Bridging # Pause Frame # Priority Based flow control (PFC) # Enhanced Transmission Selection # # Congestion Notification # DCBX # References:
-Raj Jain Data Center Ethernet by Raj Jain Data Center Tutorial</description></item><item><title>Data Center Technologies</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</guid><description> Intro # Data Center Network Topologies: 3-Tier # 3-Tier Data Center Networks # 3-Tier Data Center Networks (Cont) # 3-Tier Hierarchical Network Design # Problem with 3-Tier Topology # Clos Networks # Fat-Tree DCN # Fat-Tree Topology (Cont) # Advantages of 2-Tier Architecture # Rack-Scale Architecture # References:
-Raj Jain Data Center Network Topologies by Raj Jain</description></item><item><title>Network Virtualization in Cloud Data Centers</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</guid><description>Intro # Geographic Clusters of Data Centers # Data Center Interconnection (DCI) # Challenges of LAN Extension # TRILL # TRILL Architecture # TRILL Encapsulation Format # TRILL Features # GRE # GRE (Cont) # NVGRE # NVGRE (Cont) # NVO3 # NVO3 Terminology # NVO3 Terminology (Cont) # Current NVO Technologies # VXLAN # VXLAN Architecture # VXLAN Deployment Example # ![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/VXLAN Deployment Example.png)
-VXLAN Encapsulation Format # !</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Center Tips on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/</link><description>Recent content in Data Center Tips on Technical Book</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/data-center/index.xml" rel="self" type="application/rss+xml"/><item><title>Data Center Ethernet</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="residential-vs-data-center-ethernet">
+ Residential vs Data Center Ethernet
+ &lt;a class="anchor" href="#residential-vs-data-center-ethernet">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide4-different-ethernet.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="link-aggregation-control-protocol-lacp">
+ Link Aggregation Control Protocol (LACP)
+ &lt;a class="anchor" href="#link-aggregation-control-protocol-lacp">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide12-lacp.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="spanning-tree-protocol">
+ Spanning Tree Protocol
+ &lt;a class="anchor" href="#spanning-tree-protocol">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide13-stp.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="multiple-spanning-tree-protocol">
+ Multiple Spanning Tree Protocol
+ &lt;a class="anchor" href="#multiple-spanning-tree-protocol">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-ethernet/slide16-rstp.png" alt="img|320x271" />&lt;/p></description></item><item><title>Data Center Technologies</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-technologies/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="data-center-network-topologies-3-tier">
+ Data Center Network Topologies: 3-Tier
+ &lt;a class="anchor" href="#data-center-network-topologies-3-tier">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide14.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="3-tier-data-center-networks">
+ 3-Tier Data Center Networks
+ &lt;a class="anchor" href="#3-tier-data-center-networks">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide15.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="3-tier-data-center-networks-cont">
+ 3-Tier Data Center Networks (Cont)
+ &lt;a class="anchor" href="#3-tier-data-center-networks-cont">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide16.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="3-tier-hierarchical-network-design">
+ 3-Tier Hierarchical Network Design
+ &lt;a class="anchor" href="#3-tier-hierarchical-network-design">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-tech/slide19.png" alt="img|320x271" />&lt;/p></description></item><item><title>Network Virtualization in Cloud Data Centers</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-network-virtualization/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="geographic-clusters-of-data-centers">
+ Geographic Clusters of Data Centers
+ &lt;a class="anchor" href="#geographic-clusters-of-data-centers">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide3-cluster.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="data-center-interconnection-dci">
+ Data Center Interconnection (DCI)
+ &lt;a class="anchor" href="#data-center-interconnection-dci">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide4-dci.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="challenges-of-lan-extension">
+ Challenges of LAN Extension
+ &lt;a class="anchor" href="#challenges-of-lan-extension">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide5-challenges.png" alt="img|320x271" />&lt;/p>
+&lt;h2 id="trill">
+ TRILL
+ &lt;a class="anchor" href="#trill">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/dc-virtualization/slide6-trill.png" alt="img|320x271" />&lt;/p></description></item></channel></rss>

@@ -1,21 +1,127 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Networking Tips on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/</link><description>Recent content in Networking Tips on Technical Book</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/networking-tips/index.xml" rel="self" type="application/rss+xml"/><item><title>DNS Overview</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</guid><description>Intro # DNS (Domain Name System) allows you to interact with devices on the Internet without having to remember long strings of numbers. DNS is designed to be used in both the ways like as a TCP or as a UDP. It converts to TCP when it is not able to communicate on UDP.
-What is the Need for DNS? # Every host is identified by the IP address but remembering numbers is very difficult for people also the IP addresses are not static therefore a mapping is required to change the domain name to the IP address.</description></item><item><title>ECMP Load Balancing</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</guid><description>Intro # ECMP Hashing # ECMP is classified into per-flow load balancing and per-packet load balancing.
-Per-flow load balancing can ensure the packet sequence and ensure that the same data flow is forwarded according to the routing entry with the same next hop and different data flows are forwarded according to routing entries with different next hops.
-When multiple routes are installed in the routing table, a hash is used to determine which path a packet follows.</description></item><item><title>IP Fragmentation - IPv4 &amp; IPv6</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</guid><description>Intro # Like IPv4, IPv6 fragmentation divides an IPv6 packet into smaller packets to facilitate transmission across networks with a smaller Maximum Transmission Unit (MTU). Unlike IPv4, fragmentation is not mandatory in IPv6, as all networks support an MTU of at least 1280 bytes.
-Unlike IPv4, IPv6 relies on the source device instead of intermediary routers for fragmentation Unlike IPv4, an IPv6 router does not fragment a packet unless it is the packet’s source.</description></item><item><title>IP Precedence And TOS | DSCP</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</guid><description>Intro # 8 Bits of Type of Service in IP Header.
-IP Precedence # RFC791/RFC1349 Interpretation
-** Bits ** 7-5 IP Precedence
-111 Network Control
-110 Internetwork Control
-101 Critic/ECP
-100 Flash Override
-011 Flash
-010 Immediate
-001 Priority
-000 Routine
-Bits
-4 (1 = Low Delay; 0 = Normal Delay)
-3 (1 = High Throughput; 0 = Normal Throughput)
-2 (1 = High Reliability; 0 = Normal Reliability)</description></item><item><title>Linux traceroute tool</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</guid><description>Intro # The linux traceroute tool is been great use for network engineer for their troubleshooting. The first version of this tool has been introduced 25 years ago. It&amp;rsquo;s relying on the TTL field of the ip-header, keep on incrementing starting on TTL as 1. Along the way, each router decreases the TTL by one, and when it hits zero, the router sends back an ICMP &amp;rsquo;time exceeded&amp;rsquo; message, revealing its identity.</description></item><item><title>Multi Chassis Link Aggregation Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</guid><description>Intro # Link Aggregation Basics # Link aggregation is an ancient technology that allows you to bond multiple parallel links into a single virtual link (link aggregation group – LAG). With parallel links being replaced by a single virtual link, STP detects no loops and all the physical links can be fully utilized.
-I was also told that link aggregation makes your bridged network more stable. Every link state change triggers a Topology Change Notification in spanning tree, potentially sending a large part of your network through the STP listening-learning-forwarding state diagram.</description></item><item><title>QoS</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</guid><description>Intro # Traffic Shaping # The traffic shapers that we will look at here are commonly called token bucket shapers and are based on a token bucket algorithm which we will see can serve multiple purposes in achieving network QoS. We should note that frequently in networking literature such algorithms were also referred to as leaky bucket algorithms. In all but one case, that we will not be discussing here, these algorithms produce the same results.</description></item><item><title>Spine-leaf Architecture Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</guid><description>Intro # What Is Spine-leaf Architecture? # The spine-leaf architecture consists of only two layers of switches: spine and leaf switches. The spine layer consists of switches that perform routing and work as the core of the network. The leaf layer involves access switches that connect to servers, storage devices, and other end-users. This structure helps data center networks reduce hop count and reduce network latency.
-In the spine-leaf architecture, each leaf switch is connected to each spine switch.</description></item><item><title>TCP Congestion Control</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</guid><description>Intro # TCP is a protocol that is used to transmit information from one computer on the internet to another, and is the protocol I’ll be focused on in this post. What distinguishes TCP from other networking protocols is that it guarantees 100% transmission. This means that if you send 100kb of data from one computer to another using TCP, all 100kb will make it to the other side. This property of TCP is very powerful and is the reason that many network applications we use, such as the web and email are built on top of it.</description></item><item><title>TCP Data Transfer</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</guid><description>Intro # TCP Connection Establishment Handshake # Sync The initiator that is establishing a connection with a target generates a random sequence number (5,045 for this example) and sends a TCP packet with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence number. Sync/Ack Upon receipt of the TCP Sync packet from the initiator, the target sets its ack number value to the received sequenceNumber + 1 (5,046 in this example).</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Networking Tips on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/</link><description>Recent content in Networking Tips on Technical Book</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/networking-tips/index.xml" rel="self" type="application/rss+xml"/><item><title>DNS Overview</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/dns/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>DNS (Domain Name System) allows you to interact with devices on the Internet without having to remember long strings of numbers. DNS is designed to be used in both the ways like as a TCP or as a UDP. It converts to TCP when it is not able to communicate on UDP.&lt;/p>
+&lt;h2 id="what-is-the-need-for-dns">
+ What is the Need for DNS?
+ &lt;a class="anchor" href="#what-is-the-need-for-dns">#&lt;/a>
+&lt;/h2>
+&lt;p>Every host is identified by the IP address but remembering numbers is very difficult for people also the IP addresses are not static therefore a mapping is required to change the domain name to the IP address. So DNS is used to convert the domain name of the websites to their numerical IP address.&lt;/p></description></item><item><title>ECMP Load Balancing</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ecmp/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="ecmp-hashing">
+ ECMP Hashing
+ &lt;a class="anchor" href="#ecmp-hashing">#&lt;/a>
+&lt;/h2>
+&lt;p>ECMP is classified into &lt;strong>per-flow load balancing&lt;/strong> and &lt;strong>per-packet load balancing&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Per-flow&lt;/strong> load balancing can ensure the packet sequence and ensure that the same data flow is forwarded according to the routing entry with the same next hop and different data flows are forwarded according to routing entries with different next hops.&lt;/p></description></item><item><title>IP Fragmentation - IPv4 &amp; IPv6</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-fragmentation/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>Like IPv4, IPv6 fragmentation divides an IPv6 packet into smaller packets to facilitate transmission across networks with a smaller Maximum Transmission Unit (MTU). Unlike IPv4, fragmentation is not mandatory in IPv6, as all networks support an MTU of at least 1280 bytes.&lt;/p>
+&lt;ul>
+&lt;li>Unlike IPv4, IPv6 relies on the source device instead of intermediary routers for fragmentation&lt;/li>
+&lt;li>Unlike IPv4, an IPv6 router does not fragment a packet unless it is the packet’s source. Intermediate nodes (routers) do not fragment. You will see how an IPv6 device fragments packets when it is the source of the packet with the use of extension headers.
+An IPv6 router drops packets too large for the egress interface and sends an ICMPv6 Packet Too Big message back to the source. Packet Too Big messages include the link’s MTU size in bytes so the source can resize the packet. Therefore, using the largest packet size supported by all the links from the source to the destination is preferable. Path MTUs (PMTUs) are used for this purpose.&lt;/li>
+&lt;/ul>
+&lt;h2 id="path-mtu-discovery">
+ Path MTU Discovery:
+ &lt;a class="anchor" href="#path-mtu-discovery">#&lt;/a>
+&lt;/h2>
+&lt;p>In addition, IPv6 nodes can use the Path MTU Discovery (PMTUD) mechanism to dynamically determine the maximum MTU size along the path to a destination. PMTUD sends packets with the “Don’t Fragment” (DF) flag set and progressively reduces the packet size until a smaller MTU is found. Once the maximum MTU size is determined, the source node can adjust its packet size accordingly to avoid fragmentation.&lt;/p></description></item><item><title>IP Precedence And TOS | DSCP</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/ip-tos-dscp/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>8 Bits of Type of Service in IP Header.&lt;/p>
+&lt;h2 id="ip-precedence">
+ IP Precedence
+ &lt;a class="anchor" href="#ip-precedence">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>RFC791/RFC1349 Interpretation&lt;/p>
+&lt;p>** Bits **
+&lt;strong>7-5 IP Precedence&lt;/strong>&lt;/p>
+&lt;p>111	Network Control&lt;br>
+110	Internetwork Control&lt;br>
+101	Critic/ECP&lt;br>
+100	Flash Override&lt;br>
+011	Flash&lt;br>
+010	Immediate&lt;br>
+001	Priority&lt;br>
+000	Routine&lt;br>&lt;/p>
+&lt;p>&lt;strong>Bits&lt;/strong>&lt;br>
+4 (1 = Low Delay; 0 = Normal Delay)&lt;br>
+3 (1 = High Throughput; 0 = Normal Throughput)&lt;br>
+2 (1 = High Reliability; 0 = Normal Reliability)&lt;br>
+1 (1 = Minimise monetary cost (RFC 1349))&lt;br>
+0 (Must be 0)&lt;br>&lt;/p></description></item><item><title>Linux traceroute tool</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/traceroute/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>The linux traceroute tool is been great use for network engineer for their troubleshooting. The first version of this tool has been introduced 25 years ago. It&amp;rsquo;s relying on the TTL field of the ip-header, keep on incrementing starting on TTL as 1. Along the way, each router decreases the TTL by one, and when it hits zero, the router sends back an ICMP &amp;rsquo;time exceeded&amp;rsquo; message, revealing its identity.
+The modern network has evloved over time. Now a ways, it has always the multi-path support for destinations, NAT, etc. Hence, traceroute needs to enhanced to accomodate these use-cases.&lt;/p></description></item><item><title>Multi Chassis Link Aggregation Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/mlag/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="link-aggregation-basics">
+ Link Aggregation Basics
+ &lt;a class="anchor" href="#link-aggregation-basics">#&lt;/a>
+&lt;/h2>
+&lt;p>Link aggregation is an ancient technology that allows you to bond multiple parallel links into a single virtual link (link aggregation group – LAG). With parallel links being replaced by a single virtual link, STP detects no loops and all the physical links can be fully utilized.&lt;/p></description></item><item><title>QoS</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/qos/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="traffic-shaping">
+ Traffic Shaping
+ &lt;a class="anchor" href="#traffic-shaping">#&lt;/a>
+&lt;/h2>
+&lt;p>The traffic shapers that we will look at here are commonly called token bucket shapers and are based on a token bucket algorithm which we will see can serve multiple purposes in achieving network QoS. We should note that frequently in networking literature such algorithms were also referred to as leaky bucket algorithms. In all but one case, that we will not be discussing here, these algorithms produce the same results. Use the token bucket and leaky bucket Wikipedia entries as a guide if you are reading older networking literature.&lt;/p></description></item><item><title>Spine-leaf Architecture Basics</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/spine-leaf-arch/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="what-is-spine-leaf-architecture">
+ What Is Spine-leaf Architecture?
+ &lt;a class="anchor" href="#what-is-spine-leaf-architecture">#&lt;/a>
+&lt;/h2>
+&lt;p>The spine-leaf architecture consists of only two layers of switches: spine and leaf switches. The spine layer consists of switches that perform routing and work as the core of the network. The leaf layer involves access switches that connect to servers, storage devices, and other end-users. This structure helps data center networks reduce hop count and reduce network latency.&lt;/p></description></item><item><title>TCP Congestion Control</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-congestion/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>TCP is a protocol that is used to transmit information from one computer on the internet to another, and is the protocol I’ll be focused on in this post. What distinguishes TCP from other networking protocols is that it guarantees 100% transmission. This means that if you send 100kb of data from one computer to another using TCP, all 100kb will make it to the other side.
+This property of TCP is very powerful and is the reason that many network applications we use, such as the web and email are built on top of it.
+The way TCP is able to accomplish this goal of trasmitting all the information that is sent over the wire is that for every segment of data that is sent from party A to party B, party B sends an “acknowledgement” segment back to party A indicating that it got that message.&lt;/p></description></item><item><title>TCP Data Transfer</title><link>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/networking-tips/tcp-data-transfer/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="tcp-connection-establishment-handshake">
+ TCP Connection Establishment Handshake
+ &lt;a class="anchor" href="#tcp-connection-establishment-handshake">#&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>Sync
+The initiator that is establishing a connection with a target generates a
+random sequence number (5,045 for this example) and sends a TCP packet
+with its sync flag set to 1 and its sequenceNumber set to the just-defined sequence
+number.&lt;/li>
+&lt;li>Sync/Ack
+Upon receipt of the TCP Sync packet from the initiator, the target sets its ack
+number value to the received sequenceNumber + 1 (5,046 in this example). The
+target responds by setting its own sequence number to a random value
+(17,764 in this example) and sending a TCP packet whose sync and ack flags
+are both set to 1 and whose sequenceNumber is set to the just-defined sequence
+number value and whose ackNumber is set to the target’s just-set ack number.&lt;/li>
+&lt;li>Ack
+Upon receipt of the TCP Sync/Ack packet, the initiator sets its ack number to
+the received sequenceNumber + 1. The initiator then sends a TCP Ack packet to
+the target whose ack flag is set to 1 and whose sequenceNumber and ackNumber
+are set to the initiator’s corresponding internal values.
+&lt;img src="https://prasenjitmanna.com/tech-book/diagrams/tcp-conn/tcp-3way-handshake.png" alt="img|320x271" />&lt;/li>
+&lt;/ol>
+&lt;h2 id="tcp-connection-termination-handshake">
+ TCP Connection Termination Handshake
+ &lt;a class="anchor" href="#tcp-connection-termination-handshake">#&lt;/a>
+&lt;/h2>
+&lt;p>The steps in a four-way TCP connection termination handshake are thus.&lt;/p></description></item></channel></rss>

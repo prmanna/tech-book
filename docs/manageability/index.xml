@@ -1,3 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Manageability on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/manageability/</link><description>Recent content in Manageability on Technical Book</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/manageability/index.xml" rel="self" type="application/rss+xml"/><item><title>gRPC on HTTP/2</title><link>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</guid><description> Intro # tbd
-References:
-HTTP/2: Smarter at scale gRPC on HTTP/2: Engineering a robust, high performance protocol</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Manageability on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/manageability/</link><description>Recent content in Manageability on Technical Book</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/manageability/index.xml" rel="self" type="application/rss+xml"/><item><title>gRPC on HTTP/2</title><link>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/manageability/why-grpc-on-http2/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>tbd&lt;/p>
+&lt;p>&lt;strong>References:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.cncf.io/blog/2018/07/03/http-2-smarter-at-scale/">HTTP/2: Smarter at scale&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.cncf.io/blog/2018/08/31/grpc-on-http-2-engineering-a-robust-high-performance-protocol/">gRPC on HTTP/2: Engineering a robust, high performance protocol&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

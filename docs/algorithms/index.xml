@@ -1,12 +1,114 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithms on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/</link><description>Recent content in Algorithms on Technical Book</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/algorithms/index.xml" rel="self" type="application/rss+xml"/><item><title>Breadth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</guid><description>Breadth First Search # Intro # Hopefully, by this time, you&amp;rsquo;ve drunk enough DFS kool-aid to understand its immense power and seen enough visualization to create a call stack in your mind. Now let me introduce the companion spell Breadth First Search (BFS). The names are self-explanatory. While depth first search reaches for depth (child nodes) first before breadth (nodes in the same level/depth), breadth first search visits all nodes in a level before starting to visit the next level.</description></item><item><title>Depth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</guid><description>Depth First Search # Intro # The pre-order traversal of a tree is DFS.
-Node&amp;lt;int&amp;gt;* dfs(Node&amp;lt;int&amp;gt;* root, int target) { if (root == nullptr) return nullptr; if (root-&amp;gt;val == target) return root; // return non-null return value from the recursive calls Node&amp;lt;int&amp;gt;* left = dfs(root-&amp;gt;left, target); if (left != nullptr) return left; // at this point, we know left is null, and right could be null or non-null // we return right child&amp;#39;s recursive call result directly because // - if it&amp;#39;s non-null we should return it // - if it&amp;#39;s null, then both left and right are null, we want to return null return dfs(root-&amp;gt;right, target); } Max depth of a binary tree # Max depth of a binary tree is the longest root-to-leaf path.</description></item><item><title>Easy Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</guid><description> Easy Complexity #</description></item><item><title>Priority Queue and Heap</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</guid><description>Priority Queue and Heap # Priority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue.
-Priority Queue # A priority queue is a data structure that consists of a collection of items and supports the following operations:
-insert: insert an item with a key. delete_min/delete_max: remove the item with the smallest/largest key and return it. Note that
-we only allow getting and deleting the element with the min/max key and NOT any arbitrary key.</description></item><item><title>Two Pointers &amp; Sliding Window</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</guid><description>Two Pointers # Valid Palindrome # Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:
-Input: Do geese see God? Output: True
-Input: Was it a car or a cat I saw? Output: True
-Input: A brown fox jumping over Output: False
-#include &amp;lt;cctype&amp;gt; // isalnum, tolower #include &amp;lt;iostream&amp;gt; // boolalpha, cin, cout #include &amp;lt;string&amp;gt; // getline bool is_palindrome(std::string s) { int l = 0, r = s.</description></item><item><title>Medium Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</guid><description>Medium Complexity # Number Swapper: Write a function to swap a number in place (that is, without temporary variables). Hints - with just addition/substruction arithmatic, XOR.
-Tic Tac Win: Design an algorithm to figure out if someone has won a game of tic-tac-toe.
-Hashing # Two Sum: Find a pair in array whose sum equals to the target input: [10,4,1,3,2] Target: 7 Output: [4,3]
-Hint - insert in hash and then start searching from first element, find the difference with the target and find the hash.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithms on Technical Book</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/</link><description>Recent content in Algorithms on Technical Book</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://prasenjitmanna.com/tech-book/docs/algorithms/index.xml" rel="self" type="application/rss+xml"/><item><title>Breadth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/breadth-first-search/</guid><description>&lt;h1 id="breadth-first-search">
+ Breadth First Search
+ &lt;a class="anchor" href="#breadth-first-search">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h2>
+&lt;p>Hopefully, by this time, you&amp;rsquo;ve drunk enough DFS kool-aid to understand its immense power and seen enough visualization to create a call stack in your mind. Now let me introduce the companion spell Breadth First Search (BFS). The names are self-explanatory. While depth first search reaches for depth (child nodes) first before breadth (nodes in the same level/depth), breadth first search visits all nodes in a level before starting to visit the next level.
+While DFS uses &lt;strong>recursion/stack&lt;/strong> to keep track of progress, BFS uses a &lt;strong>queue (First In First Out)&lt;/strong>. When we dequeue a node, we enqueue its children.&lt;/p></description></item><item><title>Depth First Search</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/depth-first-search/</guid><description>&lt;h1 id="depth-first-search">
+ Depth First Search
+ &lt;a class="anchor" href="#depth-first-search">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h2>
+&lt;p>The &lt;em>pre-order traversal&lt;/em> of a tree is DFS.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;*&lt;/span> dfs(Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;*&lt;/span> root, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (root &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val &lt;span style="color:#f92672">==&lt;/span> target) &lt;span style="color:#66d9ef">return&lt;/span> root;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// return non-null return value from the recursive calls
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;*&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> dfs(root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>left, target);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (left &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> left;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// at this point, we know left is null, and right could be null or non-null
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// we return right child&amp;#39;s recursive call result directly because
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// - if it&amp;#39;s non-null we should return it
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// - if it&amp;#39;s null, then both left and right are null, we want to return null
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">dfs&lt;/span>(root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>right, target);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Easy Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/easy/</guid><description>&lt;h1 id="easy-complexity">
+ Easy Complexity
+ &lt;a class="anchor" href="#easy-complexity">#&lt;/a>
+&lt;/h1>
+&lt;hr></description></item><item><title>Priority Queue and Heap</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/priority-queue-and-heap/</guid><description>&lt;h1 id="priority-queue-and-heap">
+ Priority Queue and Heap
+ &lt;a class="anchor" href="#priority-queue-and-heap">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;p>Priority Queue is an Abstract Data Type, and Heap is the concrete data structure we use to implement a priority queue.&lt;/p>
+&lt;h2 id="priority-queue">
+ Priority Queue
+ &lt;a class="anchor" href="#priority-queue">#&lt;/a>
+&lt;/h2>
+&lt;p>A priority queue is a data structure that consists of a collection of items and supports the following operations:&lt;/p>
+&lt;ul>
+&lt;li>insert: insert an item with a key.&lt;/li>
+&lt;li>delete_min/delete_max: remove the item with the smallest/largest key and return it.&lt;/li>
+&lt;/ul>
+&lt;p>Note that&lt;/p></description></item><item><title>Two Pointers &amp; Sliding Window</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/two-pointers/</guid><description>&lt;h1 id="two-pointers">
+ Two Pointers
+ &lt;a class="anchor" href="#two-pointers">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="valid-palindrome">
+ Valid Palindrome
+ &lt;a class="anchor" href="#valid-palindrome">#&lt;/a>
+&lt;/h2>
+&lt;p>Determine whether a string is a palindrome, ignoring non-alphanumeric characters and case. Examples:&lt;/p>
+&lt;p>Input: Do geese see God? Output: True&lt;/p>
+&lt;p>Input: Was it a car or a cat I saw? Output: True&lt;/p>
+&lt;p>Input: A brown fox jumping over Output: False&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;cctype&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// isalnum, tolower
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// boolalpha, cin, cout
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;string&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// getline
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">is_palindrome&lt;/span>(std&lt;span style="color:#f92672">::&lt;/span>string s) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, r &lt;span style="color:#f92672">=&lt;/span> s.size() &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Note 1, 2
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f92672">!&lt;/span>std&lt;span style="color:#f92672">::&lt;/span>isalnum(s[l])) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> l&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f92672">!&lt;/span>std&lt;span style="color:#f92672">::&lt;/span>isalnum(s[r])) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> r&lt;span style="color:#f92672">--&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// compare characters ignoring case
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (std&lt;span style="color:#f92672">::&lt;/span>tolower(s[l]) &lt;span style="color:#f92672">!=&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>tolower(s[r])) &lt;span style="color:#66d9ef">return&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> l&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> r&lt;span style="color:#f92672">--&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>string s;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>getline(std&lt;span style="color:#f92672">::&lt;/span>cin, s);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> res &lt;span style="color:#f92672">=&lt;/span> is_palindrome(s);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>boolalpha &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> res &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#39;\n&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item><item><title>Medium Complexity</title><link>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/algorithms/medium/</guid><description>&lt;h1 id="medium-complexity">
+ Medium Complexity
+ &lt;a class="anchor" href="#medium-complexity">#&lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;ul>
+&lt;li>
+&lt;p>Number Swapper: Write a function to swap a number in place (that is, without temporary variables).
+Hints - with just addition/substruction arithmatic, XOR.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Tic Tac Win: Design an algorithm to figure out if someone has won a game of tic-tac-toe.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="hashing">
+ Hashing
+ &lt;a class="anchor" href="#hashing">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>Two Sum: Find a pair in array whose sum equals to the target
+input: [10,4,1,3,2] Target: 7 Output: [4,3]&lt;/p></description></item></channel></rss>
