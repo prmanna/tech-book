@@ -24,7 +24,7 @@ MLAG nicely solves two problems:
 * When used in the network core, multiple links appear as a single link. No bandwidth is wasted due to STP loop prevention while you still retain almost full redundancy – just make sure you always read the smallprint to understand what happens when one of the two switches in the MLAG pair fails.
 * When used between a server and a pair of top-of-rack switches, it allows the server to use the full aggregate bandwidth while still retaining resiliency against a link or switch failure.
 
-## MC-LAG (Multi-Chassis Link Aggregation Group)
+## Multi-Chassis Link Aggregation Group (MC-LAG)
 
 ### Overview
 
