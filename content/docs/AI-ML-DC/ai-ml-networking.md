@@ -63,12 +63,12 @@ Let’s start the forward pass process from neuron H3 in the hidden layer. First
 
 The weighted sum calculation (Z3) for neuron H3:
 ```
-_Z3 = (X1 ⋅ W31) + (X2 ⋅ W32) + b3_
+Z3 = (X1 ⋅ W31) + (X2 ⋅ W32) + b3
 
-_Given:_
-_Z3 = (1 ⋅ 0.5) + (0 ⋅ 0.5) + 0_
-_Z3 = 0.5 + 0 + 0_
-_Z3 = 0.5_
+Given:
+Z3 = (1 ⋅ 0.5) + (0 ⋅ 0.5) + 0
+Z3 = 0.5 + 0 + 0
+Z3 = 0.5
 ```
 
 To get the activation value a3 (shown as H3=0.5 in figure), we apply the ReLU function. The ReLU function outputs zero (0) if the calculated weighted sum Z is less than or equal to zero; otherwise, it outputs the value of the weighted sum Z.
@@ -79,12 +79,14 @@ The activation value a3 for H3 is:
 
 The weighted sum calculation for neuron H4:
 
-> _Z4 = (X1 ⋅ W41) + (X2 ⋅ W42) + b4_
-> 
-> _Given:_
-> _Z4 = (1 ⋅ 1) + (0 ⋅1) + 0.5_
-> _Z4 = 1 + 0 + 0.5_
-> _Z4 = 1.5_
+```
+Z4 = (X1 ⋅ W41) + (X2 ⋅ W42) + b4
+
+Given:
+Z4 = (1 ⋅ 1) + (0 ⋅1) + 0.5
+Z4 = 1 + 0 + 0.5
+Z4 = 1.5
+```
 
 The activation value using ReLU for Z4 is:
 
@@ -104,12 +106,14 @@ After calculating the loss, backpropagation is initiated to minimize this loss. 
 
 Loss function is calculated using the formula below:
 
-> _Loss (L) = (H3 x W53 + H4 x W54 + b5 – Ye)2_
-> _Given:_
-> _L = (0.5 x 1 + 1.5 x 1 + 0.5 - 2)2_
-> _L = (0.5 + 1.5 + 0.5 - 2)2_
-> _L = 0.52_
-> _L= 0.25_
+```
+Loss (L) = (H3 x W53 + H4 x W54 + b5 – Ye)2
+Given:
+L = (0.5 x 1 + 1.5 x 1 + 0.5 - 2)2
+L = (0.5 + 1.5 + 0.5 - 2)2
+L = 0.52
+L= 0.25
+```
 
 [![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdFOcP9Cn02czGrq25JgHW2iker9yg3-QcllyG360S9j_By-0mgt8JL1avnWINfoSNW6luO9o9vIGXmCYHvWciNc2g6Ioz4ewcbENU2hJMl1Be9uiu6xzxCzthyupv6MC67AiPADVgIYuzIuucpERmd31xHLi5RXcRkkD6b0Jq8PszyDbZ-Q1OWIhJ_6k/w640-h346/2-3.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdFOcP9Cn02czGrq25JgHW2iker9yg3-QcllyG360S9j_By-0mgt8JL1avnWINfoSNW6luO9o9vIGXmCYHvWciNc2g6Ioz4ewcbENU2hJMl1Be9uiu6xzxCzthyupv6MC67AiPADVgIYuzIuucpERmd31xHLi5RXcRkkD6b0Jq8PszyDbZ-Q1OWIhJ_6k/s4377/2-3.jpg)
 
@@ -121,22 +125,25 @@ First, we compute the partial derivative of the loss function (gradient calculat
 
 **Gradient Calculation:**
 
-> _∂L   = 2W53 x (Yr – Ye)_
-> 
-> _∂W53_
+```
+∂L = 2W53 x (Yr – Ye)
 
->  _Given_
->  _= 2 x 0.5 x (2.5 - 2)_
->  _= 1 x 0.5_
->  _= 0.5_
+∂W53
+Given
+= 2 x 0.5 x (2.5 - 2)
+= 1 x 0.5
+= 0.5
+```
 
 **New weight value calculation.**
 
-> _W53 (new) = W53(old) – η x ∂L/∂W53_
-> 
-> _Given:_
-> _W53 (new) = 1–0.01 x 0.5_
-> _W53 (new) = 0.995_
+```
+ W53 (new) = W53(old) – η x ∂L/∂W53
+ 
+ Given:
+ W53 (new) = 1–0.01 x 0.5
+ W53 (new) = 0.995
+```
 
 [![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIx1tlhe-CTPD9BaZpXDhngVJBd3WpX4y7IdZRHwMC_dEIsvh09C4GdA8dfS3UUJ9RQhYnT50YXHNLja6LM6yJc8mEoDH9WdHfpZ_MjI8byVLk1376ieBDc8gDqoEsmaNhjmVK6y_IMFhRtrOSmfADXg-BFwlPb6eyOsHkjskmX8KIO1xJpJ7xAA6I8pk/w640-h320/2-4.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIx1tlhe-CTPD9BaZpXDhngVJBd3WpX4y7IdZRHwMC_dEIsvh09C4GdA8dfS3UUJ9RQhYnT50YXHNLja6LM6yJc8mEoDH9WdHfpZ_MjI8byVLk1376ieBDc8gDqoEsmaNhjmVK6y_IMFhRtrOSmfADXg-BFwlPb6eyOsHkjskmX8KIO1xJpJ7xAA6I8pk/s4365/2-4.jpg)
 
