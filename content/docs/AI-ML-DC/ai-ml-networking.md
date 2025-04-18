@@ -5,8 +5,10 @@ weight: 10
 ---
 
 # Intro
-### AI/ML Networking Part I: RDMA Basics
-### AI/ML Networking: Part-II: Introduction of Deep Neural Networks
+## AI/ML Networking Part I: RDMA Basics
+TBD
+
+## AI/ML Networking: Part-II: Introduction of Deep Neural Networks
 _Machine Learning (ML)_ is a subset of _Artificial Intelligence (AI)_. ML is based on algorithms that allow learning, predicting, and making decisions based on data rather than pre-programmed tasks. ML leverages _Deep Neural Networks (DNNs)_, which have multiple layers, each consisting of neurons that process information from sub-layers as part of the training process. _Large Language Models (LLMs)_, such as OpenAI’s GPT (Generative Pre-trained Transformers), utilize ML and Deep Neural Networks.
 
 For network engineers, it is crucial to understand the fundamental operations and communication models used in ML training processes. To emphasize the importance of this, I quote the Chinese philosopher and strategist Sun Tzu, who lived around 600 BCE, from his work The Art of War.
@@ -60,13 +62,14 @@ In Figure 2-2, the weight value for neuron H3 in the hidden layer is 0.5 for bot
 Let’s start the forward pass process from neuron H3 in the hidden layer. First, we calculate the weighted sum using the formula below, where Z3 represents the weighted sum of input. Here, Xn is the actual input data value received from the input layer’s neuron, and Wn  is the weight associated with that particular input neuron.
 
 The weighted sum calculation (Z3) for neuron H3:
+```
+_Z3 = (X1 ⋅ W31) + (X2 ⋅ W32) + b3_
 
-> _Z3 = (X1 ⋅ W31) + (X2 ⋅ W32) + b3_
-> 
-> _Given:_
-> _Z3 = (1 ⋅ 0.5) + (0 ⋅ 0.5) + 0_
-> _Z3 = 0.5 + 0 + 0_
-> _Z3 = 0.5_
+_Given:_
+_Z3 = (1 ⋅ 0.5) + (0 ⋅ 0.5) + 0_
+_Z3 = 0.5 + 0 + 0_
+_Z3 = 0.5_
+```
 
 To get the activation value a3 (shown as H3=0.5 in figure), we apply the ReLU function. The ReLU function outputs zero (0) if the calculated weighted sum Z is less than or equal to zero; otherwise, it outputs the value of the weighted sum Z.
   
