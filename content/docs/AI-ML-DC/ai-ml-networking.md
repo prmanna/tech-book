@@ -26,5 +26,6 @@ The number of parameters, the selected data model, and the parallelization strat
 After these two posts, we will be ready to jump into the network part. 
 
 At this stage, you may need to read (or re-read) my previous post about Remote Direct Memory Access (RDMA), a solution that enables GPUs to write data from local memory to remote GPUs' memory.
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/ai-ml-dc-1.jpg)
 ### AI/ML Networking: Part-III: Basics of Neural Networks Training Process
 **References:**
