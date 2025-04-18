@@ -103,14 +103,15 @@ While DFS uses &lt;strong>recursion/stack&lt;/strong> to keep track of progress,
  Intro
  &lt;a class="anchor" href="#intro">#&lt;/a>
 &lt;/h1>
-&lt;h3 id="aiml-networking-part-i-rdma-basics">
+&lt;h2 id="aiml-networking-part-i-rdma-basics">
  AI/ML Networking Part I: RDMA Basics
  &lt;a class="anchor" href="#aiml-networking-part-i-rdma-basics">#&lt;/a>
-&lt;/h3>
-&lt;h3 id="aiml-networking-part-ii-introduction-of-deep-neural-networks">
+&lt;/h2>
+&lt;p>TBD&lt;/p>
+&lt;h2 id="aiml-networking-part-ii-introduction-of-deep-neural-networks">
  AI/ML Networking: Part-II: Introduction of Deep Neural Networks
  &lt;a class="anchor" href="#aiml-networking-part-ii-introduction-of-deep-neural-networks">#&lt;/a>
-&lt;/h3>
+&lt;/h2>
 &lt;p>&lt;em>Machine Learning (ML)&lt;/em> is a subset of &lt;em>Artificial Intelligence (AI)&lt;/em>. ML is based on algorithms that allow learning, predicting, and making decisions based on data rather than pre-programmed tasks. ML leverages &lt;em>Deep Neural Networks (DNNs)&lt;/em>, which have multiple layers, each consisting of neurons that process information from sub-layers as part of the training process. &lt;em>Large Language Models (LLMs)&lt;/em>, such as OpenAI’s GPT (Generative Pre-trained Transformers), utilize ML and Deep Neural Networks.&lt;/p></description></item><item><title>An Overview of 5G Networking</title><link>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</guid><description>&lt;p>from
 &lt;a href="https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/">https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/&lt;/a>&lt;/p>
 &lt;h2 id="appendix-bhttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08appendix-b-an-overview-of-5g-networkinghttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08name-an-overview-of-5g-networkin">
