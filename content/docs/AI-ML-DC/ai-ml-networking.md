@@ -47,8 +47,7 @@ Neurons in this layer calculate the weighted sum in the same manner as neurons i
 The process described above is known as the Forwarding pass operation. Once the forward pass process is completed, the result is passed through a loss function, where the received value is compared to the expected value. The difference between these two values triggers the backpropagation process. The Loss calculation is the initial phase of Backpropagation process. During backpropagation, the network fine-tunes the weight values , neuron by neuron, from the output layer through the hidden layers. The neurons in the input layer do not participate in the backpropagation process because they do not have weight values to be adjusted.
 
 After the backpropagation process, a new iteration of the forward pass begins from the first hidden layer. This loop continues until the received and expected values are close enough to expected value, indicating that the training is complete.
-
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwQEpZVHZtvYz66gfK5OFGHUdixuV8lqUiGoipKqReMEuC1duCCyBt4NatgsKjI6ka3xbZlswzw7vI7CBLGWrz3VKF3Qq0eqnTjbxkLh-3J1iuK9ygTIfKDqyRqMNILGdK5Z9aDxePxmsLVjv0p-YAwqoAngEPUdb72q7eIDjgWO_pyir-zSv5Q-pWkQA/w640-h286/2-1.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwQEpZVHZtvYz66gfK5OFGHUdixuV8lqUiGoipKqReMEuC1duCCyBt4NatgsKjI6ka3xbZlswzw7vI7CBLGWrz3VKF3Qq0eqnTjbxkLh-3J1iuK9ygTIfKDqyRqMNILGdK5Z9aDxePxmsLVjv0p-YAwqoAngEPUdb72q7eIDjgWO_pyir-zSv5Q-pWkQA/s4245/2-1.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/2-1.jpg)
 
 **Figure 2-1:** _Deep Neural Network Basic Structure and Operations._
 
@@ -92,7 +91,7 @@ The activation value using ReLU for Z4 is:
 
 > _ReLU (Z4) = ReLU (1.5) = 1.5_
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZlF-uvw1lezXzt0RpaqF4-Xmi91b-4Krhzn9cmxDWswUtdmC8ziCnIH9DXngAg7wwJqRpfN3MingjK2DmPLYOG0utQ0dPeEVi7mhsCtY6PL8WWlUtQmTRv9L22cMtr6ALEYhJ3i5hSw5R1C1pEjjwe53BM5CdiOxjuSUpGRRi3iKPNqKTxUlWUuBbbmU/w640-h296/2-2.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZlF-uvw1lezXzt0RpaqF4-Xmi91b-4Krhzn9cmxDWswUtdmC8ziCnIH9DXngAg7wwJqRpfN3MingjK2DmPLYOG0utQ0dPeEVi7mhsCtY6PL8WWlUtQmTRv9L22cMtr6ALEYhJ3i5hSw5R1C1pEjjwe53BM5CdiOxjuSUpGRRi3iKPNqKTxUlWUuBbbmU/s4377/2-2.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/2-2.jpg)
 
 **Figure 2-2:** _Forwarding Pass on Hidden Layer._
 
@@ -115,7 +114,7 @@ L = 0.52
 L= 0.25
 ```
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdFOcP9Cn02czGrq25JgHW2iker9yg3-QcllyG360S9j_By-0mgt8JL1avnWINfoSNW6luO9o9vIGXmCYHvWciNc2g6Ioz4ewcbENU2hJMl1Be9uiu6xzxCzthyupv6MC67AiPADVgIYuzIuucpERmd31xHLi5RXcRkkD6b0Jq8PszyDbZ-Q1OWIhJ_6k/w640-h346/2-3.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdFOcP9Cn02czGrq25JgHW2iker9yg3-QcllyG360S9j_By-0mgt8JL1avnWINfoSNW6luO9o9vIGXmCYHvWciNc2g6Ioz4ewcbENU2hJMl1Be9uiu6xzxCzthyupv6MC67AiPADVgIYuzIuucpERmd31xHLi5RXcRkkD6b0Jq8PszyDbZ-Q1OWIhJ_6k/s4377/2-3.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/2-3.jpg)
 
 **Figure 2-3:** _Forwarding Pass on Output Layer._
 
@@ -145,13 +144,13 @@ Given
  W53 (new) = 0.995
 ```
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIx1tlhe-CTPD9BaZpXDhngVJBd3WpX4y7IdZRHwMC_dEIsvh09C4GdA8dfS3UUJ9RQhYnT50YXHNLja6LM6yJc8mEoDH9WdHfpZ_MjI8byVLk1376ieBDc8gDqoEsmaNhjmVK6y_IMFhRtrOSmfADXg-BFwlPb6eyOsHkjskmX8KIO1xJpJ7xAA6I8pk/w640-h320/2-4.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIx1tlhe-CTPD9BaZpXDhngVJBd3WpX4y7IdZRHwMC_dEIsvh09C4GdA8dfS3UUJ9RQhYnT50YXHNLja6LM6yJc8mEoDH9WdHfpZ_MjI8byVLk1376ieBDc8gDqoEsmaNhjmVK6y_IMFhRtrOSmfADXg-BFwlPb6eyOsHkjskmX8KIO1xJpJ7xAA6I8pk/s4365/2-4.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/2-4.jpg)
 
 **Figure 2-4:** _Backpropagation - Gradient Calculation and New Weight Value Computation._
 
 Figure 2-5 shows the formulas for calculating the new bias b3. The process is the same than what was used with updating the weight values.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgPJMFQHffuBguHEkzw1tyrczatiFp_sxKK7T8BROCP1CHwlH1y04qRUOXhM-3BKKQKERjkD3A1G4YdfZnT1ocptfrbdYPwOYkspb0Uj-YPCPmOQ5fb9aacAcPsKCnJScLHoAs6o9-Ak8eeW-FGKccTKRuoixEsSYAC2_FX7crUbapI0uT5SJop_jxoG8/w640-h322/2-5.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgPJMFQHffuBguHEkzw1tyrczatiFp_sxKK7T8BROCP1CHwlH1y04qRUOXhM-3BKKQKERjkD3A1G4YdfZnT1ocptfrbdYPwOYkspb0Uj-YPCPmOQ5fb9aacAcPsKCnJScLHoAs6o9-Ak8eeW-FGKccTKRuoixEsSYAC2_FX7crUbapI0uT5SJop_jxoG8/s4362/2-5.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/2-5.jpg)
 
 **Figure 2-5:** _Backpropagation - Gradient Calculation and New Bias Computation._
 
