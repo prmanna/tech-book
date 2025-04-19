@@ -11,4 +11,21 @@
  AI/ML Networking: Part-II: Introduction of Deep Neural Networks
  &lt;a class="anchor" href="#aiml-networking-part-ii-introduction-of-deep-neural-networks">#&lt;/a>
 &lt;/h2>
-&lt;p>&lt;em>Machine Learning (ML)&lt;/em> is a subset of &lt;em>Artificial Intelligence (AI)&lt;/em>. ML is based on algorithms that allow learning, predicting, and making decisions based on data rather than pre-programmed tasks. ML leverages &lt;em>Deep Neural Networks (DNNs)&lt;/em>, which have multiple layers, each consisting of neurons that process information from sub-layers as part of the training process. &lt;em>Large Language Models (LLMs)&lt;/em>, such as OpenAI’s GPT (Generative Pre-trained Transformers), utilize ML and Deep Neural Networks.&lt;/p></description></item></channel></rss>
+&lt;p>&lt;em>Machine Learning (ML)&lt;/em> is a subset of &lt;em>Artificial Intelligence (AI)&lt;/em>. ML is based on algorithms that allow learning, predicting, and making decisions based on data rather than pre-programmed tasks. ML leverages &lt;em>Deep Neural Networks (DNNs)&lt;/em>, which have multiple layers, each consisting of neurons that process information from sub-layers as part of the training process. &lt;em>Large Language Models (LLMs)&lt;/em>, such as OpenAI’s GPT (Generative Pre-trained Transformers), utilize ML and Deep Neural Networks.&lt;/p></description></item><item><title>Deep Learning Basics | Artificial Neuron</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/ai-for-network-engineers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/ai-for-network-engineers/</guid><description>&lt;h4 id="content">
+ Content
+ &lt;a class="anchor" href="#content">#&lt;/a>
+&lt;/h4>
+&lt;p>Introduction 
+Artificial Neuron  
+Weighted Sum for Pre-Activation Value  
+ReLU Activation Function for Post-Activation  
+Bias Term 
+S-Shaped Functions – TANH and SIGMOID
+Network Impact&lt;br>
+Summary&lt;br>
+References&lt;/p>
+&lt;h3 id="introduction">
+ Introduction
+ &lt;a class="anchor" href="#introduction">#&lt;/a>
+&lt;/h3>
+&lt;p>Artificial Intelligence (AI) is a broad term for solutions that aim to mimic the functions of the human brain. Machine Learning (ML), in turn, is a subset of AI, suitable for tasks like simple pattern recognition and prediction. Deep Learning (DL), the focus of this section, is a subset of ML that leverages algorithms to extract meaningful patterns from data. Unlike ML, DL does not necessarily require human intervention, such as providing structured, labeled datasets (e.g., 1,000 bird images labeled as “bird” and 1,000 cat images labeled as “cat”). &lt;/p></description></item></channel></rss>
