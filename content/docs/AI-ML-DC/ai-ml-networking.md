@@ -170,4 +170,134 @@ If the size of the input data exceeds the GPU’s memory capacity or if the comp
 
 The upcoming chapter introduces pipeline parallelization and synchronization processes in detail. We will also discuss why lossless connection is required for AI/ML.
 
+### AI/ML Networking: Part-IV: Convolutional Neural Network (CNN) Introduction
+
+Feed-forward Neural Networks are suitable for simple tasks like basic time series prediction without long-term relationships. However, FNNs is not a one-size-fits-all solution. For instance, digital image training process uses pixel values of image as input data. Consider training a model to recognize a high resolution (600 dpi), 3.937 x 3.937 inches digital RGB (red, green, blue) image. The number of input parameters can be calculated as follows:
+
+> Width: 3.937 in x 600 ≈ 2362 pixels  
+> Height: 3.937 in x 600 ≈ 2362 pixels  
+> Pixels in image: 2362 x 2362 = 5,579,044 pixels  
+> RGB (3 channels): 5,579,044 pxls x 3 channels = 16 737 132  
+> Total input parameters: 16 737 132  
+> Memory consumption: ≈ 16 MB
+
+FNNs are not ideal for digital image training. If we use FNN for training in our example, we fed 16,737,132 input parameters to the first hidden layer, each having unique weight. For image training, there might be thousands of images, handling millions of parameters demands significant computation cycles and is a memory-intensive process. Besides, FNNs treat each pixel as an independent unit. Therefore, FNN algorithm does not understand dependencies between pixels and cannot recognize the same image if it shifts within the frame. Besides, FNN does not detect edges and other crucial details. 
+
+A better model for training digital images is Convolutional Neural Networks (CNNs). Unlike in FFN neural networks where each neuron has a unique set of weights, CNNs use the same set of weights (Kernel/Filter) across different regions of the image, which reduces the number of parameters. Besides, CNN algorithm understands the pixel dependencies and can recognize patterns and objects regardless of their position in the image. 
+
+The input data processing in CNNs is hierarchical. The first layer, convolutional layers, focuses on low-level features such as textures and edges. The second layer, pooling layer, captures higher-level features like shapes and objects. These two layers significantly reduce the input data parameters before they are fed into the neurons in the first hidden layer, the fully connected layer, where each neuron has unique weights (like FNNs).
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN5nZh1f_pqb6ESQ6CLX9hItrkmVSrLJrlZVSQmPkXhCEIpXe78QnOHLdPhM9Op4auYviSGflQlmb4R0SV4k0OErTcjQMAlwNqokOX4N3NXrn-Xp53uEbYuCveUspyMR465dRE0jdIeJ9W3xqSzdtu8Z-Z0aDNnrYMoQTZ51rO6zkEwg4J3cCgHfVQSOQ/w640-h300/intro.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN5nZh1f_pqb6ESQ6CLX9hItrkmVSrLJrlZVSQmPkXhCEIpXe78QnOHLdPhM9Op4auYviSGflQlmb4R0SV4k0OErTcjQMAlwNqokOX4N3NXrn-Xp53uEbYuCveUspyMR465dRE0jdIeJ9W3xqSzdtu8Z-Z0aDNnrYMoQTZ51rO6zkEwg4J3cCgHfVQSOQ/s4068/intro.jpg)
+
+### Convolution Layer
+
+The convolution process uses a shared kernel (also known as filters), which functions similarly to a neuron in a feed-forward neural network. The kernel's coverage area, 3x3 in our example, defines how many pixels of an input image is covered at a given stride. The kernel assigns a unique weight (w) to each covered pixel (x) in a one-to-one mapping fashion and calculates the weighted sum (z) from the input data. For instance, in figure 3-1 the value of the pixel W1 is multiplied with the weight value W1 (X1W1), and pixel X2 is multiplies with weight value W2 (X2W2) and so on. Then the results are summed, which returns a weighted sum Z.  The result Z is then passed through the ReLU function, which defines the value of the new pixel (P1). This new pixel is then placed into a new image matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkWm1SYWAfufDIR9cf1kC-V4BzeK75M3_My5Dfcs6GGqgHN2kMTwk_Gzqn6kVucJsictwgXclZ8tCbDiupdMjTDfWVf3n3IpcRZ1y3k9fUmmrBxa0ETXtniBR1cU42nDne7kyBjSUimMd4rTsrYnw6iX3lIR51Zr_lBNN0pTr31TxgWr1ZeGA2ljrA7OI/w640-h438/3-1.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkWm1SYWAfufDIR9cf1kC-V4BzeK75M3_My5Dfcs6GGqgHN2kMTwk_Gzqn6kVucJsictwgXclZ8tCbDiupdMjTDfWVf3n3IpcRZ1y3k9fUmmrBxa0ETXtniBR1cU42nDne7kyBjSUimMd4rTsrYnw6iX3lIR51Zr_lBNN0pTr31TxgWr1ZeGA2ljrA7OI/s3808/3-1.jpg)
+
+**Figure 3-1:** _CNN Overview – Convolution, Initial State (Stride 0)._
+
+After calculating the new pixel value for the initial coverage area with stride zero, the kernel shifts to the right by the number of steps defined in the kernel's stride value. In our example, the stride is set to one, and the kernel moves one step to the right, covering pixels shown in Figure 3-2. Then the weighted sum is (z) calculated and run through the ReLU function, and the second pixel is added to the new matrix. Since there are no more pixels to the right, the kernel moves down by one step and returns to the first column (Figure 3-3).
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh24ELaN_hbEYdpCvrAlm_kBAcOXJMLvzLC2wqaIKB2Pu14YHNbaWoUke89G2Jo45dNdP7uTHYRxRjSnwNjuB69vqlrmiezY2KN2Qq0WhyHf2P5qb_7ZG7qJI1BU_HvuSKA54-6DDgOEpqjr1puE8UI3I0LkFQhEiV86ZdhOmteDn-4t7idC5d3aHjdxZo/w640-h438/3-2.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh24ELaN_hbEYdpCvrAlm_kBAcOXJMLvzLC2wqaIKB2Pu14YHNbaWoUke89G2Jo45dNdP7uTHYRxRjSnwNjuB69vqlrmiezY2KN2Qq0WhyHf2P5qb_7ZG7qJI1BU_HvuSKA54-6DDgOEpqjr1puE8UI3I0LkFQhEiV86ZdhOmteDn-4t7idC5d3aHjdxZo/s3808/3-2.jpg)
+
+**Figure 3-2:** _CNN Overview – Convolution, Second State (Stride 1)._
+
+Figures 3-3 and 3-4 shows the last two steps of the convolution. Notice that we have used the same weight values in each iteration. In the initial state weight w1 was associated with the first pixel (X1W1), and in the second phase with the second pixel (X2W1) and so on. The new image matrix produced by the convolutional process have decreased the 75% from the original digital image. 
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5wVR75V42xKxJcDv1tC7dxQab9a81tlFFiibCJHoBDgQEZMwmFu7lDQErs2ebJgkojXwUsoB-g5d4pojsyZotEvYQjowSH0SkoGWsNN5DR77nsJrJNhx71PA5ZSWO1B2Tyc9SJHVUoGSvAQ5vJZKzIesBqAMmpgDQZYbfbpO0UiL_TbO6z78v1M5MN9w/w640-h438/3-3.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5wVR75V42xKxJcDv1tC7dxQab9a81tlFFiibCJHoBDgQEZMwmFu7lDQErs2ebJgkojXwUsoB-g5d4pojsyZotEvYQjowSH0SkoGWsNN5DR77nsJrJNhx71PA5ZSWO1B2Tyc9SJHVUoGSvAQ5vJZKzIesBqAMmpgDQZYbfbpO0UiL_TbO6z78v1M5MN9w/s3808/3-3.jpg)
+
+**Figure 3-3:** CNN Overview – Convolution, Third State (Stride 2).
+  
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8CguVHa7TJmqFl6Zssj6ebERvpc1bsr090MTuiEcE1R9HlSgU6HRityzLfmxEVYUrWF3xd8KFMIs_iX9GKYoDu-uouKBqsVHLjWh-emtWun0VaS8CwzEUY2TqnHJlLXp7aD43Ru1OznjlLHkC2CFlgucn4ulC3l0hcONCX5Z0QEc6IJ7VGACDqYiCOJ8/w640-h438/3-4.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8CguVHa7TJmqFl6Zssj6ebERvpc1bsr090MTuiEcE1R9HlSgU6HRityzLfmxEVYUrWF3xd8KFMIs_iX9GKYoDu-uouKBqsVHLjWh-emtWun0VaS8CwzEUY2TqnHJlLXp7aD43Ru1OznjlLHkC2CFlgucn4ulC3l0hcONCX5Z0QEc6IJ7VGACDqYiCOJ8/s3808/3-4.jpg)
+
+**Figure 3-4:** _CNN Overview – Convolution, Fourth State (Stride 3)._
+
+If we don't want to decrease the size of the new matrix, we must use padding. Padding adds pixels to the edges of the image. For example, a padding value of one (1) adds one pixel to the image edges, providing a new matrix that is the same size as the original image.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUKiFe2y4njZ4pi7qAClgJN6SbVNSdD6x4j0Ei6o2ShV5RdAXs_WDpHGn_Pv3U9z3jOSw_2yzlromst16q6WzxS0WYOJjxKFT1Yceck1mKCzoc5nnH20EGKMfgXrrNwek4UBLPChjxWuKyVXAM9svRLawBxbjFP01rEM8ZwTv6Hxr2MN3k5efZOhID8kU/w640-h448/3-5.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUKiFe2y4njZ4pi7qAClgJN6SbVNSdD6x4j0Ei6o2ShV5RdAXs_WDpHGn_Pv3U9z3jOSw_2yzlromst16q6WzxS0WYOJjxKFT1Yceck1mKCzoc5nnH20EGKMfgXrrNwek4UBLPChjxWuKyVXAM9svRLawBxbjFP01rEM8ZwTv6Hxr2MN3k5efZOhID8kU/s4328/3-5.jpg)
+
+**Figure 3-5:** _CNN Overview – Padding._
+
+Figure 3-6 illustrates the progression of the convolution layer from the initial state (which I refer to as stride 0) to the final phase, stride 3. The kernel covers a 3x3 pixel area in each phase and moves with a stride of 1. I use the notation SnXn to denote the stride and the specific pixel. For example, in the initial state, the first pixel covered by the kernel is labeled as S0X1, and the last pixel is labeled as S0X11.
+
+When the kernel shifts to the left, covering the next region, the first pixel is marked as S1X2 and the last as S1X12. The same notation is applied to the weighted sum calculation. The weighted value for the first pixel is represented as (S0X1) · W1 = Z1 and for the last one as (S0X11) · W9 = Z9. The weighted input for all pixel values is then summed, and a bias is added to obtain the weighted sum for the given stride.
+
+In the initial state, this calculation results in = Z0, which is passed through the ReLU function. The output of this function provides the value for the first pixel in the new image matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAuBIufyx6Sz-OdSv8-M79lqA3eEcBET1HO6Vw1P3UKdOjYbkxFRfQWaoT0WyFiVjymPfuzj22I3iHNPXkCfxs81r_TaS0rbdrHSILMoIV-Nj73qmDpv582LLOBcCGBJY5jUU84oL1T2L2YDSszxW6c7mzsvgROlGlUg8R1yJnT54gKg4ufKMFcfAoZB0/w640-h426/3-6.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAuBIufyx6Sz-OdSv8-M79lqA3eEcBET1HO6Vw1P3UKdOjYbkxFRfQWaoT0WyFiVjymPfuzj22I3iHNPXkCfxs81r_TaS0rbdrHSILMoIV-Nj73qmDpv582LLOBcCGBJY5jUU84oL1T2L2YDSszxW6c7mzsvgROlGlUg8R1yJnT54gKg4ufKMFcfAoZB0/s3937/3-6.jpg)
+
+**Figure 3-6:** _CNN Overview – Convolution Summary._
+
+### Convolution Layer Example
+  
+In Figure 3-7, we have a simple 12x12 = 144 pixels grayscale image representing the letter "H." In the image, the white pixels have a binary value of 255, the gray pixels have a binary value of 87, and the darkest pixels have a binary value of 2. Our kernel size is 4x4, covering 16 pixels in each stride. Because the image is grayscale, we only have one channel. The kernel uses the ReLU activation function to determine the value for the new pixel. 
+
+Initially, at stride 0, the kernel is placed over the first region in the image. The kernel has a unique weight value for each pixel it covers, and it calculates the weighted sum for all 16 pixels. The value of the first pixel (X1 = 87) is multiplied by its associated kernel weight (W1 = 0.12), which gives us a new value of 10.4. This computation runs over all 16 pixels covered by the kernel (results shown in Figure 3-7). The new values are then summed, and a bias is added, giving a weighted sum of Z0 = 91.4. Because the value of Z0 is positive, the ReLU function returns an activation value of 91.4 (if Z > 0, Z = Z; otherwise, Z = 0). The activation value of 91.4 becomes the value of our new pixel in the new image matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEih1rSAkfVBSTiZfpCB7cT4rrbgP8_tbNNc41DAvH1xFdwH4mZ2nnjEM_TKY1vTpse-IElnX1o5HVTkI1NKAqqh8lE3MAl-iWd3a_FoOku39uHFYExczNhDgQAFp7YfsS8xsY_TeHAdNQ87o7Ht_TlLIakfna0L6RjL3ZRiOCgzW0Q1eNNJve9mKGPZ3SY/w640-h396/3-7.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEih1rSAkfVBSTiZfpCB7cT4rrbgP8_tbNNc41DAvH1xFdwH4mZ2nnjEM_TKY1vTpse-IElnX1o5HVTkI1NKAqqh8lE3MAl-iWd3a_FoOku39uHFYExczNhDgQAFp7YfsS8xsY_TeHAdNQ87o7Ht_TlLIakfna0L6RjL3ZRiOCgzW0Q1eNNJve9mKGPZ3SY/s4367/3-7.jpg)
+
+**Figure 3-7:** _Convolution Layer Operation Example – Stride 0 (Initial State)._
+
+Next, the kernel shifts one step to the right (Stride 1) and multiplies the pixel values by the associated weights. The changing parameters are the values of the pixels, while the kernel weight values remain the same. After the multiplication process is done and the weighted sum is calculated, the result is run through the ReLU function. At this stride, the result of the weighted sum (Z1) is negative, so the ReLU function returns zero (0). This value is then added to the matrix. At this phase, we have two new pixels in the matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSXpfr4EUJxUmxaAz59J9lzn65JPy7tbpjsELIXu_siKXkgyMrQ3IMlbR6Dio4GEbOM0VNT7YjTphqLbah0unpw-4vDqypJsOqIW7ctfoJ2IEIWp_fOUNiuz_VJf_-wLABz5PUfuU90nUPglapK-6AUn5ShH1cIgu1KiAb-R-fkiHL7Osoc0XToZ05jaI/w640-h384/3-8.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSXpfr4EUJxUmxaAz59J9lzn65JPy7tbpjsELIXu_siKXkgyMrQ3IMlbR6Dio4GEbOM0VNT7YjTphqLbah0unpw-4vDqypJsOqIW7ctfoJ2IEIWp_fOUNiuz_VJf_-wLABz5PUfuU90nUPglapK-6AUn5ShH1cIgu1KiAb-R-fkiHL7Osoc0XToZ05jaI/s4255/3-8.jpg)
+
+**Figure 3-8:** _Convolution Layer Operation Example – Stride 1._
+
+The next four figures 3-9, 3-10, and 3-11 illustrates how the kernel is shifted over the input digital image and producing a new 9x9 image matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8jswxfUwcFKUjjFO7SHFLy09WnZA0HjX6DAwJPPPneW006gluX9i_hLXVYDcyDEWFyr8KGANj5ZTaoz8MtjnzNy_4kybzg6J9dMFAuplGc9K5UEVt_bxl9Gj1X29-05JANkyCc1gVk7odWP0kNa1SWE68qCujV4KzdObSyy2uZlZh-QmkftdBHoSh6TI/w640-h382/3-9.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8jswxfUwcFKUjjFO7SHFLy09WnZA0HjX6DAwJPPPneW006gluX9i_hLXVYDcyDEWFyr8KGANj5ZTaoz8MtjnzNy_4kybzg6J9dMFAuplGc9K5UEVt_bxl9Gj1X29-05JANkyCc1gVk7odWP0kNa1SWE68qCujV4KzdObSyy2uZlZh-QmkftdBHoSh6TI/s4264/3-9.jpg)
+
+**Figure 3-9:** _Convolution Layer Operation Example – Stride 2._
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw41YilLH9az2HvxWBKRNKdvCLxZ7rTpYSjHAG81NMo8pI2AZDGzkxCQw7pcO5X06HHhp14vUwWW8kYkCaKLDJ2GrpRPeVKFHcbt1UWEIbKhuiRlFF05zhjoSMfE6mM8_dnbOf-6_3bDkHOz_KriKFX555Qt39nXn1hfk9jxIqaaQGfedaoePQXJJlec0/w640-h382/3-10.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw41YilLH9az2HvxWBKRNKdvCLxZ7rTpYSjHAG81NMo8pI2AZDGzkxCQw7pcO5X06HHhp14vUwWW8kYkCaKLDJ2GrpRPeVKFHcbt1UWEIbKhuiRlFF05zhjoSMfE6mM8_dnbOf-6_3bDkHOz_KriKFX555Qt39nXn1hfk9jxIqaaQGfedaoePQXJJlec0/s4254/3-10.jpg)
+
+**Figure 3-10:** _Convolution Layer Operation Example – Stride 8._
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXxyEVHmskvJ1XThzpl_SjWgY2Eur4nU9M7c-WDr672dcmwFZFnWicPaj0uJpWJgqaRrNv7MWyyUiX3zn2VIdoh0kXBSrUr2PguxnaEj8ONiQNujxAZCNH6w44Jp-1YB651Q3iF66cq_tXXBxjYdSTlGJ8fAekdm0OyVv0qVOH6muYHf1hNqv6BPlFacI/w640-h382/3-11.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXxyEVHmskvJ1XThzpl_SjWgY2Eur4nU9M7c-WDr672dcmwFZFnWicPaj0uJpWJgqaRrNv7MWyyUiX3zn2VIdoh0kXBSrUr2PguxnaEj8ONiQNujxAZCNH6w44Jp-1YB651Q3iF66cq_tXXBxjYdSTlGJ8fAekdm0OyVv0qVOH6muYHf1hNqv6BPlFacI/s4264/3-11.jpg)
+
+**Figure 3-11:** _Convolution Layer Operation Example – Stride 10._
+
+Figure 3-12 illustrates the completed convolutional layer computation. At this stage, the number of pixels in the original input image has decreased from 144 to 81, representing a reduction of 56.25%.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtKCT8cP9Jn0aTZWREj26hwC3C_88FxtJ97ErC6hiIJxdOFi2rKaCfM5Ubhqc99YLhrUo2faWTAEFwyFcLKvgUZcrDffZ09xIybhnJ25opF3E9los4FpjIkLDXqh-CPR2E9F33U3KclQnxeOdxfzHXAHVBg5HWC6DZZekp9I4jnwqq-hV8tH3SLKHWluU/w640-h386/3-12.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtKCT8cP9Jn0aTZWREj26hwC3C_88FxtJ97ErC6hiIJxdOFi2rKaCfM5Ubhqc99YLhrUo2faWTAEFwyFcLKvgUZcrDffZ09xIybhnJ25opF3E9los4FpjIkLDXqh-CPR2E9F33U3KclQnxeOdxfzHXAHVBg5HWC6DZZekp9I4jnwqq-hV8tH3SLKHWluU/s3989/3-12.jpg)
+
+**Figure 3-12:** _Convolution Layer Operation Example – The Last Stride._ 
+
+### Pooling Layer
+  
+After the original image is processed by the convolution layer, the resulting output is used as input data for the next layer, the pooling layer. The pooling layer performs a simpler operation than the convolution layer. Like the convolution layer, the pooling layer uses a kernel to generate new values. However, instead of applying a convolution operation, the pooling layer selects the highest value within the kernel (if MaxPooling is applied) or computes the average of the values covered by the kernel (Average Pooling).
+
+In this example, we use MaxPooling with a kernel size of 2x2 and a stride of 2. The first pixel is selected from values 91, 0, 112, and 12, corresponding to pixels in positions 1, 2, 10, and 11, respectively. Since the pixel at position 10 has the highest value (112), it is selected for the new matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtWdxuQ2DbyQumov00Dwh5fn2AzVfoTE8ZLqWqbHRLje7R0a1VeWRJRmIriOws9leG1nM0YlG8VTL16HhiU2y0Him5VChxFEL32fbalr1XAkYvNuUxOid7GXMRwZGWD-94i7lth_onrsdpfOxaYtH8UOsWOGZfwsT9uCxk7NzZ6wWMZHNcvqFQS80Ix-4/w640-h360/3-13.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtWdxuQ2DbyQumov00Dwh5fn2AzVfoTE8ZLqWqbHRLje7R0a1VeWRJRmIriOws9leG1nM0YlG8VTL16HhiU2y0Him5VChxFEL32fbalr1XAkYvNuUxOid7GXMRwZGWD-94i7lth_onrsdpfOxaYtH8UOsWOGZfwsT9uCxk7NzZ6wWMZHNcvqFQS80Ix-4/s4282/3-13.jpg)
+
+**Figure 3-13:** _Pooling Layer – Stride 0 (Initial Phase)._
+
+After selecting the highest value from the initial phase, the kernel moves to the next region, covering the values 252, 153, 212, and 52. The highest value, 252, is then placed into the new matrix. 
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-wlmGtOl5kSzt2oYxrQS4zfjhS3M-o2Uyyl0R3e3Znx6CMkRT4kyxqfKqyviv8i8Cvoe9YQC73jyGABHgW2qOBE_GuNsIaIpyHA7_V9cCz7dO6px_enCbLwMUwax-I-M3o2jpnuhkGffgCBvn8zH8U_0eBu27YHRqgxbS6Kp1rn9Qc7Ctzp7SYnOZ4tQ/w640-h360/3-14.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-wlmGtOl5kSzt2oYxrQS4zfjhS3M-o2Uyyl0R3e3Znx6CMkRT4kyxqfKqyviv8i8Cvoe9YQC73jyGABHgW2qOBE_GuNsIaIpyHA7_V9cCz7dO6px_enCbLwMUwax-I-M3o2jpnuhkGffgCBvn8zH8U_0eBu27YHRqgxbS6Kp1rn9Qc7Ctzp7SYnOZ4tQ/s4282/3-14.jpg)
+
+**Figure 3-14:** _Pooling Layer – Stride 1._
+
+Figure 3-15 illustrates how MaxPooling progresses to the third region, covering the values 141, 76, 82, and 35. The highest value, 141, is then placed into the matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPuNngc3e6gaTB7V3wajPYuG9UKt2WmR-huZ0eWzgduXUZedKcNMyQi9tbgXHrOKWGP4UVp3w7ipNw-rt4PFQmsUt_Niy8gP1r-BjFffP4gohEOvUk04f9JK-F6MCckFautMukv0k1m9YiYSns-vqWchkW_e0YWZJpHOFklSYSb0TpoedXbNFckc-lQb8/w640-h360/3-15.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPuNngc3e6gaTB7V3wajPYuG9UKt2WmR-huZ0eWzgduXUZedKcNMyQi9tbgXHrOKWGP4UVp3w7ipNw-rt4PFQmsUt_Niy8gP1r-BjFffP4gohEOvUk04f9JK-F6MCckFautMukv0k1m9YiYSns-vqWchkW_e0YWZJpHOFklSYSb0TpoedXbNFckc-lQb8/s4282/3-15.jpg)
+
+**Figure 3-15:** _Pooling Layer – Stride 2._
+
+Figure 3-16 describes how the original 12x12 (144 pixels) image is first processed by the convolution layer, reducing it to a 9x9 (81 pixels) matrix, and then by the pooling layer, further reducing it to a 5x5 (25 pixels) matrix.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxR7WEO_DVIpJisHMcoMew9F_ADzi6Sl9jY-7NYbLc9qKgN3qpwicHaz_dIoEZDF5LgRi5Rt7RQZMi1EamfV-qhf52_agZbbQjhXthk8D8Y5VQ-_RDY4ZbTLUHZME7YAu3m8_FBQggsPHuT2k2G7JD3octHlsy-tcQEvxxz5XYuYnfZG7usUZiOiwqo8Q/w640-h338/3-16.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxR7WEO_DVIpJisHMcoMew9F_ADzi6Sl9jY-7NYbLc9qKgN3qpwicHaz_dIoEZDF5LgRi5Rt7RQZMi1EamfV-qhf52_agZbbQjhXthk8D8Y5VQ-_RDY4ZbTLUHZME7YAu3m8_FBQggsPHuT2k2G7JD3octHlsy-tcQEvxxz5XYuYnfZG7usUZiOiwqo8Q/s4389/3-16.jpg)
+
+**Figure 3-16:** _CNN Convolution and Pooling Layer Results._
+
+As the final step, the matrix generated by the pooling layer is flattened and used as input for the neurons in the fully connected layer. This means we have 25 input neurons, each with a unique weight assigned to every input parameter. The neurons in the input layer calculate the weighted sum, which neurons then use to determine the activation value. This activation value serves as the input data for the output layer. The neurons in the output layer produce the result based on their calculations, with the output H proposed by three output neurons.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1FMUDmtZ5MrlVlWp1qey-yfdKYl2YoCvj85Km6WFVfoYKhLbcnIemoyyjH7ek0RfH-c8bO_XgdIxK6XM-TjR0xhsVpJZGu2ldDY7khss2pluJfXBkxSmCQx4rlncZsYyjnVox9qxXSEPwnvVhJcTPLsXK8rkKcTbS2oCwLLsLUWeC2Gwq3EtyVPjSXqo/w640-h260/3-17.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1FMUDmtZ5MrlVlWp1qey-yfdKYl2YoCvj85Km6WFVfoYKhLbcnIemoyyjH7ek0RfH-c8bO_XgdIxK6XM-TjR0xhsVpJZGu2ldDY7khss2pluJfXBkxSmCQx4rlncZsYyjnVox9qxXSEPwnvVhJcTPLsXK8rkKcTbS2oCwLLsLUWeC2Gwq3EtyVPjSXqo/s4337/3-17.jpg)
+
+**Figure 3-17:** _The Model of Convolution Neural Network (CNN)._
+
 **References:**
+* https://nwktimes.blogspot.com/2024/08/aiml-networking-part-iv-convolutional.html
