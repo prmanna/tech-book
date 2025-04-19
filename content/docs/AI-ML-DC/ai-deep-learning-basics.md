@@ -8,10 +8,10 @@ weight: 10
 
 * Introduction 
 * Artificial Neuron   
-* Weighted Sum for Pre-Activation Value   
-* ReLU Activation Function for Post-Activation   
-* Bias Term  
-* S-Shaped Functions – TANH and SIGMOID
+  * Weighted Sum for Pre-Activation Value   
+  * ReLU Activation Function for Post-Activation   
+  * Bias Term  
+  * S-Shaped Functions – TANH and SIGMOID
 * Network Impact  
 * Summary  
   
