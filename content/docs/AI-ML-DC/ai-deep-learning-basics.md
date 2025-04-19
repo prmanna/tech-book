@@ -6,15 +6,14 @@ weight: 10
 
 #### Content
 
-Introduction 
-Artificial Neuron   
-	Weighted Sum for Pre-Activation Value   
-	ReLU Activation Function for Post-Activation   
-	Bias Term  
-	S-Shaped Functions – TANH and SIGMOID
-Network Impact  
-Summary  
-References  
+* Introduction 
+* Artificial Neuron   
+* Weighted Sum for Pre-Activation Value   
+* ReLU Activation Function for Post-Activation   
+* Bias Term  
+* S-Shaped Functions – TANH and SIGMOID
+* Network Impact  
+* Summary  
   
 ### Introduction
 
@@ -42,7 +41,7 @@ The weight value for the input can be loosely compared to a synapse since it rep
 
 **Figure 1-2:** _Construct of an Artificial Neuron._
 
-#### Weighted Sum for Pre-Activation Value
+### Weighted Sum for Pre-Activation Value
 
 The lower part of Figure 1-2 depicts the mathematical formulas of a neuron. The _pre-activation_ value z is the weighted sum of the inputs. Although the bias is not part of the input data, a neuron treats it as an input variable when calculating the weighted sum. Each input x has a corresponding weight w. The calculation process is straightforward: each input value is multiplied by its corresponding weight, and the results are summed to obtain the weighted sum z.
 
@@ -50,7 +49,7 @@ The capital Greek letter sigma ∑ in the formula indicates that we are summing 
 
 z = b0w0 + x1w1 + x2w2 + x3w3. 
 
-#### ReLU Activation Function for Post-Activation
+### ReLU Activation Function for Post-Activation
 
 Next, the process applies an activation function, ReLU (Rectified Linear Unit) \[4\] in our example, to the weighted sum z obtain the post-activation value ŷ. The output of the ReLU function is z if z is greater than zero (0); otherwise, the result is zero (0). This can be written as: 
 
@@ -66,11 +65,11 @@ Based on the figure 1-3 we can use the mathematical definition below for ReLU:
 
 [![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZOd_pTlu8aKviu_WlIqUx4wvywYR3pgvLDuHKOIiAX0AmzrSTopNH1nbcpSzC2frox8I0N9ZQwai1jdvLIii8HHH9EFjKUkXn_nWNPIZipIe00M1anltJ-uiFaVSg7NL3awe1ThXMh_AbxB75nwtSJ5jvEmxtPQXmimnDXPxj4M8QxKVagtSC2Hu-I_4/w640-h342/1-3-kaava.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZOd_pTlu8aKviu_WlIqUx4wvywYR3pgvLDuHKOIiAX0AmzrSTopNH1nbcpSzC2frox8I0N9ZQwai1jdvLIii8HHH9EFjKUkXn_nWNPIZipIe00M1anltJ-uiFaVSg7NL3awe1ThXMh_AbxB75nwtSJ5jvEmxtPQXmimnDXPxj4M8QxKVagtSC2Hu-I_4/s1051/1-3-kaava.jpg)
 
-#### Bias Term
+### Bias Term
 
 In the example calculation above, imagine that all input values are zero. Without a bias term, the activation value will be zero, regardless of how large the weight parameters are. Therefore, the bias term allows the neuron to produce non-zero outputs, even when all input values are zero.
 
-#### S-Shaped Functions – TANH and SIGMOID
+### S-Shaped Functions – TANH and SIGMOID
 
 The ReLU function is a non-linear activation function. Naturally, there are other activation functions as well. The Hyperbolic Tangent (tanh) \[5\] and the logistic Sigmoid \[6\] functions are examples of S-shaped functions that are symmetric around zero. Figure 1-4 illustrates that as the positive z value increases, the tanh function approaches one (1), while as the negative z value decreases, it approaches -1. Thus, the range of the tanh function is from -1 to 1. Similarly, the sigmoid function's S-curve is also symmetric around zero, but its range is from 0 to 1.
 
