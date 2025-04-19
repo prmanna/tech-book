@@ -170,7 +170,7 @@ If the size of the input data exceeds the GPU’s memory capacity or if the comp
 
 The upcoming chapter introduces pipeline parallelization and synchronization processes in detail. We will also discuss why lossless connection is required for AI/ML.
 
-### AI/ML Networking: Part-IV: Convolutional Neural Network (CNN) Introduction
+## AI/ML Networking: Part-IV: Convolutional Neural Network (CNN) Introduction
 
 Feed-forward Neural Networks are suitable for simple tasks like basic time series prediction without long-term relationships. However, FNNs is not a one-size-fits-all solution. For instance, digital image training process uses pixel values of image as input data. Consider training a model to recognize a high resolution (600 dpi), 3.937 x 3.937 inches digital RGB (red, green, blue) image. The number of input parameters can be calculated as follows:
 
