@@ -170,11 +170,14 @@ While DFS uses &lt;strong>recursion/stack&lt;/strong> to keep track of progress,
 &lt;/h4>
 &lt;ul>
 &lt;li>Introduction &lt;/li>
-&lt;li>Artificial Neuron  &lt;/li>
+&lt;li>Artificial Neuron  
+&lt;ul>
 &lt;li>Weighted Sum for Pre-Activation Value  &lt;/li>
 &lt;li>ReLU Activation Function for Post-Activation  &lt;/li>
 &lt;li>Bias Term &lt;/li>
 &lt;li>S-Shaped Functions – TANH and SIGMOID&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>Network Impact&lt;/li>
 &lt;li>Summary&lt;/li>
 &lt;/ul>
