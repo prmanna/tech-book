@@ -23,7 +23,7 @@ DL utilizes layered, hierarchical Deep Neural Networks (DNNs), where hidden and 
 
 To provide accurate predictions based on input data, neural networks are trained using labeled datasets. The MNIST (Modified National Institute of Standards and Technology) dataset \[1\] contains 60,000 training and 10,000 test images of handwritten digits (grayscale, 28x28 pixels). The CIFAR-10 \[2\] dataset consists of 60,000 color images (32x32 pixels), with 50,000 training images and 10,000 test images, divided into 10 classes. The CIFAR-100 dataset \[3\], as the name implies, has 100 image classes, with each class containing 600 images (500 training and 100 test images per class). Once the test results reach the desired level, the neural network can be deployed to production.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgylzz8OQkWjjhyBpYDBNRNezdgowWbuzeSXr_I5uSf6XnWq2y2ZNXLKJtTcrFTyWsxR_TGMJE1-88DTfNcfYktTOCx7J87VxTkRYTEVBpxuFFRiIXisS1Qw9KjKqgOW8bmAT8_4lJgaRabWZh8b5e9T0fDrQIgghzFlJgwKn2Dvj8HJiDQ2pNLhRKKKlM/w640-h416/1-1.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgylzz8OQkWjjhyBpYDBNRNezdgowWbuzeSXr_I5uSf6XnWq2y2ZNXLKJtTcrFTyWsxR_TGMJE1-88DTfNcfYktTOCx7J87VxTkRYTEVBpxuFFRiIXisS1Qw9KjKqgOW8bmAT8_4lJgaRabWZh8b5e9T0fDrQIgghzFlJgwKn2Dvj8HJiDQ2pNLhRKKKlM/s4577/1-1.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-1.jpg)
 
 **Figure 1-1:** _Deep Learning Introduction._
 
@@ -37,7 +37,7 @@ An artificial neuron, as a computational unit, calculates the weighted sum (z = 
 
 The weight value for the input can be loosely compared to a synapse since it represents a connection, input values are assigned with weight. The weights-to-neuron association, in turn, can be seen as analogous to dendrites. The computational processes (weighted sum of inputs, bias addition, and activation functions) represent the cell body, while the connections to other neurons can be compared to output axons. In Figure 1-2, bn refers to a biological neuron. From now on, "neuron" will refer to an artificial neuron.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOrkcskrlY_TpMwWARozhWCz6-0xDdUhr_765rrYx_1sloD7s1Kpwq_9o3S7CO9tg2TQBZ30MjNnUJBFD5BplD_iWUB-N51okGxDKZPpZYwsURDniDeQIpxpSOAngWnYaGj4jRG5rKq_UH9fEDGdvVQjOBnni-qji-uJLggmrEfpMG0FDYcAMNme4O8Pg/w640-h366/1-2.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOrkcskrlY_TpMwWARozhWCz6-0xDdUhr_765rrYx_1sloD7s1Kpwq_9o3S7CO9tg2TQBZ30MjNnUJBFD5BplD_iWUB-N51okGxDKZPpZYwsURDniDeQIpxpSOAngWnYaGj4jRG5rKq_UH9fEDGdvVQjOBnni-qji-uJLggmrEfpMG0FDYcAMNme4O8Pg/s4158/1-2.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-2.jpg)
 
 **Figure 1-2:** _Construct of an Artificial Neuron._
 
@@ -57,13 +57,13 @@ Next, the process applies an activation function, ReLU (Rectified Linear Unit) \
 
 which selects the larger value between 0 and variable z.  The figure 1-3 depicts the ReLU activation function.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuyOdyPBd4vJC9Q5d3kKRz_eGaHlbX5s0vc6mbdOwf6i2qz55wRX3IxTZ5jenuY1ZtR_UX16iEVrzFZu_W2QsWonDLEcZwQAmwt1_hEFKmmb2J54TjXB5cIMM480I4LNzy7MKNGMSd7ub4TNbeAsF1FRPEhkonxa6rxPqj0Kg_S5qoR_EnKW_-axuq9NI/w640-h494/1-3.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuyOdyPBd4vJC9Q5d3kKRz_eGaHlbX5s0vc6mbdOwf6i2qz55wRX3IxTZ5jenuY1ZtR_UX16iEVrzFZu_W2QsWonDLEcZwQAmwt1_hEFKmmb2J54TjXB5cIMM480I4LNzy7MKNGMSd7ub4TNbeAsF1FRPEhkonxa6rxPqj0Kg_S5qoR_EnKW_-axuq9NI/s2879/1-3.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-3.jpg)
 
 **Figure 1-3:** _Construct of an Artificial Neuron._
 
 Based on the figure 1-3 we can use the mathematical definition below for ReLU:
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZOd_pTlu8aKviu_WlIqUx4wvywYR3pgvLDuHKOIiAX0AmzrSTopNH1nbcpSzC2frox8I0N9ZQwai1jdvLIii8HHH9EFjKUkXn_nWNPIZipIe00M1anltJ-uiFaVSg7NL3awe1ThXMh_AbxB75nwtSJ5jvEmxtPQXmimnDXPxj4M8QxKVagtSC2Hu-I_4/w640-h342/1-3-kaava.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZOd_pTlu8aKviu_WlIqUx4wvywYR3pgvLDuHKOIiAX0AmzrSTopNH1nbcpSzC2frox8I0N9ZQwai1jdvLIii8HHH9EFjKUkXn_nWNPIZipIe00M1anltJ-uiFaVSg7NL3awe1ThXMh_AbxB75nwtSJ5jvEmxtPQXmimnDXPxj4M8QxKVagtSC2Hu-I_4/s1051/1-3-kaava.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-3-kaava.jpg)
 
 ### Bias Term
 
@@ -73,7 +73,7 @@ In the example calculation above, imagine that all input values are zero. Withou
 
 The ReLU function is a non-linear activation function. Naturally, there are other activation functions as well. The Hyperbolic Tangent (tanh) \[5\] and the logistic Sigmoid \[6\] functions are examples of S-shaped functions that are symmetric around zero. Figure 1-4 illustrates that as the positive z value increases, the tanh function approaches one (1), while as the negative z value decreases, it approaches -1. Thus, the range of the tanh function is from -1 to 1. Similarly, the sigmoid function's S-curve is also symmetric around zero, but its range is from 0 to 1.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjeIqQJqOcO1a5K7mi9pky0yQbyZET0nciIFl_NlnylFLsZJyDy1RAgB0nqJteGQhPmshYXS5ozCjddEvfP_0w4Q6UXivhqK1TAge7_jolCTqx059LHQs9raYAK54P6op1uOQm_jtO5yvFOl1Ms8MiEHIcExscjFlZJ-Iyzus026-6PFDhlLSocVqfIHDM/w640-h324/1-5.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjeIqQJqOcO1a5K7mi9pky0yQbyZET0nciIFl_NlnylFLsZJyDy1RAgB0nqJteGQhPmshYXS5ozCjddEvfP_0w4Q6UXivhqK1TAge7_jolCTqx059LHQs9raYAK54P6op1uOQm_jtO5yvFOl1Ms8MiEHIcExscjFlZJ-Iyzus026-6PFDhlLSocVqfIHDM/s4430/1-5.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-5.jpg)
 
 **Figure 1-4:** _Tanh and Sigmoid functions._
 
@@ -83,21 +83,21 @@ Note, the ⅇ represents **Euler’s Number ⅇ≈ 2.718.** The symbol σ repres
 
 The formula for tanh function is:
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4R5gSyFjTT5RmxaKhzg7p75b62HJ3MnSqlp4dcDuf_csfY2h1-i4HV_lnY77guRnt6a0Sy7xxmD-y16jkVXjNHSzCTamDN4VNqExSGoy8nDXDP8fttjk0sZwT0xj_s8LSuK1FzVbcpJgo9nIxLBYZTWmv57HjYA0q0IJLZyCLJWF4xDaotW3boxwtEtQ/w640-h68/1-4-tanh-1.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4R5gSyFjTT5RmxaKhzg7p75b62HJ3MnSqlp4dcDuf_csfY2h1-i4HV_lnY77guRnt6a0Sy7xxmD-y16jkVXjNHSzCTamDN4VNqExSGoy8nDXDP8fttjk0sZwT0xj_s8LSuK1FzVbcpJgo9nIxLBYZTWmv57HjYA0q0IJLZyCLJWF4xDaotW3boxwtEtQ/s919/1-4-tanh-1.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-4-tanh-1.jpg)
 
 The tanh function for z = 3,02
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4ZwR_uymBs_3vyj_xIXTP9bj9FSD4sQCyyIi487ZMHR3x2O4jud4_9lHWnonMDgnSn-CvPVyvLRquGP9fGyVWQGN1-7DsCbVmtsokvg-ZXiZKkUEI1cZCKTIjkl9Ou2hPA6g8b9Zb8v5uGLmK_lWYwNCbul6_6dJH1IVAlZnJipMqX37oHw60kZRmY8s/w640-h80/1-4-tanh-2.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4ZwR_uymBs_3vyj_xIXTP9bj9FSD4sQCyyIi487ZMHR3x2O4jud4_9lHWnonMDgnSn-CvPVyvLRquGP9fGyVWQGN1-7DsCbVmtsokvg-ZXiZKkUEI1cZCKTIjkl9Ou2hPA6g8b9Zb8v5uGLmK_lWYwNCbul6_6dJH1IVAlZnJipMqX37oHw60kZRmY8s/s818/1-4-tanh-2.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-4-tanh-2.jpg)
 
 The formula for sigmoid function is:
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAs-QqW36L1knHMyQJUqhHKLkvaFjzM2v1Cf4EgqMPdHhD5C3ly2oDS_PStNIjaxBZykMwaEUrXNZuOWYBkl_FZpvNyw2eUZ0r5ky60p5z_taOy6BejK1_vb6WpJUEQ8TbeA95vSOljAkZAR8TszrY0f-hpKhGrIe4NwJqVuE27hdtag770YkVgkg-5Qs/w640-h84/1-4-sigmoid-1.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAs-QqW36L1knHMyQJUqhHKLkvaFjzM2v1Cf4EgqMPdHhD5C3ly2oDS_PStNIjaxBZykMwaEUrXNZuOWYBkl_FZpvNyw2eUZ0r5ky60p5z_taOy6BejK1_vb6WpJUEQ8TbeA95vSOljAkZAR8TszrY0f-hpKhGrIe4NwJqVuE27hdtag770YkVgkg-5Qs/s790/1-4-sigmoid-1.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-4-sigmoid-1.jpg)
 
 The sigmoid function for z = 3,02
 
 The symbol σ represents sigmoid function.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg037DKdEdrenzQdfB6nDXJqdE7tQ1VjivAQniM5rr8VtdjTfTS4c8tzkqzWTe6Swml9zR-UCqyJLHBXsENQ0Feo2mFUU9s_JAfagJXQbBhGDxIODeD0WgzR_3cJnkJm4UE9OjQinb7e4zH5ogMT-oC3hKstJdShhQwUxm7g8q1GTl_QrYkXkemI6ZlId0/w640-h66/1-4-sigmoid-2.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg037DKdEdrenzQdfB6nDXJqdE7tQ1VjivAQniM5rr8VtdjTfTS4c8tzkqzWTe6Swml9zR-UCqyJLHBXsENQ0Feo2mFUU9s_JAfagJXQbBhGDxIODeD0WgzR_3cJnkJm4UE9OjQinb7e4zH5ogMT-oC3hKstJdShhQwUxm7g8q1GTl_QrYkXkemI6ZlId0/s819/1-4-sigmoid-2.jpg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/1-4-sigmoid-2.jpg)
 
 For z=3.02, both the sigmoid and tanh functions return values close to 1, but the tanh function is slightly higher, approaching its maximum of 1 more quickly than the sigmoid.
 
