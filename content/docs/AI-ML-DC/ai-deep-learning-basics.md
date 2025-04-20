@@ -139,19 +139,458 @@ After completing the Backward pass, the Backpropagation algorithm starts a new i
 
 **Figure 2-1:** _Backpropagation Algorithm._
 
-## Network Impact
+### Introduction 
 
-A single artificial neuron is the smallest unit of a neural network. The size of the neuron depends on its connections to input nodes. Every connection has an associated weight parameter, which is typically a 32-bit value. In our example, with 4 connections, the size of the neuron is 4 x 32 bits = 128 bits.
+  
 
-Although we haven’t defined the size of the input in this example, let’s assume that each input (x) is an 8-bit value, giving us 4 x 8 bits = 32 bits for the input data. Thus, our single neuron "model" requires 128 bits for the weights plus 32 bits for the input data, totaling 160 bits of memory. This is small enough to not require parallelization.
+This chapter introduces the training model of a neural network based on the Backpropagation algorithm. The goal is to provide a clear and solid understanding of the process without delving deeply into the mathematical formulas, while still explaining the fundamental operations of the involved functions. The chapter also briefly explains why, and in which phases the training job generates traffic to the network, and why lossless packet transport is required. The Backpropagation algorithm is composed of two phases: the Forward pass (computation phase) and the Backward pass (adjustment and communication phase).
 
-However, if the memory requirement of the neural network model combined with the input data (the "job") exceeds the memory capacity of a GPU, a parallelization strategy is needed. The job can be split across multiple GPUs within a single server, with synchronization happening over high-speed NVLink. If the job must be divided between multiple GPU servers, synchronization occurs over the backend network, which must provide lossless, high-speed packet forwarding.
+In the Forward pass, neurons in the first hidden layer calculate the weighted sum of input parameters received from the input layer, which is then passed to the neuron's activation function. Note that neurons in the input layer are not computational units; they simply pass the input variables to the connected neurons in the first hidden layer. The output from the activation function of a neuron is then used as input for the connected neurons in the next layer. The result of the activation function in the output layer represents the model's prediction, which is compared to the expected value (ground truth) using the error function. The output of the error function indicates the accuracy of the current training iteration. If the result is sufficiently close to the expected value (error function close to zero), the training is complete. Otherwise, it triggers the Backward pass process.
 
-Parallelization strategies will be discussed in the next chapter, which introduces a Feedforward Neural Network using the Backpropagation algorithm, and in later chapters dedicated to Parallelization.
+As the first step in the backward pass, the backpropagation algorithm calculates the derivative of the error function, providing the output error (gradient) of the model. Next, the algorithm computes the error term (gradient) for the neuron(s) in the output layer by multiplying the derivative of each neuron’s activation function by the model's error term. Then, the algorithm moves to the preceding layer and calculates the error term (gradient) for its neuron(s). This error term is now calculated using the error term of the connected neuron(s) in the next layer, the derivative of each neuron’s activation function, and the value of the weight parameter associated with the connection to the next layer.
 
-## Summary
+After calculating the error terms, the algorithm determines the weight adjustment values for all neurons simultaneously. This computation is based on the input values, the adjustment values, and a user-defined learning rate. Finally, the backpropagation algorithm refines all weight values by adding the adjustment values to the initial weights. Once the backward pass is complete, the backpropagation algorithm starts a new iteration of the forward pass, gradually improving the model's predictions until they closely match the expected values, at which point the training is complete.
 
-Deep Learning leverages Neural Networks, which consist of artificial neurons. An artificial neuron mimics the structure and operation of a biological neuron. Input data is fed to the neuron through connections, each with its own weight parameter. The neuron uses these weights to calculate a weighted sum of the inputs, known as the pre-activation value. This result is then passed through an activation function, which provides the post-activation value, or the actual output of the neuron. The activation functions discussed in this chapter are the non-linear ReLU (Rectified Linear Unit), Hyperbolic Tangent (tanh), and logistic Sigmoid functions.
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEitDgsvrxwmPAVLnJLyYKAt8a9pMHQhBRM04lhlPxSgdnRbhcmSvFpM4jJeTW8HNX5fMCJySCmqL5QgFkIPTnD05klodcBansBD0mfUqb5D-hU71uWzrwkgyG2UhHEm_8n175DZgXtgPUy0GZjgxikylBxxuP4tB8C3s8fDeVv3FSfTvwGetuhXM6sxkMk=w640-h364)](https://blogger.googleusercontent.com/img/a/AVvXsEitDgsvrxwmPAVLnJLyYKAt8a9pMHQhBRM04lhlPxSgdnRbhcmSvFpM4jJeTW8HNX5fMCJySCmqL5QgFkIPTnD05klodcBansBD0mfUqb5D-hU71uWzrwkgyG2UhHEm_8n175DZgXtgPUy0GZjgxikylBxxuP4tB8C3s8fDeVv3FSfTvwGetuhXM6sxkMk)
+
+**Figure 2-1:** _Backpropagation Overview._
+
+  
+
+  
+
+### The First Iteration - Forward Pass
+
+  
+
+Training a model often requires multiple iterations of forward and backward passes. In the forward pass, neurons in the first hidden layer calculate the weighted sum of input values, each multiplied by its associated weight parameter. These neurons then apply an activation function to the result. Neurons in subsequent layers use the activation output from previous layers as input for their own weighted sum calculations. This process continues through all the layers until reaching the output layer, where the activation function produces the model's prediction.
+
+  
+
+After the forward pass, the backpropagation algorithm calculates the error by comparing the model's output with the expected value, providing a measure of accuracy. If the model's output is close to the expected value, training is complete. Otherwise, the backpropagation algorithm initiates the backward pass to adjust the weights and reduce the error in subsequent iterations.
+
+### Neuron-a Forward Pass Calculations
+
+#### Weighted Sum
+
+  
+
+In Figure 2-2, we have an imaginary training dataset with three inputs and a bias term. Input values and their respective initial weight values are listed below: 
+
+  
+
+• x1 = 0.2 , initial weight wa1 = 0.1
+
+• x2 = 0.1, initial weight wa2 = 0.2
+
+• x3 = 0.4 , initial weight wa3 = 0.3
+
+• ba0 = 1.0 , initial weight wa0 = 0.6
+
+  
+
+From the model training perspective, the input values are constant, unchageable values, while weight values are variables which will be refined during the backward pass process.
+
+  
+
+The standard way to write the weighted sum formula is: 
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEh7Yd6CF0l_WbBGnfzdoefh7nXU4n1pFmkvalyF07d8ALyOLTF4BmxL2J9HZjnv5-8Vrm8Cn69ujDNF4Xuo-RenGByEIstEz7ibkHff6xzwTuA2MD8S33CNGZ7Cxa5ZOuTSLjY9F6qprjJGkEF-LUlYxR8VppcmHeRuJb3Rbb2rN6HJbACef_ItuM8Vv6g=w640-h102)](https://blogger.googleusercontent.com/img/a/AVvXsEh7Yd6CF0l_WbBGnfzdoefh7nXU4n1pFmkvalyF07d8ALyOLTF4BmxL2J9HZjnv5-8Vrm8Cn69ujDNF4Xuo-RenGByEIstEz7ibkHff6xzwTuA2MD8S33CNGZ7Cxa5ZOuTSLjY9F6qprjJGkEF-LUlYxR8VppcmHeRuJb3Rbb2rN6HJbACef_ItuM8Vv6g)
+
+  
+
+Where:
+
+• n = 3 represents the number of input values (x1, x2, x3).
+
+• Each input xi  is multiplied by its respective weight wi, and the sum of these products is added to the bias term b.
+
+  
+
+In this case, the equation can be explicitly stated as:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjlyRsPtr5jJx8kvVa3KIbW14sNr0nqmLNL2GQ1YVfGeORWFEolvrIURmDYaLvrg6e-CDlpP09HO9nFCw9EZaAnQyA5PhQrTyY5Qm_lteJ6gQk4idCk8VowHhWqyPctCbAHdL2OrX2JHPyYs2NBi1wXWDG6JdwjhJxHewD1RwNIZ4W3FRK7Qk_ph43wwfM=w400-h41)](https://blogger.googleusercontent.com/img/a/AVvXsEjlyRsPtr5jJx8kvVa3KIbW14sNr0nqmLNL2GQ1YVfGeORWFEolvrIURmDYaLvrg6e-CDlpP09HO9nFCw9EZaAnQyA5PhQrTyY5Qm_lteJ6gQk4idCk8VowHhWqyPctCbAHdL2OrX2JHPyYs2NBi1wXWDG6JdwjhJxHewD1RwNIZ4W3FRK7Qk_ph43wwfM)
+
+  
+Which with our parameters gives:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEg4X1LaPahNjIkHo0fOCGoUQ14O-8zEFMHuMSVQjDUCTID_7U1XqhR_b-WRAVYIBIUDT1v_hGcLpxOJGxR4dSOGToXcVdxtr86W-BMrSE-MkjWKNLybXEpCbcKLYD10hBD4ooLeVsNy77WOBxOK5wcOdS9dnEeO8EvEdSjAKBYU-knepLiHGCe54Ulh19g=w400-h31)](https://blogger.googleusercontent.com/img/a/AVvXsEg4X1LaPahNjIkHo0fOCGoUQ14O-8zEFMHuMSVQjDUCTID_7U1XqhR_b-WRAVYIBIUDT1v_hGcLpxOJGxR4dSOGToXcVdxtr86W-BMrSE-MkjWKNLybXEpCbcKLYD10hBD4ooLeVsNy77WOBxOK5wcOdS9dnEeO8EvEdSjAKBYU-knepLiHGCe54Ulh19g)
+
+#### Activation Function
+
+  
+
+Neuron-a uses the previously calculated weighted sum as input for the activation function. We are using the ReLU function (Rectified Linear Unit), which is more popular than the hyperbolic tangent and sigmoid functions due to its simplicity and lower computational cost.
+
+  
+
+The standard way to write the ReLU function is:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgQaqmHIditsytIJ0zX6KnDdJGm096Dyn-tbDHgldv8CjoFXpotRqpgZyg2nAmrmDgT9AxC6-ko4LeBqaPfx_bDt6ZDe4VxAwVnk6nChPG35AmwhWUVECdd3zADJkYZATHbuBB5t5dvkQVlnrtaIqZiDhBH63IWK4rWGM-zLbUS4czSrQ04diO6Uok_MAo)](https://blogger.googleusercontent.com/img/a/AVvXsEgQaqmHIditsytIJ0zX6KnDdJGm096Dyn-tbDHgldv8CjoFXpotRqpgZyg2nAmrmDgT9AxC6-ko4LeBqaPfx_bDt6ZDe4VxAwVnk6nChPG35AmwhWUVECdd3zADJkYZATHbuBB5t5dvkQVlnrtaIqZiDhBH63IWK4rWGM-zLbUS4czSrQ04diO6Uok_MAo)
+
+  
+
+Where:
+
+f(a) represents the activation function.
+
+z  is the weighted sum of inputs.
+
+  
+
+The ReLU function returns the z if z > 0. Otherwise, it returns 0 if z ≤ 0.
+
+  
+
+In our example, the weighted sum za is 0.76, so the ReLU function returns:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhncvc2mnYuIvMYtWy07b4ov9ooJbQvq_3tOd7mbkd3aiYE_Xk030Umn_csJTswaziyFFps2gOzxWVyLON-sROx_eFdfms0luCvJQrZsNWcDdB-0cyoczjbTapobk9eAnKeRCxSCnAVapluYnDWkAfGCMy6EC6sic6bhN-aOyRSb-7BDGAM7zg4_iDbIZA=w320-h43)](https://blogger.googleusercontent.com/img/a/AVvXsEhncvc2mnYuIvMYtWy07b4ov9ooJbQvq_3tOd7mbkd3aiYE_Xk030Umn_csJTswaziyFFps2gOzxWVyLON-sROx_eFdfms0luCvJQrZsNWcDdB-0cyoczjbTapobk9eAnKeRCxSCnAVapluYnDWkAfGCMy6EC6sic6bhN-aOyRSb-7BDGAM7zg4_iDbIZA)
+
+  
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEiClT2fWaHrlQp_PZwK1PUA1Lg1r_NKH5U-764MOFlMHaW-oDF6c0Ppp8R_yNhJmsqUfQU4A9l3qo0knffXAF_IdDRH5ul-vXGcKxpb7IXoR_-m-yK5K8umn7mqofVF5J4al883Bvr88jDa1pfLrlyQ6Ze2qDvm0qkqrnUO1gdjA5DXhEDuEDM63FjgqR4)](https://blogger.googleusercontent.com/img/a/AVvXsEiClT2fWaHrlQp_PZwK1PUA1Lg1r_NKH5U-764MOFlMHaW-oDF6c0Ppp8R_yNhJmsqUfQU4A9l3qo0knffXAF_IdDRH5ul-vXGcKxpb7IXoR_-m-yK5K8umn7mqofVF5J4al883Bvr88jDa1pfLrlyQ6Ze2qDvm0qkqrnUO1gdjA5DXhEDuEDM63FjgqR4)
+
+**Figure 2-2:** _Activation Function for Neuron-a._
+
+  
+
+  
+
+### Neuron-b Forward Pass Calculations
+
+#### Weighted Sum
+
+  
+
+Besides the bias term value of 1.0,  Neuron-b uses the result provided by the activation function of neuron-a as an input to weighted sum calculation. Input values and their respective initial weight values are listed below: 
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEj2qGNE5BAlyaa_IJYE7QyfUflXMS-HONdZOWhLNkpcqJDnNSB5LXI7aEib1ixLKmX86gDAuslyMx5OBlVvwhl0xROl02Pb08MfqPiZN8CDp1_VLXzT-xlit0fI1WdfcU_A6eehMkcg3oNXHUIacM1ChStweOfkjBO_NQwDB2JpREJB27Og5r9Pf73eKEw)](https://blogger.googleusercontent.com/img/a/AVvXsEj2qGNE5BAlyaa_IJYE7QyfUflXMS-HONdZOWhLNkpcqJDnNSB5LXI7aEib1ixLKmX86gDAuslyMx5OBlVvwhl0xROl02Pb08MfqPiZN8CDp1_VLXzT-xlit0fI1WdfcU_A6eehMkcg3oNXHUIacM1ChStweOfkjBO_NQwDB2JpREJB27Og5r9Pf73eKEw)
+
+  
+This gives us:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhB7gtd6CHtMe3MLk79SbjBKs50o3xVIhDOd-zQGGwg02OfylaD184l11Lpioov6-TB8-dufJy7og4vjWygS-LWKtmNMn8sSa-xqFekZTowIYMj7t-Bo2xkQxQ4Z1o9OrQlYxapZ2hEQzNv0mQmq9zL3FC5-Mxp3ZSYkcD5CYzG0wKym--MqzCBJANOZr4)](https://blogger.googleusercontent.com/img/a/AVvXsEhB7gtd6CHtMe3MLk79SbjBKs50o3xVIhDOd-zQGGwg02OfylaD184l11Lpioov6-TB8-dufJy7og4vjWygS-LWKtmNMn8sSa-xqFekZTowIYMj7t-Bo2xkQxQ4Z1o9OrQlYxapZ2hEQzNv0mQmq9zL3FC5-Mxp3ZSYkcD5CYzG0wKym--MqzCBJANOZr4)
+
+  
+
+#### Activation Function
+
+  
+
+Just like Neuron-a, Neuron-b uses the previously calculated weighted sum as input for the activation function. Because the zb = 0.804 is greater than zero, the ReLU activation function f(b) returns:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjbCctWU85R5CH430dUXOCxMBH33f0nvu6p2DlfRx9jz9-ZTKpmV2soiPEBZcVfO4lVBPSFDe79I3qGaec55mvVOmKTBPKKimawdCLdqdnre2zBarYUu5_DgZlpH19Y1tVaYIZKFTHCgNwYtDsC9NiezP7KNuUOUrjxKosTTUSORyFUA2iQLdDpzrYDadU=w200-h44)](https://blogger.googleusercontent.com/img/a/AVvXsEjbCctWU85R5CH430dUXOCxMBH33f0nvu6p2DlfRx9jz9-ZTKpmV2soiPEBZcVfO4lVBPSFDe79I3qGaec55mvVOmKTBPKKimawdCLdqdnre2zBarYUu5_DgZlpH19Y1tVaYIZKFTHCgNwYtDsC9NiezP7KNuUOUrjxKosTTUSORyFUA2iQLdDpzrYDadU)
+
+  
+
+Neuron-b is in the output layer, so its activation function result _y__<sub><span style="font-family: &quot;Cambria Math&quot;,serif; mso-bidi-font-family: Calibri; mso-bidi-font-size: 6.0pt; mso-bidi-theme-font: minor-latin;">b</span></sub>_ represents the prediction of the model. 
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhToMNGfttyl5DNevn_5TSWWlozq3ZS9hybYAoBOPznZG8oilxvrYe1moFAYVaUsy1mfON7IwxuqFAPfrU5ZxKNPvF3bDD-ls3w6Wy-byVydFjns1d9FI3f_C7ZFNmuAopIChYrtR3pc2GkG9DhFSrQUSXjq1innm2u57j8KHjcv22_FiU4BLSxS6PFpow=w640-h360)](https://blogger.googleusercontent.com/img/a/AVvXsEhToMNGfttyl5DNevn_5TSWWlozq3ZS9hybYAoBOPznZG8oilxvrYe1moFAYVaUsy1mfON7IwxuqFAPfrU5ZxKNPvF3bDD-ls3w6Wy-byVydFjns1d9FI3f_C7ZFNmuAopIChYrtR3pc2GkG9DhFSrQUSXjq1innm2u57j8KHjcv22_FiU4BLSxS6PFpow)
+
+**Figure 2-3:** Activation Function for Neuron-b.
+
+  
+
+### Error Function
+
+  
+
+To keep things simple, we have used only one training example. However, in real-life scenarios, there will always be more than one training example. For instance, a training dataset might contain 10 images of cats and 10 images of dogs, each having 28x28 pixels. Each image represents a training example, giving us a total of 20 training examples. The purpose of the error function is to provide a single error metric for all training examples. In this case, we are using the Mean Squared Error (MSE).
+
+  
+
+We can calculate the MSE using the formula below where the expected value y is 1.0 and the model’s  prediction for the training example yb = 0.804. This gives an error metric of 0.019, which can be interpreted as an indicator of the model's accuracy.
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhLQf3xNfGXY9VpgEL_BaSj3Pfgt3ZpkUk_7U6LYq5TlyUdd8cTtDeA8PKeGv4rWXsPnRYRi-QRthOhaKIB1kGit4DhjOYSe5H5CJdUCHFk0pEhnF5nwpybyvJNNg8xRv5qvQQPadcmsXbIaGBpWec41c_VljSiws3QsbsHPwF4w0qKPTuBG_MCrwAEY5c)](https://blogger.googleusercontent.com/img/a/AVvXsEhLQf3xNfGXY9VpgEL_BaSj3Pfgt3ZpkUk_7U6LYq5TlyUdd8cTtDeA8PKeGv4rWXsPnRYRi-QRthOhaKIB1kGit4DhjOYSe5H5CJdUCHFk0pEhnF5nwpybyvJNNg8xRv5qvQQPadcmsXbIaGBpWec41c_VljSiws3QsbsHPwF4w0qKPTuBG_MCrwAEY5c)
+
+The result of the error function is not sufficiently close to the desired value, which is why this result triggers the backward pass process.
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEg0V87UHGxCt1T0HMhittSY632TWTA6EnQRzXacbE43vw53BDUIGsvJWynnkOxHO6G7NQsLmFSXkKhUgScvHkoJxHQmmOJpOfFdHjRfty_n8UxIq3q8P9lYvR03Q0UwZNqsNOQzxcymUA4wkuBNG0n2E0MLlv8hy0vJMVX76YSEO9vbr0r3XJlvgpoIdX8=w640-h360)](https://blogger.googleusercontent.com/img/a/AVvXsEg0V87UHGxCt1T0HMhittSY632TWTA6EnQRzXacbE43vw53BDUIGsvJWynnkOxHO6G7NQsLmFSXkKhUgScvHkoJxHQmmOJpOfFdHjRfty_n8UxIq3q8P9lYvR03Q0UwZNqsNOQzxcymUA4wkuBNG0n2E0MLlv8hy0vJMVX76YSEO9vbr0r3XJlvgpoIdX8)
+
+**Figure 2-4:** _Calculating the Error Function for Training Examples._
+
+  
+
+### Backward Pass
+
+  
+
+In the forward pass, we calculate the model’s accuracy using several functions. First, Neuron-a computes the weighted sum Σ(za ) by multiplying the input values and the bias term with their respective weights. The output, za, is then passed through the activation function f(a), producing ya. Neuron-b, in turn, takes ya and the bias term to calculate the weighted sum Σ(zb ). The activation function f(b) then uses zb to compute the model’s output, yb. Finally, the error function f(e) calculates the model’s accuracy based on the output.
+
+  
+
+So, dependencies between function can be seen as:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhHc-isZqf_tRs5Uly5dI7lMwuQmBUwFS0KsrdJlM42ciCuWWyWYrlKh89OaH_Vk8tZ8sjv8bikVtSwdgmjsaXItLhiMgObNIhqT1fMc38ZjZhtCh3i29iWrpkWyeoZhsbBiFcGQaz8beJE8NsbMxcFc3gvkxAADHud9ILuFJLilMEQLWaW6vg32EaUs_g)](https://blogger.googleusercontent.com/img/a/AVvXsEhHc-isZqf_tRs5Uly5dI7lMwuQmBUwFS0KsrdJlM42ciCuWWyWYrlKh89OaH_Vk8tZ8sjv8bikVtSwdgmjsaXItLhiMgObNIhqT1fMc38ZjZhtCh3i29iWrpkWyeoZhsbBiFcGQaz8beJE8NsbMxcFc3gvkxAADHud9ILuFJLilMEQLWaW6vg32EaUs_g)
+
+  
+The backpropagation algorithm combines these five functions to create a new error function, enew(x), using function composition and the chain rule. The following expression shows how the error function relates to the weight parameter w1 used by Neuron-a:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgn0ACKkajk0HP0lfw06MnRyEbEpOYLqHpKQu1n0rjaZwFJ3H9BNdFxk5t72fdrOrTWU1XS9tsK-XvyHWzWSllbC38Ats7q7qR8XaGHzrKYOAEwEA8L8bGCoF-m5Cs00bThGoOx-kDFgzud-QjOT0Tlrg2uh96O2j-RV8N8Aq3e_vbZ4w7ygtPz7bB6JjY)](https://blogger.googleusercontent.com/img/a/AVvXsEgn0ACKkajk0HP0lfw06MnRyEbEpOYLqHpKQu1n0rjaZwFJ3H9BNdFxk5t72fdrOrTWU1XS9tsK-XvyHWzWSllbC38Ats7q7qR8XaGHzrKYOAEwEA8L8bGCoF-m5Cs00bThGoOx-kDFgzud-QjOT0Tlrg2uh96O2j-RV8N8Aq3e_vbZ4w7ygtPz7bB6JjY)
+
+  
+
+This can be expressed using the composition operator (∘) between functions:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgnp4ZwicRXv9KPtwQkHdmGrEeFNwyo8a2qA5SbFsZTjQ9aTnauAl6ug0jrBA1BB2WKUVjomER0xR8C-5NN75YyTLfq898BAwIDezRXtGCUivTzc4iiDAToLk7NJGb5VVSI3WEAGkEQYZRpx1pZ_QF_KLvK9rdvU03-oyVqrZ0ITdCfuDnZBKAFThaBOfg)](https://blogger.googleusercontent.com/img/a/AVvXsEgnp4ZwicRXv9KPtwQkHdmGrEeFNwyo8a2qA5SbFsZTjQ9aTnauAl6ug0jrBA1BB2WKUVjomER0xR8C-5NN75YyTLfq898BAwIDezRXtGCUivTzc4iiDAToLk7NJGb5VVSI3WEAGkEQYZRpx1pZ_QF_KLvK9rdvU03-oyVqrZ0ITdCfuDnZBKAFThaBOfg)
+
+  
+
+Next, we use a method called gradient descent to gradually adjust the initial weight values, refining them to bring the model's output closer to the expected result. To do this, we compute the derivative of the composite function using the chain rule, where we take the derivatives of:
+
+  
+
+1. The error function (e) with respect to the activation function (b).
+
+2. The activation function b with respect to the weighted sum (zb). 
+
+3. The weighted sum (zb) with respect to the activation function (a).
+
+4. The activation function (a) with respect to weighted sum (za(w1)). 
+
+  
+
+In Leibniz’s notation, this looks like:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEiAmHh6QjVQZwTzyu_OEJJhwLFvW_ohczTT6RLPdQ_k16HlQNQuWgJma3yjVTxgTMCUYbVX2vfb4-rtbDtkowOTQKnQLVhhSYU1Ko3DMLq7X-Pe21IaWU7sg7TTuo4kgZhzzhERUpdxBsN10V1EMCBS8OkHm00txQkx7TBXe6axdbjrdbyw6O2FwbEkubY)](https://blogger.googleusercontent.com/img/a/AVvXsEiAmHh6QjVQZwTzyu_OEJJhwLFvW_ohczTT6RLPdQ_k16HlQNQuWgJma3yjVTxgTMCUYbVX2vfb4-rtbDtkowOTQKnQLVhhSYU1Ko3DMLq7X-Pe21IaWU7sg7TTuo4kgZhzzhERUpdxBsN10V1EMCBS8OkHm00txQkx7TBXe6axdbjrdbyw6O2FwbEkubY)
+
+  
+
+Figure 2-5 illustrates the components of the backpropagation algorithm, along with their relationships and dependencies.
+
+  
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjRvKTG2iLa099WhIg80WHwZ1wl6Gi9TaiG-g0rHmAdTDd8XkajjpQC7TrpsxCWslhkbHxB57DrhbxLF7hQ-YX9Iqxffrrws_B4eW1pyofpVqVJuoGcf2hpZlqkkuPZeFjn3TqM9aqM88Q4dEexsGj3nup-fk2bZLztNqwIJUOl_tlAfUZy6epZ48kCPYY=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEjRvKTG2iLa099WhIg80WHwZ1wl6Gi9TaiG-g0rHmAdTDd8XkajjpQC7TrpsxCWslhkbHxB57DrhbxLF7hQ-YX9Iqxffrrws_B4eW1pyofpVqVJuoGcf2hpZlqkkuPZeFjn3TqM9aqM88Q4dEexsGj3nup-fk2bZLztNqwIJUOl_tlAfUZy6epZ48kCPYY)
+
+**Figure 2-5:** _The Backward Pass Overview._
+
+  
+
+  
+
+#### Partial Derivative for Error Function – Output Error (Gradient)
+
+  
+
+As a recap, and for illustrating that the prediction of the first iteration fails, Figure 2-6 includes the computation for the error function (MSE = 0.019). 
+
+  
+
+As a first step, we calculate the partial derivative of the error function. In this case, the partial derivative describes the rate of change of the error function when the input variable yb changes. The derivative is called partial when one of its input values is held constant (i.e., not adjusted by the algorithm). In our example, the expected value y is constant input. The result of the partial derivative of the error function describes how the predicted output should change yb to minimize the model’s error.
+
+  
+
+We use the following formula for computing the derivative of the error function:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjtB9q-M6USa6LQaezwm8s7SX4K5aMSUETc2F5w--nBF8PzbE8UnsUYVx8UA6LGZMyslKgepriCE2Z1pNCa-Gx47YEgNLOxRdGJ72YWbJYYmv-j7uXNKv_ARIHCWC5WF8JlIoYqUstuuU9AI2opSC0alm1-9TrIZdtfKbcFI3SF_JOQmd324fKSF6-Su8w=w200-h66)](https://blogger.googleusercontent.com/img/a/AVvXsEjtB9q-M6USa6LQaezwm8s7SX4K5aMSUETc2F5w--nBF8PzbE8UnsUYVx8UA6LGZMyslKgepriCE2Z1pNCa-Gx47YEgNLOxRdGJ72YWbJYYmv-j7uXNKv_ARIHCWC5WF8JlIoYqUstuuU9AI2opSC0alm1-9TrIZdtfKbcFI3SF_JOQmd324fKSF6-Su8w)
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEickvrXMja93vRtZaMK3dK8cyHash9A18_m1KIBdRFztJTHgugJa7jLM6iI2me7CDieiF-JddE_x4hPBlyicUslye0WOJayDeSVS0n00jnnx5k2pLjPueHiV2uLZ8-Te14zhmY1hfPJUSUhX8RlrXV5E2E0m7njYNUfkpUJZjGGkNgdn62NPO7IzPnqQzo=w640-h364)](https://blogger.googleusercontent.com/img/a/AVvXsEickvrXMja93vRtZaMK3dK8cyHash9A18_m1KIBdRFztJTHgugJa7jLM6iI2me7CDieiF-JddE_x4hPBlyicUslye0WOJayDeSVS0n00jnnx5k2pLjPueHiV2uLZ8-Te14zhmY1hfPJUSUhX8RlrXV5E2E0m7njYNUfkpUJZjGGkNgdn62NPO7IzPnqQzo)
+
+**Figure 2-6:** _The Backward Pass – Derivative of the Error Function._
+
+  
+
+The following explanation is meant for readers interested in why there is a minus sign in front of the function.
+
+  
+
+When calculating the derivative, we use the Power Rule. The Power Rule states that if we have a function f(x) = xn , then its derivative is f’(x) = n ⋅ xn-1. In our case, this applies to the error function:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhGdzk4UUXmh6_fvyaLpaBPP-4tKO0imp6va2S5MS34-uOIS-05B9mFddJhTBX3SY27UdRBTl2lIVha_lle7DdUlfb1uEgD7gJhx7JFnZUF5BcNvm3X5JSAr1BR8FfL-VzMDE3S2kB3k4smUMGQlSwAozfom6LVRiPXXM3VA0tEaQ_Akl1JCATRU_aYItg=w200-h36)](https://blogger.googleusercontent.com/img/a/AVvXsEhGdzk4UUXmh6_fvyaLpaBPP-4tKO0imp6va2S5MS34-uOIS-05B9mFddJhTBX3SY27UdRBTl2lIVha_lle7DdUlfb1uEgD7gJhx7JFnZUF5BcNvm3X5JSAr1BR8FfL-VzMDE3S2kB3k4smUMGQlSwAozfom6LVRiPXXM3VA0tEaQ_Akl1JCATRU_aYItg)
+
+  
+Using the Power Rule, the derivative becomes:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEh47BY8Jkd6HideyKEij6gUOfEm-FQrzz3NPgvDhEpOX7XE9XdigO0PY2tGUn_gNw5aOQpxi3yLUN2qrO-k0np7d5XGsBNokaabV9hY4EKjfSyjp-bl_uzqqMKzOX4EKZa2KkWcDdohZEkeynIQJVBGrsFmWmlrkZ-kiFSdO2XJkNMqV7kCjyWuR8aEuiA=w200-h33)](https://blogger.googleusercontent.com/img/a/AVvXsEh47BY8Jkd6HideyKEij6gUOfEm-FQrzz3NPgvDhEpOX7XE9XdigO0PY2tGUn_gNw5aOQpxi3yLUN2qrO-k0np7d5XGsBNokaabV9hY4EKjfSyjp-bl_uzqqMKzOX4EKZa2KkWcDdohZEkeynIQJVBGrsFmWmlrkZ-kiFSdO2XJkNMqV7kCjyWuR8aEuiA)
+
+  
+
+Next, we apply the chain rule by multiplying this result by the derivative of the inner function (y − yb), with respect to yb . Since y is treated as a constant (because it represents our target value, which doesn't change during optimization), the derivative of (y − yb) with respect to yb  is simply −1, as the derivative of − yb  with respect to yb  is −1, and the derivative of y (a constant) is 0.
+
+  
+
+Therefore, the final derivative of the error function with respect to yb  is:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEi13I_fAcqYiSSTeThPMJkdC6_9P6XyYxepCISFxmHIYkpwUQywFdGk4aPcxqEouzeOjTYI0JJN2Fm9LsY1k7fwPenOkX9z__zKL8x9Zjk6be9UUyCSveJqgQl_InmzMPlPOTm2kG33OP9ifgy9mt8nRNn082OuX8JfaqWx_2qu71VukH8z3tRwJDy2hZU=w200-h31)](https://blogger.googleusercontent.com/img/a/AVvXsEi13I_fAcqYiSSTeThPMJkdC6_9P6XyYxepCISFxmHIYkpwUQywFdGk4aPcxqEouzeOjTYI0JJN2Fm9LsY1k7fwPenOkX9z__zKL8x9Zjk6be9UUyCSveJqgQl_InmzMPlPOTm2kG33OP9ifgy9mt8nRNn082OuX8JfaqWx_2qu71VukH8z3tRwJDy2hZU)
+
+  
+
+#### Partial Derivative for the Activation Function
+
+  
+
+After computing the output error, we calculate the derivative of the activation function f(b) with respect to zb . Neuron b uses the ReLU activation function, which states that if the input to the function is greater than 0, the derivative is 1; otherwise, it is 0. In our case, the result of the activation function f(b)=0.804, so the derivative is 1.
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEg4yNbClkJPS7BSW5oBbc2mLRzCxf6zTGz5c6mx9hE5MDR3yu807Ad8906Jh-bMUhaj0_WVSGtnfeXkWYA1ewwaYzQMSfmcpQYjfkdOB6QsPzPCgU3PksK0Y4VknLgyTJog1nHsLSS1WBXg-jcw165NLTOm2ets95rAuU1P8fQv7u4U9byqMavSLkWNdZk)](https://blogger.googleusercontent.com/img/a/AVvXsEg4yNbClkJPS7BSW5oBbc2mLRzCxf6zTGz5c6mx9hE5MDR3yu807Ad8906Jh-bMUhaj0_WVSGtnfeXkWYA1ewwaYzQMSfmcpQYjfkdOB6QsPzPCgU3PksK0Y4VknLgyTJog1nHsLSS1WBXg-jcw165NLTOm2ets95rAuU1P8fQv7u4U9byqMavSLkWNdZk)
+
+#### Error Term for Neurons (Gradient)
+
+  
+
+The error term (Gradient) for neuron-b is calculated by multiplying the output error, the partial derivative of the error function,  by the derivative of the neuron's activation function. This means that now we propagate the model's error backward using it as a base value for finetuning the model accuracy (i.e., refining new weight values). This is why the term backward pass fits perfectly for the process.
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjGcIVt-ozkLwC7qQF-rLYGGG7hyWOK9Mu62MK-yKg4oiV6AKZSa8wl8IiNl69awXNb0ZjpNAvv9Rh1BvSqX-y44o1od5PxLAI82eh9zcA62etRqoyJAZXSodWd2wXo3JGX7mseFVoq4Mnyc-XomMIhozxuyE_HX3B0Kh_EiQIniKKy0wJHDQqSn7reqYU=w400-h28)](https://blogger.googleusercontent.com/img/a/AVvXsEjGcIVt-ozkLwC7qQF-rLYGGG7hyWOK9Mu62MK-yKg4oiV6AKZSa8wl8IiNl69awXNb0ZjpNAvv9Rh1BvSqX-y44o1od5PxLAI82eh9zcA62etRqoyJAZXSodWd2wXo3JGX7mseFVoq4Mnyc-XomMIhozxuyE_HX3B0Kh_EiQIniKKy0wJHDQqSn7reqYU)
+
+  
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgtoVOZlB_VCyjWV-a3pYd9hMA7OUcEnX71cyXqrRbol46Jcn-l7dERkDKLkClWkuw81Ff7ocgdowvN6Ph35dzTMDb6wkWtAlOmB1wJgHjut4ekoz7BouQEf66AI8Xt5R2V5EY0RCvTR_lrDap25vr43Qgi1H52p0vgecM4y9WI7ww8b03_KHaGxwcB3dU=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEgtoVOZlB_VCyjWV-a3pYd9hMA7OUcEnX71cyXqrRbol46Jcn-l7dERkDKLkClWkuw81Ff7ocgdowvN6Ph35dzTMDb6wkWtAlOmB1wJgHjut4ekoz7BouQEf66AI8Xt5R2V5EY0RCvTR_lrDap25vr43Qgi1H52p0vgecM4y9WI7ww8b03_KHaGxwcB3dU)
+
+**Figure 2-7:** _The Backward Pass – Error Term (Gradient) for Neuron-b._
+
+  
+
+  
+
+After computing the error term for Neuron-b, the backward pass moves to the preceding layer, the hidden layer, and calculates the error term for Neuron-a. The algorithm computes the derivative for the activation function f(a) = 1, as it did with the Neuron-b. Next, it multiplies the result by Neuron-b's error term (-0.196) and the connected weight parameter , wb1 =0.4. The result -0.0784 is the error term for Neuron-a.
+
+  
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjHacI3-AveYj_ZFWVSpW-5U2ZxwmZaluUSkHO2VY_6FsdZLOdfj8ZVvBdUN5Z3gGLm88g3CgR51G7VUTayu6ztJzsLuT0IHDcuSYGjFIhghgz8WmQubty6hL9dEb1tXpM5gfv43hh9PS-zLbL7fkWcHUak7MxSYjSpazXo7E5xSt5PRPhiNt9QBO0k4kM=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEjHacI3-AveYj_ZFWVSpW-5U2ZxwmZaluUSkHO2VY_6FsdZLOdfj8ZVvBdUN5Z3gGLm88g3CgR51G7VUTayu6ztJzsLuT0IHDcuSYGjFIhghgz8WmQubty6hL9dEb1tXpM5gfv43hh9PS-zLbL7fkWcHUak7MxSYjSpazXo7E5xSt5PRPhiNt9QBO0k4kM)
+
+**Figure 2-8:** _The Backward Pass – Error Term (Gradient) for Neuron-a._
+
+  
+
+  
+
+#### Weight Adjustment Value
+
+  
+
+After computing error terms for all neurons in every layer, the algorithm simultaneously calculates the weight adjustment value for every weight. The process is simple, the error term is multiplied with an input value connected to weight and with learning rate (η). The learning rate balances convergence speed and training stability. We have set it to -0.6 for the first iteration. The learning rate is a hyper-parameter, meaning it is set by the user rather than learned by the model during training. It affects the behavior of the backpropagation algorithm by controlling the size of the weight updates. It is also possible to adjust the learning rate during training—using a higher learning rate at the start to allow faster convergence and lowering it later to avoid overshooting the optimal result. 
+
+  
+
+Weight adjustment value for weight wb1 and wa1 respectively:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgg1LoAqPfmbb1jyzYHXS5Qf0ha2forDOdodoqOCMBAkPkumRAZow0jQi-6-cyNTSbntphDFVi9iFVNCaPPbVQwSgqRREcfPuSL-CeUe57fxmovZFtiJ0qnyMKYlUAPpgxyPo_zwb4Ht-RfHgq-GWfNpxHe5zECuK6XxugFcsUdOdnleMouvgTHyUeEMJs=w400-h39)](https://blogger.googleusercontent.com/img/a/AVvXsEgg1LoAqPfmbb1jyzYHXS5Qf0ha2forDOdodoqOCMBAkPkumRAZow0jQi-6-cyNTSbntphDFVi9iFVNCaPPbVQwSgqRREcfPuSL-CeUe57fxmovZFtiJ0qnyMKYlUAPpgxyPo_zwb4Ht-RfHgq-GWfNpxHe5zECuK6XxugFcsUdOdnleMouvgTHyUeEMJs)
+
+  
+**Note!** _It is not recommended to use a negative learning rate. I use it here because we get a good enough output for the second forward pass iteration._
+
+  
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEivTnTiBT5KPS74RCRoC3veDR1daKXiVJ3jIB8P5MMxhboKQKULWdUJZ0DrcJO08lP_klaule5a9XU_CrHh61MdRdO951jokBnxJmTF0b1wSM_BmWqDfjM_VE0PjyhpwgfNkwAjjgqXd0wkyMcwtf9SNN6cPn6qX1rRCvRL5ihfm6iwFn9A23IzdrTlFbs=w640-h360)](https://blogger.googleusercontent.com/img/a/AVvXsEivTnTiBT5KPS74RCRoC3veDR1daKXiVJ3jIB8P5MMxhboKQKULWdUJZ0DrcJO08lP_klaule5a9XU_CrHh61MdRdO951jokBnxJmTF0b1wSM_BmWqDfjM_VE0PjyhpwgfNkwAjjgqXd0wkyMcwtf9SNN6cPn6qX1rRCvRL5ihfm6iwFn9A23IzdrTlFbs)
+
+**Figure 2-9:** _The Backward Pass – Weight Adjustment Value for Neurons._
+
+  
+
+#### Refine Weights
+
+  
+
+As the last step, the backpropagation algorithm computes new values for every weight parameter in the model by simply summing the initial weight value and weight adjustment value.
+
+  
+
+New values for weight  parameters wb1 and wa1 respectively:
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEh1kLWKTuuBHlnzQkO6Und3_CNcUUnaMtSoX3-ZPhdpOBwE9auFX9hhyNpZTd5E5GU5t_tNiSdvpz6Qyp6OWAsrInDVa6aAI5uSY6Hmm8uN2pGr42y_hcxB5wv5FqX91l_vvnGKIe6AmAy0k3YqUn8DHpTgZkTDv4IOLA6QBcKlJlc3CY5m_yuy0DT59bY=w640-h50)](https://blogger.googleusercontent.com/img/a/AVvXsEh1kLWKTuuBHlnzQkO6Und3_CNcUUnaMtSoX3-ZPhdpOBwE9auFX9hhyNpZTd5E5GU5t_tNiSdvpz6Qyp6OWAsrInDVa6aAI5uSY6Hmm8uN2pGr42y_hcxB5wv5FqX91l_vvnGKIe6AmAy0k3YqUn8DHpTgZkTDv4IOLA6QBcKlJlc3CY5m_yuy0DT59bY)
+
+  
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEjyCnliWehOO4g4ktORvn4FWMJZK8YL5S6_0slcgylH5OlShgoVV9DH7N-gpAUygXUmRngR9TRjjYKYR5GiGq9f-sU5I3iWYvVVQNnx_aT4grbch30_eIvwPy4QiCMEB4d2_Iskau5-AFCCe_Pyf0wgUS8VcBzsRQgyFh268ML6Xfi-piXjKQ6Z5nM9Uew=w640-h360)](https://blogger.googleusercontent.com/img/a/AVvXsEjyCnliWehOO4g4ktORvn4FWMJZK8YL5S6_0slcgylH5OlShgoVV9DH7N-gpAUygXUmRngR9TRjjYKYR5GiGq9f-sU5I3iWYvVVQNnx_aT4grbch30_eIvwPy4QiCMEB4d2_Iskau5-AFCCe_Pyf0wgUS8VcBzsRQgyFh268ML6Xfi-piXjKQ6Z5nM9Uew)
+
+**Figure 2-10:** _The Backward Pass – Compute New Weight Values._
+
+  
+
+### The Second Iteration - Forward Pass
+
+  
+
+After updating all the weight values (wa0, wa1, wa2, and wa3 ), the backpropagation process begins the second iteration of the forward pass. As shown in Figure 2-11, the model output yb = 0.9982 is very close to the expected value y = 1.0. The new MSE = 0.0017, is much better than 0.019 computed in the first iteration.
+
+  
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhU_JVbHb5nbKZ3HQoFNX5jgNzfx2eijLNTfDNPWV1tKUnW4Xg2fHX-wrdwcNQaZNch6CM9LXVeJlHxnXWhW4ZbIryHzXmmUnyea_zJSNUOt8WDrANgQvq2XHNdZSZKZ8X_A88lFZ364YYzMCrSoXjq2sPCEbcYB_pvkmSFu_sz2VFJcqWkOCZPOYN218U)](https://blogger.googleusercontent.com/img/a/AVvXsEhU_JVbHb5nbKZ3HQoFNX5jgNzfx2eijLNTfDNPWV1tKUnW4Xg2fHX-wrdwcNQaZNch6CM9LXVeJlHxnXWhW4ZbIryHzXmmUnyea_zJSNUOt8WDrANgQvq2XHNdZSZKZ8X_A88lFZ364YYzMCrSoXjq2sPCEbcYB_pvkmSFu_sz2VFJcqWkOCZPOYN218U)
+
+**Figure 2-11:** The Second Iteration of the Forward Pass.
+
+  
+
+### Network Impact
+
+  
+
+Figure 2-12 shows a hypothetical example of Data Parallelization, where our training data set is split into two batches, A and B, which are processed by GPU-A and GPU-B, respectively. The training model is the same on both GPUs: Fully-Connected, with two hidden layers of four neurons each, and one output neuron in the output layer.
+
+  
+
+After computing a model prediction during the forward pass, the backpropagation algorithm begins the backward pass by calculating the gradient (output error) for the error function. Once computed, the gradients are synchronized between the GPUs. The algorithm then averages the gradients, and the process moves to the preceding layer. Neurons in the preceding layer calculate their gradient by multiplying the weighted sum of their connected neurons’ averaged gradients and connected weight with the local activation function’s partial derivative. These neuron-based gradients are then synchronized over connections. Before the process moves to the preceding layer, gradients are averaged. The backpropagation algorithm executes the same process through all layers. 
+
+  
+
+If packet loss occurs during the synchronization, it can ruin the entire training process, which would need to be restarted unless snapshots were taken. The cost of losing even a single packet could be enormous, especially if training has been ongoing for several days or weeks. Why is a single packet so important? If the synchronization between the gradients of two parallel neurons fails due to packet loss, the algorithm cannot compute the average, and the neurons in the preceding layer cannot calculate their gradient. Besides, if the connection, whether the synchronization happens over NVLink, InfiniBand, Ethernet (RoCE or RoCEv2), or wireless connection, causes a delay, the completeness of the training slows down. This causes GPU under-utilization which is not efficient from the business perspective.
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEif05HuMMLiLfFYLIqQYo7LR1I7Oebvti1pjn4hkWcPvFST8R6lIpu97ajT-HH3mq-AzC-gFOzDqmWtkdm7Q1stXlZUDelT_r1zPHVwMpqLo-F4MkJgxqrpHvVDSDIciKAdBaN9rRZZAUiA412n6jlLOehdrniu_FKIszeUsBpDaCBm2E10Si8nKPEGfDE=w640-h360)](https://blogger.googleusercontent.com/img/a/AVvXsEif05HuMMLiLfFYLIqQYo7LR1I7Oebvti1pjn4hkWcPvFST8R6lIpu97ajT-HH3mq-AzC-gFOzDqmWtkdm7Q1stXlZUDelT_r1zPHVwMpqLo-F4MkJgxqrpHvVDSDIciKAdBaN9rRZZAUiA412n6jlLOehdrniu_FKIszeUsBpDaCBm2E10Si8nKPEGfDE)
+
+**Figure 2-12:** _Backward Pass – Gradient Synchronization and Averaging._  
+  
+
+To be conntinued...
 
 **References:**
 * https://nwktimes.blogspot.com/2024/09/ai4ne-ch1-artificial-neuron.html
