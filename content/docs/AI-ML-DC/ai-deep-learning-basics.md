@@ -115,10 +115,10 @@ Our feedforward neural network, shown in Figure 2-1, has one hidden layer and on
 
 We have three input parameters connected to neuron-a in the hidden layer as follows:
 
-• Input X1 = 0.2 > neuron-a via weight Wa1 = 0.1
-• Input X2 = 0.1 > neuron-a via weight Wa2 = 0.2
-• Input X3 = 0.4 > neuron-a via weight Wa3 = 0.3
-• Bias ba0 = 1.0 > neuron-a via weight Wa0 = 0.6
+* Input X1 = 0.2 > neuron-a via weight Wa1 = 0.1
+* Input X2 = 0.1 > neuron-a via weight Wa2 = 0.2
+* Input X3 = 0.4 > neuron-a via weight Wa3 = 0.3
+* Bias ba0 = 1.0 > neuron-a via weight Wa0 = 0.6
 
 The bias term helps ensure that the neuron is active, meaning its output value is not zero.
 
@@ -126,8 +126,8 @@ The input parameters are treated as constant values, while the weight values are
 
 The input values and weights for neuron-b are:
 
-• Neuron-a activation function output f(af) > neuron-b via weight Wb1
-• Bias ba0 = 1.0 > neuron-b via weight Wa0 = 0.5
+* Neuron-a activation function output f(af) > neuron-b via weight Wb1
+* Bias ba0 = 1.0 > neuron-b via weight Wa0 = 0.5
 
 The output, Ŷ, from neuron-b represents our feedforward neural network's prediction. This value is used along with the expected result, y, as input for the error function. In this example, we use the Mean Squared Error (MSE) error function. As we will see, the result of the first training iteration does not match our expected value, leading us to initiate the Backward pass process.
 
@@ -139,7 +139,7 @@ After completing the Backward pass, the Backpropagation algorithm starts a new i
 
 **Figure 2-1:** _Backpropagation Algorithm._
 
-### Network Impact
+## Network Impact
 
 A single artificial neuron is the smallest unit of a neural network. The size of the neuron depends on its connections to input nodes. Every connection has an associated weight parameter, which is typically a 32-bit value. In our example, with 4 connections, the size of the neuron is 4 x 32 bits = 128 bits.
 
@@ -149,7 +149,7 @@ However, if the memory requirement of the neural network model combined with the
 
 Parallelization strategies will be discussed in the next chapter, which introduces a Feedforward Neural Network using the Backpropagation algorithm, and in later chapters dedicated to Parallelization.
 
-### Summary
+## Summary
 
 Deep Learning leverages Neural Networks, which consist of artificial neurons. An artificial neuron mimics the structure and operation of a biological neuron. Input data is fed to the neuron through connections, each with its own weight parameter. The neuron uses these weights to calculate a weighted sum of the inputs, known as the pre-activation value. This result is then passed through an activation function, which provides the post-activation value, or the actual output of the neuron. The activation functions discussed in this chapter are the non-linear ReLU (Rectified Linear Unit), Hyperbolic Tangent (tanh), and logistic Sigmoid functions.
 
