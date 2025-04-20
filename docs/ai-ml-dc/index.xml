@@ -28,8 +28,8 @@
 &lt;li>Network Impact&lt;/li>
 &lt;li>Summary&lt;/li>
 &lt;/ul>
-&lt;h3 id="introduction">
+&lt;h2 id="introduction">
  Introduction
  &lt;a class="anchor" href="#introduction">#&lt;/a>
-&lt;/h3>
+&lt;/h2>
 &lt;p>Artificial Intelligence (AI) is a broad term for solutions that aim to mimic the functions of the human brain. Machine Learning (ML), in turn, is a subset of AI, suitable for tasks like simple pattern recognition and prediction. Deep Learning (DL), the focus of this section, is a subset of ML that leverages algorithms to extract meaningful patterns from data. Unlike ML, DL does not necessarily require human intervention, such as providing structured, labeled datasets (e.g., 1,000 bird images labeled as “bird” and 1,000 cat images labeled as “cat”). &lt;/p></description></item></channel></rss>
