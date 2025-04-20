@@ -594,3 +594,4 @@ To be conntinued...
 
 **References:**
 * https://nwktimes.blogspot.com/2024/09/ai4ne-ch1-artificial-neuron.html
+* https://nwktimes.blogspot.com/2024/10/ai-for-network-engineers.html
