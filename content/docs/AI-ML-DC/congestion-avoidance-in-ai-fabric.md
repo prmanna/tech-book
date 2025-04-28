@@ -4,8 +4,7 @@ bookCollapseSection: true
 weight: 10
 ---
 
-## Intro
-### Congestion Avoidance in AI Fabric - Part I: Explicit Congestion Notification (ECN)
+## Congestion Avoidance in AI Fabric - Part I: Explicit Congestion Notification (ECN)
 
 As explained in the preceding chapter, “Egress Interface Congestions,” both the Rail switch links to GPU servers and the inter-switch links can become congested during gradient synchronization. It is essential to implement congestion control mechanisms specifically designed for RDMA workloads in AI fabric back-end networks because congestion slows down the learning process and even a single packet loss may restart the whole training process.
 
@@ -69,7 +68,7 @@ As transmission rates decrease, the pressure on the egress queue at the Rail swi
   
 Next post describes DSCP-Based Priority Flow Control (PFC) use cases and operation.
 
-### Congestion Avoidance in AI Fabric - Part II: Priority Flow Control (PFC)
+## Congestion Avoidance in AI Fabric - Part II: Priority Flow Control (PFC)
 
 Priority Flow Control (PFC) is a mechanism designed to prevent packet loss during network congestion by pausing traffic selectively based on priority levels. While the original IEEE 802.1Qbb standard operates at Layer 2, using the Priority Code Point (PCP) field in Ethernet headers, AI Fabrics rely on Layer 3 forwarding, where traditional Layer 2-based PFC is no longer applicable. To extend lossless behavior across routed (Layer 3) networks, DSCP-based PFC is used.
 
