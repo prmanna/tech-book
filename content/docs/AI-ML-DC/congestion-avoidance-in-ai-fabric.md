@@ -181,7 +181,7 @@ PFC negotiation is performed using the Link Layer Discovery Protocol (LLDP), whi
 
 Capture 11-1: PCF: LLDP with IEEE DBCXv2 TLV .
 
-### Congestion Avoidance in AI Fabric - Part III: Data Center Quantized Congestion Notification (DCQCN)
+## Congestion Avoidance in AI Fabric - Part III: Data Center Quantized Congestion Notification (DCQCN)
 
 Data Center Quantized Congestion Notification (DCQCN) is a hybrid congestion control method. DCQCN brings together both Priority Flow Control (PFC) and Explicit Congestion Notification (ECN) so that we can get high throughput, low latency, and lossless delivery across our AI fabric. In this approach, each mechanism plays a specific role in addressing different aspects of congestion, and together they create a robust flow-control system for RDMA traffic.
 
