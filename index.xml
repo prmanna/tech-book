@@ -123,14 +123,10 @@ While DFS uses &lt;strong>recursion/stack&lt;/strong> to keep track of progress,
  &lt;a class="anchor" href="#intro">#&lt;/a>
 &lt;/h2>
 &lt;p>Figure 10-1 illustrates a simple distributed GPU cluster consisting of three GPU hosts. Each host has two GPUs and a Network Interface Card (NIC) with two interfaces. Intra-host GPU communication uses high-speed NVLink interfaces, while inter-host communication takes place via NICs over slower PCIe buses.&lt;/p>
-&lt;p>GPU-0 on each host is connected to Rail Switch A through interface E1. GPU-1 uses interface E2 and connects to Rail Switch B. In this setup, inter-host communication between GPUs connected to the same rail passes through a single switch. However, communication between GPUs on different rails goes over three hops  Rail–Spine–Rail switches.&lt;/p></description></item><item><title>Congestion Avoidance in AI Fabric</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/congestion-avoidance-in-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/congestion-avoidance-in-ai-fabric/</guid><description>&lt;h2 id="intro">
- Intro
- &lt;a class="anchor" href="#intro">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="congestion-avoidance-in-ai-fabric---part-i-explicit-congestion-notification-ecn">
+&lt;p>GPU-0 on each host is connected to Rail Switch A through interface E1. GPU-1 uses interface E2 and connects to Rail Switch B. In this setup, inter-host communication between GPUs connected to the same rail passes through a single switch. However, communication between GPUs on different rails goes over three hops  Rail–Spine–Rail switches.&lt;/p></description></item><item><title>Congestion Avoidance in AI Fabric</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/congestion-avoidance-in-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/congestion-avoidance-in-ai-fabric/</guid><description>&lt;h2 id="congestion-avoidance-in-ai-fabric---part-i-explicit-congestion-notification-ecn">
  Congestion Avoidance in AI Fabric - Part I: Explicit Congestion Notification (ECN)
  &lt;a class="anchor" href="#congestion-avoidance-in-ai-fabric---part-i-explicit-congestion-notification-ecn">#&lt;/a>
-&lt;/h3>
+&lt;/h2>
 &lt;p>As explained in the preceding chapter, “Egress Interface Congestions,” both the Rail switch links to GPU servers and the inter-switch links can become congested during gradient synchronization. It is essential to implement congestion control mechanisms specifically designed for RDMA workloads in AI fabric back-end networks because congestion slows down the learning process and even a single packet loss may restart the whole training process.&lt;/p></description></item><item><title>Data Center Ethernet</title><link>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/data-center/data-center-ethernet/</guid><description>&lt;h1 id="intro">
  Intro
  &lt;a class="anchor" href="#intro">#&lt;/a>
