@@ -4,7 +4,7 @@ bookCollapseSection: true
 weight: 10
 ---
 
-# Intro
+## Intro
 Figure 10-1 illustrates a simple distributed GPU cluster consisting of three GPU hosts. Each host has two GPUs and a Network Interface Card (NIC) with two interfaces. Intra-host GPU communication uses high-speed NVLink interfaces, while inter-host communication takes place via NICs over slower PCIe buses.
 
 GPU-0 on each host is connected to Rail Switch A through interface E1. GPU-1 uses interface E2 and connects to Rail Switch B. In this setup, inter-host communication between GPUs connected to the same rail passes through a single switch. However, communication between GPUs on different rails goes over three hops  Rail–Spine–Rail switches.
@@ -62,3 +62,4 @@ For example, in Figure 10-5, GPU-0 in Host-1 and GPU-0 in Host-2 both send traff
 The rest of this book focuses on how these problems can be mitigated or even fully avoided. We will look at design choices, transport optimizations, network-aware scheduling, and alternative topologies that help improve the robustness and efficiency of the AI fabric.
 
 **References:**
+* https://nwktimes.blogspot.com/2025/04/ai-for-network-engneers-challenges-in.html
