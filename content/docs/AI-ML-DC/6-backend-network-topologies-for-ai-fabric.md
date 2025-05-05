@@ -79,7 +79,7 @@ Figure 13-4 illustrates a single rail switch design. The switch interfaces are d
 Within each group, ports are assigned to different VLANs to separate traffic into different logical rails. Specifically, the first port of each group belongs to the VLAN representing Rail-1, the second port belongs to Rail-2, and so on. This pattern continues across all three host groups.
 
   
-#### Benefits
+##### Benefits
 
 - Simplicity: The architecture is very easy to design, configure, and troubleshoot. A single switch and straightforward VLAN assignment simplify management.
 - Cost-Effectiveness: Only one switch is needed, reducing capital expenditure (CapEx) compared to dual-rail or redundant designs. Less hardware also means lower operational expenditure (OpEx), including reduced power, cooling, and maintenance costs. Additionally, fewer devices translate to lower subscription-based licensing fees and service contract costs, further improving the total cost of ownership.
@@ -87,7 +87,7 @@ Within each group, ports are assigned to different VLANs to separate traffic int
 - Low Latency within the Rail: Since all communications stay within the same switch, latency is minimized, benefiting tightly-coupled GPU workloads.
 - Sufficient for Smaller Deployments: In smaller clusters or test environments where absolute redundancy is not critical, this design is perfectly sufficient.
 
-#### Drawbacks
+##### Drawbacks
 
 - No Redundancy: A single switch creates a single point of failure. If the switch fails, all GPU communications are lost.
 - Limited Scalability: Expanding beyond the available switch ports can be challenging. Adding more hosts or GPUs might require replacing the switch or redesigning the network.
@@ -112,7 +112,7 @@ Each Rail switch independently connects to one port of each NIC, creating a dual
 
   
 
-#### Benefits
+##### Benefits
 
 - High Availability: The failure of a single switch, link, or NIC port does not isolate any GPU, maintaining system uptime.
 - Load Balancing: Traffic can be distributed across both switches, maximizing bandwidth utilization and reducing bottlenecks.
@@ -121,7 +121,7 @@ Each Rail switch independently connects to one port of each NIC, creating a dual
 
   
 
-#### Drawbacks
+##### Drawbacks
 
   
 
@@ -139,7 +139,6 @@ Another solution is to assign the two NIC ports to different VLANs without bundl
 
 MLAG introduces several challenges:
 
-  
 
 - **MAC Address Synchronization:** Both switches must advertise the same MAC address to the host NICs, allowing the two switches to appear as a single device.
 - **Port Identification:** A common approach to building MLAG is to use the same interface numbers on both switches. Therefore, the system must be capable of uniquely identifying each member link internally.
@@ -163,8 +162,6 @@ Instead of vendor-specific MLAG, a standards-based approach using Ethernet Segme
 - Hosts see multiple physical links but treat them as part of a logical redundant connection.
 - EVPN ESI Multihoming allows for interoperable solutions across vendors, but typically adds more complexity to the control plane compared to simple MLAG setups.
 
-  
-
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEjngPlj9kSLMNLpKnv0zGaKFrSI1mnmkplNERxcX2DJr5HJMfAnjszy6eIicaSoRvzJuFVz5DXJBqHHjZSXfdeYcsTAB5HhWyYwMGL-ZgMZ7HTQRKOIoJc8S3O4Hp_H6TlN-YAAK67DWd7k1n-mvYZbnhzmczXXpGgB-3de2h3MU0WsgfdpnslhMj61Ygw=w640-h332)](https://blogger.googleusercontent.com/img/a/AVvXsEjngPlj9kSLMNLpKnv0zGaKFrSI1mnmkplNERxcX2DJr5HJMfAnjszy6eIicaSoRvzJuFVz5DXJBqHHjZSXfdeYcsTAB5HhWyYwMGL-ZgMZ7HTQRKOIoJc8S3O4Hp_H6TlN-YAAK67DWd7k1n-mvYZbnhzmczXXpGgB-3de2h3MU0WsgfdpnslhMj61Ygw)
 
 **Figure 13-5:** _Dual Rail Switch Design: GPU with Dual-Port NIC._
@@ -173,25 +170,16 @@ Instead of vendor-specific MLAG, a standards-based approach using Ethernet Segme
 
 In the introduced single- and dual-rail topologies (Figures 13-4 and 13-5), each GPU is connected to a dedicated NIC, and each NIC connects to a specific Rail switch. However, there is no direct cross-rail connection between the switches themselves — no additional spine layer interconnecting the rails. As a result, if a GPU needs to send data to a destination GPU that belongs to a different rail, special handling is required within the host before the data can exit over the network.
   
-
 For example, consider a memory copy operation where GPU-2 (connected to Rail 3) on Host-1 needs to send data to GPU-3 (connected to Rail 4) on Host-2. Since GPU-2’s NIC is associated with Rail 3 and GPU-3 expects data arriving over Rail 4, the communication path must traverse multiple stages:
-
-  
 
 1. Intra-Host Transfer: The data is first copied locally over NVLink from GPU-2 to GPU-3 within Host-1. NVLink provides a high-bandwidth, low-latency connection between GPUs inside the same server.
 2. NIC Transmission: Once the data resides in GPU-3’s memory, it can be sent out through GPU-3’s NIC, which connects to Rail 4.
 3. Inter-Host Transfer: The packet travels over Rail 4 through one of the Rail switches to reach Host-2.
 4. Destination Reception: Finally, the data is delivered to GPU-3 on Host-2.
 
-  
-
 This method ensures that each network link (and corresponding NIC) is used according to its assigned rail without needing direct switch-to-switch rail interconnects.
 
-  
-
 To coordinate and optimize such multi-step communication, NVIDIA Collective Communications Library (NCCL) plays a critical role. NCCL automatically handles GPU-to-GPU communication across multiple nodes and rails, selecting the appropriate path, initiating memory copies over NVLink, and scheduling transmissions over the correct NICs — all while maximizing bandwidth and minimizing latency. The upcoming chapter will explore NCCL in greater detail.
-
-  
 
 Figure 13-6 illustrates how the upcoming topology in Figure 13-7 maps NIC-to-Rail connections, transitioning from a switch interface-based view to a rail-based view. Figure 13-6 shows a partial interface layout of a Cisco Nexus 9348D-GX2A switch and how its interfaces are grouped into different rails as follows:
 
@@ -210,7 +198,6 @@ However, a port-based layout becomes extremely messy when describing larger impl
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEhplkUJDuU7yYzXLi1HlP_2kAmn7Yx4JZOPuoT2wRpHKTx2qNsPUmphVzMxQUsXhuzLdRsgF4SZsnr0CHb8K4AIfsF9yS91IxZ4zi8u_Djokux9K5puWgf2EjzWVXWTbej2XRzc_5ssvw8VfHW86mAbY2q6BLzmyl7lYlCh_Icp93dwMoAuLmqZ5thxTZY=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEhplkUJDuU7yYzXLi1HlP_2kAmn7Yx4JZOPuoT2wRpHKTx2qNsPUmphVzMxQUsXhuzLdRsgF4SZsnr0CHb8K4AIfsF9yS91IxZ4zi8u_Djokux9K5puWgf2EjzWVXWTbej2XRzc_5ssvw8VfHW86mAbY2q6BLzmyl7lYlCh_Icp93dwMoAuLmqZ5thxTZY)
 
 **Figure 13-6:** _Interface Block to Rail Mapping._
-
   
 
 Figure 13-7 provides an example showing how each NIC is now connected to a rail instead of being directly mapped to a specific physical interface. In this approach, each rail represents a logical group of physical interfaces, simplifying the overall design and making larger deployments easier to visualize and document.
