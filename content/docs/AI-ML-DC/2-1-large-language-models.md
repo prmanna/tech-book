@@ -4,7 +4,7 @@ bookCollapseSection: true
 weight: 21
 ---
 
-### Large Language Models (LLM) - Part 1/2: Word Embedding
+## Large Language Models (LLM) - Part 1/2: Word Embedding
 
 ### Introduction
 
@@ -151,7 +151,7 @@ Figure 7-7 also shows the final word embedding for the second occurrence of clea
 
 **Figure 7-7:** _Finals Word Embedding for the 4th Word._
 
-### Large Language Model (LLM) - Part 2/2: Transformer Architecture
+## Large Language Model (LLM) - Part 2/2: Transformer Architecture
 
 ###  Introduction
 
@@ -335,27 +335,15 @@ Figure 7-20: Word-to-Token, and Token-to-Word Embedding Process.
 
 In theory, our simple example shows that the model can assign the highest probability to the correct word. For instance, by analyzing the position of the word “clear” relative to its preceding words, the model is able to infer the context. When the context implies that an action is directed toward a known target, the article “the” receives the highest probability score and is predicted as the next word.
 
-  
-
 ### Conclusion
-
-  
 
 We use pretty simple examples in this chapter. However, GPT-3, for example, is built on a deep Transformer architecture comprising 96 decoder blocks. Each decoder block is divided into three primary sub-layers:
 
-  
-
 **Attention Layer:** This layer implements multi-head self-attention using four key weight matrices, one each for the query, key, and value projections, plus one for the output projection. Together, these matrices account for roughly _600 million trainable parameters per block_.
-
-  
 
 **Add & Normalize Layers:** Each block employs two residual connections paired with layer normalization. The first Add & Normalize operation occurs immediately after the Attention Layer, and the second follows the Feed-Forward Neural Network (FFNN) layer. Although essential for stabilizing training, the parameters in each normalization step are relatively few, typically on the order of tens of thousands.
 
-  
-
 **Feed-Forward Neural Network (FFNN) Layer:** The FFNN consists of two linear transformations with an intermediate expansion (usually about four times the model’s hidden size). This layer contributes approximately _1.2 billion parameters per block_.
-
-  
 
 Aggregating the parameters from all 96 decoder blocks, and including additional parameters from the token embeddings, positional encodings, and other components, the entire GPT-3 model totals around _175 billion trainable parameters_. This is why parallelism is essential: the training process must be distributed across multiple GPUs and executed according to a selected parallelization strategy. The second part of the book discusses about Parallelization.
 
