@@ -16,8 +16,6 @@ Before diving into backend network design, this chapter first provides a high-le
 
 ### Shared NIC
 
-  
-
 Figure 13-1 illustrates a shared NIC approach. In this example setup, NVIDIA H100 GPUs 0–3 are connected to NVSwitch chips 1-1, 1-2, 1-3, and 1-4 on baseboard-1, while GPUs 4–7 are connected to NVSwitch chips 2-1, 2-2, 2-3, and 2-4 on baseboard-2. Each GPU connects to all four NVSwitch chips on its respective baseboard using a total of 18 NVLink 4 connections: 5 links to chip 1-1, 4 links to chip 1-2, 4 links to chip 1-3, and 5 links to chip 1-4.
 
 The NVSwitch chips themselves are paired between the two baseboards. For example, chip 1-1 on baseboard-1 connects to chip 2-1 on baseboard-2 with four NVLink connections, chip 1-2 connects to chip 2-2, and so on. This design forms a fully connected crossbar topology across the entire system.
@@ -40,37 +38,21 @@ Despite these challenges, the design is still useful in many cases. It is well-s
 
 **Figure 13-1:** _Shared NIC GPU Server._
 
-  
-
 ### NIC per GPU
 
-  
-
 Figure 13-2 builds on the shared NIC design from Figure 13-1 but takes a different approach. In this setup, each GPU has its own dedicated ConnectX-7 200 GbE NIC. All NICs are connected to the PCIe Gen5 switch, just like in the earlier setup, but now each GPU uses its own PCIe Gen5 x16 connection to a dedicated NIC. This design eliminates the need for NIC sharing and allows every GPU to use the full 64 GB/s PCIe bandwidth independently.
-
-  
 
 The biggest advantage of this design is in GPU-to-NIC communication. There is no bandwidth contention at the PCIe level, and each GPU can fully utilize RDMA and GPUDirect features with its own NIC. This setup improves network throughput and reduces latency, especially in multi-node training workloads where GPUs frequently send and receive large amounts of data over Ethernet. 
 
 The main drawback of this setup is cost. Adding one NIC per GPU increases both hardware costs and power consumption. It also requires more switch ports and cabling, which may affect system design. Still, these trade-offs are often acceptable in performance-critical environments.
 
-  
-
 This overall design reflects NVIDIA’s DGX and HGX architecture, where GPUs are fully interconnected using NVLink and NVSwitch and each GPU is typically paired with a dedicated ConnectX or BlueField NIC to maximize network performance. In addition, this configuration is well suited for rail-optimized backend networks, where consistent per-GPU network bandwidth and predictable east-west traffic patterns are important.
-
-  
 
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEjm_EoGQewoQyUuVgoeQXrHVovZh-TLH1SDDfBeXWEpjhpFvTZN9JNqzUpoLOMbcqj4g57pQllY1gUI7l2Os19RXtfK1WNB9Lvu2pk5TNgOIoQK1Dn93dPx306Cb7VYp_zDdDo0U4Bgg3DC1I6FoZuZe_lZzrblxrASz7x-1yW5DpXZy26kU7Trpiqbjro=w640-h330)](https://blogger.googleusercontent.com/img/a/AVvXsEjm_EoGQewoQyUuVgoeQXrHVovZh-TLH1SDDfBeXWEpjhpFvTZN9JNqzUpoLOMbcqj4g57pQllY1gUI7l2Os19RXtfK1WNB9Lvu2pk5TNgOIoQK1Dn93dPx306Cb7VYp_zDdDo0U4Bgg3DC1I6FoZuZe_lZzrblxrASz7x-1yW5DpXZy26kU7Trpiqbjro)
 
-  
-
 **Figure 13-2:** _Dedicated NIC per GPU._
 
-  
-
 Before moving to the design sections, it is worth mentioning that the need for a high-performance backend network, and how it is designed, is closely related to the size of the neural networks being used. Larger models require more GPU memory and often must be split across multiple GPUs or even servers. This increases the need for fast, low-latency communication between GPUs, which puts more pressure on the backend network.
-
-  
 
 Figure 13-3 shows a GPU server with 8 GPUs. Each GPU has 80 GB of memory, giving a total of 640 GB GPU memory. This kind of setup is common in high-performance AI clusters.
 
@@ -92,11 +74,7 @@ This figure highlights how model size directly affects memory needs, and the num
 
 ### Design Scenarios
 
-  
-
 #### Single Rail Switch Design with Dedicated, Single-Port NICs per GPU
-
-  
 
 Figure 13-4 illustrates a single rail switch design. The switch interfaces are divided into three groups of eight 200 Gbps interface each. The first group of eight ports is reserved for Host-1, the second group for Host-2, and the third group for Host-3. Each host has eight GPUs, and each GPU is equipped with a dedicated, single-port NIC.
 
@@ -105,12 +83,7 @@ Figure 13-4 illustrates a single rail switch design. The switch interfaces are d
 Within each group, ports are assigned to different VLANs to separate traffic into different logical rails. Specifically, the first port of each group belongs to the VLAN representing Rail-1, the second port belongs to Rail-2, and so on. This pattern continues across all three host groups.
 
   
-
-  
-
 #### Benefits
-
-  
 
 - Simplicity: The architecture is very easy to design, configure, and troubleshoot. A single switch and straightforward VLAN assignment simplify management.
 - Cost-Effectiveness: Only one switch is needed, reducing capital expenditure (CapEx) compared to dual-rail or redundant designs. Less hardware also means lower operational expenditure (OpEx), including reduced power, cooling, and maintenance costs. Additionally, fewer devices translate to lower subscription-based licensing fees and service contract costs, further improving the total cost of ownership.
@@ -120,8 +93,6 @@ Within each group, ports are assigned to different VLANs to separate traffic int
 
 #### Drawbacks
 
-  
-
 - No Redundancy: A single switch creates a single point of failure. If the switch fails, all GPU communications are lost.
 - Limited Scalability: Expanding beyond the available switch ports can be challenging. Adding more hosts or GPUs might require replacing the switch or redesigning the network.
 - Potential Oversubscription: With all GPUs sending and receiving traffic through the same switch, there’s a risk of oversubscription, especially under heavy AI workload patterns where network traffic bursts are common.
@@ -130,21 +101,12 @@ Within each group, ports are assigned to different VLANs to separate traffic int
 
 Single rail designs are cost-efficient and simple but lack redundancy and scalability, making them best suited for small or non-critical AI deployments.
 
-  
-
-  
-
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEgmz9x5QJyyHI33rcSf5lduAzPZAqBgsNpUGbahHXM2U56wCjVMQT9-boWY2M9G9_4x8VWJJUblYeWnGzh2nY0Qhy0esRB_I_mmEAbcZz19uGoMwd0n_fhwm5HVjIF5Yc74iY_JMuhDciXay8Ys7h1Xnc5Rvid2iZfv11g5PbwGvGi5qG_LIBMgFJd406g=w640-h334)](https://blogger.googleusercontent.com/img/a/AVvXsEgmz9x5QJyyHI33rcSf5lduAzPZAqBgsNpUGbahHXM2U56wCjVMQT9-boWY2M9G9_4x8VWJJUblYeWnGzh2nY0Qhy0esRB_I_mmEAbcZz19uGoMwd0n_fhwm5HVjIF5Yc74iY_JMuhDciXay8Ys7h1Xnc5Rvid2iZfv11g5PbwGvGi5qG_LIBMgFJd406g)
 
-  
 
 **Figure 13-4:** _Single Rail Switch Design: GPU with Single Port NIC._
 
-  
-
 #### Dual-Rail Switch Topology with Dedicated, Dual-Port NICs per GPU
-
-  
 
 In this topology, each host contains 8 GPUs, and each GPU has a dedicated dual-port NIC. The NICs are connected across two independent Rail switches equipped with 200 Gbps interfaces. This design ensures that every GPU has redundant network connectivity through separate switches, maximizing performance, resiliency, and failover capabilities.
 
@@ -188,30 +150,18 @@ MLAG introduces several challenges:
 - **Control Plane Synchronization:** The two switches must exchange state information (e.g., MAC learning, link status) to maintain a consistent and synchronized view of the network.
 - **Failover Handling:** The switches must detect failures quickly and handle them gracefully without disrupting existing sessions, requiring robust failure detection and recovery mechanisms.
 
-####   
-
 #### Vendor-Specific MLAG Solutions
 
-  
-
 The following list shows some of the vendor proprietary MLAG:
-
-  
 
 - Cisco Virtual Port Channel (vPC): Cisco's vPC allows two Nexus switches to appear as one logical switch to connected devices, synchronizing MAC addresses and forwarding state.
 - Juniper Virtual Chassis / MC-LAG: Juniper offers Virtual Chassis and MC-LAG solutions, where two or more switches operate with a shared control plane, presenting themselves as a single switch to the host.
 - Arista MLAG: Arista Networks implements MLAG with a simple peer-link architecture, supporting independent control planes while synchronizing forwarding state.
 - NVIDIA/Mellanox MLAG: Mellanox switches also offer MLAG solutions, often optimized for HPC and AI workloads.
 
-####   
-
 #### Standards-Based Alternative: EVPN ESI Multihoming
 
-  
-
 Instead of vendor-specific MLAG, a standards-based approach using Ethernet Segment Identifier (ESI) Multihoming under BGP EVPN can be used. In this model:
-
-  
 
 - Switches advertise shared Ethernet segments (ESIs) to the host over BGP EVPN.
 - Hosts see multiple physical links but treat them as part of a logical redundant connection.
@@ -223,16 +173,9 @@ Instead of vendor-specific MLAG, a standards-based approach using Ethernet Segme
 
 **Figure 13-5:** _Dual Rail Switch Design: GPU with Dual-Port NIC._
 
-  
-
-  
-
 #### Cross-Rail Communication over NVLink in Rail-Only Topologies
 
-  
-
 In the introduced single- and dual-rail topologies (Figures 13-4 and 13-5), each GPU is connected to a dedicated NIC, and each NIC connects to a specific Rail switch. However, there is no direct cross-rail connection between the switches themselves — no additional spine layer interconnecting the rails. As a result, if a GPU needs to send data to a destination GPU that belongs to a different rail, special handling is required within the host before the data can exit over the network.
-
   
 
 For example, consider a memory copy operation where GPU-2 (connected to Rail 3) on Host-1 needs to send data to GPU-3 (connected to Rail 4) on Host-2. Since GPU-2’s NIC is associated with Rail 3 and GPU-3 expects data arriving over Rail 4, the communication path must traverse multiple stages:
@@ -256,31 +199,17 @@ To coordinate and optimize such multi-step communication, NVIDIA Collective Comm
 
 Figure 13-6 illustrates how the upcoming topology in Figure 13-7 maps NIC-to-Rail connections, transitioning from a switch interface-based view to a rail-based view. Figure 13-6 shows a partial interface layout of a Cisco Nexus 9348D-GX2A switch and how its interfaces are grouped into different rails as follows:
 
-  
-
-• Rail-1 Interfaces: 1, 4, 7, 10
-
-• Rail-2 Interfaces: 13, 16, 19, 22
-
-• Rail-3 Interfaces: 25, 28, 31, 34
-
-• Rail-4 Interfaces: 37, 40, 43, 46
-
-• Rail-5 Interfaces: 2, 5, 8, 11
-
-• Rail-6 Interfaces: 14, 17, 20, 23
-
-• Rail-7 Interfaces: 26, 29, 32, 35
-
-• Rail-8 Interfaces: 38, 41, 44, 47
-
-  
+* Rail-1 Interfaces: 1, 4, 7, 10
+* Rail-2 Interfaces: 13, 16, 19, 22
+* Rail-3 Interfaces: 25, 28, 31, 34
+* Rail-4 Interfaces: 37, 40, 43, 46
+* Rail-5 Interfaces: 2, 5, 8, 11
+* Rail-6 Interfaces: 14, 17, 20, 23
+* Rail-7 Interfaces: 26, 29, 32, 35
+* Rail-8 Interfaces: 38, 41, 44, 47
 
 However, a port-based layout becomes extremely messy when describing larger implementations. Therefore, the common practice is to reference the rail number instead of individual switch interface identifiers.
 
-  
-
-  
 
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEhplkUJDuU7yYzXLi1HlP_2kAmn7Yx4JZOPuoT2wRpHKTx2qNsPUmphVzMxQUsXhuzLdRsgF4SZsnr0CHb8K4AIfsF9yS91IxZ4zi8u_Djokux9K5puWgf2EjzWVXWTbej2XRzc_5ssvw8VfHW86mAbY2q6BLzmyl7lYlCh_Icp93dwMoAuLmqZ5thxTZY=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEhplkUJDuU7yYzXLi1HlP_2kAmn7Yx4JZOPuoT2wRpHKTx2qNsPUmphVzMxQUsXhuzLdRsgF4SZsnr0CHb8K4AIfsF9yS91IxZ4zi8u_Djokux9K5puWgf2EjzWVXWTbej2XRzc_5ssvw8VfHW86mAbY2q6BLzmyl7lYlCh_Icp93dwMoAuLmqZ5thxTZY)
 
@@ -308,19 +237,11 @@ Figure 13-8 shows how multiple Host-Segments can be connected. The figure illust
 
 Since oversubscription is generally not preferred in GPU clusters — to maintain high performance and low latency — the uplink capacity from each Rail switch to the Spine layer must also match 3.2 Tbps. To achieve this, each Rail switch must have uplinks capable of an aggregate transfer rate of 3.2 Tbps. This can be implemented either by using native 800 Gbps interfaces or by forming a logical Layer 3 port channel composed of two 400 Gbps links per Spine connection. Additionally, Inter-Switch capacity can be increased by adding more switches in the Spine layer. This is one of the benefits of a Clos fabric: the capacity can be scaled without the need to replace 400 Gbps interfaces with 800 Gbps interfaces, for example.
 
-  
-
-  
-
 This topology forms a Pod and supports 64 GPUs in total and provides a non-blocking architecture, ensuring optimal east-west traffic performance between GPUs across different Host-Segments.
 
   
 
 In network design, the terms "two-tier" and "three-stage" Clos fabric describe different aspects of the same overall topology. "Two-tier" focuses on the physical switch layers (typically Leaf and Spine) and describes the depth of the topology, offering a hierarchy view of the architecture. Essentially, it's concerned with how many switching layers are present. On the other hand, three-stage Clos describes the logical data path a packet follows when moving between endpoints: Leaf–Spine–Leaf. It focuses on how data moves through the network and the stages traffic flows through. Therefore, while a two-tier topology refers to the physical switch structure, a three-stage Clos describes the logical path taken by packets, which crosses through three stages: Leaf, Spine, and Leaf. These two perspectives are complementary, not contradictory, and together they provide a complete view of the Clos network design.
-
-  
-
-  
 
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEjmuI-t16WjNMAH-U35zRBNLFrFztZZsxeIKk22N_AwvAlzDqtm5OAopKjBcUuXMJq19H8g63v22QxGsDvlqultATYylR_3wolQ5-P_HaB4GkYyBJGF1JznYj49pDt9anMhThes74bORPexfM2P3VijocoGI9iOE-w4K6GrWBnkTqlMG9aghP_5PeFzXBs)](https://blogger.googleusercontent.com/img/a/AVvXsEjmuI-t16WjNMAH-U35zRBNLFrFztZZsxeIKk22N_AwvAlzDqtm5OAopKjBcUuXMJq19H8g63v22QxGsDvlqultATYylR_3wolQ5-P_HaB4GkYyBJGF1JznYj49pDt9anMhThes74bORPexfM2P3VijocoGI9iOE-w4K6GrWBnkTqlMG9aghP_5PeFzXBs)
 
@@ -349,3 +270,5 @@ This can be achieved either by using native 800 Gbps links or logical Layer 3 po
 In this chapter, we focus mainly on different topology options, such as Single Rail with Single-Port GPU NIC, Dual Rail Switch with Dual-Port GPU NIC, Cross-Rail Over Layer 3 Clos fabric, and finally, Inter-Pod architecture. The next chapter will delve more in-depth into the technical solutions and challenges.
 
 **References:**
+* https://nwktimes.blogspot.com/2025/04/ai-fabric-backend-network-topologies.html
+
