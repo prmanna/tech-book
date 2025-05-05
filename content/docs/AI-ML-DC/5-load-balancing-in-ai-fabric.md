@@ -1,5 +1,5 @@
 ---
-title: "5. Load Balancing in AI Fabric"
+title: "Load Balancing in AI Fabric"
 bookCollapseSection: true
 weight: 50
 ---
