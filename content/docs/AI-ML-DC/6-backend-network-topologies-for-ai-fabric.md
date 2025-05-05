@@ -32,7 +32,7 @@ In high-performance environments, such as large-scale training workloads or GPU 
 
 Despite these challenges, the design is still useful in many cases. It is well-suited for development environments, smaller models, or setups where cost is a primary concern. If the workload does not require maximum GPU-to-network performance, sharing a NIC across GPUs can be a reasonable and efficient solution. However, for optimal performance and full support for technologies like GPUDirect RDMA, it is better to use a dedicated NIC for each GPU. 
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEg-WAuUm6Ar60MotlJsZAvVVXOeRcMRS6QYbwsimqEVjGEUz2S-Y2rYfj2PSObUNMcuDMbfEOgj0jFYaWMjWn6gGd9eUFFpWwQwTliI4CzcCItgE7_JFfER4tbzac84NaefCn8mvaBj2oTcLY1V3GljH0n3bqCGK9jJsrsuC2a5NKggQvd6X2nY7Nw6tY0=w640-h356)](https://blogger.googleusercontent.com/img/a/AVvXsEg-WAuUm6Ar60MotlJsZAvVVXOeRcMRS6QYbwsimqEVjGEUz2S-Y2rYfj2PSObUNMcuDMbfEOgj0jFYaWMjWn6gGd9eUFFpWwQwTliI4CzcCItgE7_JFfER4tbzac84NaefCn8mvaBj2oTcLY1V3GljH0n3bqCGK9jJsrsuC2a5NKggQvd6X2nY7Nw6tY0)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-1.png)
 
 **Figure 13-1:** _Shared NIC GPU Server._
 
@@ -46,7 +46,7 @@ The main drawback of this setup is cost. Adding one NIC per GPU increases both h
 
 This overall design reflects NVIDIA’s DGX and HGX architecture, where GPUs are fully interconnected using NVLink and NVSwitch and each GPU is typically paired with a dedicated ConnectX or BlueField NIC to maximize network performance. In addition, this configuration is well suited for rail-optimized backend networks, where consistent per-GPU network bandwidth and predictable east-west traffic patterns are important.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEjm_EoGQewoQyUuVgoeQXrHVovZh-TLH1SDDfBeXWEpjhpFvTZN9JNqzUpoLOMbcqj4g57pQllY1gUI7l2Os19RXtfK1WNB9Lvu2pk5TNgOIoQK1Dn93dPx306Cb7VYp_zDdDo0U4Bgg3DC1I6FoZuZe_lZzrblxrASz7x-1yW5DpXZy26kU7Trpiqbjro=w640-h330)](https://blogger.googleusercontent.com/img/a/AVvXsEjm_EoGQewoQyUuVgoeQXrHVovZh-TLH1SDDfBeXWEpjhpFvTZN9JNqzUpoLOMbcqj4g57pQllY1gUI7l2Os19RXtfK1WNB9Lvu2pk5TNgOIoQK1Dn93dPx306Cb7VYp_zDdDo0U4Bgg3DC1I6FoZuZe_lZzrblxrASz7x-1yW5DpXZy26kU7Trpiqbjro)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-2.png)
 
 **Figure 13-2:** _Dedicated NIC per GPU._
 
@@ -62,9 +62,7 @@ The figure also shows three examples of running large language models (LLMs) wit
 
 This figure highlights how model size directly affects memory needs, and the number of GPUs required. As models grow, parallelism and fast GPU interconnects become essential.
 
-  
-
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEg8mcSSt4nvRNkIUoABij0pGaINQpeqv_q4P8xHWIXLTJQu4B12sAghIdx1QK2RNzKIYD2pAB6lWIZZC_lCLC3E-j0HiWfz1kU8z98ec9LSUnxj1FCo94V40CWRuHoV1PPrey9o81qsyOH9R7Dnk6qbdc3LsSJP_IqFmdsDAqqijJkW89nRKU6Qn4kilFU=w640-h310)](https://blogger.googleusercontent.com/img/a/AVvXsEg8mcSSt4nvRNkIUoABij0pGaINQpeqv_q4P8xHWIXLTJQu4B12sAghIdx1QK2RNzKIYD2pAB6lWIZZC_lCLC3E-j0HiWfz1kU8z98ec9LSUnxj1FCo94V40CWRuHoV1PPrey9o81qsyOH9R7Dnk6qbdc3LsSJP_IqFmdsDAqqijJkW89nRKU6Qn4kilFU)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-3.png)
 
 **Figure 13-3:** _Model Size and Required GPUs._
 
@@ -97,7 +95,7 @@ Within each group, ports are assigned to different VLANs to separate traffic int
 
 Single rail designs are cost-efficient and simple but lack redundancy and scalability, making them best suited for small or non-critical AI deployments.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEgmz9x5QJyyHI33rcSf5lduAzPZAqBgsNpUGbahHXM2U56wCjVMQT9-boWY2M9G9_4x8VWJJUblYeWnGzh2nY0Qhy0esRB_I_mmEAbcZz19uGoMwd0n_fhwm5HVjIF5Yc74iY_JMuhDciXay8Ys7h1Xnc5Rvid2iZfv11g5PbwGvGi5qG_LIBMgFJd406g=w640-h334)](https://blogger.googleusercontent.com/img/a/AVvXsEgmz9x5QJyyHI33rcSf5lduAzPZAqBgsNpUGbahHXM2U56wCjVMQT9-boWY2M9G9_4x8VWJJUblYeWnGzh2nY0Qhy0esRB_I_mmEAbcZz19uGoMwd0n_fhwm5HVjIF5Yc74iY_JMuhDciXay8Ys7h1Xnc5Rvid2iZfv11g5PbwGvGi5qG_LIBMgFJd406g)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-4.png)
 
 
 **Figure 13-4:** _Single Rail Switch Design: GPU with Single Port NIC._
@@ -106,11 +104,7 @@ Single rail designs are cost-efficient and simple but lack redundancy and scala
 
 In this topology, each host contains 8 GPUs, and each GPU has a dedicated dual-port NIC. The NICs are connected across two independent Rail switches equipped with 200 Gbps interfaces. This design ensures that every GPU has redundant network connectivity through separate switches, maximizing performance, resiliency, and failover capabilities.
 
-  
-
 Each Rail switch independently connects to one port of each NIC, creating a dual-homed connection per GPU. To ensure seamless operations and redundancy, the two switches must logically appear as a single device to the host NICs, even though they are physically distinct systems.
-
-  
 
 ##### Benefits
 
@@ -119,11 +113,7 @@ Each Rail switch independently connects to one port of each NIC, creating a dual
 - Scalability: Dual-rail architectures can be extended easily to larger deployments while maintaining predictable performance and redundancy.
 - Operational Flexibility: Maintenance can often be performed on one switch without service disruption.
 
-  
-
 ##### Drawbacks
-
-  
 
 - Higher Cost: Requires two switches, twice the number of cables, and dual-port NICs, increasing CapEx and OpEx.
 - Complexity: Managing a dual-rail environment introduces more design complexity due to Multi-Chassis Link Aggregation (MLAG).
@@ -162,7 +152,7 @@ Instead of vendor-specific MLAG, a standards-based approach using Ethernet Segme
 - Hosts see multiple physical links but treat them as part of a logical redundant connection.
 - EVPN ESI Multihoming allows for interoperable solutions across vendors, but typically adds more complexity to the control plane compared to simple MLAG setups.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEjngPlj9kSLMNLpKnv0zGaKFrSI1mnmkplNERxcX2DJr5HJMfAnjszy6eIicaSoRvzJuFVz5DXJBqHHjZSXfdeYcsTAB5HhWyYwMGL-ZgMZ7HTQRKOIoJc8S3O4Hp_H6TlN-YAAK67DWd7k1n-mvYZbnhzmczXXpGgB-3de2h3MU0WsgfdpnslhMj61Ygw=w640-h332)](https://blogger.googleusercontent.com/img/a/AVvXsEjngPlj9kSLMNLpKnv0zGaKFrSI1mnmkplNERxcX2DJr5HJMfAnjszy6eIicaSoRvzJuFVz5DXJBqHHjZSXfdeYcsTAB5HhWyYwMGL-ZgMZ7HTQRKOIoJc8S3O4Hp_H6TlN-YAAK67DWd7k1n-mvYZbnhzmczXXpGgB-3de2h3MU0WsgfdpnslhMj61Ygw)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-5.png)
 
 **Figure 13-5:** _Dual Rail Switch Design: GPU with Dual-Port NIC._
 
@@ -195,7 +185,7 @@ Figure 13-6 illustrates how the upcoming topology in Figure 13-7 maps NIC-to-Rai
 However, a port-based layout becomes extremely messy when describing larger implementations. Therefore, the common practice is to reference the rail number instead of individual switch interface identifiers.
 
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEhplkUJDuU7yYzXLi1HlP_2kAmn7Yx4JZOPuoT2wRpHKTx2qNsPUmphVzMxQUsXhuzLdRsgF4SZsnr0CHb8K4AIfsF9yS91IxZ4zi8u_Djokux9K5puWgf2EjzWVXWTbej2XRzc_5ssvw8VfHW86mAbY2q6BLzmyl7lYlCh_Icp93dwMoAuLmqZ5thxTZY=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEhplkUJDuU7yYzXLi1HlP_2kAmn7Yx4JZOPuoT2wRpHKTx2qNsPUmphVzMxQUsXhuzLdRsgF4SZsnr0CHb8K4AIfsF9yS91IxZ4zi8u_Djokux9K5puWgf2EjzWVXWTbej2XRzc_5ssvw8VfHW86mAbY2q6BLzmyl7lYlCh_Icp93dwMoAuLmqZ5thxTZY)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-6.png)
 
 **Figure 13-6:** _Interface Block to Rail Mapping._
   
@@ -206,41 +196,29 @@ Figure 13-7 provides an example showing how each NIC is now connected to a rail 
 
 In our example "Host-Segment" (an unofficial name), we have four hosts, each equipped with eight GPUs — 32 GPUs in total. Each GPU has a dedicated 200 Gbps dual-port NIC. All GPUs are connected to two rail switches over a 2 × 200 Gbps MLAG, providing 400 Gbps of transmission speed per GPU.
 
-  
-
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEhUyQ0OtKPQ-J-AjurIM97tTu3MCso6Ciz_UP7CL-8SQ69_UM8JEgka0BwjlLyoyStOe30hJiIbnZHfcQ8RVAvyqTCfIEU9NUCyFoCtjkqvIzH6C91HwkBEZzPAgLiCaqT53aEZdAhb2w3F-VjiwGgJMG2KyDmnjaMwDlhshvbflndXd-hV8M4eVRtJwKs)](https://blogger.googleusercontent.com/img/a/AVvXsEhUyQ0OtKPQ-J-AjurIM97tTu3MCso6Ciz_UP7CL-8SQ69_UM8JEgka0BwjlLyoyStOe30hJiIbnZHfcQ8RVAvyqTCfIEU9NUCyFoCtjkqvIzH6C91HwkBEZzPAgLiCaqT53aEZdAhb2w3F-VjiwGgJMG2KyDmnjaMwDlhshvbflndXd-hV8M4eVRtJwKs)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-7.png)
 
 **Figure 13-7:** _Example Figure of Connecting 32 Dual-Port NICs 8 Rails on 2 Switches._
 
-  
-
 Figure 13-8 shows how multiple Host-Segments can be connected. The figure illustrates a simplified two-tier, three-stage Clos fabric topology, where full-mesh Layer 3 links are established between the four Rail switches (leaf switches) and the Spine switches. The figure also presents the link capacity calculations. Each Rail switch has 32 × 100 Gbps connections to the hosts, providing a total downlink capacity of 3.2 Tbps.
-
-  
 
 Since oversubscription is generally not preferred in GPU clusters — to maintain high performance and low latency — the uplink capacity from each Rail switch to the Spine layer must also match 3.2 Tbps. To achieve this, each Rail switch must have uplinks capable of an aggregate transfer rate of 3.2 Tbps. This can be implemented either by using native 800 Gbps interfaces or by forming a logical Layer 3 port channel composed of two 400 Gbps links per Spine connection. Additionally, Inter-Switch capacity can be increased by adding more switches in the Spine layer. This is one of the benefits of a Clos fabric: the capacity can be scaled without the need to replace 400 Gbps interfaces with 800 Gbps interfaces, for example.
 
 This topology forms a Pod and supports 64 GPUs in total and provides a non-blocking architecture, ensuring optimal east-west traffic performance between GPUs across different Host-Segments.
 
-  
-
 In network design, the terms "two-tier" and "three-stage" Clos fabric describe different aspects of the same overall topology. "Two-tier" focuses on the physical switch layers (typically Leaf and Spine) and describes the depth of the topology, offering a hierarchy view of the architecture. Essentially, it's concerned with how many switching layers are present. On the other hand, three-stage Clos describes the logical data path a packet follows when moving between endpoints: Leaf–Spine–Leaf. It focuses on how data moves through the network and the stages traffic flows through. Therefore, while a two-tier topology refers to the physical switch structure, a three-stage Clos describes the logical path taken by packets, which crosses through three stages: Leaf, Spine, and Leaf. These two perspectives are complementary, not contradictory, and together they provide a complete view of the Clos network design.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEjmuI-t16WjNMAH-U35zRBNLFrFztZZsxeIKk22N_AwvAlzDqtm5OAopKjBcUuXMJq19H8g63v22QxGsDvlqultATYylR_3wolQ5-P_HaB4GkYyBJGF1JznYj49pDt9anMhThes74bORPexfM2P3VijocoGI9iOE-w4K6GrWBnkTqlMG9aghP_5PeFzXBs)](https://blogger.googleusercontent.com/img/a/AVvXsEjmuI-t16WjNMAH-U35zRBNLFrFztZZsxeIKk22N_AwvAlzDqtm5OAopKjBcUuXMJq19H8g63v22QxGsDvlqultATYylR_3wolQ5-P_HaB4GkYyBJGF1JznYj49pDt9anMhThes74bORPexfM2P3VijocoGI9iOE-w4K6GrWBnkTqlMG9aghP_5PeFzXBs)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-8.png)
 
 **Figure 13-8:** _AI fabric – Pod Design._
 
-  
-
 Figure 13-9 extends the previous example by adding a second 64-GPU Pod, creating a larger multi-Pod architecture. To interconnect the two Pods, four Super-Spine switches are introduced, forming an additional aggregation layer above the Spine layer. Each Pod retains its internal two-tier Clos fabric structure, with Rail switches fully meshed to the Spine switches as described earlier. The Spine switches from both Pods are then connected northbound to the Super-Spine switches over Layer 3 links.
-
-  
 
 Due to the introduction of the Super-Spine layer, the complete system now forms a three-tier, five-stage Clos topology. This design supports scalable expansion while maintaining predictable latency and high bandwidth between GPUs across different Pods. Similar to the Rail-to-Spine design, maintaining a non-blocking architecture between the Spine and Super-Spine layers is critical. Each Spine switch aggregates 3.2 Tbps of traffic from its Rail switches; therefore, the uplink capacity from each Spine to the Super-Spine layer must also be 3.2 Tbps.
 
 This can be achieved either by using native 800 Gbps links or logical Layer 3 port channels composed of two 400 Gbps links per Super-Spine connection. All Spine switches are fully meshed with all Super-Spine switches to ensure high availability and consistent bandwidth. This architecture enables seamless east-west traffic between GPUs located in different Pods, ensuring that inter-Pod communication maintains the same non-blocking performance as intra-Pod traffic.
   
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEjg85GATQTVBTrrSPCPBKoI05YwttuKvXDlQgve8zsIBQS9sts_znSuStCGXktakwu1ODPqdLe3ROXA-U0v4JRngDvrIclLtkdf-tqWMLetu4nys8Jr7786mZHjGGa4OMPtJo4jSxo-fD83P6c1MMF_CMOqPbW-8V0Oer1GmdGrb3CxiCMP8I7p7q_s5Cw=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEjg85GATQTVBTrrSPCPBKoI05YwttuKvXDlQgve8zsIBQS9sts_znSuStCGXktakwu1ODPqdLe3ROXA-U0v4JRngDvrIclLtkdf-tqWMLetu4nys8Jr7786mZHjGGa4OMPtJo4jSxo-fD83P6c1MMF_CMOqPbW-8V0Oer1GmdGrb3CxiCMP8I7p7q_s5Cw)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/backend-network/image1-9.png)
 
 **Figure 13-9:** _AI fabric – Multi-Pod Design._
 
