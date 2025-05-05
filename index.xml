@@ -146,11 +146,7 @@ While DFS uses &lt;strong>recursion/stack&lt;/strong> to keep track of progress,
  AI for Network Engineers: Understanding Flow, Flowlet, and Packet-Based Load Balancing
  &lt;a class="anchor" href="#ai-for-network-engineers-understanding-flow-flowlet-and-packet-based-load-balancing">#&lt;/a>
 &lt;/h2>
-&lt;p>Though BGP supports the traditional Flow-based Layer 3 Equal Cost Multi-Pathing (ECMP) traffic load balancing method, it is not the best fit for a RoCEv2-based AI backend network. This is because GPU-to-GPU communication creates massive elephant flows, which RDMA-capable NICs transmit at line rate. These flows can easily cause congestion in the backend network.&lt;/p></description></item><item><title>6. Backend Network Topologies for AI Fabrics</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/6-backend-network-topologies-for-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/6-backend-network-topologies-for-ai-fabric/</guid><description>&lt;h1 id="intro">
- Intro
- &lt;a class="anchor" href="#intro">#&lt;/a>
-&lt;/h1>
-&lt;p>&lt;strong>References:&lt;/strong>&lt;/p></description></item><item><title>An Overview of 5G Networking</title><link>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</guid><description>&lt;p>from
+&lt;p>Though BGP supports the traditional Flow-based Layer 3 Equal Cost Multi-Pathing (ECMP) traffic load balancing method, it is not the best fit for a RoCEv2-based AI backend network. This is because GPU-to-GPU communication creates massive elephant flows, which RDMA-capable NICs transmit at line rate. These flows can easily cause congestion in the backend network.&lt;/p></description></item><item><title>An Overview of 5G Networking</title><link>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/5g/5g-intro/</guid><description>&lt;p>from
 &lt;a href="https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/">https://datatracker.ietf.org/doc/draft-ietf-teas-5g-ns-ip-mpls/&lt;/a>&lt;/p>
 &lt;h2 id="appendix-bhttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08appendix-b-an-overview-of-5g-networkinghttpsdatatrackerietforgdochtmldraft-ietf-teas-5g-ns-ip-mpls-08name-an-overview-of-5g-networkin">
  &lt;a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#appendix-B">Appendix B.&lt;/a> &lt;a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls-08#name-an-overview-of-5g-networkin">An Overview of 5G Networking&lt;/a>
@@ -420,7 +416,11 @@ are set to the initiator’s corresponding internal values.
  TCP Connection Termination Handshake
  &lt;a class="anchor" href="#tcp-connection-termination-handshake">#&lt;/a>
 &lt;/h2>
-&lt;p>The steps in a four-way TCP connection termination handshake are thus.&lt;/p></description></item><item><title>First Blog</title><link>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</link><pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</guid><description>&lt;h2 id="preface">
+&lt;p>The steps in a four-way TCP connection termination handshake are thus.&lt;/p></description></item><item><title>6. Backend Network Topologies for AI Fabrics</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/6-backend-network-topologies-for-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/6-backend-network-topologies-for-ai-fabric/</guid><description>&lt;h1 id="intro">
+ Intro
+ &lt;a class="anchor" href="#intro">#&lt;/a>
+&lt;/h1>
+&lt;p>&lt;strong>References:&lt;/strong>&lt;/p></description></item><item><title>First Blog</title><link>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</link><pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/posts/2022-01-18-first-doc/</guid><description>&lt;h2 id="preface">
  Preface
  &lt;a class="anchor" href="#preface">#&lt;/a>
 &lt;/h2>
