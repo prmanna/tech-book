@@ -12,13 +12,9 @@ This chapter introduces the basic operations of Transformer-based Large Language
 
 This chapter has two main goals. First, it explains how an LLM understands the context of a word. For example, the word “clear” can be used as a verb (Please, clear the table.) or as an adjective (The sky was clear.), depending on the context. Second, it discusses why LLMs require parallelization across hundreds or even thousands of GPUs due to the large model size, massive datasets, and the computational complexity involved.
 
-  
-
 ### Tokenizer and Word Embedding Matrix
 
 As a first step, we import a vocabulary into the model. The vocabulary used for training large language models (LLMs) typically consists of a mix of general and domain-specific terms, including basic vocabulary, technical terminology, academic and formal language, idiomatic expressions, cultural references, as well as synonyms and antonyms. Each word and character is stored in a word lookup table and assigned a unique token. This process is called tokenization.
-
-  
 
 Many LLMs use Byte Pair Encoding (BPE), which splits words into subword units. For example, the word "unhappiness" might be broken down into "un," "happi," and "ness." BPE is widely used because it effectively balances vocabulary size and tokenization efficiency, particularly for handling rare words and sub-words. For simplicity, we use complete words in all our examples.
 
@@ -31,8 +27,6 @@ For example, consider the word “clear.” A two-dimensional vector may disting
 The context size, defined as the sequence length of vectors, determines how many preceding words the model considers when predicting the next word. In GPT-3, the context size is 2,048 tokens.
 
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEhE3s3vC-QZBZ5Xdb3q6X0JR8uSa25smRVB0pk-r_IGUGBIb6mnS4CumYCwPYKtqsKK-3nE4qCsVCd3m62iraz124xvdhtkaWs4YgVyfsrH8TjI2iiMsd_XIUpBhSnl_TvyWCxkCb916cXjChKDaQ3DWFXwlcF9p2b1X6qNzoXPa6F0fAH7xsp86cGZU_k=w640-h324)](https://blogger.googleusercontent.com/img/a/AVvXsEhE3s3vC-QZBZ5Xdb3q6X0JR8uSa25smRVB0pk-r_IGUGBIb6mnS4CumYCwPYKtqsKK-3nE4qCsVCd3m62iraz124xvdhtkaWs4YgVyfsrH8TjI2iiMsd_XIUpBhSnl_TvyWCxkCb916cXjChKDaQ3DWFXwlcF9p2b1X6qNzoXPa6F0fAH7xsp86cGZU_k)
-
-  
 
 **Figure 7-1:** _Tokenization and Word Embedding Matrix._
 
@@ -69,15 +63,9 @@ At the start of the first iteration, all words are placed randomly within the tw
 
 Figure 7-4 illustrates how words may be positioned after successful training. All words representing a male adult are placed in the upper-left quadrant (adult/male). Similarly, all other words are positioned in the two-dimensional vector space based on their corresponding age and gender.
 
-  
-
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEiP9XM5LfT6OpI-CLQdQYphnj9jeAeBg3jY2JqlWBAOB4RxvR48uhks43cX3_9Noddz1ObKN1IaPLnlHv2OHU68zifASvm8_y_lCqk7jWAMbalyKB9tXF25NSiHMWOSLDlf0r6N6YYOT8nvzht5tYV1aO1MQgmDaDVOynNqcdMl3iDWLmIKG7ARwyMstTg=w640-h460)](https://blogger.googleusercontent.com/img/a/AVvXsEiP9XM5LfT6OpI-CLQdQYphnj9jeAeBg3jY2JqlWBAOB4RxvR48uhks43cX3_9Noddz1ObKN1IaPLnlHv2OHU68zifASvm8_y_lCqk7jWAMbalyKB9tXF25NSiHMWOSLDlf0r6N6YYOT8nvzht5tYV1aO1MQgmDaDVOynNqcdMl3iDWLmIKG7ARwyMstTg)
 
-  
-
 **Figure 7-4:** _Words in the 2 Dimensional Vector Space After Training._
-
-  
 
 In addition to grouping similar words, such as "adult/female," close to each other in an n-dimensional space, there should also be positional similarities between words in different quadrants. For example, if we calculate the Euclidean distance between the words Father and Mother, we might find that their distance is approximately 4.3. The same pattern applies to word pairs like Nephew-Niece, Brother-Sister, Husband-Wife, and Father-in-Law–Mother-in-Law.
 
@@ -95,15 +83,9 @@ However, it is important to note that this example is purely theoretical. In pra
 
 ### Positional Embeddings
 
-  
-
 Since input text often contains repeated words with different meanings depending on their position, an LLM must distinguish between them. To achieve this, the word embedding process in Natural Language Processing (NLP) incorporates a Positional Encoding Vector alongside the Word Embedding Vector, resulting in the final word representation.
 
-  
-
 In Figure 7-6, the sentence "The sky is clear, so she finally decided to clear the backyard" contains the word clear twice. Repeated words share the same token ID instead of receiving unique ones. In this example, the is assigned token ID 2, and clear is assigned 5. These token IDs are then mapped to vectors using a word embedding lookup table. However, without positional encoding, words with different meanings would share the same vector representation.
-
-  
 
 Focusing on clear (token ID 5), it maps to the word embedding vector \[+2.5, +1.0\] from the lookup table. Since token IDs do not capture word position, identical words always receive the same embedding.
 
@@ -153,7 +135,7 @@ Figure 7-7 also shows the final word embedding for the second occurrence of clea
 
 ## Large Language Model (LLM) - Part 2/2: Transformer Architecture
 
-###  Introduction
+### Introduction
 
 Sequence-to-sequence (seq2seq) language translation and Generative Pretrained Transformer (GPT) models are subcategories of Natural Language Processing (NLP) that utilize the Transformer architecture. Seq2seq models are typically using Long Short-Term Memory (LSTM) networks or encoder-decored based Transformers. In contrast, GPT is an autoregressive language model that uses decoder-only Transformer mechanism. The purpose of this chapter is to provide an overview of the decoder-only Transformer architecture.
 
@@ -169,11 +151,7 @@ The basic architecture of the FFNN in the decoder is designed so that the input 
 
 Figure 7-8: Decoder-Only Transformer Architecture.
 
-  
-
 ### Query, Key and Value Vectors
-
-  
 
 As pointed out in the Introduction, the word embedding vector is not used as input to the first decoder. Instead, it is multiplied by pretrained Query, Key, and Value weight matrices. The result of this matrix multiplication, dot product, produces the Query, Key, and Value vectors, which are use as inputs, and are processed through the Transformer. Figure 7–9 show the basic workflow of this process.
 
@@ -335,7 +313,7 @@ Figure 7-20: Word-to-Token, and Token-to-Word Embedding Process.
 
 In theory, our simple example shows that the model can assign the highest probability to the correct word. For instance, by analyzing the position of the word “clear” relative to its preceding words, the model is able to infer the context. When the context implies that an action is directed toward a known target, the article “the” receives the highest probability score and is predicted as the next word.
 
-### Conclusion
+## Conclusion
 
 We use pretty simple examples in this chapter. However, GPT-3, for example, is built on a deep Transformer architecture comprising 96 decoder blocks. Each decoder block is divided into three primary sub-layers:
 
