@@ -1,7 +1,7 @@
 ---
 title: "4. Congestion Avoidance in AI Fabric"
 bookCollapseSection: true
-weight: 10
+weight: 40
 ---
 
 ## Congestion Avoidance in AI Fabric - Part I: Explicit Congestion Notification (ECN)

@@ -1,7 +1,7 @@
 ---
 title: "5. Load Balancing in AI Fabric"
 bookCollapseSection: true
-weight: 10
+weight: 50
 ---
 
 ## AI for Network Engineers: Understanding Flow, Flowlet, and Packet-Based Load Balancing
