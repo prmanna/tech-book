@@ -18,7 +18,7 @@ Figure 13-10 illustrates the multi-rail-per-switch architecture, where each rail
 
 The figure also illustrates the BGP process when a Clos architecture with a spine layer is used to connect rail switches. All directly connected subnets are installed into the local Routing Information Base (RIB) as connected routes. These routes are then imported into the BGP Loc-RIB. Next, the routes pass through the BGP output policy engine, where they are aggregated into a single summary route: 10.0.1.0/24. This aggregate is placed into the BGP Adj-RIB-Out. When the BGP Update message is sent to a peer, the NEXT\_HOP attribute is set accordingly.
 
-![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desing/image1-1.png)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desings/image1-1.png)
 
 **Figure 13-10:** _Multi-Rail per Switch._
 
@@ -30,7 +30,7 @@ This design resembles the dual-rail concept used in scalable AI clusters, but NV
   
 Figure 13-11 illustrates a dual-rail-per-switch design, where the switch interfaces are divided evenly between two separate rails. Rail 1 uses interfaces 1 through 16 and is assigned to subnet 10.0.1.0/25 (VLAN 101). Rail 2 uses interfaces 17 through 32 and is assigned to subnet 10.0.128.0/25 (VLAN 102). Each VLAN has its own MAC address table, and the rail switch serves as the default gateway for both. The individual /25 subnets are redistributed into the BGP process and summarized as 10.0.1.0/24 for advertisement toward the spine layer.
 
-![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desing/image1-2.png)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desings/image1-2.png)
 
 **Figure 13-11:** _Dual-Rail Switch._
 
@@ -42,15 +42,11 @@ The design closely aligns with NVIDIA’s Scalable Unit (SU) architecture, in wh
 
 While this model demands the highest CapEx, due to the one-to-one mapping between switches and rails, it offers major operational advantages. Configuration is simpler, troubleshooting is faster, and the risk of cascading faults is minimized. There is no need for route summarization, or custom BGP redistribution logic. Over time, these benefits help drive down OpEx, particularly in large-scale or mission-critical GPU clusters.
 
-  
-
 To ensure optimal hardware utilization, it is important to align the number of GPU servers per rack with the switch’s port capacity. Otherwise, underutilized ports can lead to inefficiencies in infrastructure cost and resource planning.
-
-  
 
 Figure 13-12 illustrates a simplified single-rail-per-switch topology. All interfaces from 1 to 32 operate within a single rail, configured with subnet 10.0.1.0/24 and VLAN 101. The rail switch serves as the default gateway, and because the full /24 subnet is used without subnetting, route summarization is not needed.
 
-![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desing/image1-3.png)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desings/image1-3.png)
 
 **Figure 13-12:** _Single-Rail Switch._
 
@@ -75,7 +71,7 @@ Super Spine switches provide inter-Pod connectivity. They are built with very hi
 #### Global AI Fabric Profile
 All layers are governed by the Global AI Fabric Profile. This profile defines the control plane (eBGP, iBGP, BGP EVPN), the data plane (Ethernet, VXLAN), Layer 3 ECMP strategies (flow-based, flowlet-based, or per-packet), congestion control mechanisms (ECN marking, PFC), inter-switch link monitoring (BFD), and global MTU settings.
 
-![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desing/image1-4.png)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desings/image1-4.png)
 
 **Figure 13-13:** _AI fabric Architecture Description._
 
