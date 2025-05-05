@@ -32,7 +32,15 @@
  Introduction
  &lt;a class="anchor" href="#introduction">#&lt;/a>
 &lt;/h2>
-&lt;p>Artificial Intelligence (AI) is a broad term for solutions that aim to mimic the functions of the human brain. Machine Learning (ML), in turn, is a subset of AI, suitable for tasks like simple pattern recognition and prediction. Deep Learning (DL), the focus of this section, is a subset of ML that leverages algorithms to extract meaningful patterns from data. Unlike ML, DL does not necessarily require human intervention, such as providing structured, labeled datasets (e.g., 1,000 bird images labeled as “bird” and 1,000 cat images labeled as “cat”). &lt;/p></description></item><item><title>Challenges in AI Fabric Design</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</guid><description>&lt;h2 id="intro">
+&lt;p>Artificial Intelligence (AI) is a broad term for solutions that aim to mimic the functions of the human brain. Machine Learning (ML), in turn, is a subset of AI, suitable for tasks like simple pattern recognition and prediction. Deep Learning (DL), the focus of this section, is a subset of ML that leverages algorithms to extract meaningful patterns from data. Unlike ML, DL does not necessarily require human intervention, such as providing structured, labeled datasets (e.g., 1,000 bird images labeled as “bird” and 1,000 cat images labeled as “cat”). &lt;/p></description></item><item><title>Large Language Models (LLM)</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/2-1-large-language-models/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/2-1-large-language-models/</guid><description>&lt;h3 id="large-language-models-llm---part-12-word-embedding">
+ Large Language Models (LLM) - Part 1/2: Word Embedding
+ &lt;a class="anchor" href="#large-language-models-llm---part-12-word-embedding">#&lt;/a>
+&lt;/h3>
+&lt;h3 id="introduction">
+ Introduction
+ &lt;a class="anchor" href="#introduction">#&lt;/a>
+&lt;/h3>
+&lt;p>This chapter introduces the basic operations of Transformer-based Large Language Models (LLMs), focusing on fundamental concepts rather than any specific LLM, such as OpenAI’s GPT (Generative Pretrained Transformer).The chapter begins with an introduction to tokenization and word embeddings, which convert input words into a format the model can process. Next, it explains how the transformer component leverages decoder architecture for input processing and prediction. &lt;/p></description></item><item><title>Challenges in AI Fabric Design</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</guid><description>&lt;h2 id="intro">
  Intro
  &lt;a class="anchor" href="#intro">#&lt;/a>
 &lt;/h2>
