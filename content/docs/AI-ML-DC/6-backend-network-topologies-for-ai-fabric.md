@@ -2,9 +2,6 @@
 title: "Backend Network Topologies for AI Fabrics"
 bookCollapseSection: true
 weight: 600
-output:
-  blogdown::html_page:
-    toc: true
 ---
 
 ## Backend Network Topologies for AI Fabrics
