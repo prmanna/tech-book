@@ -1,10 +1,10 @@
 ---
-title: "Load Balancing in AI Fabric"
+title: "Rail Designs in GPU Fabric"
 bookCollapseSection: true
 weight: 700
 ---
 
-### Rail Desings in GPU Fabric
+### Rail Designs in GPU Fabric
 
  When building a scalable, resilient GPU network fabric, the design of the rail layer, the portion of the topology that interconnects GPU servers via Top-of-Rack (ToR) switches, plays a critical role. This section explores three different models: Multi-rail-per-switch, Dual-rail-per-switch, and Single-rail-per-switch. All three support dual-NIC-per-GPU designs, allowing each GPU to connect redundantly to two separate switches, thereby removing the Rail switch as a single point of failure.
 
