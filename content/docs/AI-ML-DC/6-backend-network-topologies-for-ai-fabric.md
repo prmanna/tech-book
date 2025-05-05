@@ -1,7 +1,10 @@
 ---
-title: "6. Backend Network Topologies for AI Fabrics"
+title: "Backend Network Topologies for AI Fabrics"
 bookCollapseSection: true
 weight: 600
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 ## Backend Network Topologies for AI Fabrics
@@ -11,8 +14,6 @@ Although there are best practices for AI Fabric backend networks, such as Data C
 However, instead of focusing on any specific vendor’s design, this chapter explains general design principles for building a resilient, non-blocking, and lossless Ethernet backend network for AI workloads.
 
 Before diving into backend network design, this chapter first provides a high-level overview of a GPU server based on NVIDIA H100 GPUs. The first section introduces a shared NIC architecture, where 8 GPUs share two NICs. The second section covers an architecture where each of the 8 GPUs has a dedicated NIC.
-
-  
 
 ### Shared NIC
 
@@ -77,8 +78,6 @@ This figure highlights how model size directly affects memory needs, and the num
 #### Single Rail Switch Design with Dedicated, Single-Port NICs per GPU
 
 Figure 13-4 illustrates a single rail switch design. The switch interfaces are divided into three groups of eight 200 Gbps interface each. The first group of eight ports is reserved for Host-1, the second group for Host-2, and the third group for Host-3. Each host has eight GPUs, and each GPU is equipped with a dedicated, single-port NIC.
-
-  
 
 Within each group, ports are assigned to different VLANs to separate traffic into different logical rails. Specifically, the first port of each group belongs to the VLAN representing Rail-1, the second port belongs to Rail-2, and so on. This pattern continues across all three host groups.
 

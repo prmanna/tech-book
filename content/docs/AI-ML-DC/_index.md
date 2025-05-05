@@ -1,6 +1,9 @@
 ---
 title: "Data Center Networking for AI Clusters"
 bookCollapseSection: true
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 # Data Center Networking for AI Clusters
