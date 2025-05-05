@@ -1,5 +1,5 @@
 ---
-title: "Congestion Avoidance in AI Fabric"
+title: "4. Congestion Avoidance in AI Fabric"
 bookCollapseSection: true
 weight: 10
 ---

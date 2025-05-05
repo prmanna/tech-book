@@ -1,5 +1,5 @@
 ---
-title: "Backend Network Topologies for AI Fabrics"
+title: "6. Backend Network Topologies for AI Fabrics"
 bookCollapseSection: true
 weight: 10
 ---

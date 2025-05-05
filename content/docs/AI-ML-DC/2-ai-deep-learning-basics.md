@@ -1,5 +1,5 @@
 ---
-title: "Deep Learning Basics | Artificial Neuron"
+title: "2. Deep Learning Basics | Artificial Neuron"
 bookCollapseSection: true
 weight: 10
 ---

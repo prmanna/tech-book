@@ -1,5 +1,5 @@
 ---
-title: "AI/ML Networking"
+title: "1. AI/ML Networking"
 bookCollapseSection: true
 weight: 10
 ---
