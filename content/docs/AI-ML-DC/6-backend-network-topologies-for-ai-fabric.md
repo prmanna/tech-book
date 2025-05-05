@@ -254,18 +254,13 @@ Figure 13-9 extends the previous example by adding a second 64-GPU Pod, creating
 
 Due to the introduction of the Super-Spine layer, the complete system now forms a three-tier, five-stage Clos topology. This design supports scalable expansion while maintaining predictable latency and high bandwidth between GPUs across different Pods. Similar to the Rail-to-Spine design, maintaining a non-blocking architecture between the Spine and Super-Spine layers is critical. Each Spine switch aggregates 3.2 Tbps of traffic from its Rail switches; therefore, the uplink capacity from each Spine to the Super-Spine layer must also be 3.2 Tbps.
 
-  
-
 This can be achieved either by using native 800 Gbps links or logical Layer 3 port channels composed of two 400 Gbps links per Super-Spine connection. All Spine switches are fully meshed with all Super-Spine switches to ensure high availability and consistent bandwidth. This architecture enables seamless east-west traffic between GPUs located in different Pods, ensuring that inter-Pod communication maintains the same non-blocking performance as intra-Pod traffic.
-
   
-
 [![](https://blogger.googleusercontent.com/img/a/AVvXsEjg85GATQTVBTrrSPCPBKoI05YwttuKvXDlQgve8zsIBQS9sts_znSuStCGXktakwu1ODPqdLe3ROXA-U0v4JRngDvrIclLtkdf-tqWMLetu4nys8Jr7786mZHjGGa4OMPtJo4jSxo-fD83P6c1MMF_CMOqPbW-8V0Oer1GmdGrb3CxiCMP8I7p7q_s5Cw=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEjg85GATQTVBTrrSPCPBKoI05YwttuKvXDlQgve8zsIBQS9sts_znSuStCGXktakwu1ODPqdLe3ROXA-U0v4JRngDvrIclLtkdf-tqWMLetu4nys8Jr7786mZHjGGa4OMPtJo4jSxo-fD83P6c1MMF_CMOqPbW-8V0Oer1GmdGrb3CxiCMP8I7p7q_s5Cw)
 
 **Figure 13-9:** _AI fabric – Multi-Pod Design._
 
   
-
 In this chapter, we focus mainly on different topology options, such as Single Rail with Single-Port GPU NIC, Dual Rail Switch with Dual-Port GPU NIC, Cross-Rail Over Layer 3 Clos fabric, and finally, Inter-Pod architecture. The next chapter will delve more in-depth into the technical solutions and challenges.
 
 **References:**
