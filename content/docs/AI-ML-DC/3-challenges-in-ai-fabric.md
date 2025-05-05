@@ -1,7 +1,7 @@
 ---
-title: "3. Challenges in AI Fabric Design"
+title: "Challenges in AI Fabric Design"
 bookCollapseSection: true
-weight: 10
+weight: 30
 ---
 
 ## Intro
