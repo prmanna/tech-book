@@ -1,5 +1,5 @@
 ---
-title: "Rail Designs in GPU Fabric"
+title: "Backend Network/Rail Designs"
 bookCollapseSection: true
 weight: 700
 ---
