@@ -90,3 +90,4 @@ All layers are governed by the Global AI Fabric Profile. This profile defines th
 
 **References:**
 * https://nwktimes.blogspot.com/2025/05/ai-for-network-engineers-rail-desings.html
+* [Optimized Network Architectures for Training Large Language Models With Billions of Parameters](https://people.csail.mit.edu/ghobadi/papers/rail_llm_hotnets_2023.pdf) - [Mirror-Copy](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desings/rail_llm_hotnets_2023.pdf)
