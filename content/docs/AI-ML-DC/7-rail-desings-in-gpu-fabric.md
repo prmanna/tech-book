@@ -4,6 +4,19 @@ bookCollapseSection: true
 weight: 700
 ---
 
+### Clos vs Rail-Optimised Design for Backend Network
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/rail-desings/clos-vs-rail-optimized.png)
+
+#### CPU cluster with a Clos Network
+Conventional networked clusters are designed to serve CPUheavy workloads using a multi-layer Clos network, illustrated in Figure 1. This architecture, known as a Fat-Tree network, is deeply studied in the system and networking communities. In a typical Fat-Tree-based cluster, each server is equipped with one NIC (40 Gbps to 400 Gbps), and K servers are arranged into racks connecting to Top-ofthe-Rack (ToR) switches. The ToR switches are then connected to the aggregation switches to provide connectivity across racks, forming a pod. Finally, the pods are interconnected with spine switches, allowing any-to-any communication across servers in a CPU cluster.
+
+#### Rail-Optimised Network for GPU Clusters
+In contrast, the rise of network-heavy ML workloads led to the dominance of GPU-centric clusters, where individual GPUs have dedicated NICs. Figure 2 illustrates the network architecture of a typical GPU cluster. Each GPU has two different communication interfaces: (i) An NVLink interface to support high-bandwidth but short-range interconnection and (ii) a conventional RDMA-enabled NIC. The NVLinks connect K GPUs to provide terabits of non-blocking any-to-any bandwidth in/out per GPU (7.68 Tbps for fourthgen NVLink, for instance). This group of GPUs with fast interconnect forms a high-bandwidth domain (HB domain).  Traditionally, HB domains were restricted to a single server (e.g., DGX servers with K = 8 or 16 GPUs). However, recently, Nvidia announced the GH200 supercomputer interconnecting K = 256 Grace Hopper Superchips to form one HB domain across multiple racks.
+
+However, some LLMs take too long for a single HB domain to train, even with 256 GPUs. For instance, the PaLM540B model would take 117 days to finish on a GH200 supercomputer, assuming perfect GPU utilization. These models require parallelization across multiple HB domains.
+
+To enable training an LLM across multiple HB domains, GPU cluster operators use RDMA-capable NICs to interconnect multiple HB domains together. The conventional network architecture to interconnect HB domains is called a **rail-optimized network**. In a rail-optimized architecture, GPUs within an HB domain are labeled from 1 to K. A rail is the set of GPUs with the same index (or rank) on different HB domains, interconnected with a rail switch. For instance, Figure 2 illustrates Rail 1 and Rail K in red and yellow color, respectively. These rail switches are subsequently connected to spine switches to form a full-bisection any-to-any Clos network topology. This network ensures any pair of GPUs in different HB domains can communicate at the network line rate (400 Gbps Infiniband network for GH200). For instance, traffic between GPU 1, Domain 1 and GPU 1, Domain 2 traverses through Rail Switch 1 only, while traffic between GPU 1, Domain 1 and GPU 2, Domain 2 goes through the respective rails and the spine switches.
+
 ### Rail Designs in GPU Fabric
 
  When building a scalable, resilient GPU network fabric, the design of the rail layer, the portion of the topology that interconnects GPU servers via Top-of-Rack (ToR) switches, plays a critical role. This section explores three different models: Multi-rail-per-switch, Dual-rail-per-switch, and Single-rail-per-switch. All three support dual-NIC-per-GPU designs, allowing each GPU to connect redundantly to two separate switches, thereby removing the Rail switch as a single point of failure.
