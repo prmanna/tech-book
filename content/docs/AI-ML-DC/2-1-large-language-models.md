@@ -26,7 +26,7 @@ For example, consider the word “clear.” A two-dimensional vector may disting
 
 The context size, defined as the sequence length of vectors, determines how many preceding words the model considers when predicting the next word. In GPT-3, the context size is 2,048 tokens.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEhE3s3vC-QZBZ5Xdb3q6X0JR8uSa25smRVB0pk-r_IGUGBIb6mnS4CumYCwPYKtqsKK-3nE4qCsVCd3m62iraz124xvdhtkaWs4YgVyfsrH8TjI2iiMsd_XIUpBhSnl_TvyWCxkCb916cXjChKDaQ3DWFXwlcF9p2b1X6qNzoXPa6F0fAH7xsp86cGZU_k=w640-h324)](https://blogger.googleusercontent.com/img/a/AVvXsEhE3s3vC-QZBZ5Xdb3q6X0JR8uSa25smRVB0pk-r_IGUGBIb6mnS4CumYCwPYKtqsKK-3nE4qCsVCd3m62iraz124xvdhtkaWs4YgVyfsrH8TjI2iiMsd_XIUpBhSnl_TvyWCxkCb916cXjChKDaQ3DWFXwlcF9p2b1X6qNzoXPa6F0fAH7xsp86cGZU_k)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-1.png)
 
 **Figure 7-1:** _Tokenization and Word Embedding Matrix._
 
@@ -43,19 +43,14 @@ The first word, "Wife," appears in the lookup table with the token value 2. The 
 
 The second word, "Mother," is assigned the token 3, which is associated with the word vector \[-2.5, +3.0\], and so on.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEiJNUFCwHAwH0IzyA13HyM6gLoRNvaW0dXpO-SyB7C3dHaRtK0Vu1Qwk6aAKXNTwi1aZ5pmoHQShSVckIXrs-W_aJ5qGBH_MVPmhHbXswCxPqtrvkOkeBCXtqFe_qYM6vAOLyh5gv36ZfGw_Q1ADLNhhStm4ycchpTvIcpRvwpxtETZhiTzpptddMr4gtE=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEiJNUFCwHAwH0IzyA13HyM6gLoRNvaW0dXpO-SyB7C3dHaRtK0Vu1Qwk6aAKXNTwi1aZ5pmoHQShSVckIXrs-W_aJ5qGBH_MVPmhHbXswCxPqtrvkOkeBCXtqFe_qYM6vAOLyh5gv36ZfGw_Q1ADLNhhStm4ycchpTvIcpRvwpxtETZhiTzpptddMr4gtE)
-
-  
-
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-2.png)
 **Figure 7-2:** _Word Tokenization and Word Embedding._
-
-  
 
 In Figure 7-3, we have a two-dimensional vector space divided into four quadrants, representing gender (male/female) and age (child/adult). Tokenized words are mapped into this space.
 
 At the start of the first iteration, all words are placed randomly within the two-dimensional space. During training, our goal is to adjust the word vector values so that adults are positioned on the positive side of the Y-axis and children on the negative side. Similarly, males are placed in the negative space of the X-axis, while females are positioned on the positive side.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEhmDPYthV-EqTbhPrj3Dumz5g6wzevO-cwmPartMfq-EEdfOzqmJKYAJfqYxmiQnE657ZZlqxPDSuc5nk7W7lLj7LEkn4BQvx9rWEBZTfM3_84rIq4rtAzs-GlMzuf3p3Srw1HIIby9StqD8Pcmz8MebV4TH_iN8xpAOx7Z-NIs3e6ZWbSQPaZwEt788XY=w640-h460)](https://blogger.googleusercontent.com/img/a/AVvXsEhmDPYthV-EqTbhPrj3Dumz5g6wzevO-cwmPartMfq-EEdfOzqmJKYAJfqYxmiQnE657ZZlqxPDSuc5nk7W7lLj7LEkn4BQvx9rWEBZTfM3_84rIq4rtAzs-GlMzuf3p3Srw1HIIby9StqD8Pcmz8MebV4TH_iN8xpAOx7Z-NIs3e6ZWbSQPaZwEt788XY)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-3.png)
 
 **Figure 7-3:** _Words in the 2 Dimensional Vector Space in the Initial State._
 
@@ -63,7 +58,7 @@ At the start of the first iteration, all words are placed randomly within the tw
 
 Figure 7-4 illustrates how words may be positioned after successful training. All words representing a male adult are placed in the upper-left quadrant (adult/male). Similarly, all other words are positioned in the two-dimensional vector space based on their corresponding age and gender.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEiP9XM5LfT6OpI-CLQdQYphnj9jeAeBg3jY2JqlWBAOB4RxvR48uhks43cX3_9Noddz1ObKN1IaPLnlHv2OHU68zifASvm8_y_lCqk7jWAMbalyKB9tXF25NSiHMWOSLDlf0r6N6YYOT8nvzht5tYV1aO1MQgmDaDVOynNqcdMl3iDWLmIKG7ARwyMstTg=w640-h460)](https://blogger.googleusercontent.com/img/a/AVvXsEiP9XM5LfT6OpI-CLQdQYphnj9jeAeBg3jY2JqlWBAOB4RxvR48uhks43cX3_9Noddz1ObKN1IaPLnlHv2OHU68zifASvm8_y_lCqk7jWAMbalyKB9tXF25NSiHMWOSLDlf0r6N6YYOT8nvzht5tYV1aO1MQgmDaDVOynNqcdMl3iDWLmIKG7ARwyMstTg)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-4.png)
 
 **Figure 7-4:** _Words in the 2 Dimensional Vector Space After Training._
 
@@ -75,7 +70,7 @@ However, it is important to note that this example is purely theoretical. In pra
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEj_ucF4kW1YBUkvZ82DjUXNnuy2FH-Ltvmnb1zhWyUiS86xZ-ncN3h3CEsBQVMwbwkvzuvARbGz8NEAYIVTWIwz_DZ6OP0u24dK0WdMKRJk7OcXxUWtHeRK9BiTc9na6rD4rnQpd09Mx2OX1ZOV4vS0KluRIqao_tWVd0BHf_kFoI5qgijiHpjpaXZEtR8=w640-h436)](https://blogger.googleusercontent.com/img/a/AVvXsEj_ucF4kW1YBUkvZ82DjUXNnuy2FH-Ltvmnb1zhWyUiS86xZ-ncN3h3CEsBQVMwbwkvzuvARbGz8NEAYIVTWIwz_DZ6OP0u24dK0WdMKRJk7OcXxUWtHeRK9BiTc9na6rD4rnQpd09Mx2OX1ZOV4vS0KluRIqao_tWVd0BHf_kFoI5qgijiHpjpaXZEtR8)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-5.png)
 
 **Figure 7-5:** _Euclidean Distance._
 
@@ -91,11 +86,7 @@ Focusing on clear (token ID 5), it maps to the word embedding vector \[+2.5, +1.
 
 Positional encoding is essential for capturing context and semantic meaning. As shown in Figure 7-6, each input word receives a Positional Encoding Vector (PE) in addition to its word embedding. PE can either be learned and adjusted during training or remain fixed. The final Word Embedding Vector is computed by combining both the Word Embedding Vector and Positional Encoding Vector.
 
-  
-
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEhDazqAestp6Nt6DDKIpfyZwIqfqF0Pr-m_Ca9wrL8YWQT5JytF0u4b-QtaqdjC5gpA2hDWhZzq8p7MeZymgUfYlY-zty1JU5jYewAwm1v0MQJimsKjL0ykj5BBiSwocYQJ3-FX05KuS0b6AFg2Z68LoHFDxbGLvo0GLSZ5rcLMWh3vNa9xACf5Hf4TzGk=w640-h360)](https://blogger.googleusercontent.com/img/a/AVvXsEhDazqAestp6Nt6DDKIpfyZwIqfqF0Pr-m_Ca9wrL8YWQT5JytF0u4b-QtaqdjC5gpA2hDWhZzq8p7MeZymgUfYlY-zty1JU5jYewAwm1v0MQJimsKjL0ykj5BBiSwocYQJ3-FX05KuS0b6AFg2Z68LoHFDxbGLvo0GLSZ5rcLMWh3vNa9xACf5Hf4TzGk)
-
-  
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-6.png)
 
 **Figure 7-6:** _Tokenization – Positional Embedding Vector._
 
@@ -128,7 +119,7 @@ Figure 7-7 also shows the final word embedding for the second occurrence of clea
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEg6OQIgMQrC-X5XHfGUwfFxCUqydZXPsrNU91o69ia9K4xOHaD2MGyZ3AubPCNK-obbP_sJS1NyioSfjJHDBWpV7AvzX24esyCVt6vLLVz-lEog6LmAvcLnOf0BFCQbgsBVltN9KFqyyKzO_MA1I9tq1AWiqaEWzkU-V1VlEhTPEHwQ55q79aBio8p21kE=w640-h380)](https://blogger.googleusercontent.com/img/a/AVvXsEg6OQIgMQrC-X5XHfGUwfFxCUqydZXPsrNU91o69ia9K4xOHaD2MGyZ3AubPCNK-obbP_sJS1NyioSfjJHDBWpV7AvzX24esyCVt6vLLVz-lEog6LmAvcLnOf0BFCQbgsBVltN9KFqyyKzO_MA1I9tq1AWiqaEWzkU-V1VlEhTPEHwQ55q79aBio8p21kE)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image1-7.png)
 
 
 **Figure 7-7:** _Finals Word Embedding for the 4th Word._
@@ -147,7 +138,7 @@ Before feeding the context vector into the feedforward neural network, it is sum
 
 The basic architecture of the FFNN in the decoder is designed so that the input layer has as many neurons as the dimension of the context vector. The hidden layer, in turn, has four times as many neurons as the input layer, while the output layer has the same number of neurons as the input layer. This design guarantees that the output vector of the FFNN has the same dimension as the context vector. Like the attention block, the FFNN block also employs residual connections and normalization.
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEiA-WSCZiYdJdyVcYiX_Yrbm8yvMeqVk5eA9cyoWsNvDrn4ssrSmvpAYRcRNsgkUk84RMkIF5UMVmIwLeHEn_kDiyOzNxZbjpb2slzC6gfv3fsncJGdIAawcwQYQ8eK6pjCVxg2HI2XjcymG2qlcRbkJRLweXzheGNFOjAm798kNgZzXCL_pCIqhrdSNUA=w640-h390)](https://blogger.googleusercontent.com/img/a/AVvXsEiA-WSCZiYdJdyVcYiX_Yrbm8yvMeqVk5eA9cyoWsNvDrn4ssrSmvpAYRcRNsgkUk84RMkIF5UMVmIwLeHEn_kDiyOzNxZbjpb2slzC6gfv3fsncJGdIAawcwQYQ8eK6pjCVxg2HI2XjcymG2qlcRbkJRLweXzheGNFOjAm798kNgZzXCL_pCIqhrdSNUA)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-1.png)
 
 Figure 7-8: Decoder-Only Transformer Architecture.
 
@@ -155,9 +146,7 @@ Figure 7-8: Decoder-Only Transformer Architecture.
 
 As pointed out in the Introduction, the word embedding vector is not used as input to the first decoder. Instead, it is multiplied by pretrained Query, Key, and Value weight matrices. The result of this matrix multiplication, dot product, produces the Query, Key, and Value vectors, which are use as inputs, and are processed through the Transformer. Figure 7–9 show the basic workflow of this process.
 
-  
-
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEixhuDXW6gNcox0HXLb0pMybU2yfN8EgaOUrPMzOk2QFNzmjtXH5ba1F-_rmOOyoHdy4QtSqiSAVw9f1Md26e1_LXXtXbSB8sZ3XP5vJUMdoIbsxt6BI1RXmp39yXRGBLrDA7r2NBev2fFZ0Xwd5-dwvxIsMJ0ZNsS1J22NRcWeBeKPeENwjFHvrXHYoFo=w640-h372)](https://blogger.googleusercontent.com/img/a/AVvXsEixhuDXW6gNcox0HXLb0pMybU2yfN8EgaOUrPMzOk2QFNzmjtXH5ba1F-_rmOOyoHdy4QtSqiSAVw9f1Md26e1_LXXtXbSB8sZ3XP5vJUMdoIbsxt6BI1RXmp39yXRGBLrDA7r2NBev2fFZ0Xwd5-dwvxIsMJ0ZNsS1J22NRcWeBeKPeENwjFHvrXHYoFo)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-2.png)
 
 Figure 7-9: Query, Key, and Value Vectors.
 
@@ -167,7 +156,7 @@ Let’s take a closer look at the process using numbers. After tokenizing the in
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEh5J6BY1nCeVA_5MwRB2yWJOcm3yQ0ptuQVa2cXdOuifohAHoE1PlFrnPDgpz6RNL3qhw4QENlQEvS_q1W1zYPxBi_Gm6geAZDBVUTwCCrB6yFxgXD6rTbNZm7TFFOyrdO3kBDSYH_kf4gGZFEluBpmTUy_O2jQ1_e8Lcn4p2JG97AqqoOaM0ze3nEi9e0=w640-h182)](https://blogger.googleusercontent.com/img/a/AVvXsEh5J6BY1nCeVA_5MwRB2yWJOcm3yQ0ptuQVa2cXdOuifohAHoE1PlFrnPDgpz6RNL3qhw4QENlQEvS_q1W1zYPxBi_Gm6geAZDBVUTwCCrB6yFxgXD6rTbNZm7TFFOyrdO3kBDSYH_kf4gGZFEluBpmTUy_O2jQ1_e8Lcn4p2JG97AqqoOaM0ze3nEi9e0)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-3.png)
 
   
 
@@ -185,7 +174,7 @@ The same Query, Key, and Value (Q, K, V) weight matrices are used across all wor
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEgrzNs947qFftCKUKKSR-z1GU9UKJo7OHTIzxSA5mBbJk9a2HfbWqzj25Qxg8U8LTeVkYfeONT8nCOxJj7JZdUWd2rFb3UM5nRfRKIXq-4Z6PzWTJl9Exu8ZJVnUVFYjt05YqHAickxbYMo-2dqI9xWajz-Q0M_i3qk4ssfU2UhPY_IioArj-DHfkajxls=w640-h322)](https://blogger.googleusercontent.com/img/a/AVvXsEgrzNs947qFftCKUKKSR-z1GU9UKJo7OHTIzxSA5mBbJk9a2HfbWqzj25Qxg8U8LTeVkYfeONT8nCOxJj7JZdUWd2rFb3UM5nRfRKIXq-4Z6PzWTJl9Exu8ZJVnUVFYjt05YqHAickxbYMo-2dqI9xWajz-Q0M_i3qk4ssfU2UhPY_IioArj-DHfkajxls)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-4.png)
 
   
 
@@ -205,7 +194,7 @@ After the Qv × Kv matrix multiplication, the resulting scores are divided by th
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEjFW0jelz2WibAXTs-FKUvQ04NM8TLYbPULYwrkQiJk9cTaSIL3PVQuf6Lqkdk2MjSczxYJobMKD9D7wBWmugcNLzcVLdZJew9SiJkMf_aSnOHB-t_EgX4zA9KXU9u8VKXXbhzsDrHjeB70ag3VPvO83Q7WQY347KXHPf967ICJ0anTtxG49-RtgWcz9gQ=w640-h336)](https://blogger.googleusercontent.com/img/a/AVvXsEjFW0jelz2WibAXTs-FKUvQ04NM8TLYbPULYwrkQiJk9cTaSIL3PVQuf6Lqkdk2MjSczxYJobMKD9D7wBWmugcNLzcVLdZJew9SiJkMf_aSnOHB-t_EgX4zA9KXU9u8VKXXbhzsDrHjeB70ag3VPvO83Q7WQY347KXHPf967ICJ0anTtxG49-RtgWcz9gQ)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-5.png)
 
   
 
@@ -217,7 +206,7 @@ Next, the SoftMax probabilities are multiplied by each token's Value vector (mat
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEgbjJrw1gfAYzaR8W0Qq4XnmVpuHS32KMBOPBABeX9pxwEpBld7xelB8RGwOaLn1w2iITFxPPwf0Zge6rbJaBB9QfGOSEpY5ynk-YsfE7Mv996GP0mubwtMN8C6ST9eOsWEhbgfou9VR_rVx1cpeHINCc3IT7lG6qpU045YQPek7lA3GtgHaKKD849Amjw=w640-h350)](https://blogger.googleusercontent.com/img/a/AVvXsEgbjJrw1gfAYzaR8W0Qq4XnmVpuHS32KMBOPBABeX9pxwEpBld7xelB8RGwOaLn1w2iITFxPPwf0Zge6rbJaBB9QfGOSEpY5ynk-YsfE7Mv996GP0mubwtMN8C6ST9eOsWEhbgfou9VR_rVx1cpeHINCc3IT7lG6qpU045YQPek7lA3GtgHaKKD849Amjw)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-6.png)
 
 Figure 7-13: Attention Layer, the Fourth Step.
 
@@ -231,7 +220,7 @@ As the final step, the Word vector, which includes positional encoding, is added
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEhk5DccsIEhZB9pcysWsxyRht72JsU7tjY8Cmd0RP1QFu-9l77sy6nI5RlrY5A6gZWhMbprdlmCa9QwqVXQRo8aVXtowCzzrUBtvNDZGEyb0LOOGWj8Jom5IOb9GNjSmfLGLU3phcoEVq2A61zRNVoGu9fO7TPjX8qGFIF_de-ic9SNlAsrFUuVIjxKCEo=w640-h330)](https://blogger.googleusercontent.com/img/a/AVvXsEhk5DccsIEhZB9pcysWsxyRht72JsU7tjY8Cmd0RP1QFu-9l77sy6nI5RlrY5A6gZWhMbprdlmCa9QwqVXQRo8aVXtowCzzrUBtvNDZGEyb0LOOGWj8Jom5IOb9GNjSmfLGLU3phcoEVq2A61zRNVoGu9fO7TPjX8qGFIF_de-ic9SNlAsrFUuVIjxKCEo)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-7.png)
 
 Figure 7-14: Add & Normalize Layer – Residual Connection and Layer Normalization.
 
@@ -243,7 +232,7 @@ Within the decoder module, the feedforward neural network uses the output vector
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEi8U4FGV3lVYan5FMglGDCe5YOo21xwMlF0C6sDFIRZ9YDyteq1SOuQiV900o9HfrSObEZr9-37iXqTA3AIT0Yh-9lGz3hxCqdTeB2iHEizitSBG7VFB0PG9UI0i7bUKc7OkdWZIrY4Ka9qe-XLJt3PN6dcpDy2q00AnKOrSdql2WcJ0OvC3UwVMguNeuQ=w640-h340)](https://blogger.googleusercontent.com/img/a/AVvXsEi8U4FGV3lVYan5FMglGDCe5YOo21xwMlF0C6sDFIRZ9YDyteq1SOuQiV900o9HfrSObEZr9-37iXqTA3AIT0Yh-9lGz3hxCqdTeB2iHEizitSBG7VFB0PG9UI0i7bUKc7OkdWZIrY4Ka9qe-XLJt3PN6dcpDy2q00AnKOrSdql2WcJ0OvC3UwVMguNeuQ)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-8.png)
 
 Figure 7-15: Fully Connected Feed Forward Neural Network (FFNN).
 
@@ -255,7 +244,7 @@ The final decoder output is computed in the Add & Normalize layer, similarly as 
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEixrA8llC3II66RWYmmSaJFO-Zllzz4U5L65FFIxY5wnAGWBX4ET8ctKL6lzaVGB_8xCXq3KrykCRp_IChXuYG1RIXEgZmMZc0Z9AzWEj9vdd-As08bhU_2WCm44UFz1rh0EQTkJbNiDsT_uCBEZwwHew36oB4ASP6GAe4yoxXxPm3DGfwLXa5VmV7PQ4s=w640-h350)](https://blogger.googleusercontent.com/img/a/AVvXsEixrA8llC3II66RWYmmSaJFO-Zllzz4U5L65FFIxY5wnAGWBX4ET8ctKL6lzaVGB_8xCXq3KrykCRp_IChXuYG1RIXEgZmMZc0Z9AzWEj9vdd-As08bhU_2WCm44UFz1rh0EQTkJbNiDsT_uCBEZwwHew36oB4ASP6GAe4yoxXxPm3DGfwLXa5VmV7PQ4s)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-9.png)
 
   
 
@@ -271,7 +260,7 @@ The output of the last decoder module does not directly represent the next word.
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEiBOZj5xXo4pSpU6l-yehfSvBHYH_eYdaX_7AxQmpiwCyXu_9XDfXJLEpEPaPZ1aA8_dssjzMGsK8Ko9uL3hu4_0ldmojVOXkXMrGcp4vOQZ9ziYwHwUngJziUBh_GhoNwnjg7OY0ONqA1Okf-JiLGPwcGSyQWsU3J7ZTt99PBTQfwrsUGL_Qnu0jWHdK4=w640-h208)](https://blogger.googleusercontent.com/img/a/AVvXsEiBOZj5xXo4pSpU6l-yehfSvBHYH_eYdaX_7AxQmpiwCyXu_9XDfXJLEpEPaPZ1aA8_dssjzMGsK8Ko9uL3hu4_0ldmojVOXkXMrGcp4vOQZ9ziYwHwUngJziUBh_GhoNwnjg7OY0ONqA1Okf-JiLGPwcGSyQWsU3J7ZTt99PBTQfwrsUGL_Qnu0jWHdK4)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-10.png)
 
 Figure 7-17: Hidden State Vector and Word Embedding Matrix.
 
@@ -281,7 +270,7 @@ Figure 7-18 illustrates how the decoder output vector (i.e., the hidden state h)
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEjiJpc8hZy_z_DnazhTGtFUak3H0MM-Dw0DiA6t0gUfL8cghXByrkpR2TZFNAvtlKWeBnN3sTi4ZTYzjBTzOSapdxqjgHetuZL4j0uiLct4qycfEJoBKH3GKFsA0eD2c5mrvcFe3IlQZ7bFqVRbp5a_Rqa4mauj65TudaJtOcX0JRY7-2aOwQIvpAGJ9Xo=w640-h374)](https://blogger.googleusercontent.com/img/a/AVvXsEjiJpc8hZy_z_DnazhTGtFUak3H0MM-Dw0DiA6t0gUfL8cghXByrkpR2TZFNAvtlKWeBnN3sTi4ZTYzjBTzOSapdxqjgHetuZL4j0uiLct4qycfEJoBKH3GKFsA0eD2c5mrvcFe3IlQZ7bFqVRbp5a_Rqa4mauj65TudaJtOcX0JRY7-2aOwQIvpAGJ9Xo)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-11.png)
 
 Figure 7-18: Logits Calculation – Dot Product of Hidden State and Complete Vocabulary.
 
@@ -291,7 +280,7 @@ Next, the SoftMax function is applied to the logits. This function converts the 
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEiHO4TOehh_kbfRCZXbTvcd_nEQh3q1cZanXj_eQxAP_DuiTsbT4cQg0clluEwyTA_B1B9kZM1WNIlV1THK067BEn8TMPcpOosJkjgUjyJRK-e_qGu63bvoQ2I3SfTH0Fyp5cmYM7A8SGffdhZkwq8ColVb9N9Wpy62jXL-vw2f5SDPKspDiFQThYCmXug=w640-h366)](https://blogger.googleusercontent.com/img/a/AVvXsEiHO4TOehh_kbfRCZXbTvcd_nEQh3q1cZanXj_eQxAP_DuiTsbT4cQg0clluEwyTA_B1B9kZM1WNIlV1THK067BEn8TMPcpOosJkjgUjyJRK-e_qGu63bvoQ2I3SfTH0Fyp5cmYM7A8SGffdhZkwq8ColVb9N9Wpy62jXL-vw2f5SDPKspDiFQThYCmXug)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-12.png)
 
   
 
@@ -303,7 +292,7 @@ Finally, the word with the highest probability is selected as the next token. Th
 
   
 
-[![](https://blogger.googleusercontent.com/img/a/AVvXsEg7Ond-7cxO7_33sU4fnvQt1TYMzUgS9vWkh5A8FuPbErvYt_joaNW5h9iGGC5x4NGVgDqZ41E1eG7dXX-dwoJa2OIwKEJTg9s-MTBX2ETi3R-OO_1scgPghQejvRCWleSCqEsGJpi5LnitRPlTNITo1JC_DqaqnKIDxYrnV69bSQvuXg55h8ayLJgDikE=w640-h368)](https://blogger.googleusercontent.com/img/a/AVvXsEg7Ond-7cxO7_33sU4fnvQt1TYMzUgS9vWkh5A8FuPbErvYt_joaNW5h9iGGC5x4NGVgDqZ41E1eG7dXX-dwoJa2OIwKEJTg9s-MTBX2ETi3R-OO_1scgPghQejvRCWleSCqEsGJpi5LnitRPlTNITo1JC_DqaqnKIDxYrnV69bSQvuXg55h8ayLJgDikE)
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/llm/image2-13.png)
 
   
 
