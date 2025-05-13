@@ -20,7 +20,7 @@ Many LLMs use Byte Pair Encoding (BPE), which splits words into subword units. F
 
 Figure 7-1 illustrates the relationship between words in the vocabulary and their corresponding tokens. Token values start from 2 because token 0 is reserved for padding and token 1 for unknown words.
 
-Each token, representing a word, is mapped to a Word Embedding Vector, which is initially assigned random values. The collection of these vectors forms a Word Embedding Matrix. The dimensionality of each vector determines how much contextual information it can encode.
+Each token, representing a word, is mapped to a **Word Embedding Vector**, which is initially assigned random values. The collection of these vectors forms a Word Embedding Matrix. The dimensionality of each vector determines how much contextual information it can encode.
 
 For example, consider the word “clear.” A two-dimensional vector may distinguish it as either an adjective or a verb but lacks further contextual information. By increasing the number of dimensions, the model can capture more context and better understand the meaning of the word. In the sentence “The sky was clear,” the phrase “The sky was” suggests that "clear" is an adjective. However, if we extend the sentence to “She decided to clear the backyard of junk,” the word "clear" now functions as a verb. More dimensions allow the model to utilize surrounding words more effectively for next-word prediction. For instance, GPT-3 uses 12,288-dimensional vectors. Given a vocabulary size of 50,000 words used by GPT-3, the Word Embedding Matrix has dimensions of 12,288 × 50,000, resulting in 614,400,000 parameters.
 
@@ -308,8 +308,6 @@ Finally, the word with the highest probability is selected as the next token. Th
   
 
 Figure 7-20: Word-to-Token, and Token-to-Word Embedding Process.
-
-  
 
 In theory, our simple example shows that the model can assign the highest probability to the correct word. For instance, by analyzing the position of the word “clear” relative to its preceding words, the model is able to infer the context. When the context implies that an action is directed toward a known target, the article “the” receives the highest probability score and is predicted as the next word.
 
