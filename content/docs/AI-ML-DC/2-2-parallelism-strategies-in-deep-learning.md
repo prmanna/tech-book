@@ -355,12 +355,7 @@ The resulting word vector is used to compute Query (Q) and Key (K) matrices, whi
 **Figure 8-15:** _An Overview of a Transformer Architecture._
 
   
-
-  
-
 ### Self-Attention Layer
-
-  
 
 In most cases, the word embedding matrix fits within a single GPU and is not split across multiple GPUs when using Tensor Parallelism. This is because a typical embedding matrix is approximately 200 MB, which is significantly smaller than large Transformer layers that can contain billions of parameters.
 
@@ -426,7 +421,7 @@ The SoftMax operation produces a Context Vector (Cv) for each input word, which 
 
   
 
-### Feedforward Layer
+#### Feedforward Layer
 
   
 
@@ -460,11 +455,11 @@ Additionally, GPU A1, GPU A2, and GPU A3 are interconnected via Rail Switch-1 ac
 
   
 
-### Backpropagation
+#### Backpropagation
 
   
 
-#### Forward pass
+##### Forward pass
 
   
 
@@ -496,7 +491,7 @@ On the other hand, during the inference when answering to our questions, LLMs us
 
   
 
-#### Backward pass
+##### Backward pass
 
   
 
