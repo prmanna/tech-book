@@ -338,8 +338,184 @@ If the test dataset is too large for a single GPU and must be split across multi
 
 **Figure 8-14:** _Model Parallelism with Pipeline Parallelism – Synchronization._
 
+### Tensor Parallelism
+
+ The previous section described how Pipeline Parallelism distributes entire layers across multiple GPUs. However, Large Language Models (LLMs) based on transformer architectures contain billions of parameters, making this approach insufficient.
+
+For example, GPT-3 has approximately 605 million parameters in a single self-attention layer and about 1.2 billion parameters in a feedforward layer, and these figures apply to just one transformer block. Since GPT-3 has 96 transformer blocks, the total parameter count reaches approximately 173 billion. When adding embedding and normalization parameters, the total increases to roughly 175 billion parameters.
+
+The number of parameters in a single layer alone often exceeds the memory capacity of a single GPU, making Pipeline Parallelism insufficient. Additionally, performing large matrix multiplications on a single GPU would be extremely slow and inefficient. Tensor Parallelism addresses this challenge by splitting computations within individual layers across multiple GPUs rather than assigning whole layers to separate GPUs, as done in Pipeline Parallelism.
+
+Chapter 7 introduces Transformer architecture but for memory refreshing, figure 8-15 illustrates a stack of decoder modules in a transformer architecture. Each decoder module consists of a Self-Attention layer and a Feedforward layer. The figure also shows how an input word, represented by x1, is first mapped to a token. The token, in turn, receives a positional word embedding vector through lookups in the word embedding and position embedding tables.
+
+The resulting word vector is used to compute Query (Q) and Key (K) matrices, which, in turn, produces logits via dot products. These logits are then passed through the SoftMax function. The resulting matrix from the SoftMax function is multiplied with the Value (V) matrices. After Add & Normalization computation, the resulting matrix is fed into the Feedforward, fully connected, neural network.
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEhuiHOC2YVNBLlpLcNtL6gGj_ITIiXiF5pirOTinoCyOS_RLDerUs85M1VifJPdSZHJgVvYesvn5uQFr5ZPhWHqRS1_N5VjXg3rOKfFy1JUbsjTwpxm3gqyQfcifm-5gai05EQWKZzGkjaTvBoi3L2lzXY7ZvAa1T8Aj9HQuYXqGfI6d0n8pe8jyv_naaA=w640-h382)](https://blogger.googleusercontent.com/img/a/AVvXsEhuiHOC2YVNBLlpLcNtL6gGj_ITIiXiF5pirOTinoCyOS_RLDerUs85M1VifJPdSZHJgVvYesvn5uQFr5ZPhWHqRS1_N5VjXg3rOKfFy1JUbsjTwpxm3gqyQfcifm-5gai05EQWKZzGkjaTvBoi3L2lzXY7ZvAa1T8Aj9HQuYXqGfI6d0n8pe8jyv_naaA)
+
+**Figure 8-15:** _An Overview of a Transformer Architecture._
+
+  
+
+  
+
+### Self-Attention Layer
+
+  
+
+In most cases, the word embedding matrix fits within a single GPU and is not split across multiple GPUs when using Tensor Parallelism. This is because a typical embedding matrix is approximately 200 MB, which is significantly smaller than large Transformer layers that can contain billions of parameters.
+
+  
+
+Another reason for keeping the embedding matrix on a single GPU is efficient lookup operations. Unlike large matrix multiplications, embedding lookups are memory-efficient and do not impose significant computational overhead. Splitting the embedding matrix across multiple GPUs would introduce high communication costs, as each GPU would store only a fraction of the vocabulary. This would require frequent cross-GPU communication for token lookups, increasing latency and reducing efficiency. After the embedding lookup, the embedding vectors are broadcasted to all GPUs before the Transformer computations start. 
+
+  
+
+However, in very large-scale models (such as GPT-3 with 175 billion parameters), embeddings may be sharded across multiple GPUs using distributed embeddings or model parallelism techniques. One approach is row-wise parallelism, where the vocabulary is split across GPUs, and each GPU stores only a fraction of the embeddings, handling lookups for the tokens it owns. 
+
+  
+
+Figure 8-16 illustrates how the positional word embedding matrix (Eepv) is multiplied with the Query (Q), Key (K), and Value (V) matrices to produce the corresponding Q, K, and V vectors. The Query and Key vectors are then used as inputs to the self-attention layer.
+
+  
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgaQmUUCroHyFYxNQfkn93h33VlST_C05Su8Cf-p1ZsK8NqKKMi87bNXjQvE0cgzLAu34LKP1GZvpKj9HFmhid0L8fx63smIcL18TZpXdwYuHIr43pR_QSnqg_zFvJlkVsV401JAjhhr0Zt3b__nlR6_xfNGkUsT_SprQz6MdqsB3VT0S4rRyTbw84rtN4=w640-h194)](https://blogger.googleusercontent.com/img/a/AVvXsEgaQmUUCroHyFYxNQfkn93h33VlST_C05Su8Cf-p1ZsK8NqKKMi87bNXjQvE0cgzLAu34LKP1GZvpKj9HFmhid0L8fx63smIcL18TZpXdwYuHIr43pR_QSnqg_zFvJlkVsV401JAjhhr0Zt3b__nlR6_xfNGkUsT_SprQz6MdqsB3VT0S4rRyTbw84rtN4)
+
+**Figure 8-16:** _Local Query (Q), Key (K), and Value (V) Matrices._
+
+  
+
+  
+
+Figure 8-17 illustrates how the Query, Key, and Value matrices are sharded across two GPUs. The first fragments of these matrices are assigned to GPU A1, while the second fragments are assigned to GPU A2. The positional word embedding matrix (Eevp ) is also distributed between GPU A1 and GPU A2. Matrix multiplication is then performed between the corresponding fragment of Eevp  and the respective shards of the Q, K, and V matrices. 
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEh4YA_oFjMFIunhZpSu0tguB_3t2cJF-JnLjE1ZnBW1baPpn6A2cYrPHsKeXHvkSTvtBzFI9GK0JAB9_1qDocIv2JezBIU6oQsI6_3OwqUlcL9VGUtAm5A0AB_uIg4PA5ppP4EGupPRdZ_Jezg_r-0Ji-38P5QOrKw7FqyzotJ5X4JKWWD0Cqu4AdhxDM0=w640-h362)](https://blogger.googleusercontent.com/img/a/AVvXsEh4YA_oFjMFIunhZpSu0tguB_3t2cJF-JnLjE1ZnBW1baPpn6A2cYrPHsKeXHvkSTvtBzFI9GK0JAB9_1qDocIv2JezBIU6oQsI6_3OwqUlcL9VGUtAm5A0AB_uIg4PA5ppP4EGupPRdZ_Jezg_r-0Ji-38P5QOrKw7FqyzotJ5X4JKWWD0Cqu4AdhxDM0)
+
+  
+
+**Figure 8-17:** _Shared Query (Q), Key (K), and Value (V) Matrices._
+
+  
+
+  
+
+Figure 8-18 illustrates the cross-GPU communication involved in the forward pass of the Self-Attention layer when using Tensor Parallelism. In this example, both the word embedding, and positional embedding matrices fit within GPU A1. After computing the positional word embeddings for the input words, the resulting vectors are broadcasted to GPU A2.
+
+  
+
+Since we are using Tensor Parallelism, the Query (Q), Key (K), and Value (V) matrices are partitioned across GPU A1 and GPU A2. Once each GPU has computed its assigned slices of the Q, K, and V vectors, the Q and K vectors are shared between GPUs using an All-Gather operation. This ensures that each GPU receives the missing parts of the Q and K matrices, reconstructing the complete matrices across GPUs. Only the Q and K matrices are synchronized; the V matrix remains local to each GPU.
+
+  
+
+The Q and K matrices are then used in the Self-Attention layer, where the first operation is a matrix multiplication between the Query vectors and Key vectors for all tokens. The process is explained in detail in Chapter 7. The resulting scores are used to compute logits, which are inputs to the SoftMax function, using scaled dot-product attention. The output of the SoftMax function is then multiplied by the local fragment of the V matrix on each GPU.
+
+  
+
+The SoftMax operation produces a Context Vector (Cv) for each input word, which serves as the input to the Feedforward Neural Network (FFN) layer. That said, the SoftMax in the self-attention layer is not the final prediction layer, it’s used to compute attention weights. The feedforward network processes the context vectors token representations produced by self-attention, not the predicted token. The final prediction is typically made by a separate output projection followed by a SoftMax over the vocabulary.
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEj-XLTMwOXsuQeXNV2KuIu9FOvvjRsLA7i3c7rCSx58dwNLase0BC0BafCUF12tnS_FdTKjkXEIcZ5X--P9Lw0kwLcsfrwDHsL_zzCrHNRhjyW2ztPOeFRxt_oNDJiT2HR3vTZFUxZOWQ-QuEfjBAl3lOtaUfn_uv38SHykSp0RAwyuwj0XWgNyXUFag0U=w640-h364)](https://blogger.googleusercontent.com/img/a/AVvXsEj-XLTMwOXsuQeXNV2KuIu9FOvvjRsLA7i3c7rCSx58dwNLase0BC0BafCUF12tnS_FdTKjkXEIcZ5X--P9Lw0kwLcsfrwDHsL_zzCrHNRhjyW2ztPOeFRxt_oNDJiT2HR3vTZFUxZOWQ-QuEfjBAl3lOtaUfn_uv38SHykSp0RAwyuwj0XWgNyXUFag0U)
+
+**Figure 8-18:** _Tensor Parallelism in Self-Attention Layer._
+
+  
+
+  
+
+### Feedforward Layer
+
+  
+
+Figure 8-19 illustrates a Feedforward layer in the decoder module of a transformer. The feedforward network consists of two hidden layers and an output layer. In addition to Tensor Parallelism, we also employ Model Parallelism with Pipeline Parallelism.
+
+  
+
+The first hidden layer is split between GPU A1 and GPU B1, both located in the same server. The weight matrices for neurons 1–3 reside in GPU A1, while the weight matrices for neurons 4–6 are in GPU B1. The inter-GPU communication between GPU A1 and GPU B1 occurs over NVLinks, which I refer to as the High-speed Domain (HsD).
+
+  
+
+The second hidden layer is distributed across GPU A2 and GPU B2 within the same server. GPU A2 holds the weight matrices for neurons 1–2, while GPU B2 contains the weight matrices for neurons 3–4. The inter-GPU connection between GPU A2 and GPU B2 also utilizes NVLinks.
+
+  
+
+The output layer is divided between GPU A3 and GPU B3, both residing in the same server. The weight matrix for neuron 1 is stored in GPU A3, while the weight matrix for neuron 2 is in GPU B3. Inter-GPU communication occurs over NVLinks.
+
+  
+
+Additionally, GPU A1, GPU A2, and GPU A3 are interconnected via Rail Switch-1 across the Backend Network. Similarly, GPU B1, GPU B2, and GPU B3 are connected via Rail Switch-2 across the Backend Network.
+
+  
+
+  
+
+[![](https://blogger.googleusercontent.com/img/a/AVvXsEgqWeamqv7fjZHGhuWTKWQTfJ5Q0XLumXoTMh4s7Dqk9k2TTEIGrUSzU6YQCxFNQMLTgGohpLkATCsGF02grUI1fCpcnvDTQ5PCVsxnOfigd831pIpY8cMQdTeJ_gsEunI1xe7h9kta-Cse0OWezWi-yBKFPcSbLQ3IXLJWWK26KqT1Lgxl0gjp7ydVKHA=w640-h358)](https://blogger.googleusercontent.com/img/a/AVvXsEgqWeamqv7fjZHGhuWTKWQTfJ5Q0XLumXoTMh4s7Dqk9k2TTEIGrUSzU6YQCxFNQMLTgGohpLkATCsGF02grUI1fCpcnvDTQ5PCVsxnOfigd831pIpY8cMQdTeJ_gsEunI1xe7h9kta-Cse0OWezWi-yBKFPcSbLQ3IXLJWWK26KqT1Lgxl0gjp7ydVKHA)
+
+**Figure 8-19:** _Tensor, Model and Pipeline Parallelism in Feedforward Layer._
+
+  
+
+  
+
+### Backpropagation
+
+  
+
+#### Forward pass
+
+  
+
+First Hidden Layer (H1): The input to H1, the output of the Self-Attention block after the Add & Norm step (context vectors), is shared with GPU A1 and GPU B1. Each GPU then performs its local matrix multiplication. After these local computations are complete, the partial outputs are synchronized between GPU A1 and GPU B1 using an All-Gather operation. This synchronization ensures that the complete H1 output (ynA1+B1) is calculated before it is passed to the next stage. Because GPU A1 and GPU B1 reside on the same server, the communication occurs over a high-speed domain via NVLink.
+
+  
+
+In the context of pipeline parallelism, H1 constitutes one pipeline stage. Once its context vector-based output is fully assembled, it is sent to the GPUs responsible for the next layer. Specifically, GPU A1 and GPU B1 first pass the output computed from the first context vector (C1), and then the GPUs process the next context vector. This communication occurs over the backend network. GPU A1, GPU A2, and GPU A3 are all connected to the same rail switch, so the RDMA packets traverse only one switch. The same design applies to GPU B1, GPU B2, and GPU B3. If communication between GPUs connected to different rail switches is required, the rail switches must be interconnected via spine switches. Alternatively, the RDMA packets may be sent over the high-speed domain to a GPU on the same rail as the destination GPU.
+
+  
+
+Second Hidden Layer (H2): The complete output from H1 (obtained after synchronization in the previous stage) is pipelined to GPUs A2 and B2. Each of these GPUs performs its own local matrix multiplication. As before, after the local computations, the partial outputs from GPU A2 and GPU B2 are synchronized via an All-Gather operation, forming the complete H2 output (ynA2+B2).
+
+  
+
+The synchronization and forwarding between hidden layer 2 and output layer, and within an output layer follow the same model as in the previous hidden layers.
+
+  
+
+This hybrid approach, using tensor parallelism within each stage and pipeline parallelism across stages, helps balance the computational load and memory usage across the six GPUs while minimizing idle time.
+
+  
+
+Although the focus of this section is on tensor parallelism, pipeline parallelism is also discussed because large language models (LLMs) can process multiple sentences from their vocabulary simultaneously during the training process.
+
+  
+
+On the other hand, during the inference when answering to our questions, LLMs use autoregressive next-word prediction. In this process, the final SoftMax layer of the Transformer calculates the probabilities over the vocabulary to predict the next token. This predicted token is then converted into a word and mapped to a new token. The lookup process assigns the token a positional embedding vector, which is used to compute the Query, Key, and Value vectors that feed into the Transformer's self-attention layer. Consequently, pipeline parallelism is not required during the inference phase.
+
+  
+
+#### Backward pass
+
+  
+
+The error propagates backward from the Feedforward Neural Network (FFNN) layer to the Self-Attention layer. The backpropagation process in a Transformer follows a sequential order, meaning the error from the output propagates first to the FFNN layer, and from there, it continues backward to the Self-Attention mechanism.
+
+  
+
+The process begins at the output layer, where the error is computed using the SoftMax function and cross-entropy loss. This error is then backpropagated through the FFNN layer, where gradients for the weight matrices are computed. Since the FFNN weights are split across multiple GPUs in Tensor Parallelism, each GPU computes its local gradient. An All-Reduce operation is then performed to synchronize these gradients across GPUs, ensuring that all GPUs have the correct weight updates before proceeding.
+
+  
+
+Once the gradients for the FFNN weights are synchronized, the error propagates back to the Self-Attention layer. Here, gradients for the Query (Q), Key (K), and Value (V) matrices are computed. Since these matrices were split across GPUs during the forward pass, the missing Q and K fragments must be gathered before calculating gradients. An All-Gather operation is used to collect Q and K values across GPUs. Once each GPU has a complete Q and K matrix, it computes the required gradients locally. After the local gradient computation, an All-Reduce operation is performed to ensure all GPUs have the synchronized gradients before updating the weights.
+
+  
+
+After both layers complete their gradient computations and synchronizations, the optimizer updates the weights, and the next iteration begins. The key communication phases include All-Gather for assembling required Q and K values before gradient computation and All-Reduce for synchronizing gradients before weight updates.
+
 
 **References:**
 * https://nwktimes.blogspot.com/2025/03/parallelism-strategies-in-deep-learning.html
 * https://nwktimes.blogspot.com/2025/03/model-parallelism-with-pipeline.html
-
+* https://nwktimes.blogspot.com/2025/03/tensor-parallelism.html
