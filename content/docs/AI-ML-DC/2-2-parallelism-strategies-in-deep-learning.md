@@ -6,6 +6,11 @@ weight: 22
 
 ### Introduction
 
+1. Data Parallelism
+2. Model Parallelism
+3. Pipeline Parallelism
+4. Tensor Parallelism
+
 Figure 8-1 depicts some of the model parameters that need to be stored in GPU memory: a) Weight matrices associated with connections to the preceding layer, b) Weighted sum (z), c) Activation values (y), d) Errors (E), e) Local gradients (local ∇), f) Gradients received from peer GPUs (remote ∇), g) Learning rates (LR), and h) Weight adjustment values (Δw).
 
 In addition, the training and test datasets, along with the model code, must also be stored in GPU memory. However, a single GPU may not have enough memory to accommodate all these elements. To address this limitation, an appropriate parallelization strategy must be chosen to efficiently distribute computations across multiple GPUs.
