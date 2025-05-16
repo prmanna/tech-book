@@ -123,17 +123,17 @@ _Time step 4:_ 
 
 **Computing:**
 
-·    A1 processes the input x4 and produces the output y4.
-·    A2 processes the input y3 and produces the output y3.
-·    B1 processes the input y2 and produces the output y2.
-·    B2 processes the input y1 and produces the model output 1.  
+* A1 processes the input x4 and produces the output y4.
+* A2 processes the input y3 and produces the output y3.
+* B1 processes the input y2 and produces the output y2.
+* B2 processes the input y1 and produces the model output 1.  
   
 
 **Communication:**
 
-·    A1 transports y3 to A2.
-·    A2 transports y2 to B1.
-·    B1 transports y1 to B2 
+* A1 transports y3 to A2.
+* A2 transports y2 to B1.
+* B1 transports y1 to B2 
 
 **Active GPUs (100%):** A1, A2, B1, B2
 
@@ -144,13 +144,10 @@ _Time step 5:_
 
 **Computing:**
 
-·    A2 processes the input y4 and produces the output y4.
-
-·    B1 processes the input y3 and produces the output y3.
-
-·    B2 processes the input y2 and produces the model output 2.
-
-·    B2 Computes local neuron error E1, and gradient G1.  
+* A2 processes the input y4 and produces the output y4.
+* B1 processes the input y3 and produces the output y3.
+* B2 processes the input y2 and produces the model output 2.
+* B2 Computes local neuron error E1, and gradient G1.  
   
 
 **Communication:**
@@ -173,18 +170,14 @@ _Time step 6:_ 
 **Computing:**
 
 ·    B1 processes the input y4 and produces the output y4.
-
 ·    B2 processes the input y3 and produces model output 3.
-
 ·    B2 Computes local neuron error E2, and gradient G2.
-
 ·    B1 Computes local neuron error E1, and gradient G1.  
   
 
 **Communication:**
 
 ·    B1 transports y4 to B2.
-
 ·    B2 transports error E2 to B1
 
  **Active GPUs (50%):** B1, B2
@@ -200,20 +193,15 @@ _Time step 7:_ 
 **Computing:**
 
 ·    B2 processes the input y4 and produces model output 4.
-
 ·    B2 Computes local neuron error E3, and gradient G3.
-
 ·    B1 Computes local neuron error E2, and gradient G2.
-
 ·    A2 Computes local neuron error E1, and gradient G1.  
   
 
 **Communication:**
 
 ·    B2 transports error E3 to B1
-
 ·    B1 transports error E2 to A2
-
 ·    A2 transports error E1 to A1 
 
 **Active GPUs (75%):** A2, B1, B2
@@ -227,20 +215,14 @@ _Time step 8:_ 
 **Computing:** 
 
 ·    B2 Computes local neuron error E4, and gradient G4.
-
 ·    B1 Computes local neuron error E3, and gradient G3.
-
 ·    A2 Computes local neuron error E2, and gradient G2.
-
 ·    A1 Computes local neuron error E1, and gradient G1.  
-  
 
 **Communication:**
 
 ·    B2 transports error E4 to B1
-
 ·    B1 transports error E3 to A2
-
 ·    A2 transports error E2 to A1 
 
 **Active GPUs (100%):** A1, A2, B1, B2
@@ -254,16 +236,13 @@ _Time step 9:_ 
 **Computing:** 
 
 ·    B1 Computes local neuron error E4, and gradient G4.
-
 ·    A2 Computes local neuron error E3, and gradient G3.
-
 ·    A1 Computes local neuron error E2, and gradient G2.  
   
 
 **Communication:** 
 
 ·    B1 transports error E4 to A2
-
 ·    A2 transports error E3 to A1 
 
 **Active GPUs (75%):** A1, A2, B1
@@ -277,7 +256,6 @@ _Time step 10:_
 **Computing:** 
 
 ·    A2 Computes local neuron error E4, and gradient G4.
-
 ·    A1 Computes local neuron error E3, and gradient G3.  
   
 
