@@ -421,7 +421,7 @@ are set to the initiator’s corresponding internal values.
 &lt;li>Pipeline Parallelism&lt;/li>
 &lt;li>Tensor Parallelism&lt;/li>
 &lt;/ol>
-&lt;p>Figure 8-1 depicts some of the model parameters that need to be stored in GPU memory: a) Weight matrices associated with connections to the preceding layer, b) Weighted sum (z), c) Activation values (y), d) Errors (E), e) Local gradients (local ∇), f) Gradients received from peer GPUs (remote ∇), g) Learning rates (LR), and h) Weight adjustment values (Δw).&lt;/p></description></item><item><title>Challenges in AI Fabric Design</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</guid><description>&lt;h2 id="intro">
+&lt;p>Figure 8-1 depicts some of the model parameters that need to be stored in GPU memory: a) Weight matrices associated with connections to the preceding layer, b) Weighted sum (z), c) Activation values (y), d) Errors (E), e) Local gradients (local ∇), f) Gradients received from peer GPUs (remote ∇), g) Learning rates (LR), and h) Weight adjustment values (Δw).&lt;/p></description></item><item><title>Challenges in AI Fabric</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/3-challenges-in-ai-fabric/</guid><description>&lt;h2 id="intro">
  Intro
  &lt;a class="anchor" href="#intro">#&lt;/a>
 &lt;/h2>
