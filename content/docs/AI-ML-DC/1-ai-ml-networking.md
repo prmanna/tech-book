@@ -6,7 +6,82 @@ weight: 10
 
 # Intro
 ## AI/ML Networking Part I: RDMA Basics
-TBD
+### Introduction
+
+Remote Direct Memory Access (RDMA) architecture enables efficient data transfer between Compute Nodes (CN) in a High-Performance Computing (HPC) environment. RDMA over Converged Ethernet version 2 (RoCEv2) utilizes a routed IP Fabric as a transport network for RDMA messages. Due to the nature of RDMA packet flow, the transport network must provide lossless, low-latency packet transmission. The RoCEv2 solution uses UDP in the transport layer, which does not handle packet losses caused by network congestion (buffer overflow on switches or on a receiving Compute Node). To avoid buffer overflow issues, Priority Flow Control (PFC) and Explicit Congestion Notification (ECN) are used as signaling mechanisms to react to buffer threshold violations by requesting a lower packet transfer rate.
+
+Before moving to RDMA processes, let’s take a brief look at our example Compute Nodes. Figure 1-1 illustrates our example Compute Nodes (CN). Both Client and Server CNs are equipped with one Graphical Processing Unit (GPU). The GPU has a Network Interface Card (NIC) with one interface. Additionally, the GPU has Device Memory Units to which it has a direct connection, bypassing the CPU. In real life, a CN may have several GPUs, each with multiple memory units. Intra-GPU communication within the CN happens over high-speed NVLinks. The connection to remote CNs occurs over the NIC, which has at least one high-speed uplink port/interface.
+
+Figure 1-1 also shows the basic idea of a stacked Fine-Grained 3D DRAM (FG-DRAM) solution. In our example, there are four vertically interconnected DRAM dies, each divided into eight Banks. Each Bank contains four memory arrays, each consisting of rows and columns that contain memory units (transistors whose charge indicates whether a bit is set to 1 or 0). FG-DRAM enables cross-DRAM grouping into Ranks, increasing memory capacity and bandwidth.
+
+The upcoming sections introduce the required processes and operations when the Client Compute Node wants to write data from its device memory to the Server Compute Node’s device memory. I will discuss the design models and requirements for lossless IP Fabric in later chapters.
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/rdma/rdma-1.jpg)
+**Figure 1-1:** Fine-Grained DRAM High-Level Architecture.
+
+### An overview of RDMA Processes
+
+The focus of the following sections is to provide an overview of the processes involved when our example application writes data from the Client Compute Node’s (CCN) device memory to the Server Compute Node’s (SCN) device memory. This section is divided into four paragraphs: a) memory allocation and registration, b) creation of queue pairs, c) connection initiation, and d) write operations from the perspectives of both the CCN and SCN.
+
+#### Memory Allocation and Registration
+
+First, we allocate a Protection Domain (PD). You can think of the PD as a tenant in IP networking. It enables the creation of a dedicated, private environment for your objects, similar to a Virtual Routing and Forwarding (VRF) instance in traditional networking, where the "objects" are IP addresses and routing tables. After allocating the PD, we allocate a memory block from the physical device memory and register it. During the memory registration process, we define the size of the memory block and set its access rights. In our example, we have set the access rights for registered memory in the CCN to Local Read and in the SCN to Remote Write. Next, we associate the registered device memory space with the PD.
+
+Note that the allocated physical memory may not be contiguous; therefore, the registration process creates a virtual, contiguous memory block. As a result of these processes, we receive a local memory access key, or L\_Key. When we register memory for an RDMA write operation and assign it Remote Write access, we receive a remote memory key, or R\_Key. This is the case with the SCN. The R\_Key is sent to the CCN over a management connection (which is outside the scope of this chapter). At this phase, both nodes have registered device memory associated with the PD. Additionally, L\_Keys and R\_Keys are generated.
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/rdma/rdma-2.jpg)
+**Figure 1-2:** Memory Allocation and Registration.
+
+#### Create Queue Pairs
+
+A Work Queue (WQ) is a bi-directional virtual communication channel between the NIC and the device memory. The WQ consists of two queues: the send queue (for RDMA send and write operations) and the receive queue (for receive operations). A Queue Pair (QP) is composed of these two queues. A Completion Queue (CQ) is used to notify the application of the completion status of an RDMA operation. Each QP is assigned a Service Type, which defines the connection's service level (Reliable or Unreliable) and type (Connection: point-to-point or Datagram: point-to-multipoint). In our example, we are using a Reliable Connection (RC).
+
+When creating a Queue Pair, we bind it with the same PD to which our registered virtual memory block is associated. We also bind the send and receive queues to either the same or different completion queues. Next, we set the service type for the QP. During the QP creation process, we also define the maximum number of send and receive Work Requests and their maximum message size.
+
+To establish a communication channel between Compute Nodes, the port on the NIC of the CCN and SCN must belong to the same partition. Each port of the NICs acts as an Endpoint in the RDMA domain. Every port has a Partition Key (P\_Key) Table with at least one P\_Key. After creating a Queue Pair, we query a P\_Key from the specific port, set the QP state to INIT (initialize), and set the P\_Key value. The CCN sends the P\_Key to the SCN within the Connection Request during the connection initiation process. The CCN includes the P\_Key in every RDMA message, and the receiving node verifies that the P\_Key in the datagram matches the target QP's P\_Key.
+
+You can think of the P\_Key as a virtual connection identifier for Queue Pairs, similar to how the VXLAN Network Identifier (VNI) in a VXLAN header identifies a VXLAN segment. In our example, the QP on the CCN is identified as 0x12345678, and the P\_Key associated with it is 0x8012.
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/rdma/rdma-3.jpg)
+**Figure 1-3:** Create Queue Pairs.
+
+#### RDMA Connection Initiation
+
+At this phase, the application on the CCN starts the connection initialization by sending a Request for Communication (REQ) message to the application on the SCN. The REQ message includes the Local Communication Identifier (LID) and the Global Unique Identifier for the Channel Adapter (Local CA GUID). The Local CA GUID identifies the NIC, while the Local Communication ID identifies the port on the NIC. The REQ message also carries the Local QP number (0x12345678), QP service type (Reliable Connection), starting Packet Sequence Number (PSN: 0x000abc), P\_Key value (0x8012), and payload size (1024).
+
+The Reply message from the SCN describes the local and remote Communication IDs, QP number, and PSN. The CCN responds to the Reply message with a Ready to Use (RTU) message. During the connection initialization process, the QP state transitions from INIT to Ready to Send and Ready to Receive states. After the connection is initiated, the application on the CCN can start the RDMA Write process.
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/rdma/rdma-4.jpg)
+**Figure 1-4:** RDMA Connection Initiation.
+
+#### Work Request Message
+
+After successfully initiating the connection, the application on the CCN can begin the RDMA Write operation. It creates a Work Request (WR) and posts it to the assigned QP’s send queue as a Work Request Entity (WRE). The WRE contains the following information:
+
+- **Work Request Identifier:** Identifies the WR and serves as a pointer in the completion queue to signal the application when the WR has been processed.
+- **OpCode:** Specifies the type of operation, such as RDMA Write in our example.
+- **Local Buffer Address and Length:** Describes the location in local device memory from which data is written to SCN memory, along with the length of the data.
+- **Local Memory Key (L\_Key):** Used for accessing the local memory buffer.
+- Send Flag: Indicates that successful processing of the WR should be signaled to the application through the Completion Queue.
+- **Remote Buffer Address:** Specifies the target memory location on the SCN.
+- **Remote Key (R\_Key):** Used for accessing the remote memory buffer on the SCN. The R\_Key is received over management connection from the SCN.
+
+The NIC retrieves the Work Request from the send queue. Based on the WR information, it constructs an Infiniband Base Transport Header (IB BTH), which includes the P\_Key and Destination QP identifier obtained during the connection initiation process. Because of the Reliable Connection service type, the Ack Required value is set to Yes.
+
+The RDMA Write operation requires an RDMA Extended Transport Header (RETH), which details the destination memory buffer, R\_Key, and data length. The IB BTH and RETH headers are encapsulated within Ethernet/IP/UDP headers. The destination port 4791 in the UDP header indicates that the next header is IB BTH. 
+
+Wrapped inside Eth/IP/UDP/IB BTH/RETH headers the data is forwarded towards the SCN.
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/rdma/rdma-5.jpg)
+
+**Figure 1-5:** Generating and Posting the RDMA Write Operation.
+
+When the SCN receives the RDMA Write message, it checks the received P\_Key and assigns the ingress port. Additionally, it validates the R\_Key to ensure it matches what was published to the CCN over the management connection. After these validations, the NIC translates the virtual device memory address to physical memory access and sends the RDMA Write information to the QP’s Receive Queue. Finally, once the RDMA write operation is completed, the application is notified via the Completion Queue that the job is done.
+
+![img|320x271](https://prasenjitmanna.com/tech-book/diagrams/ai-ml-dc/deep-learning-basics/rdma/rdma-6.jpg)
+
+**Figure 1-6:** Receiving and Processing RDMA Write Operation.
+
 
 ## AI/ML Networking: Part-II: Introduction of Deep Neural Networks
 _Machine Learning (ML)_ is a subset of _Artificial Intelligence (AI)_. ML is based on algorithms that allow learning, predicting, and making decisions based on data rather than pre-programmed tasks. ML leverages _Deep Neural Networks (DNNs)_, which have multiple layers, each consisting of neurons that process information from sub-layers as part of the training process. _Large Language Models (LLMs)_, such as OpenAI’s GPT (Generative Pre-trained Transformers), utilize ML and Deep Neural Networks.
