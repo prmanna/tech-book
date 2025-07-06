@@ -6,12 +6,11 @@
  AI/ML Networking Part I: RDMA Basics
  &lt;a class="anchor" href="#aiml-networking-part-i-rdma-basics">#&lt;/a>
 &lt;/h2>
-&lt;p>TBD&lt;/p>
-&lt;h2 id="aiml-networking-part-ii-introduction-of-deep-neural-networks">
- AI/ML Networking: Part-II: Introduction of Deep Neural Networks
- &lt;a class="anchor" href="#aiml-networking-part-ii-introduction-of-deep-neural-networks">#&lt;/a>
-&lt;/h2>
-&lt;p>&lt;em>Machine Learning (ML)&lt;/em> is a subset of &lt;em>Artificial Intelligence (AI)&lt;/em>. ML is based on algorithms that allow learning, predicting, and making decisions based on data rather than pre-programmed tasks. ML leverages &lt;em>Deep Neural Networks (DNNs)&lt;/em>, which have multiple layers, each consisting of neurons that process information from sub-layers as part of the training process. &lt;em>Large Language Models (LLMs)&lt;/em>, such as OpenAI’s GPT (Generative Pre-trained Transformers), utilize ML and Deep Neural Networks.&lt;/p></description></item><item><title>Deep Learning Basics | Artificial Neuron</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/2-ai-deep-learning-basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/2-ai-deep-learning-basics/</guid><description>&lt;h4 id="content">
+&lt;h3 id="introduction">
+ Introduction
+ &lt;a class="anchor" href="#introduction">#&lt;/a>
+&lt;/h3>
+&lt;p>Remote Direct Memory Access (RDMA) architecture enables efficient data transfer between Compute Nodes (CN) in a High-Performance Computing (HPC) environment. RDMA over Converged Ethernet version 2 (RoCEv2) utilizes a routed IP Fabric as a transport network for RDMA messages. Due to the nature of RDMA packet flow, the transport network must provide lossless, low-latency packet transmission. The RoCEv2 solution uses UDP in the transport layer, which does not handle packet losses caused by network congestion (buffer overflow on switches or on a receiving Compute Node). To avoid buffer overflow issues, Priority Flow Control (PFC) and Explicit Congestion Notification (ECN) are used as signaling mechanisms to react to buffer threshold violations by requesting a lower packet transfer rate.&lt;/p></description></item><item><title>Deep Learning Basics | Artificial Neuron</title><link>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/2-ai-deep-learning-basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://prasenjitmanna.com/tech-book/docs/ai-ml-dc/2-ai-deep-learning-basics/</guid><description>&lt;h4 id="content">
  Content
  &lt;a class="anchor" href="#content">#&lt;/a>
 &lt;/h4>
